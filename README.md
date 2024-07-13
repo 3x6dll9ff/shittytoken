@@ -1,1 +1,1 @@
-# shittytoken
+# shit - token
