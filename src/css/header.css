@@ -7,7 +7,7 @@
     align-items: center;
     top: 0;
     left: 0;
-    margin-top: 21px;
+    margin-top: 22px;
     padding-left: 10px;
     padding-right: 10px;
     z-index: 10;
@@ -22,7 +22,7 @@
 }
 
 .header-menu-items-container {
-    width: 400px;
+    width: 500px;
     display: flex;
     margin-left: 20px;
 }
