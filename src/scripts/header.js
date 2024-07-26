@@ -27,6 +27,10 @@ const Header = () => {
                         title={`BLOG`}
                         url={`/blog`}
                     />
+                    <LinkItem
+                        title={`PROFILE`}
+                        url={`/profile`}
+                    />
                 </div>
             </div>
         </div>
