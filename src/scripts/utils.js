@@ -1,5 +1,5 @@
-import arrowUp from "../images/arrow_up.png";
-import arrowDown from "../images/arrow_down.png";
+import arrowUp from "../assets/images/arrow_up.png";
+import arrowDown from "../assets/images/arrow_down.png";
 
 const dataLoaded = (data) => {
     for (const index in data) {

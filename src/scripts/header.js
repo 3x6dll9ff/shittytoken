@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import UpperLine from './header_upperline';
 import '../css/header.css';
-import logo_default_small from '../images/logo_small.png';
-import logo_hover_small from '../images/logo_hover_small.png';
+import logo_default_small from '../assets/images/logo_small.png';
+import logo_hover_small from '../assets/images/logo_hover_small.png';
 
 const Header = () => {
     return (
@@ -13,19 +12,19 @@ const Header = () => {
                 <Logo/>
                 <div className='header-menu-items-container'>
                     <LinkItem
-                        title={`Home`}
+                        title={`HOME`}
                         url={`/`}
                     />
                     <LinkItem
-                        title={`Crypto`}
+                        title={`CRYPTO`}
                         url={`/crypto`}
                     />
                     <LinkItem
-                        title={`Quests`}
+                        title={`QUESTS`}
                         url={`/quests`}
                     />
                     <LinkItem
-                        title={`Blog`}
+                        title={`BLOG`}
                         url={`/blog`}
                     />
                 </div>
@@ -85,5 +84,16 @@ const LinkItem = ({title, url}) => {
         </Link>
     );
 };
+
+class UpperLine extends React.Component {
+
+    render() {
+        return (
+            <div className={'upperline-text'}>
+                * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis *
+            </div>
+        );
+    }
+}
 
 export default Header;

@@ -1,15 +1,15 @@
 import React from 'react';
-import './css/home.css'
+import './css/quests.css'
 
 
-class Home extends React.Component {
+class Quests extends React.Component {
     render() {
         return (
             <div>
-                Home
+                Quests
             </div>
         );
     }
 }
 
-export default Home;
+export default Quests;

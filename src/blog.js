@@ -1,15 +1,15 @@
 import React from 'react';
-import './css/home.css'
+import './css/blog.css'
 
 
-class Home extends React.Component {
+class Blog extends React.Component {
     render() {
         return (
             <div>
-                Home
+                Blog
             </div>
         );
     }
 }
 
-export default Home;
+export default Blog;

@@ -1,13 +1,19 @@
 import React from "react";
 import * as ReactDOMClient from "react-dom/client";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Home from "./home";
 import Header from "./scripts/header";
+import Home from "./home";
+import Crypto from "./crypto";
+import Quests from "./quests";
+import Blog from "./blog";
 import "./css/index.css";
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
 
-const mainPath = `/`;
+const homePath = `/`;
+const cryptoPath = `/crypto`;
+const questsPath = `/quests`;
+const blogPath = `/blog`;
 
 const App = () => {
     return (
@@ -15,7 +21,10 @@ const App = () => {
             <Router>
                 <Header/>
                 <Routes>
-                    <Route path={mainPath} element={<Home/>}/>
+                    <Route path={homePath} element={<Home />}/>
+                    <Route path={cryptoPath} element={<Crypto />}/>
+                    <Route path={questsPath} element={<Quests />}/>
+                    <Route path={blogPath} element={<Blog />}/>
                 </Routes>
             </Router>
         </div>
