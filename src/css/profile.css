@@ -2,8 +2,8 @@
   --bg-color: #000;
   --text-primary-color: #fff;
   --text-second-color: #404040;
-  --Pixel-HB: "Pixel Operator HB", sans-serif;
-  --Pixel: "Pixel Operator", sans-serif;
+  --Pixel-HB: "Pixel Operator HB";
+  --Pixel: "Pixel Operator";
   --border-color: #fff;
   --border-width: 2px;
 }
@@ -16,11 +16,11 @@
   justify-content: center;
   align-content: start;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   margin-top: 100px;
   padding: 20px;
   box-sizing: border-box;
-  font-family: var(--Pixel-HB);
+  font-family: var(--Pixel-HB), sans-serif;
   font-size: 40px;
 }
 
@@ -79,7 +79,7 @@
 
 .user-stats {
   display: flex;
-  gap: 0px 10px;
+  gap: 0 10px;
   margin-top: 4px;
   margin-left: 16px;
   align-items: flex-start;
@@ -88,7 +88,7 @@
 
 .user-stats {
   display: flex;
-  gap: 0px 10px;
+  gap: 0 10px;
   margin-top: 4px;
   margin-left: 16px;
   align-items: flex-start;
@@ -97,14 +97,14 @@
 
 .user-stat {
   background-color: var(--bg-color);
-  color: var(--text-color);
-  width: 76px;
+  color: var(--text-primary-color);
+  width: 87px;
   height: 43px;
   border: 2px solid var(--border-color);
-  font-size: 12px;
+  font-size: 14pt;
   display: flex;
   flex-direction: column;
-  font-family: var(--Pixel);
+  font-family: var(--Pixel), sans-serif;
   align-items: center;
 }
 
