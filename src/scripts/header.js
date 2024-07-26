@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import '../css/header.css';
-import logo_default_small from '../assets/images/logo_small.png';
-import logo_hover_small from '../assets/images/logo_hover_small.png';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "../css/header.css";
+import logo_default_small from "../assets/images/logo_small.png";
+import logo_hover_small from "../assets/images/logo_hover_small.png";
 
 const Header = () => {
     return (
         <div>
-            <UpperLine/>
-            <div className='header'>
-                <Logo/>
-                <div className='header-menu-items-container'>
+            <Ticker
+                text={`* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * big broth3r watching * war b3tw33n d3vs and hack3rs is 3t3rnal * l3ave all y0ur m0n3y h3r3 * this is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * bitc0in will fall s0m3day `}
+                speed={400}
+            />
+            <div className={`header`}>
+                <Logo />
+                <div className={`header-menu-items-container`}>
                     <LinkItem
                         title={`HOME`}
                         url={`/`}
@@ -57,7 +60,7 @@ const Logo = () => {
                 onMouseEnter={mouseEnter}
                 onMouseLeave={mouseLeave}
                 src={logo}
-                alt='site-logo'
+                alt={`site-logo`}
             />
         </Link>
     );
@@ -84,20 +87,30 @@ const LinkItem = ({title, url}) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             {title}
-            <div className={`header-menu-item-underline ${condition}`}></div>
         </Link>
     );
 };
 
-class UpperLine extends React.Component {
+const Ticker = ({ text, speed }) => {
+    const [displayedText, setDisplayedText] = useState(text);
 
-    render() {
-        return (
-            <div className={'upperline-text'}>
-                * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis * penis *
+    useEffect(() => {
+        const tick = () => {
+            setDisplayedText(prev => prev.slice(1) + prev[0]);
+        };
+
+        const interval = setInterval(tick, speed);
+
+        return () => clearInterval(interval);
+    }, [text, speed]);
+
+    return (
+        <div className={`ticker-container`}>
+            <div className={`ticker-text`}>
+                {displayedText}
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Header;
