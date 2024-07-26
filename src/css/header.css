@@ -44,10 +44,14 @@
 .header-menu-item {
     font-family: "Pixel Operator HB", sans-serif;
     font-size: 24pt;
+    text-shadow:
+            -1px -1px 0 black,
+            1px -1px 0 black,
+            -1px 1px 0 black,
+            1px 1px 0 black;
+    text-decoration: none;
     color: white;
     margin: auto;
-    text-decoration: none;
-    transition: font-weight 0.2s ease-out;
     cursor: pointer;
 }
 
