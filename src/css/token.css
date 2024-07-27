@@ -1,0 +1,23 @@
+.token-container {
+    margin-top: 75px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.token-image {
+    height: 275px;
+}
+
+.token-name {
+    font-family: 'Pixel Operator HB';
+    font-size: 64px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.token-description {
+    margin-top: 0px;
+    font-family: 'Pixel Operator';
+    font-size: 32px;
+}
