@@ -6,12 +6,12 @@
 }
 
 .token-image {
-    height: 275px;
+    height: 48%;
 }
 
 .token-name {
     font-family: 'Pixel Operator HB';
-    font-size: 64px;
+    font-size: 4.2vw;
     margin-top: 20px;
     margin-bottom: 0;
 }
@@ -19,5 +19,5 @@
 .token-description {
     margin-top: 0px;
     font-family: 'Pixel Operator';
-    font-size: 32px;
+    font-size: 2.2vw;
 }

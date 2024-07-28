@@ -1,0 +1,87 @@
+.tokenomics-wrapper {
+    height: calc(100vh - 95px);
+    width: 100%;
+    position: relative;
+    background-color: #080808;
+}
+
+.tokenomics-container {
+    display: flex;
+    height: 85%;
+    width: 100%;
+}
+
+.allocation-video {
+    display: flex;
+    height: 100%;
+    width: 45%;
+}
+
+.hdd-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.allocation-video img {
+    height: 65%;
+    padding-top: 10%;
+}
+
+.percentage {
+    color: #00ff37
+}
+
+.hdd-text {
+    font-family: 'Pixel Operator';
+    font-size: 3vw;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.allocation-text-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    width: 50%;
+}
+
+.header-allocation {
+    font-family: 'Pixel Operator HB SC';
+    font-size: 4.2vw;
+    color: #FF0000;
+    margin-top: 50px;
+    margin-bottom: 8px;
+}
+
+.supply-value-container {
+    height: 15%;
+    width: 100%;
+    align-items: center;
+}
+
+.supply-text {
+    position: absolute;
+    font-family: 'Pixel Operator HB SC';
+    font-size: 3vw;
+    right: 15%;
+    margin-top: 0;
+    align-items: center;
+}
+
+.page-name-container {
+    position: absolute;
+    width: 8%;
+    height: 10%;
+    bottom: 1%;
+    left: 1%;
+}
+
+.page-name-container p {
+    font-family: 'Hacked';
+    font-size: 3.5vw;
+    margin-top: 0;
+    margin-bottom: 0;
+}

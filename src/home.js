@@ -3,6 +3,8 @@ import './css/home.css';
 import BackgroundVideo from './components/background_video';
 import WhiteLine from './components/white_line';
 import Tokenomics from './components/tokenomics';
+import Roadmap from './components/roadmap/roadmap';
+import Stuff from './components/stuff/stuff';
 
 
 class Home extends React.Component {
@@ -13,6 +15,9 @@ class Home extends React.Component {
                 <WhiteLine />
                 <Tokenomics />
                 <WhiteLine />
+                <Roadmap />
+                <WhiteLine />
+                <Stuff />
             </div>
         );
     }
