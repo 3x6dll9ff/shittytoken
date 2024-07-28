@@ -5,6 +5,7 @@ import WhiteLine from './components/white_line';
 import Tokenomics from './components/tokenomics';
 import Roadmap from './components/roadmap/roadmap';
 import Stuff from './components/stuff/stuff';
+import Footer from './components/footer';
 
 
 class Home extends React.Component {
@@ -18,6 +19,7 @@ class Home extends React.Component {
                 <Roadmap />
                 <WhiteLine />
                 <Stuff />
+                <Footer />
             </div>
         );
     }
