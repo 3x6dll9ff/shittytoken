@@ -2,13 +2,20 @@
 import React from 'react';
 import '../../css/stuff.css';
 import PageName from '../page_name';
+import Card from './card';
+
+import hacker1 from '../../assets/images/hackers/hacker1.png'
+import hacker2 from '../../assets/images/hackers/hacker2.png'
+import hacker3 from '../../assets/images/hackers/hacker3.png'
 
 const Stuff = () => {
-  let text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-
   return (
     <div className="stuff-container">
       <PageName pageName='STUFF'/>
+      <Card name='@HAZE' image={hacker1}/>
+      <Card name='@NOTHACKER' image={hacker2}/>
+      <Card name='@FINGERPRINT' image={hacker3}/>
+      <Card name='@HACKER4' image={hacker2}/>
     </div>
   );
 };
