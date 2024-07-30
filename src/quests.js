@@ -38,7 +38,7 @@ class Quests extends React.Component {
         console.log('Search query:', this.state.query);
         // Логика обработки поиска
     };
-
+    
     render() {
         return (
             <div className='quests-page'>
@@ -121,7 +121,7 @@ class Quests extends React.Component {
                             spaceBetween={30}
                             centeredSlides={true}
                             autoplay={{
-                            delay: 2000,
+                            delay: 3000,
                             disableOnInteraction: false,
                             }}
                             loop={true}
@@ -130,28 +130,66 @@ class Quests extends React.Component {
                             className='mySwiper'
                         >
                             <SwiperSlide>
-                            <div className='slide'>
-                                <img src={image1} alt='Image 1' />
-                                <p>XRP Ledger</p>
-                                <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
-                            </div>
+                                <div className='slide'>
+                                    <a href="https://qredo.com" rel="noopener noreferrer">
+                                        <img src={image1} alt='Image 1' />
+                                    </a>
+                                    <p>XRP Ledger</p>
+                                    <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>    
+                                </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                            <div className='slide'>
-                                <img src={image2} alt='Image 2' />
-                                <p>XRP Ledger</p>
-                                <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
-                            </div>
+                                <div className='slide'>
+                                    <a href="https://qredo.com" rel="noopener noreferrer">
+                                        <img src={image2} alt='Image 2' />
+                                    </a>
+                                    <p>XRP Ledger</p>
+                                    <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
+                                </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                            <div className='slide'>
-                                <img src={image3} alt='Image 3' />
-                                <p>XRP Ledger</p>
-                                <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
-                            </div>
+                                <div className='slide'>
+                                    <a href="https://qredo.com" rel="noopener noreferrer">
+                                        <img src={image3} alt='Image 3' />
+                                    </a>
+                                    <p>XRP Ledger</p>
+                                    <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
+                                </div>
                             </SwiperSlide>
                             {/* Добавьте больше слайдов по необходимости */}
                         </Swiper>
+                    </div>
+                </div>
+                <div className="sidebar">
+                    <div className="sidebar-section">
+                        <label>Sort by</label>
+                        <select>
+                        <option>Last Added</option>
+                        {/* Другие опции */}
+                        </select>
+                    </div>
+                    <div className="sidebar-section">
+                        <label>Status</label>
+                        <div>Recommended</div>
+                        <div>In Progress</div>
+                        <div>New</div>
+                    </div>
+                    <div className="sidebar-section">
+                        <label>Chain</label>
+                        <div>BNB Chain</div>
+                        <div>OP Mainnet</div>
+                        <div>Scroll</div>
+                        <div>Arbitrum</div>
+                    </div>
+                    <div className="sidebar-section">
+                        <label>My Progress</label>
+                        <div>Collected 65750 exp</div>
+                        <div>Complete quests and get exp</div>
+                    </div>
+                    <div className="sidebar-section">
+                        <label>DOCs Streak</label>
+                        <div>546 days</div>
+                        <button>GRAB DOCS</button>
                     </div>
                 </div>
             </div>
