@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     margin-top: 8%;
+    position: relative;
 }
 
 .stuff-card {
@@ -20,6 +21,7 @@
     height: 50%;
     text-align: center;
     border: solid white 2px;
+    position: relative;
 }
 
 .card-image-container {
@@ -27,16 +29,16 @@
     height: 85%;
 }
 
-.card-name {
-    width: 100%;
+.card-signature {
+    width: 95%;
     height: 15%;
     display: flex;
     align-items: center;
     justify-content: left;
-    margin-left: 15px;
+    padding-left: 5%;
 }
 
-.card-name p {
+.card-signature p {
     margin-top: 0;
     margin-bottom: 0;
     text-align: left;
@@ -45,6 +47,77 @@
 }
 
 .card-image {
+    width: 100%;
+    height: 100%;
+}
+
+.card-description {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #080808;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 1vw;
+
+    opacity: 0; /* Начальное значение непрозрачности */
+    transition: opacity 0.3s ease; /* Плавный переход для opacity */
+    z-index: -1;
+}
+
+.stuff-card:hover .card-description {
+    opacity: 1; /* Полная видимость при наведении */
+    z-index: 0; /* Прозрачный слой теперь видим */
+    transition: opacity 0.4s ease, z-index 0s; /* Плавное изменение opacity и немедленное изменение z-index */
+}
+
+.card-green-text {
+    color: #00FF38;
+    font-family: 'Pixel Operator HB';
+}
+
+.card-description p {
+    color: #ffffff;
+    font-family: 'Pixel Operator HB';
+    font-size: 1vw;
+    margin-top: 1.5%;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 4%;
+}
+
+.card-id-container p  {
+    text-align: center;
+    margin-left: 0;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.card-crimes {
+    margin-top: 4%;
+}
+
+.card-crimes p {
+    text-align: center;
+    color: red;
+    margin-top: 4%;
+}
+
+.card-crimes ul li {
+    text-align: left;
+    font-size: 0.9vw;
+}
+
+.small-img {
+    position: absolute;
+    width: 28%;
+    height: auto;
+    right: 7%;
+    top: 10%;
+}
+
+.small-img img {
     width: 100%;
     height: 100%;
 }
