@@ -2,6 +2,8 @@
   --bg-color: #000;
   --text-primary-color: #fff;
   --text-second-color: #404040;
+  --level-fee: #333232;
+  --text-third-color: #7E7E80;
   --Pixel-HB: "Pixel Operator HB";
   --Pixel: "Pixel Operator";
   --border-color: #fff;
@@ -11,11 +13,11 @@
 .profile-container {
   display: grid;
   grid-template-columns: 320px 950px;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto;
   gap: 26px 38px;
   justify-content: center;
   align-content: start;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin-top: 100px;
   padding: 20px;
@@ -30,7 +32,7 @@
 .quests-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .header-id,
@@ -46,112 +48,257 @@
 .achievements-block,
 .quests-block {
   background-color: var(--bg-color);
-  display: flex;
-  justify-content: left;
   border: var(--border-width) solid var(--border-color);
   color: var(--text-primary-color);
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .id-block {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
   height: 223px;
-  width: 330px;
+  width: 100%;
+  position: relative; /* Position relative to allow absolute positioning of children */
 }
 
 .avatar-profile {
-  height: 86px;
-  width: 86px;
-  margin-left: 20px;
-  margin-top: 26px;
+  height: 90px;
+  width: 90px;
   border: var(--border-width) solid var(--border-color);
 }
 
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+  margin-left: -10px;
+}
+
 .name-profile {
-    margin-left: 16px;
-    margin-top: 18px;
-    font-size: 20pt;
+  font-size: 20pt;
+  margin-top: -95px;
 }
 
 .wallet-profile {
-    margin-left: 16px;
-    font-size: 12pt;
-    color: var(--text-second-color);
+  font-size: 12pt;
+  color: var(--text-second-color);
+  margin-top: -10px;
 }
 
 .user-stats {
   display: flex;
-  gap: 0 10px;
-  margin-top: 4px;
-  margin-left: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.user-stats {
-  display: flex;
-  gap: 0 10px;
-  margin-top: 4px;
-  margin-left: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  gap: 10px;
+  padding-top: 10px;
 }
 
 .user-stat {
   background-color: var(--bg-color);
   color: var(--text-primary-color);
   width: 87px;
-  height: 43px;
+  height: 47px;
   border: 2px solid var(--border-color);
   font-size: 14pt;
   display: flex;
   flex-direction: column;
-  font-family: var(--Pixel), sans-serif;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .stat-title {
-  margin-bottom: 8px; 
+  margin-bottom: 0;
+  font-size: 12pt;
+  font-family: var(--Pixel);
 }
 
 .stat-content {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  gap: 5px; 
+  align-items: center;
+  gap: 5px;
+}
+
+/* Левел бар */
+.level-bar {
+  background-color: var(--level-fee);
+  height: 8px;
+  width: 80%;
+  position: absolute;
+  top: 65%;
+  left: 16%;
+  z-index: 1; /* Устанавливаем z-index для level-bar */
+}
+
+/* Внутренний уровень */
+.level-bar-inner {
+  background-color: white;
+  height: 100%;
+  width: 50%;
+}
+
+/* Пятиугольник */
+.level-grade {
+  position: absolute;
+  top: 33%;
+  left: -9%;
+  width: 150px;
+  height: 150px;
+  z-index: 2; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pentagon {
+  position: relative;
+  background-color: var(--bg-color);
+  width: 50px;
+  height: 50px;
+  clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.pentagon::before {
+  content: '';
+  position: absolute;
+  top: -4px; /* Корректируйте значение в зависимости от толщины бордера */
+  left: -4px; /* Корректируйте значение в зависимости от толщины бордера */
+  width: calc(100% + 8px); 
+  height: calc(100% + 8px); 
+  clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
+  border: var(--border-width) solid var(--border-color);
+  z-index: -1;
+}
+
+.grade-number {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.wen-joined {
+  bottom: 10px;
+  left: 15%;
+  position: absolute;
+  font-size: 20pt;
+  color: var(--text-third-color);
+}
+
+.drops-block,
+.achievements-block,
+.quests-block {
+  width: 100%;
 }
 
 .drops-block {
   height: 223px;
-  width: 950px;
 }
 
 .achievements-block {
   height: 650px;
-  width: 330px;
 }
 
 .quests-block {
   height: 650px;
-  width: 950px;
 }
 
+/* Позиционирование блоков в сетке */
 .id-container {
   grid-column: 1;
   grid-row: 1;
 }
-
-/*MARK: Position blocks on grid*/
 
 .drops-container {
   grid-column: 2;
   grid-row: 1;
 }
 
-.achievements-block {
+.achievements-container {
   grid-column: 1;
   grid-row: 2;
 }
 
-.quests-block {
+.quests-container {
   grid-column: 2;
   grid-row: 2;
+}
+
+/* Media Queries для мобильных устройств */
+@media (max-width: 1200px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+  }
+
+  .id-container,
+  .drops-container,
+  .achievements-container,
+  .quests-container {
+    align-items: stretch;
+  }
+
+  .id-block,
+  .drops-block,
+  .achievements-block,
+  .quests-block {
+    width: 100%;
+  }
+
+  /* Изменение порядка блоков на мобильных устройствах */
+  .id-container {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .drops-container {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .achievements-container {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .quests-container {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .id-block {
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Адаптивный размер блока ID-карты */
+  }
+
+  .user-stat {
+    width: 100%;
+    height: auto;
+    font-size: 12pt;
+    margin-left: 0;
+  }
+
+  .avatar-profile {
+    margin-bottom: 10px;
+  }
+
+  .name-profile {
+    font-size: 16pt;
+  }
+
+  .wallet-profile {
+    font-size: 10pt;
+  }
 }
