@@ -106,7 +106,6 @@
     background-color: #000000;
     width: 92px;
     height: 75px;
-    display: flex;
     flex-direction: column;
     overflow: clip;
     z-index: 1;
