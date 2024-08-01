@@ -32,11 +32,9 @@ const Tokenomics = () => {
         </div>
       </div>
 
-        <div className='supply-value-container'>
-            <p className="supply-text">
-              Total Supply - <span className="percentage">21,000,000</span> 
-            </p>
-        </div>
+      <p className="supply-text">
+        Total Supply - <span className="percentage">21,000,000</span> 
+      </p>
 
         <PageName pageName='TOKENOMICS'/>
     </div>

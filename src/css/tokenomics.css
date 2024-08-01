@@ -56,17 +56,12 @@
     margin-bottom: 8px;
 }
 
-.supply-value-container {
-    height: 15%;
-    width: 100%;
-    align-items: center;
-}
-
 .supply-text {
     position: absolute;
     font-family: 'Pixel Operator HB SC';
     font-size: 3vw;
-    right: 15%;
+    right: 13.5%;
+    bottom: 19.2%;
     margin-top: 0;
     align-items: center;
 }
