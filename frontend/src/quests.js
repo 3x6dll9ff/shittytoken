@@ -226,7 +226,7 @@ class Quests extends React.Component {
     renderContent() {
         return (
             <div className='quests-content'>
-                <div className="quests-content-section-text">
+                <div className="content-section-text">
                     <p>New</p>
                 </div>
                 <div className="carousel-container">
