@@ -7,12 +7,19 @@ const Card = ({ signature, image, description_data }) => {
   return (
     <div className="card-container">
       <div className='stuff-card'>
-        <div className='card-image-container'>
-          <img className="card-image" src={image} alt="CardImage" />
+        <div className='container-3d'>
         </div>
-        <div className='card-signature'>
-          <p>{signature}</p>
+
+        <div className='front-card'>
+          <div className='card-image-container'>
+            <img className="card-image" src={image} alt="CardImage" />
+          </div>
+
+          <div className='card-signature'>
+            <p>{signature}</p>
+          </div>
         </div>
+
         <div className='card-description'>
           <div className='small-img'>
             <img src={image} alt="CardImageSmall" />
