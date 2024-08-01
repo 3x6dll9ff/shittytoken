@@ -1,12 +1,12 @@
-// src/components/BackgroundVideo.js
-import React from 'react';
+// src/components/WhiteLine.js
+import React, { forwardRef } from 'react';
 import '../css/home.css'; // Подключаем стили
 
-const WhiteLine = () => {
+const WhiteLine = forwardRef(({ className }, ref) => {
   return (
-    <div className="white-line">
+    <div ref={ref} className={`white-line ${className ? className : ''}`}>
     </div>
   );
-};
+});
 
 export default WhiteLine;
