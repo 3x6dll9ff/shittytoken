@@ -310,92 +310,6 @@ class Quests extends React.Component {
         );
     }
 
-    renderContent1() {
-        return (
-            <div className='content'>
-                <div className="content-section-text">
-                    <p>New</p>
-                </div>
-                <div className="carousel-container">
-                    <Swiper
-                        ref={(node) => { this.swiperRef = node; }}
-                        modules={[Navigation, Pagination, Autoplay]}
-                        slidesPerView={3}
-                        spaceBetween={0}
-                        navigation
-                        loop={false}
-                        autoplay={false}
-                        className="mySwiperNewQuests"
-                    >
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                    </Swiper>
-                </div>
-            </div>
-            
-        );
-    }
 
     render() {
         return (
@@ -405,8 +319,6 @@ class Quests extends React.Component {
                 <div className="main-part-of-quest-page">
                     <div className="quest-cards-container">
                         {this.renderContent()}
-                        {this.renderContent1()}
-                        {this.renderContent1()}
                     </div>
                     {this.renderSidebar()}
                 </div>
