@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -53,19 +53,6 @@ class Crypto extends React.Component {
                 coinsData: coinsData,
                 coinsCharts: coinsCharts
             });
-
-            // for (const i in coinsData.slice(100)) {
-            //     const coinId = coinsData[i]['id'];
-            //     requests.push(api.getCoinCharts(coinId, '1w'));
-            // }
-            // const resultsOther = await Promise.all(requests);
-            // for (const i in resultsOther) {
-            //     const coinId = coinsData[i]['id'];
-            //     coinsCharts[coinId] = resultsOther[i];
-            // }
-            // this.setState({
-            //     coinsCharts: coinsCharts
-            // });
         }
         catch (error) {
             console.error(error);
@@ -78,102 +65,130 @@ class Crypto extends React.Component {
         const coinsCharts = this.state.coinsCharts;
         const data = [marketsData, coinsData, coinsCharts];
 
-        return (
-            <div>
-                {dataLoaded(data) ? (
-                    <div>
-                        <div className={`main-preblock`}>
-                            <div className={`main-container`}>
-                                <div className={`main-left-side`}>
-                                    <h1 className={`main-text`}>
-                                        Daily Crypto Market Update
-                                    </h1>
-                                    <h2 className={`main-subtext`}>
-                                        Today's Crypto Prices by Market Cap.
-                                    </h2>
-                                </div>
-
-                                <div className={`main-right-side`}>
-                                    <MVTile
-                                        data={marketsData}
-                                        label={`Market Cap`}
-                                        value={`marketCap`}
-                                        changePercentage={`marketCapChange`}
-                                    />
-                                    <MVTile
-                                        data={marketsData}
-                                        label={`Volume 24h`}
-                                        value={`volume`}
-                                        changePercentage={`volumeChange`}
-                                    />
-                                </div>
+        if (!dataLoaded(data)) {
+            return (<LoadingScreen/>);
+        }
+        else {
+            return (
+                <div>
+                    <div className={`main-preblock`}>
+                        <div className={`main-container`}>
+                            <div className={`main-left-side`}>
+                                <h1 className={`main-text`}>
+                                    Daily Crypto Market Update
+                                </h1>
+                                <h2 className={`main-subtext`}>
+                                    Today's Crypto Prices by Market Cap.
+                                </h2>
                             </div>
-                        </div>
 
-                        <div className={`coins-container`}>
-                            <div className={`coins-block`}>
-                                <div className={`coins-list-tile alt`}>
-                                    <div className={`coins-list-coin-rank alt`}>
-                                        #
-                                    </div>
-
-                                    <div className={`coins-list-coin-base-info-container`}>
-                                        <div className={`coins-list-coin-name alt`}>
-                                            Name
-                                        </div>
-                                    </div>
-
-                                    <div className={`coins-list-coin-percentage-container`}>
-                                        <div className={`coins-list-coin-percentage-block alt`}>
-                                            1h %
-                                        </div>
-                                        <div className={`coins-list-coin-percentage-block alt`}>
-                                            1d %
-                                        </div>
-                                        <div className={`coins-list-coin-percentage-block alt`}>
-                                            1w %
-                                        </div>
-                                    </div>
-
-                                    <div className={`coins-list-coin-PMV-container`}>
-                                        <div className={`coins-list-coin-PMV-value`}>
-                                            Price
-                                        </div>
-                                        <div className={`coins-list-coin-PMV-value`}>
-                                            Market Cap
-                                        </div>
-                                        <div className={`coins-list-coin-PMV-value`}>
-                                            Volume 24h
-                                        </div>
-                                    </div>
-
-                                    <div className={`coins-list-coin-charts-container`}>
-                                        <div className={`coins-list-coin-charts`}>
-                                            Price Charts (7d)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={`coins-list-separator`}></div>
-
-                                <CoinsTiles
-                                    data={{
-                                        coins: coinsData.slice(0, 100),
-                                        coinsCharts: coinsCharts
-                                    }}
+                            <div className={`main-right-side`}>
+                                <MVTile
+                                    data={marketsData}
+                                    label={`Market Cap`}
+                                    value={`marketCap`}
+                                    changePercentage={`marketCapChange`}
+                                />
+                                <MVTile
+                                    data={marketsData}
+                                    label={`Volume 24h`}
+                                    value={`volume`}
+                                    changePercentage={`volumeChange`}
                                 />
                             </div>
                         </div>
-                        <DownOnBoard/>
-                    </div>)
-                    :
-                    <div className={`loading-bg`}>
-                        <div className={`loading-anim`}></div>
                     </div>
-                }
-            </div>
-        );
+
+                    <div className={`coins-container`}>
+                        <div className={`coins-block`}>
+                            <div className={`coins-list-tile alt`}>
+                                <div className={`coins-list-coin-rank alt`}>
+                                    #
+                                </div>
+
+                                <div className={`coins-list-coin-base-info-container`}>
+                                    <div className={`coins-list-coin-name alt`}>
+                                        Name
+                                    </div>
+                                </div>
+
+                                <div className={`coins-list-coin-percentage-container`}>
+                                    <div className={`coins-list-coin-percentage-block alt`}>
+                                        1h %
+                                    </div>
+                                    <div className={`coins-list-coin-percentage-block alt`}>
+                                        1d %
+                                    </div>
+                                    <div className={`coins-list-coin-percentage-block alt`}>
+                                        1w %
+                                    </div>
+                                </div>
+
+                                <div className={`coins-list-coin-PMV-container`}>
+                                    <div className={`coins-list-coin-PMV-value`}>
+                                        Price
+                                    </div>
+                                    <div className={`coins-list-coin-PMV-value`}>
+                                        Market Cap
+                                    </div>
+                                    <div className={`coins-list-coin-PMV-value`}>
+                                        Volume 24h
+                                    </div>
+                                </div>
+
+                                <div className={`coins-list-coin-charts-container`}>
+                                    <div className={`coins-list-coin-charts`}>
+                                        Price Charts (7d)
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`coins-list-separator`}></div>
+
+                            <CoinsTiles
+                                data={{
+                                    coins: coinsData.slice(0, 100),
+                                    coinsCharts: coinsCharts
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <DownOnBoard/>
+                </div>
+            );
+        }
     }
 }
+
+const LoadingScreen = () => {
+    const [index, setIndex] = useState(0);
+    const interval = 100;
+    const frames = [
+        '|',
+        '/',
+        '—',
+        '\\',
+    ];
+    const [displayText, setDisplayText] = useState(frames[index]);
+
+    useEffect(() => {
+        const tick = () => {
+            setIndex(index + 1);
+            setDisplayText(frames[index % frames.length]);
+        }
+
+        const intervalId = setInterval(tick, interval);
+
+        return () => clearInterval(intervalId);
+    });
+
+    return (
+        <div className={`loading-bg`}>
+            <div className={`loading-anim`}>
+                {displayText}
+            </div>
+        </div>
+    );
+};
 
 const MVTile = ({data, label, value, changePercentage, percentType}) => {
     const percentage = data[changePercentage];
