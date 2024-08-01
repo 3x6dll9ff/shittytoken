@@ -21,6 +21,7 @@ class Home extends Component {
             createRef()
         ];
 
+
         this.headerHeight = 90; // Высота фиксированного хедера
     }
 
@@ -78,7 +79,7 @@ class Home extends Component {
     render() {
         return (
             <div className="home-page">
-                <PageSwitcher onSwitch={this.scrollToNextWhiteLine} />
+                <PageSwitcher onSwitch={this.scrollToNextWhiteLine}/>
                 <BackgroundVideo />
                 <WhiteLine ref={this.whiteLineRefs[0]} />
                 <Tokenomics />
