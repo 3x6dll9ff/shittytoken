@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import '../node_modules/swiper/swiper-bundle.min.css';
-import '../node_modules/swiper/swiper.min.css';
+import '../../node_modules/swiper/swiper-bundle.min.css';
+import '../../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
 import searchIcon from './assets/quests/images/searchIcon.png';
 import BNBChain from './assets/quests/images/BNBChain.png';
