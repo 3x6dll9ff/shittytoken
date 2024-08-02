@@ -54,7 +54,7 @@
     text-decoration: none;
     color: white;
     margin: auto;
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
     user-select: none;
 }
 
@@ -94,7 +94,7 @@
 
 .header-wallet-button:hover {
     background-color: #777777;
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
 }
 
 .header-wallet-button:active {
@@ -155,7 +155,7 @@
 
 .header-profile-button:hover {
     background-color: #777777;
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
     .header-profile-picture {
         opacity: 50%;
     }
@@ -213,7 +213,7 @@
     .header-profile-menu-button-icon {
         opacity: 50%;
     }
-    cursor: pointer;
+    cursor: var(--pointer), pointer;
 }
 
 .header-profile-menu-button-icon {
