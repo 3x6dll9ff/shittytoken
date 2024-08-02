@@ -1,7 +1,6 @@
-// src/components/BackgroundVideo.js
 import React from 'react';
-import '../../css/roadmap.css';
 import Ellipse from './ellipse';
+import '../../../css/home/roadmap.css';
 
 const RoadmapCard = ({quarter, year, className, header, text,}) => {
   return (

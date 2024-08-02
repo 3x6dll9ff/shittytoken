@@ -1,8 +1,7 @@
-// src/components/BackgroundVideo.js
 import React from 'react';
-import '../css/tokenomics.css'; // Подключаем стили
-import hdd from '../assets/images/hdd.png'
 import PageName from './page_name';
+import '../../css/home/tokenomics.css';
+import hdd from '../../assets/home/images/hdd.png'
 
 const Tokenomics = () => {
   return (

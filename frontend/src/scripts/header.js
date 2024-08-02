@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/header.css";
-import logo_default_small from "../assets/images/logo_small.png";
-import logo_hover_small from "../assets/images/logo_hover_small.png";
-import profile_picture from "../assets/images/image 59.png";
-import profile_icon from "../assets/images/profile.png";
-import achievement_icon from "../assets/images/achievements.png";
-import logout_icon from "../assets/images/logout.png";
+import logo_default_small from "../assets/header/images/logo_small.png";
+import logo_hover_small from "../assets/header/images/logo_hover_small.png";
+import profile_picture from "../assets/images/placeholder_profile.png";
+import profile_icon from "../assets/header/images/profile.png";
+import achievement_icon from "../assets/header/images/achievements.png";
+import logout_icon from "../assets/header/images/logout.png";
 
 const Header = () => {
     return (

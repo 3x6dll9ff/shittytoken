@@ -1,12 +1,11 @@
-// src/components/BackgroundVideo.js
 import React from 'react';
-import '../../css/stuff.css';
 import PageName from '../page_name';
 import Card from './card';
+import '../../../css/home/stuff.css';
 
-import hacker1 from '../../assets/images/hackers/hacker1.png'
-import hacker2 from '../../assets/images/hackers/hacker2.png'
-import hacker3 from '../../assets/images/hackers/hacker3.png'
+import hacker1 from '../../../assets/home/images/hackers/hacker1.png'
+import hacker2 from '../../../assets/home/images/hackers/hacker2.png'
+import hacker3 from '../../../assets/home/images/hackers/hacker3.png'
 
 
 const cardData = {

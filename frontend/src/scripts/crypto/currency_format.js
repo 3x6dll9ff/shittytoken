@@ -1,4 +1,4 @@
-import {insertCharIn} from "./utils";
+import {insertCharIn} from "../utils";
 
 const CurrencyFormat = ({
                             value,

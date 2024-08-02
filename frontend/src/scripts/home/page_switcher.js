@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../css/home.css'; // Подключаем стили
-import arrow from '../assets/images/arrow1.png'; // Импортируем изображение стрелочки
+import '../../css/home/home.css';
+import arrow from '../../assets/home/images/arrow1.png';
 
-const PageSwitcher = ({ onSwitch, lastWhiteLineRef  }) => {
+const PageSwitcher = ({ onSwitch, lastWhiteLineRef }) => {
     const [isVisible, setIsVisible] = useState(true);
     const arrowRef = useRef(null);
 

@@ -1,7 +1,6 @@
-// src/components/BackgroundVideo.js
 import React from 'react';
-import '../css/token.css'; // Подключаем стили
-import token_picture from '../assets/images/token.png'
+import '../../css/home/token.css';
+import token_picture from '../../assets/home/images/token.png'
 
 const Token = () => {
   return (

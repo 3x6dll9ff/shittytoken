@@ -1,8 +1,7 @@
-// src/components/BackgroundVideo.js
 import React from 'react';
-import '../css/background_video.css'; // Подключаем стили
-import sample from '../assets/video/hacked_city.mp4'
 import Token from './token';
+import '../../css/home/background_video.css'; // Подключаем стили
+import sample from '../../assets/home/video/hacked_city.mp4'
 
 const BackgroundVideo = () => {
   return (

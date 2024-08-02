@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/stuff.css';
+import '../../../css/home/stuff.css';
 
 const Card = ({ signature, image, description_data }) => {
   const { name, aka, age, location, role, nationality, balance, crimes } = description_data;

@@ -1,7 +1,7 @@
 import React from "react";
+import "./css/profile/profile.css";
 import avatarImage from "../src/assets/images/placeholder_profile.png";
 import docImage from "../src/assets/images/doc.png";
-import "./css/profile.css";
 
 class Profile extends React.Component {
   render() {

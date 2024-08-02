@@ -1,13 +1,12 @@
-// src/pages/Home.js
 import React, { createRef, Component } from 'react';
-import './css/home.css';
-import BackgroundVideo from './components/background_video';
-import WhiteLine from './components/white_line';
-import Tokenomics from './components/tokenomics';
-import Roadmap from './components/roadmap/roadmap';
-import Stuff from './components/stuff/stuff';
-import Footer from './components/footer';
-import PageSwitcher from './components/page_switcher';
+import BackgroundVideo from './scripts/home/background_video';
+import WhiteLine from './scripts/home/white_line';
+import Tokenomics from './scripts/home/tokenomics';
+import Roadmap from './scripts/home/roadmap/roadmap';
+import Stuff from './scripts/home/stuff/stuff';
+import Footer from './scripts/home/footer';
+import PageSwitcher from './scripts/home/page_switcher';
+import './css/home/home.css';
 
 class Home extends Component {
     constructor(props) {

@@ -1,6 +1,5 @@
-// src/components/WhiteLine.js
 import React, { forwardRef } from 'react';
-import '../css/home.css'; // Подключаем стили
+import '../../css/home/home.css';
 
 const WhiteLine = forwardRef(({ className }, ref) => {
   return (

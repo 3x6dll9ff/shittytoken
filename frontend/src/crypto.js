@@ -7,13 +7,13 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js';
-import DownOnBoard from './scripts/downonboard';
-import CoinView from './scripts/coin_view';
-import {CoinStatsAPI} from './scripts/api_manager';
-import CurrencyFormat from './scripts/currency_format';
-import {dataLoaded, positivePercentage, widgetColor, arrowDirection} from './scripts/utils';
-import './css/crypto.css';
-import './css/loading.css';
+import CoinView from './scripts/crypto/coin_view';
+import {CoinStatsAPI} from './scripts/crypto/api';
+import CurrencyFormat from './scripts/crypto/currency_format';
+import {dataLoaded} from './scripts/utils';
+import {positivePercentage, widgetColor, arrowDirection} from './scripts/crypto/utils';
+import './css/crypto/crypto.css';
+import './css/crypto/loading.css';
 
 
 class Crypto extends React.Component {
@@ -152,7 +152,6 @@ class Crypto extends React.Component {
                             />
                         </div>
                     </div>
-                    <DownOnBoard/>
                 </div>
             );
         }

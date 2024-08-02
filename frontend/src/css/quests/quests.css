@@ -254,14 +254,14 @@
 }
 
 .swiper-button-next {
-  background-image: url('../assets/images/arrow_next.png');
+  background-image: url('../../assets/quests/images/arrow_next.png');
   background-size: contain; /* Обеспечивает полное отображение изображения */
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .swiper-button-prev {
-  background-image: url('../assets/images/arrow_back.png');
+  background-image: url('../../assets/quests/images/arrow_back.png');
   background-size: contain; /* Обеспечивает полное отображение изображения */
   background-position: center;
   background-repeat: no-repeat;
