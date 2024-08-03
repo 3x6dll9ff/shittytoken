@@ -2,7 +2,7 @@ import React from "react";
 import "./css/profile/profile.css";
 import avatarImage from "../src/assets/images/placeholder_profile.png";
 import docImage from "../src/assets/images/doc.png";
-import ProgressBar from "./scripts/profile/progressbar";
+import ProgressBar from "./scripts/profile/progress_bar";
 
 class Profile extends React.Component {
   render() {
@@ -43,7 +43,7 @@ class Profile extends React.Component {
                   </div>
                 </div>
               </div>
-              <ProgressBar progress={20} />
+              <ProgressBar initialProgress={20} /> 
             </div>
             <div className="wen-joined">Joined 20.07.2024</div>
           </div>

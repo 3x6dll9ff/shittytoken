@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../css/home/home.css';
-import arrow from '../../assets/home/images/arrow1.png';
+import arrow from '../../assets/home/images/arrow_down.png';
 
-const PageSwitcher = ({ onSwitch, lastWhiteLineRef }) => {
+const PageSwitcher = ({ onSwitch }) => {
     const [isVisible, setIsVisible] = useState(true);
     const arrowRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
-            const lastWhiteLine = document.querySelector('.white-line.black-line');
-            const distanceFromTopToLineBottom = lastWhiteLine.getBoundingClientRect().bottom + window.scrollY;
-            console.log('distanceFromTopToLineBottom', distanceFromTopToLineBottom)
+            const firstWhiteLine = document.querySelector('.white-line');
+            const distanceFromTopToLineBottom = firstWhiteLine.getBoundingClientRect().bottom + window.scrollY;
 
             if (arrowRef.current) {
                 const distanceFromTopToArrowBottom = window.scrollY + arrowRef.current.getBoundingClientRect().bottom;

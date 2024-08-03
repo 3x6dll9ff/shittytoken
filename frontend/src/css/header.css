@@ -40,7 +40,6 @@
     background-size: contain;
     background-position: center;
     height: 40px;
-    offset-anchor: left top;
     aspect-ratio: 1;
     display: flex;
 }

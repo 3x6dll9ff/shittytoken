@@ -8,11 +8,11 @@ const Roadmap = () => {
 
   return (
     <div className="roadmap-container">
-      <RoadmapCard quarter='4q' year='24' header='Boost community' text={text}/>
-      <RoadmapCard quarter='1q' year='25' className='reversed' header='Boost community' text={text}/>
-      <RoadmapCard quarter='2q' year='25' header='Boost community' text={text}/>
-      <RoadmapCard quarter='3q' year='25' className='reversed' header='Boost community' text={text}/>
-      <RoadmapCard quarter='4q' year='25' header='Boost community' text={text}/>
+      <RoadmapCard season_number='1' header='Boost community' text={text}/>
+      <RoadmapCard season_number='2' className='reversed' header='Boost community' text={text}/>
+      <RoadmapCard season_number='3' header='Boost community' text={text}/>
+      <RoadmapCard season_number='4' className='reversed' header='Boost community' text={text}/>
+      <RoadmapCard season_number='5' header='Boost community' text={text}/>
 
       <PageName pageName='ROADMAP'/>
     </div>

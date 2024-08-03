@@ -1,14 +1,30 @@
+
 .progress-bar-container {
-  width: calc(100% - 75px);
-  height: 10px;
-  background-color: #333232;
-  box-sizing: border-box;
-  position: absolute;
-  top: 45%;
-  left: 60px;
+  width: calc(100% - 75px); 
+  height: 10px; 
+  background-color: #333232; 
+  box-sizing: border-box; 
+  position: absolute; 
+  top: 45%; 
+  left: 60px; 
+  overflow: hidden; 
 }
 
 .progress-bar {
-  height: 100%;
-  background-color: #ffffff;
+  height: 100%; 
+  background-color: #ffffff; 
+  width: 0; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; 
+}
+
+.progress-bar-difference {
+  height: 100%; 
+  background-color: #008000; 
+  width: 0; 
+  position: absolute;
+  top: 0;
+  z-index: 2; 
 }
