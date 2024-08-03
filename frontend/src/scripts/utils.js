@@ -1,6 +1,3 @@
-import arrowUp from "../assets/images/arrow_up.png";
-import arrowDown from "../assets/images/arrow_down.png";
-
 const dataLoaded = (data) => {
     for (const index in data) {
         if (data[index] === null) {
@@ -14,18 +11,6 @@ const dataLoaded = (data) => {
         catch (error) {}
     }
     return true;
-};
-
-const positivePercentage = (percentage) => {
-    return (percentage >= 0 ? percentage : (percentage - 2 * percentage));
-};
-
-const widgetColor = (percentage) => {
-    return (percentage >= 0 ? 'green' : 'red');
-};
-
-const arrowDirection = (color) => {
-    return (color === 'green' ? arrowUp : arrowDown);
 };
 
 const insertCharIn = (string, index, char) => {
@@ -44,4 +29,4 @@ const unixTimesptampToTime = (timestamp) => {
     return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
 };
 
-export {dataLoaded, positivePercentage, widgetColor, arrowDirection, insertCharIn, unixTimesptampToTime};
+export {dataLoaded, unixTimesptampToTime, insertCharIn};

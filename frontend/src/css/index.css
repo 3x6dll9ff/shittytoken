@@ -25,3 +25,23 @@ body {
     background-color: #83be1c;
     color: black;
 }
+
+body {
+    cursor: var(--normal), auto;
+}
+
+* {
+    cursor: var(--normal), auto;
+}
+
+textarea, input, select, option {
+    cursor: var(--text), text;
+}
+
+a, a:hover {
+    cursor: var(--pointer), pointer;
+}
+
+.not-allowed {
+    cursor: var(--unavailable), not-allowed;
+}
