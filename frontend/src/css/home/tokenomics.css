@@ -34,7 +34,7 @@
 }
 
 .hdd-text {
-    font-family: 'Pixel Operator';
+    font-family: 'Pixel Operator', sans-serif;
     font-size: 3vw;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -49,7 +49,7 @@
 }
 
 .header-allocation {
-    font-family: 'Pixel Operator HB SC';
+    font-family: 'Pixel Operator HB SC', sans-serif;
     font-size: 4.2vw;
     color: #FF0000;
     margin-top: 50px;
@@ -58,7 +58,7 @@
 
 .supply-text {
     position: absolute;
-    font-family: 'Pixel Operator HB SC';
+    font-family: 'Pixel Operator HB SC', sans-serif;
     font-size: 3vw;
     right: 13.5%;
     bottom: 19.2%;
@@ -75,7 +75,7 @@
 }
 
 .page-name-container p {
-    font-family: 'Hacked';
+    font-family: 'Hacked', sans-serif;
     font-size: 3.5vw;
     margin-top: 0;
     margin-bottom: 0;

@@ -13,20 +13,20 @@
 }
 
 .disclaimer-header {
-    font-family: 'Hacked';
+    font-family: 'Hacked', sans-serif;
     font-size: 1.5vw;
     margin-bottom: 0;
     margin-top: 2%;
 }
 
 .disclaimer-rights {
-    font-family: 'Pixel Operator Mono HB 8';
+    font-family: 'Pixel Operator Mono HB 8', sans-serif;
     font-size: 0.6vw;
 }
 
 .disclaimer-description {
     font-size: 0.75vw;
-    font-family: 'Pixel Operator';
+    font-family: 'Pixel Operator', sans-serif;
     margin-left: 5%;
     margin-right: 5%;
 }

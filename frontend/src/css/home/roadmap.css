@@ -37,7 +37,7 @@
 .ellipse-text {
     fill: black;
     font-size: 100px;
-    font-family: 'Hacked';
+    font-family: 'Hacked', sans-serif;
     text-anchor: middle;
     dominant-baseline: middle;
 }
@@ -61,7 +61,7 @@
     width: 100%;
     margin: 0;
     padding-top: 1%;
-    font-family: 'Pixel Operator';
+    font-family: 'Pixel Operator', sans-serif;
     font-size: 1.8vw;
 }
 
@@ -70,7 +70,7 @@
     width: 90%;
     margin: 0;
     margin-top: 3%;
-    font-family: 'Pixel Operator';
+    font-family: 'Pixel Operator', sans-serif;
     font-size: 0.96vw;
 }
 
