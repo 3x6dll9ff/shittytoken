@@ -2,4 +2,4 @@
 
 # pip install -r .\requirements.txt ---> Установка зависимостей
 
-# uvicorn app.main:app --reload ---> Запуск fastapi
+# uvicorn app.main:app --reload ---> Запуск fastapi (из папки backend)
