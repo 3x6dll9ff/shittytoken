@@ -234,7 +234,7 @@
 }
 
 .profile-claim-text {
-  font-family: var(--Pixel-SC) , sans-serif;
+  font-family: var(--Pixel-SC), sans-serif;
   color: white;
   font-size: 24pt;
   text-align: center;
@@ -301,7 +301,8 @@
 }
 
 .achievements-content.locked {
-  filter: saturate(0);
+  filter: saturate(0) brightness(75%);
+;
 }
 
 .achievements-image {
