@@ -1,16 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/header.css";
+import pixel_mask from "../assets/header/images/pixel_mask.png";
 import profile_picture from "../assets/images/placeholder_profile.png";
 import profile_icon from "../assets/header/images/profile.png";
 import achievement_icon from "../assets/header/images/achievements.png";
 import logout_icon from "../assets/header/images/logout.png";
 
-const Header = () => {
+const Header = ({maskStyle}) => {
     return (
         <div>
             <Ticker />
-            <div className={`header`}>
+            <div
+                className={`header`}
+            >
+                <div
+                    className={`header-pixel-mask-container`}
+                >
+                    <img
+                        className={`header-pixel-mask-image`}
+                        src={pixel_mask}
+                        alt={`pixel mask`}
+                    />
+                    <div
+                        className={`header-pixel-mask`}
+                        style={maskStyle}
+                    />
+                </div>
                 <Link
                     to={`/`}
                     className={`header-logo`}
