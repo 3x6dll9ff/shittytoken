@@ -7,9 +7,37 @@
 .search-bar-area {
   display: flex;
   width: 100%;
-  max-width: 1480px;
-  padding-left: 65px;
-  /* margin: 0 auto; */
+  padding-left: 60px;
+}
+
+@media (max-width: 1600px) {
+  .search-bar-area {
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .search-bar-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .search-bar-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .search-bar-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar-area {
+    padding-left: 0px;
+  }
 }
 
 .search-bar {
@@ -58,6 +86,7 @@
   font-family: "Pixel Operator HB 8", sans-serif;
   font-size: 2rem;
   color: white;
+  line-height: 1.5;
   height: auto;
   flex: 1; /* Позволяет текстовому блоку занимать оставшееся пространство */
   min-width: 250px; /* Минимальная ширина блока текста */
@@ -76,13 +105,14 @@
 .welcome-banner img {
   width: 45px;
   height: 45px;
-  margin: 0.5rem;
+  margin: 1rem;
 }
 
 .welcome-banner-slider {
   background: #000000;
   border: 2px solid #ffffff;
   max-width: 600px;
+  max-height: 500px;
   /* margin-top: 1rem; */
   overflow: hidden;
   flex: 1; /* Позволяет слайдеру занимать оставшееся пространство */
@@ -149,6 +179,8 @@
     max-width: 100%; /* Слайдер будет занимать всю ширину контейнера на маленьких экранах */
   }
 }
+
+
 
 @media (max-width: 768px) {
   .welcome-banner {
