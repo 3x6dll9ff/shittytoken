@@ -1,25 +1,23 @@
 import React, { useRef } from 'react';
-import './css/quests.css';
-import searchIcon from './assets/images/searchIcon.png';
-import BNBChain from './assets/images/BNBChain.png';
-import Polygonchain from './assets/images/Polygonchain.png';
-import SolanaChain from './assets/images/SolanaChain.png';
-import OPChain from './assets/images/OPChain.png';
-import ArbitrumChain from './assets/images/ArbitrumChain.png';
-import ZebraChain from './assets/images/ZebraChain.png';
-import AvalancheChain from './assets/images/AvalancheChain.png';
-import VillagerChain from './assets/images/VillagerChain.png';
-import ScroolChain from './assets/images/ScroolChain.png';
-import QredoChain from './assets/images/QredoChain.png';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import image1 from './assets/images/quest_pic.png';
-import image2 from './assets/images/quest_pic.png';
-import image3 from './assets/images/quest_pic.png';
-import image4 from './assets/images/logo_small.png';
+import './css/quests/quests.css';
+import searchIcon from './assets/quests/images/searchIcon.png';
+import BNBChain from './assets/quests/images/BNBChain.png';
+import Polygonchain from './assets/quests/images/Polygonchain.png';
+import SolanaChain from './assets/quests/images/SolanaChain.png';
+import OPChain from './assets/quests/images/OPChain.png';
+import ArbitrumChain from './assets/quests/images/ArbitrumChain.png';
+import ZebraChain from './assets/quests/images/ZebraChain.png';
+import AvalancheChain from './assets/quests/images/AvalancheChain.png';
+import VillagerChain from './assets/quests/images/VillagerChain.png';
+import ScroolChain from './assets/quests/images/ScrollChain.png';
+import QredoChain from './assets/quests/images/QredoChain.png';
+import image1 from './assets/quests/images/quest_pic.png';
+import image2 from './assets/quests/images/quest_pic.png';
+import image3 from './assets/quests/images/quest_pic.png';
 
 // ========================= Состояния и методы =========================
 

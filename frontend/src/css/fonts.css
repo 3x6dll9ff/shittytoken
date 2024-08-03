@@ -6,6 +6,13 @@
 }
 
 @font-face {
+    font-family: "Consolas";
+    src: url('../assets/fonts/consolas/consolas.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Pixel Operator';
     src: url('../assets/fonts/pixel_operator/PixelOperator.ttf') format('truetype');
     font-weight: normal;

@@ -1,0 +1,7 @@
+:root {
+    --normal: url('../assets/cursors/normal.cur');
+    --pointer: url('../assets/cursors/link.cur');
+    --text: url('../assets/cursors/text.cur');
+    --cross: url('../assets/cursors/cross.cur');
+    --unavailable: url('../assets/cursors/unavailable.cur');
+}
