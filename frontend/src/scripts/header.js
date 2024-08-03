@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/header.css";
-import logo_default_small from "../assets/header/images/logo_small.png";
-import logo_hover_small from "../assets/header/images/logo_hover_small.png";
 import profile_picture from "../assets/images/placeholder_profile.png";
 import profile_icon from "../assets/header/images/profile.png";
 import achievement_icon from "../assets/header/images/achievements.png";
@@ -13,7 +11,10 @@ const Header = () => {
         <div>
             <Ticker />
             <div className={`header`}>
-                <Logo />
+                <Link
+                    to={`/`}
+                    className={`header-logo`}
+                />
                 <div className={`header-menu-items-container`}>
                     <LinkItem
                         title={`HOME`}
@@ -65,50 +66,13 @@ const Ticker = () => {
     );
 };
 
-const Logo = () => {
-    const [logo, setLogo] = useState(logo_default_small);
-
-    const mouseEnter = () => {
-        setLogo(logo_hover_small);
-    }
-
-    const mouseLeave = () => {
-        setLogo(logo_default_small);
-    }
-
-    return (
-        <Link
-            to={`/`}
-            className={`header-logo`}
-        >
-            <img
-                onMouseEnter={mouseEnter}
-                onMouseLeave={mouseLeave}
-                src={logo}
-                alt={`site-logo`}
-            />
-        </Link>
-    );
-};
-
 const LinkItem = ({title, url}) => {
-    const [isHovered, setIsHovered] = useState(false);
     const isActive = useLocation().pathname === url;
 
-    let condition = '';
-    if (isHovered) {
-        condition = 'hovered';
-    }
-    if (isActive) {
-        condition = 'active';
-    }
-
     return (
         <Link
-            className={`header-menu-item ${condition}`}
+            className={`header-menu-item${isActive ? '-active' : ''}`}
             to={url}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             {title}
         </Link>
@@ -117,15 +81,42 @@ const LinkItem = ({title, url}) => {
 
 const ProfileContainer = () => {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [profileClicked, setProfileClicked] = useState(false);
+    const [profileExpanded, setProfileExpanded] = useState(false);
 
     const logoutButton = () => {
         setLoggedIn(false);
-        setProfileClicked(false);
-    }
+        setProfileExpanded(false);
+    };
+
+    const containerRef = useRef(null);
+
+    const preventScroll = (event) => {
+        event.preventDefault();
+    };
+
+    const handlePointerEnter = () => {
+        if (containerRef.current) {
+            containerRef.current.addEventListener('wheel', preventScroll, { passive: false });
+        }
+    };
+
+    const handlePointerLeave = () => {
+        if (containerRef.current) {
+            containerRef.current.removeEventListener('wheel', preventScroll);
+        }
+        setProfileExpanded(false);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('wheel', preventScroll);
+            }
+        };
+    }, []);
 
     if (!loggedIn) {
-        return(
+        return (
             <div
                 className={`header-wallet-button`}
                 onClick={() => setLoggedIn(true)}
@@ -133,14 +124,18 @@ const ProfileContainer = () => {
                 Connect Wallet
             </div>
         );
-    }
-    else {
+    } else {
         let walletAddress = '0x1234567890abcdef';
         if (walletAddress.length > 13) {
             walletAddress = walletAddress.slice(0, 13) + '...';
         }
         return (
-            <div className={`header-profile-container ${profileClicked ? 'full' : ''}`}>
+            <div
+                className={`header-profile-container ${profileExpanded ? 'expanded' : ''}`}
+                onPointerEnter={handlePointerEnter}
+                onPointerLeave={handlePointerLeave}
+                ref={containerRef}
+            >
                 <div className={`header-profile-info`}>
                     <div className={`header-profile-text-container`}>
                         <div className={`header-profile-username`}>
@@ -150,9 +145,10 @@ const ProfileContainer = () => {
                             {walletAddress}
                         </div>
                     </div>
-                    <div
+                    <Link
                         className={`header-profile-button`}
-                        onClick={() => setProfileClicked(!profileClicked)}
+                        to={`/profile`}
+                        onMouseEnter={() => setProfileExpanded(true)}
                     >
                         <div className={`header-profile-picture-bg`}>
                             <img
@@ -161,7 +157,7 @@ const ProfileContainer = () => {
                                 alt={`profile-picture`}
                             />
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className={`header-profile-menu-buttons-container`}>
                     <ProfileButton
@@ -191,15 +187,15 @@ const ProfileButton = ({title, img_src, onClick, alt}) => {
     let linkTo;
     if (typeof onClick === 'string') {
         linkTo = onClick;
-        onClick = () => {}
-    }
-    else {
+        onClick = () => {
+        }
+    } else {
         linkTo = link;
     }
 
     return (
         <Link
-            className={`header-profile-menu-button ${alt? 'alt' : ''}`}
+            className={`header-profile-menu-button ${alt ? 'alt' : ''}`}
             onClick={onClick}
             to={linkTo}
         >

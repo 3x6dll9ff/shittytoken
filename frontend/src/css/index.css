@@ -1,3 +1,11 @@
+:root {
+    /* cursors */
+    --default: url('../assets/images/cursors/normal.png'), default;
+    --pointer: url('../assets/images/cursors/link.png'), pointer;
+    --text: url('../assets/images/cursors/text.png'), text;
+    --not-allowed: url('../assets/images/cursors/unavailable.png'), not-allowed;
+}
+
 body {
     font-family: "Consolas", sans-serif;
     background-color: #080808;
@@ -7,41 +15,37 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 20px
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #121212;
+    background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 10px;
-    background: rgba(93, 93, 93, 0.5);
-    border-radius: 10px;
-    border: 5px solid #121212;
+    background: #FFFFFF;
 }
 
 ::selection {
-    background-color: #83be1c;
+    background-color: #FFFFFF;
     color: black;
 }
 
-body {
-    cursor: var(--normal), auto;
+* {
+    cursor: var(--default);
 }
 
-* {
-    cursor: var(--normal), auto;
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: var(--pointer);
 }
 
 textarea, input, select, option {
-    cursor: var(--text), text;
-}
-
-a, a:hover {
-    cursor: var(--pointer), pointer;
-}
-
-.not-allowed {
-    cursor: var(--unavailable), not-allowed;
+    cursor: var(--text);
 }
