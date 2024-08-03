@@ -114,7 +114,7 @@
 .stat-title {
   margin-bottom: 0;
   font-size: 12pt;
-  font-family: var(--Pixel);
+  font-family: var(--Pixel), sans-serif;
 }
 
 .stat-content {
@@ -234,7 +234,7 @@
 }
 
 .profile-claim-text {
-  font-family: var(--Pixel-SC);
+  font-family: var(--Pixel-SC) , sans-serif;
   color: white;
   font-size: 24pt;
   text-align: center;
@@ -253,24 +253,15 @@
 }
 
 .profile-button-claim-text {
-  font-family: var(--Pixel-SC);
+  font-family: var(--Pixel-SC), sans-serif;
   font-size: 18pt; 
   margin-top: 8px;
 }
-
-
-
-
 
 .profile-button-claim:hover {
   background-color: #777777;
   cursor: var(--pointer);
 }
-
-
-
-
-
 
 .achievements-block {
   height: 650px;
@@ -278,7 +269,7 @@
 
 .header-achievements {
   font-size: 28pt ;
-  font-family:  var(--Pixel-HB);
+  font-family:  var(--Pixel-HB), sans-serif;
 }
 
 .last-achievements {
@@ -286,29 +277,84 @@
   flex-direction: column;
 }
 
-.last-achievements-header{
+.scroll-achievements {
+  height: 92%;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 10px;
+  scrollbar-width: none;
+
+}
+
+.last-achievements-header {
   font-size: 16pt;
-  font-family: var(--Pixel);
+  font-family: var(--Pixel) , sans-serif;
   margin-top: 10px;
   color: #BFBFBF;
 }
 
-.last-achievements-content{
-  background-color: aqua;
-  height: 30px;
+.achievements-content {
+  height: 45px;
   width: 100%;
+  margin-top: 10px;
+  display: flex;
 }
 
-.unlocked-achievements {
-
+.achievements-content.locked {
+  filter: saturate(0);
 }
+
+.achievements-image {
+  height: 100%;
+  width: 16%;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.achievements-header-desc {
+  height: 100%;
+  width: 68%;
+  margin-left: 5px;
+}
+
+.achievements-header {
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+}
+
+.achievements-desc {
+  font-size: 12pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 2px;
+  color: var(--text-second-color);
+}
+
+.achievements-exp {
+  height: 100%;
+  width: 16%;
+  font-size: 14pt;
+  font-family: var(--Pixel-SC), sans-serif;
+  text-align: center;
+  color: var(--text-second-color);
+  margin-top: 2px;
+}
+
+.unlocked-achievements-header{
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 10px;
+  color: #BFBFBF;
+}
+
+
 
 .available-achievements {
-
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 10px;
+  color: #BFBFBF;
 }
-
-
-
 
 
 
@@ -317,6 +363,12 @@
 
 .quests-block {
   height: 650px;
+}
+
+.header-complited-quests {
+  font-size: 28pt;
+  font-family: var(--Pixel-HB);
+  text-align: center;
 }
 
 /* Grid positioning */

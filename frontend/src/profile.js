@@ -4,7 +4,7 @@ import avatarImage from "../src/assets/images/placeholder_profile.png";
 import docImage from "../src/assets/images/doc.png";
 import ProgressBar from "./scripts/profile/progress_bar";
 import SeasonProgressBar from "./scripts/profile/season_pass_bar";
-
+import Achievements from "./scripts/profile/achievements_view"
 class Profile extends React.Component {
   render() {
     return (
@@ -44,58 +44,65 @@ class Profile extends React.Component {
                   </div>
                 </div>
               </div>
-              <ProgressBar initialProgress={20} /> 
+              <ProgressBar initialProgress={20} />
             </div>
             <div className="wen-joined">Joined 20.07.2024</div>
           </div>
         </div>
         {/* Drops Container */}
 
-
         <div className="drops-container">
           <div className="header-drops">Season Pass</div>
           <div className="drops-block">
             <div className="profile-seasonpass-block">
-              <SeasonProgressBar initialSeasonProgress={20} /> 
+              <SeasonProgressBar initialSeasonProgress={20} />
             </div>
             <div className="profile-claim-block">
-              <div className="profile-claim-text">Collect your
-              reward!</div>
+              <div className="profile-claim-text">Collect your reward!</div>
               <div className="profile-button-claim">
                 <div className="profile-button-claim-text">Claim</div>
               </div>
             </div>
-            
           </div>
         </div>
-
 
         {/* Achievements Container */}
         <div className="achievements-container">
           <div className="achievements-block">
             <div className="header-achievements">Achievements</div>
 
-            <div className="last-achievements">
-              <div className="last-achievements-header">Last achievement:</div>
-              <div className="last-achievements-content">
-                
-
+            <div className="scroll-achievements">
+              <div className="last-achievements">
+                <div className="last-achievements-header">
+                  Last achievement:
+                </div>
+                <Achievements />
               </div>
 
-            </div>
+              <div className="unlocked-achievements-header">
+                Unlocked achievements:
+              </div>
+              <Achievements />
+              <Achievements />
+              <Achievements />
 
-            <div className="unlocked-achievements">
-            </div>
-
-            <div className="available-achievements">
+              <div className="available-achievements">Available achievements:</div>
+              <Achievements locked={true} />
+              <Achievements locked={true} />
+              <Achievements locked={true} />
+              <Achievements locked={true} />
+              <Achievements locked={true} />
             </div>
           </div>
         </div>
 
-
         {/* Quests Container */}
         <div className="quests-container">
-          <div className="quests-block">Quests Block Content</div>
+          <div className="quests-block">
+            <div className="header-complited-quests">Completed quests</div>
+            
+
+          </div>
         </div>
       </div>
     );
