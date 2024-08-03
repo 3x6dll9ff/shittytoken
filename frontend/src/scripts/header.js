@@ -83,10 +83,22 @@ const ProfileContainer = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [profileExpanded, setProfileExpanded] = useState(false);
 
+    const preventScroll = ({event}) => {
+        event.preventDefault();
+    }
+
     const logoutButton = () => {
         setLoggedIn(false);
         setProfileExpanded(false);
     }
+
+    const container = document.querySelector('.header-profile-container');
+    container.addEventListener('mouseenter', () => {
+        document.addEventListener('wheel', preventScroll, { passive: false });
+    });
+    container.addEventListener('mouseleave', () => {
+        document.removeEventListener('wheel', preventScroll);
+    });
 
     if (!loggedIn) {
         return(
@@ -117,9 +129,10 @@ const ProfileContainer = () => {
                             {walletAddress}
                         </div>
                     </div>
-                    <div
+                    <Link
                         className={`header-profile-button`}
-                        onClick={() => setProfileExpanded(!profileExpanded)}
+                        to={`/profile`}
+                        onMouseEnter={() => setProfileExpanded(true)}
                     >
                         <div className={`header-profile-picture-bg`}>
                             <img
@@ -128,7 +141,7 @@ const ProfileContainer = () => {
                                 alt={`profile-picture`}
                             />
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className={`header-profile-menu-buttons-container`}>
                     <ProfileButton
