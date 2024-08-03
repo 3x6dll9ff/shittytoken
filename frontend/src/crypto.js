@@ -34,12 +34,12 @@ class Crypto extends React.Component {
                 coinsData
             ] = await Promise.all([
                 api.getMarkets(),
-                api.getCoins(1000, true)]
+                api.getCoins(10, true)]
             );
             const coinsCharts = {};
             const requests = [];
 
-            for (const i in coinsData.slice(0, 100)) {
+            for (const i in coinsData) {
                 const coinId = coinsData[i]['id'];
                 requests.push(api.getCoinCharts(coinId, '1w'));
             }
