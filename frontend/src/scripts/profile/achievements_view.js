@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import LastAchievementAvatar from "../../assets/profile/images/pixel_syringe.png"; 
 
 const Achievements = ({locked}) => {
