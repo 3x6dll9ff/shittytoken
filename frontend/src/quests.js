@@ -83,10 +83,10 @@ class Quests extends React.Component {
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2">
                                 points
+                                <br/>
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span3">
                                 and
-                                <br/>
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4">
                                 rewards

@@ -1,5 +1,5 @@
 .quests-page {
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 95px 65px;
 }
@@ -7,8 +7,9 @@
 .search-bar-area {
   display: flex;
   width: 100%;
-  max-width: 1520px;
-  margin: 0 auto;
+  max-width: 1480px;
+  padding-left: 65px;
+  /* margin: 0 auto; */
 }
 
 .search-bar {
@@ -48,22 +49,28 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .welcome-banner-text {
+  width: 100%;
   max-width: 780px;
   font-family: "Pixel Operator HB 8", sans-serif;
   font-size: 2rem;
   color: white;
+  height: auto;
+  flex: 1; /* Позволяет текстовому блоку занимать оставшееся пространство */
+  min-width: 250px; /* Минимальная ширина блока текста */
 }
 
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2 {
   color: #008000;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4 {
   color: #800000;
+  padding: 0 20px;
 }
 
 .welcome-banner img {
@@ -78,6 +85,9 @@
   max-width: 600px;
   /* margin-top: 1rem; */
   overflow: hidden;
+  flex: 1; /* Позволяет слайдеру занимать оставшееся пространство */
+  min-width: 200px; /* Минимальная ширина слайдера */
+  margin-top: 1rem; /* Чтобы слайдер автоматически переносился вниз при сжатии экрана */
 }
 
 .slide {
@@ -128,6 +138,37 @@
 
   .welcome-banner-text {
     font-size: 3rem;
+  }
+}
+@media (max-width: 1200px) {
+  .welcome-banner-text {
+    font-size: 2rem; /* Уменьшение размера текста на меньших экранах */
+  }
+
+  .welcome-banner-slider {
+    max-width: 100%; /* Слайдер будет занимать всю ширину контейнера на маленьких экранах */
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-banner {
+    flex-direction: column; /* Перестраиваем элементы вертикально на маленьких экранах */
+    align-items: center;
+  }
+
+  .welcome-banner-text {
+    text-align: center; /* Центрируем текст */
+  }
+
+  .welcome-banner-slider {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-banner-text {
+    font-size: 1.2rem; /* Еще меньше размер текста на очень маленьких экранах */
   }
 }
 
