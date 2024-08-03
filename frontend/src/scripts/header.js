@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/header.css";
 import profile_picture from "../assets/images/placeholder_profile.png";
@@ -83,25 +83,40 @@ const ProfileContainer = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [profileExpanded, setProfileExpanded] = useState(false);
 
-    const preventScroll = ({event}) => {
-        event.preventDefault();
-    }
-
     const logoutButton = () => {
         setLoggedIn(false);
         setProfileExpanded(false);
-    }
+    };
 
-    const container = document.querySelector('.header-profile-container');
-    container.addEventListener('mouseenter', () => {
-        document.addEventListener('wheel', preventScroll, { passive: false });
-    });
-    container.addEventListener('mouseleave', () => {
-        document.removeEventListener('wheel', preventScroll);
-    });
+    const containerRef = useRef(null);
+
+    const preventScroll = (event) => {
+        event.preventDefault();
+    };
+
+    const handlePointerEnter = () => {
+        if (containerRef.current) {
+            containerRef.current.addEventListener('wheel', preventScroll, { passive: false });
+        }
+    };
+
+    const handlePointerLeave = () => {
+        if (containerRef.current) {
+            containerRef.current.removeEventListener('wheel', preventScroll);
+        }
+        setProfileExpanded(false);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('wheel', preventScroll);
+            }
+        };
+    }, []);
 
     if (!loggedIn) {
-        return(
+        return (
             <div
                 className={`header-wallet-button`}
                 onClick={() => setLoggedIn(true)}
@@ -109,8 +124,7 @@ const ProfileContainer = () => {
                 Connect Wallet
             </div>
         );
-    }
-    else {
+    } else {
         let walletAddress = '0x1234567890abcdef';
         if (walletAddress.length > 13) {
             walletAddress = walletAddress.slice(0, 13) + '...';
@@ -118,7 +132,9 @@ const ProfileContainer = () => {
         return (
             <div
                 className={`header-profile-container ${profileExpanded ? 'expanded' : ''}`}
-                onMouseLeave={() => {setProfileExpanded(false)}}
+                onPointerEnter={handlePointerEnter}
+                onPointerLeave={handlePointerLeave}
+                ref={containerRef}
             >
                 <div className={`header-profile-info`}>
                     <div className={`header-profile-text-container`}>
