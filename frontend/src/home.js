@@ -33,7 +33,7 @@ class Home extends Component {
     
             window.scrollTo({
                 top: scrollPosition,
-                behavior: 'instant'
+                behavior: 'smooth'
             });
         }
     };

@@ -48,6 +48,8 @@
     left: 6%;
     top: 1%;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .roadmap-text-container h2 {
