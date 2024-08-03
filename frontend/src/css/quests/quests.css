@@ -2,6 +2,7 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 110px 65px;
+  flex-wrap: wrap;
 }
 
 .search-bar-area {
@@ -10,42 +11,54 @@
   padding-left: 60px;
 }
 
-@media (max-width: 1600px) {
-  .search-bar-area {
-    padding-left: 10px;
-  }
-}
-
-@media (max-width: 1366px) {
-  .search-bar-area {
+@media (max-width: 1736px) {
+  .search-bar-area,
+  .main-part-of-quest-page {
     padding-left: 0;
+    padding-right: 0;
   }
-}
 
-@media (max-width: 1200px) {
-  .search-bar-area {
+  
+
+  .welcome-banner-text {
+    font-size: 20px;
     padding-left: 0;
+    padding-right: 0;
   }
-}
 
-@media (max-width: 992px) {
-  .search-bar-area {
-    padding-left: 0;
+  .chain-link-images img{
+    width: 15px;
+    height: 15px;
+    margin: 20px 10px;
+  }
+
+  .welcome-banner-slider {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .slide p {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
-  .search-bar-area {
-    padding-left: 0px;
+  .welcome-banner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome-banner-slider {
+    margin-top: 1rem;
   }
 }
 
 .search-bar {
   margin-top: 2rem;
   border: 2px solid #ffffff;
-  max-width: 300px;
   height: 55px;
   display: flex;
+  max-width: 400px;
 }
 
 .search-bar input {
@@ -78,135 +91,102 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .welcome-banner-text {
   width: 100%;
   max-width: 780px;
   font-family: "Pixel Operator HB 8", sans-serif;
-  font-size: 2rem;
+  font-size: 40px;
   color: white;
   height: auto;
-  flex: 1; /* Позволяет текстовому блоку занимать оставшееся пространство */
-  min-width: 250px; /* Минимальная ширина блока текста */
+  flex: 1;
+  min-width: 250px;
 }
 
+.earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2,
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span3,
+.earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4,
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span5 {
-  line-height: 1.5; 
+  line-height: 1.5;
 }
+
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2 {
   color: #008000;
   padding: 0 20px;
-  line-height: 1.5; 
 }
 
 .earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4 {
   color: #800000;
   padding: 0 20px;
-  line-height: 1.5;
 }
 
-.welcome-banner img {
+.chain-link-images img {
   width: 45px;
   height: 45px;
-  margin: 1rem;
+  margin: 30px 15px;
 }
+
 
 .welcome-banner-slider {
   background: #000000;
   border: 2px solid #ffffff;
+  min-height: 200px;
+  min-width: 100px;
   max-width: 600px;
   max-height: 500px;
-  /* margin-top: 1rem; */
   overflow: hidden;
-  flex: 1; /* Позволяет слайдеру занимать оставшееся пространство */
-  min-width: 200px; /* Минимальная ширина слайдера */
-  margin-top: 1rem; /* Чтобы слайдер автоматически переносился вниз при сжатии экрана */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: max-width 0.3s ease, max-height 0.3s ease;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .slide {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: left;
+  justify-content: center;
+  width: 100%;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 .slide img {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
-  align-items: center;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
 .slide p {
   color: #ffffff;
   font-family: "Pixel Operator HB 8", sans-serif;
   font-size: 18px;
+  margin-top: 10px;
+  transition: font-size 0.3s ease;
 }
 
-.swiper-pagination-bullet {
-  background: #444;
-  width: 12px;
-  height: 12px;
+.quests-pic-name-company {
+  max-width: 100%;
+  max-height: 100%;
+  align-items: left;
+  flex-direction: row;
 }
 
-.swiper-pagination-bullet-active {
-  background: #fff;
-}
-
-@media (min-width: 790px) {
-  .welcome-banner {
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .welcome-banner-text {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .search-bar {
-    max-width: 400px;
-  }
-
-  .welcome-banner-text {
-    font-size: 3rem;
-  }
-}
-@media (max-width: 1200px) {
-  .welcome-banner-text {
-    font-size: 2rem; /* Уменьшение размера текста на меньших экранах */
-  }
-
-  .welcome-banner-slider {
-    max-width: 100%; /* Слайдер будет занимать всю ширину контейнера на маленьких экранах */
-  }
-}
-
-
-
-@media (max-width: 768px) {
-  .welcome-banner {
-    flex-direction: column; /* Перестраиваем элементы вертикально на маленьких экранах */
-    align-items: center;
-  }
-
-  .welcome-banner-text {
-    text-align: center; /* Центрируем текст */
-  }
-
-  .welcome-banner-slider {
-    max-width: 100%;
-    margin-top: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .welcome-banner-text {
-    font-size: 1.2rem; /* Еще меньше размер текста на очень маленьких экранах */
-  }
+.quests-pic-name-company img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .main-part-of-quest-page {
@@ -239,10 +219,6 @@
   .sidebar {
     margin-right: 1px;
     padding: 1rem;
-  }
-
-  .main-part-of-quest-page {
-    padding: 0;
   }
 
   .quests-content {
@@ -309,39 +285,36 @@
   margin-left: 45px;
 }
 
-
-.quest-card img {
+/* .quest-card img {
   width: 100%;
   height: 210px;
   margin-bottom: 0px;
-}
+} */
 
-/* Стили для стрелок навигации Swiper */
 .swiper-button-next,
 .swiper-button-prev {
-  background: none; /* Убираем фон */
-  border: none; /* Убираем обводку */
-  width: 50px; /* Установите ширину стрелки */
-  height: 50px; /* Установите высоту стрелки */
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  content: none !important; /* Принудительно убираем стандартные иконки */
-  display: none; /* Убираем элемент из рендера */
+  content: none !important;
+  display: none;
 }
 
 .swiper-button-next {
   background-image: url('../../assets/quests/images/arrow_next.png');
-  background-size: contain; /* Обеспечивает полное отображение изображения */
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .swiper-button-prev {
   background-image: url('../../assets/quests/images/arrow_back.png');
-  background-size: contain; /* Обеспечивает полное отображение изображения */
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
-

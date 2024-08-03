@@ -15,9 +15,9 @@ import AvalancheChain from './assets/quests/images/AvalancheChain.png';
 import VillagerChain from './assets/quests/images/VillagerChain.png';
 import ScroolChain from './assets/quests/images/ScrollChain.png';
 import QredoChain from './assets/quests/images/QredoChain.png';
-import image1 from './assets/quests/images/quest_pic.png';
-import image2 from './assets/quests/images/quest_pic.png';
-import image3 from './assets/quests/images/quest_pic.png';
+import image1 from './assets/quests/images/quest_pic_big.png';
+import image2 from './assets/quests/images/quest_pic_big.png';
+import image3 from './assets/quests/images/quest_pic_big.png';
 
 // ========================= Состояния и методы =========================
 
@@ -112,7 +112,7 @@ class Quests extends React.Component {
 
     renderChainLinks() {
         return (
-            <>
+            <div className="chain-link-images">
                 <a href="https://www.bnbchain.org" rel="noopener noreferrer">
                     <img className="image-66" src={BNBChain} alt="BNB Chain" />
                 </a>
@@ -143,7 +143,7 @@ class Quests extends React.Component {
                 <a href="https://qredo.com" rel="noopener noreferrer">
                     <img className="image-75" src={QredoChain} alt="Qredo Chain" />
                 </a>
-            </>
+            </div>
         );
     }
 
@@ -175,10 +175,13 @@ class Quests extends React.Component {
     renderSlide(imageSrc, altText) {
         return (
             <div className='slide'>
-                <a href="https://qredo.com" rel="noopener noreferrer">
+                <a href="https://qredo.com" rel="noopener noreferrer" className='slide-img'>
                     <img src={imageSrc} alt={altText} />
                 </a>
-                <p>XRP Ledger</p>
+                <div className='quests-pic-name-company'>
+                    <img src={QredoChain} alt='pic-project' />
+                    <p>XRP Ledger</p>
+                </div>
                 <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
             </div>
         );
@@ -314,12 +317,12 @@ class Quests extends React.Component {
             <div className='quests-page'>
                 {this.renderSearchBar()}
                 {this.renderWelcomeBanner()}
-                <div className="main-part-of-quest-page">
+                {/* <div className="main-part-of-quest-page">
                     <div className="quest-cards-container">
                         {this.renderContent()}
                     </div>
                     {this.renderSidebar()}
-                </div>
+                </div> */}
             </div>
         );
     }
