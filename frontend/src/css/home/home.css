@@ -15,26 +15,33 @@
     position: fixed;
     display: flex;
     width: auto;
-    height: auto;
+    height: 39px;
     left: calc(50% - 20px);
     bottom: 3%;
     z-index: 1;
     animation: moveUpDown 0.4s steps(2) infinite alternate;
-}
-
-.page-switcher img:active {
-    transform: scale(1.10); /* Увеличение элемента при клике */
+    cursor: var(--pointer);
 }
 
 @keyframes moveUpDown {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+    0% {
+        align-items: start;
+    }
+    100% {
+        align-items: end;
+    }
+}
+
+.page-switcher:hover {
+    filter: brightness(25%);
 }
 
 .page-switcher img {
-    cursor: pointer;
     width: 40px;
+    /* height: 24px; */
     aspect-ratio: initial;
+    object-fit: contain;
+    cursor: var(--pointer);
 }
 
 .page-switcher.hidden {
