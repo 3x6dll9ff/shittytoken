@@ -17,8 +17,9 @@
 }
 
 .stuff-card {
-    width: 70%;
     height: 50%;
+    aspect-ratio: 1 / 1.2;
+    max-width: 90%;
     text-align: center;
     border: solid white 2px;
     position: relative;

@@ -15,6 +15,10 @@
     position:relative;
 }
 
+.blured {
+    filter: blur(2px)
+}
+
 .roadmap-content {
     height: 55%;
     width: 100%;
@@ -24,10 +28,10 @@
 
 .ellipse {
     position: absolute;
-    height: 19%;
-    width: 51%;
-    top: 46%;
-    left: 25.5%;
+    height: 15%;
+    width: 45%;
+    top: 48%;
+    left: 28%;
 }
 
 .ellipse-text {
