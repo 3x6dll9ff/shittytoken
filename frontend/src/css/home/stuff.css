@@ -17,9 +17,9 @@
 }
 
 .stuff-card {
-    height: 50%;
-    aspect-ratio: 1 / 1.2;
-    max-width: 90%;
+    width: 300px;
+    height: 350px;
+    margin: 0 auto 0 auto;
     text-align: center;
     border: solid white 2px;
     position: relative;
@@ -31,9 +31,9 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 3%;
-    bottom: 2%;
-    background-color: #ffffff42;
+    left: 5px;
+    bottom: 5px;
+    background-color: #ffffff;
 }
 
 .front-card {
@@ -62,7 +62,7 @@
     margin-top: 0;
     margin-bottom: 0;
     text-align: left;
-    font-family: 'Pixel Operator HB SC';
+    font-family: 'Pixel Operator HB SC', sans-serif;
     font-size: 1.8vw;
 }
 
@@ -83,24 +83,23 @@
     z-index: 1;
     text-overflow: ellipsis;
     overflow: hidden;
-
-    opacity: 0; /* Начальное значение непрозрачности */
-    transition: opacity 0.3s ease; /* Плавный переход для opacity */
+    opacity: 0;
+    cursor: var(--pointer);
 }
 
 .stuff-card:hover .card-description {
-    opacity: 1; /* Полная видимость при наведении */
-    transition: opacity 0.4s ease, z-index 0s; /* Плавное изменение opacity и немедленное изменение z-index */
+    opacity: 100%;
+    cursor: var(--pointer);
 }
 
 .card-green-text {
     color: #00FF38;
-    font-family: 'Pixel Operator HB';
+    font-family: 'Pixel Operator HB', sans-serif;
 }
 
 .card-description p {
     color: #ffffff;
-    font-family: 'Pixel Operator HB';
+    font-family: 'Pixel Operator HB', sans-serif;
     font-size: 1vw;
     margin-top: 1.5%;
     margin-bottom: 0;
