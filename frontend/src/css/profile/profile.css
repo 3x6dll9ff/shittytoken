@@ -1,10 +1,12 @@
 :root {
   --bg-color: #000;
+  --second-color: #404040;
   --text-primary-color: #fff;
   --text-second-color: #404040;
   --level-fee: #333232;
   --text-third-color: #7e7e80;
   --Pixel-HB: "Pixel Operator HB";
+  --Pixel-SC: "Pixel Operator SC";
   --Pixel: "Pixel Operator";
   --border-color: #fff;
   --border-width: 2px;
@@ -61,7 +63,7 @@
   gap: 20px;
   height: 223px;
   position: relative;
-  padding-right: 100px; /* Добавляем отступ для прогресс-бара */
+  padding-right: 100px; 
 }
 
 .avatar-profile {
@@ -125,12 +127,12 @@
 .progress-bar-container {
   width: calc(
     100% - 80px
-  ); /* Уменьшаем ширину на ширину level-grade и дополнительные отступы */
+  ); 
   height: 8px;
   background-color: var(--level-fee);
   position: absolute;
   top: 65%;
-  left: 80px; /* Устанавливаем отступ слева от level-grade */
+  left: 80px; 
   z-index: 1;
 }
 
@@ -159,7 +161,7 @@
 }
 
 .pentagon-white {
-  position: absolute; /* Используем абсолютное позиционирование для наложения */
+  position: absolute;
   background-color: white;
   width: 50px;
   height: 50px;
@@ -167,15 +169,15 @@
   display: flex;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Центрируем белый пентагон */
+  transform: translate(-50%, -50%); 
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  z-index: 1; /* Белый пентагон находится позади */
+  z-index: 1; 
 }
 
 .pentagon-black {
-  position: absolute; /* Используем абсолютное позиционирование для наложения */
+  position: absolute; 
   background-color: rgb(0, 0, 0);
   width: 45px;
   height: 45px;
@@ -183,11 +185,11 @@
   display: flex;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Центрируем черный пентагон */
+  transform: translate(-50%, -50%); 
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  z-index: 2; /* Черный пентагон находится выше белого */
+  z-index: 2; 
 }
 
 .grade-number {
@@ -199,12 +201,12 @@
 
 .wen-joined {
   bottom: 10px;
-  left: 0; /* Выравниваем с левой стороны блока */
+  left: 0; 
   position: absolute;
   font-size: 20pt;
   color: var(--text-third-color);
-  text-align: center; /* Центрируем текст */
-  width: 100%; /* Ширина с учетом отступов */
+  text-align: center;
+  width: 100%; 
 }
 
 .drops-block,
@@ -215,11 +217,103 @@
 
 .drops-block {
   height: 223px;
+  display: flex;
+  padding: 5px;
 }
+
+.profile-seasonpass-block {
+  background: rgb(57, 39, 39);
+  width: 80%;
+}
+
+.profile-claim-block {
+  width: 20%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.profile-claim-text {
+  font-family: var(--Pixel-SC);
+  color: white;
+  font-size: 24pt;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-button-claim {
+  background-color: white; 
+  color: black; 
+  margin-top: -40px;
+  width: 80%; 
+  height: 40px; 
+  text-align: center; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.profile-button-claim-text {
+  font-family: var(--Pixel-SC);
+  font-size: 18pt; 
+  margin-top: 8px;
+}
+
+
+
+
+
+.profile-button-claim:hover {
+  background-color: #777777;
+  cursor: var(--pointer);
+}
+
+
+
+
+
 
 .achievements-block {
   height: 650px;
 }
+
+.header-achievements {
+  font-size: 28pt ;
+  font-family:  var(--Pixel-HB);
+}
+
+.last-achievements {
+  display: flex;
+  flex-direction: column;
+}
+
+.last-achievements-header{
+  font-size: 16pt;
+  font-family: var(--Pixel);
+  margin-top: 10px;
+  color: #BFBFBF;
+}
+
+.last-achievements-content{
+  background-color: aqua;
+  height: 30px;
+  width: 100%;
+}
+
+.unlocked-achievements {
+
+}
+
+.available-achievements {
+
+}
+
+
+
+
+
+
+
+
 
 .quests-block {
   height: 650px;
