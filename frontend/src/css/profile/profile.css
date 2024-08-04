@@ -1,10 +1,12 @@
 :root {
   --bg-color: #000;
+  --second-color: #404040;
   --text-primary-color: #fff;
   --text-second-color: #404040;
   --level-fee: #333232;
-  --text-third-color: #7E7E80;
+  --text-third-color: #7e7e80;
   --Pixel-HB: "Pixel Operator HB";
+  --Pixel-SC: "Pixel Operator SC";
   --Pixel: "Pixel Operator";
   --border-color: #fff;
   --border-width: 2px;
@@ -52,6 +54,7 @@
   color: var(--text-primary-color);
   box-sizing: border-box;
   padding: 20px;
+  width: 100%;
 }
 
 .id-block {
@@ -59,8 +62,8 @@
   flex-direction: row;
   gap: 20px;
   height: 223px;
-  width: 100%;
-  position: relative; /* Position relative to allow absolute positioning of children */
+  position: relative;
+  padding-right: 100px; 
 }
 
 .avatar-profile {
@@ -80,7 +83,7 @@
 
 .name-profile {
   font-size: 20pt;
-  margin-top: -95px;
+  margin-top: -90px;
 }
 
 .wallet-profile {
@@ -92,7 +95,7 @@
 .user-stats {
   display: flex;
   gap: 10px;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .user-stat {
@@ -111,7 +114,7 @@
 .stat-title {
   margin-bottom: 0;
   font-size: 12pt;
-  font-family: var(--Pixel);
+  font-family: var(--Pixel), sans-serif;
 }
 
 .stat-content {
@@ -120,73 +123,90 @@
   gap: 5px;
 }
 
-/* Левел бар */
-.level-bar {
-  background-color: var(--level-fee);
+/* Level bar styles */
+.progress-bar-container {
+  width: calc(
+    100% - 80px
+  ); 
   height: 8px;
-  width: 80%;
+  background-color: var(--level-fee);
   position: absolute;
   top: 65%;
-  left: 16%;
-  z-index: 1; /* Устанавливаем z-index для level-bar */
+  left: 80px; 
+  z-index: 1;
 }
 
-/* Внутренний уровень */
-.level-bar-inner {
-  background-color: white;
+.progress-bar {
   height: 100%;
-  width: 50%;
+  background-color: white;
 }
 
-/* Пятиугольник */
+/* Pentagon styles */
 .level-grade {
   position: absolute;
-  top: 33%;
-  left: -9%;
-  width: 150px;
-  height: 150px;
-  z-index: 2; 
+  top: 53%;
+  left: 0;
+  width: 100%;
+  height: 65px;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.pentagon {
+.pentagon-container {
   position: relative;
-  background-color: var(--bg-color);
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left: 20px;
+  z-index: 2;
+}
+
+.pentagon-white {
+  position: absolute;
+  background-color: white;
   width: 50px;
   height: 50px;
   clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
   display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  z-index: 1; 
 }
 
-.pentagon::before {
-  content: '';
-  position: absolute;
-  top: -4px; /* Корректируйте значение в зависимости от толщины бордера */
-  left: -4px; /* Корректируйте значение в зависимости от толщины бордера */
-  width: calc(100% + 8px); 
-  height: calc(100% + 8px); 
+.pentagon-black {
+  position: absolute; 
+  background-color: rgb(0, 0, 0);
+  width: 45px;
+  height: 45px;
   clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
-  border: var(--border-width) solid var(--border-color);
-  z-index: -1;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 2; 
 }
 
 .grade-number {
   color: white;
   font-size: 24px;
   font-weight: bold;
+  margin-top: -5px;
 }
 
 .wen-joined {
   bottom: 10px;
-  left: 15%;
+  left: 0; 
   position: absolute;
   font-size: 20pt;
   color: var(--text-third-color);
+  text-align: center;
+  width: 100%; 
 }
 
 .drops-block,
@@ -197,17 +217,162 @@
 
 .drops-block {
   height: 223px;
+  display: flex;
+  padding: 5px;
+}
+
+.profile-seasonpass-block {
+  background: rgb(57, 39, 39);
+  width: 80%;
+}
+
+.profile-claim-block {
+  width: 20%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.profile-claim-text {
+  font-family: var(--Pixel-SC), sans-serif;
+  color: white;
+  font-size: 24pt;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-button-claim {
+  background-color: white; 
+  color: black; 
+  margin-top: -40px;
+  width: 80%; 
+  height: 40px; 
+  text-align: center; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.profile-button-claim-text {
+  font-family: var(--Pixel-SC), sans-serif;
+  font-size: 18pt; 
+  margin-top: 8px;
+}
+
+.profile-button-claim:hover {
+  background-color: #777777;
+  cursor: var(--pointer);
 }
 
 .achievements-block {
   height: 650px;
 }
 
+.header-achievements {
+  font-size: 28pt ;
+  font-family:  var(--Pixel-HB), sans-serif;
+}
+
+.last-achievements {
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-achievements {
+  height: 92%;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 10px;
+  scrollbar-width: none;
+
+}
+
+.last-achievements-header {
+  font-size: 16pt;
+  font-family: var(--Pixel) , sans-serif;
+  margin-top: 10px;
+  color: #BFBFBF;
+}
+
+.achievements-content {
+  height: 45px;
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+}
+
+.achievements-content.locked {
+  filter: saturate(0) brightness(75%);
+;
+}
+
+.achievements-image {
+  height: 100%;
+  width: 16%;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.achievements-header-desc {
+  height: 100%;
+  width: 68%;
+  margin-left: 5px;
+}
+
+.achievements-header {
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+}
+
+.achievements-desc {
+  font-size: 12pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 2px;
+  color: var(--text-second-color);
+}
+
+.achievements-exp {
+  height: 100%;
+  width: 16%;
+  font-size: 14pt;
+  font-family: var(--Pixel-SC), sans-serif;
+  text-align: center;
+  color: var(--text-second-color);
+  margin-top: 2px;
+}
+
+.unlocked-achievements-header{
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 10px;
+  color: #BFBFBF;
+}
+
+
+
+.available-achievements {
+  font-size: 16pt;
+  font-family: var(--Pixel), sans-serif;
+  margin-top: 10px;
+  color: #BFBFBF;
+}
+
+
+
+
+
+
 .quests-block {
   height: 650px;
 }
 
-/* Позиционирование блоков в сетке */
+.header-complited-quests {
+  font-size: 28pt;
+  font-family: var(--Pixel-HB);
+  text-align: center;
+}
+
+/* Grid positioning */
 .id-container {
   grid-column: 1;
   grid-row: 1;
@@ -228,11 +393,11 @@
   grid-row: 2;
 }
 
-/* Media Queries для мобильных устройств */
+/* Mobile responsiveness */
 @media (max-width: 1200px) {
   .profile-container {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
   }
 
   .id-container,
@@ -248,27 +413,6 @@
   .quests-block {
     width: 100%;
   }
-
-  /* Изменение порядка блоков на мобильных устройствах */
-  .id-container {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .drops-container {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .achievements-container {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .quests-container {
-    grid-column: 1;
-    grid-row: 4;
-  }
 }
 
 @media (max-width: 768px) {
@@ -280,7 +424,7 @@
   .id-block {
     flex-direction: column;
     align-items: center;
-    height: auto; /* Адаптивный размер блока ID-карты */
+    height: auto;
   }
 
   .user-stat {
@@ -300,5 +444,35 @@
 
   .wallet-profile {
     font-size: 10pt;
+  }
+
+  .user-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-title {
+    font-size: 10pt;
+  }
+
+  .stat-content {
+    font-size: 12pt;
+  }
+
+  .wen-joined {
+    font-size: 16pt;
+    left: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .level-grade {
+    position: static;
+    margin-top: 20px;
+  }
+
+  .progress-bar-container {
+    position: static;
+    margin-top: 10px;
   }
 }

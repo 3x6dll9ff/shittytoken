@@ -12,50 +12,14 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.whiteLineRefs = [
-            createRef(),
-            createRef(),
-            createRef(),
-            createRef(),
-            createRef()
-        ];
-
+        this.secondWhiteLine = createRef();
 
         this.headerHeight = 90; // Высота фиксированного хедера
     }
 
-    getNextWhiteLine = () => {
-        for (let i = 0; i < this.whiteLineRefs.length; i++) {
-            
-            const ref = this.whiteLineRefs[i];
 
-            if (ref.current) {
-                // Получаем элемент с помощью ref
-                const element = ref.current;
-                
-                // Получаем размеры и позицию элемента относительно видимого окна
-                const rect = element.getBoundingClientRect();
-                
-                // Расстояние от верхней границы страницы до верхней границы элемента
-                const distanceToTop = rect.top + window.scrollY;
-                
-                // Расстояние от верхней границы страницы до нижней границы видимого окна
-                const distanceToBottomOfViewport = window.scrollY + window.innerHeight;
-                
-                const buffer = window.innerHeight * 0.02
-                
-                // Возвращаем true, если элемент виден (например, если верхняя граница элемента видна в пределах видимого окна)
-                if (distanceToTop - buffer > distanceToBottomOfViewport) {
-                    return this.whiteLineRefs[i];
-                }
-            }
-        }
-
-        return this.whiteLineRefs[0];
-    }
-
-    scrollToNextWhiteLine = () => {
-        const nextWhiteLineRef = this.getNextWhiteLine();
+    scrollToSecondWhiteLine = () => {
+        const nextWhiteLineRef = this.secondWhiteLine
     
         if (nextWhiteLineRef && nextWhiteLineRef.current) {
             console.log(nextWhiteLineRef);
@@ -69,7 +33,7 @@ class Home extends Component {
     
             window.scrollTo({
                 top: scrollPosition,
-                behavior: 'instant'
+                behavior: 'smooth'
             });
         }
     };
@@ -78,15 +42,15 @@ class Home extends Component {
     render() {
         return (
             <div className="home-page">
-                <PageSwitcher onSwitch={this.scrollToNextWhiteLine}/>
+                <PageSwitcher onSwitch={this.scrollToSecondWhiteLine}/>
                 <BackgroundVideo />
-                <WhiteLine ref={this.whiteLineRefs[0]} />
+                <WhiteLine />
                 <Tokenomics />
-                <WhiteLine ref={this.whiteLineRefs[1]} />
+                <WhiteLine ref={this.secondWhiteLine} />
                 <Roadmap />
-                <WhiteLine ref={this.whiteLineRefs[2]} />
+                <WhiteLine />
                 <Stuff />
-                <WhiteLine ref={this.whiteLineRefs[3]} className='black-line'/>
+                <WhiteLine className='black-line'/>
                 <Footer />
             </div>
         );

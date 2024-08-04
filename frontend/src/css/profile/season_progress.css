@@ -1,0 +1,31 @@
+
+.season-progress-bar-container {
+    width: calc(100% - 10px); 
+    height: 15px; 
+    background-color: #333232; 
+    box-sizing: border-box; 
+    position: relative; 
+    overflow: hidden; 
+    top: 50%;
+  }
+  
+  .season-progress-bar {
+    height: 100%; 
+    background-color: #ffffff; 
+    width: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; 
+  }
+  
+  .season-progress-bar-difference {
+    height: 100%; 
+    background-color: #008000; 
+    width: 0; 
+    position: absolute;
+    top: 0;
+    left: 0; 
+    z-index: 2; 
+    transform: translateX(-100%); 
+  }

@@ -1,16 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/header.css";
+import pixel_mask from "../assets/header/images/pixel_mask.png";
 import profile_picture from "../assets/images/placeholder_profile.png";
 import profile_icon from "../assets/header/images/profile.png";
 import achievement_icon from "../assets/header/images/achievements.png";
 import logout_icon from "../assets/header/images/logout.png";
 
-const Header = () => {
+const Header = ({maskStyle}) => {
     return (
         <div>
             <Ticker />
-            <div className={`header`}>
+            <div
+                className={`header`}
+            >
+                <div
+                    className={`header-pixel-mask-container`}
+                >
+                    <img
+                        className={`header-pixel-mask-image`}
+                        src={pixel_mask}
+                        alt={`pixel mask`}
+                    />
+                    <div
+                        className={`header-pixel-mask`}
+                        style={maskStyle}
+                    />
+                </div>
                 <Link
                     to={`/`}
                     className={`header-logo`}
@@ -42,10 +58,9 @@ const Header = () => {
 };
 
 const Ticker = () => {
+    const text = '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * sh4d0ws alway5 w4tching * big br0th3r watch1ng * th3 cyb3r c0nflict 1s 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * bitc0in will fall s0m3day * wh3r3 th3 s3cur1ty g0e5, w3 f0ll0w * g0v3rnm3nt n3v3r sl33ps '
     const speed = 400;
-    const [displayedText, setDisplayedText] = useState(
-        '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * big br0th3r watching * war b3tw33n d3vs and hack3rs is 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * bitc0in will fall s0m3day '
-    );
+    const [displayedText, setDisplayedText] = useState(text.repeat(3));
 
     useEffect(() => {
         const tick = () => {
