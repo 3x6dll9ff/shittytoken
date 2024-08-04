@@ -8,11 +8,10 @@
 }
 
 .card-container { 
-    height: inherit;
+    height: 100%;
     width: 25%;
     display: flex;
     justify-content: center;
-    margin-top: 8%;
     position: relative;
 }
 
@@ -24,6 +23,7 @@
     border: solid white 2px;
     position: relative;
     z-index: 1;
+    margin-top: 20%;
     background-color: black;
 }
 
