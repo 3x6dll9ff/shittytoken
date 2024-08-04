@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 ### react template
 .DS_*
-*.log
 logs
 **/*.backup.*
 **/*.back.*
@@ -38,7 +37,7 @@ thumb
 sketch
 
 .idea
-frontend/src/assets/raw
+frontend/src/assets/raw/
 
 
 
