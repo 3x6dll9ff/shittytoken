@@ -16,14 +16,14 @@
 }
 
 .stuff-card {
-    width: 300px;
-    height: 350px;
-    margin: 0 auto 0 auto;
+    height: 52%;
+    aspect-ratio: 0.85;
+    max-width: 90%;
     text-align: center;
     border: solid white 2px;
     position: relative;
     z-index: 1;
-    margin-top: 20%;
+    margin-top: 25%;
     background-color: black;
 }
 
@@ -116,6 +116,9 @@
 
 .card-crimes {
     margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-crimes p {
@@ -126,7 +129,6 @@
 
 .card-crimes ul li {
     text-align: left;
-    font-size: 0.9vw;
 }
 
 .small-img {
