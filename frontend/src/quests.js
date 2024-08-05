@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { Component } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import SwiperCore from 'swiper';
 import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
@@ -19,20 +20,35 @@ import QredoChain from './assets/quests/images/QredoChain.png';
 import image1 from './assets/quests/images/quest_pic_big.png';
 import image2 from './assets/quests/images/quest_pic_big.png';
 import image3 from './assets/quests/images/quest_pic_big.png';
-import arrowNext from '../src/assets/quests/images/arrow_next.png'
+import arrowNext from '../src/assets/quests/images/arrow_next.png';
+import arrowBack from '../src/assets/quests/images/arrow_back.png';
 
-// ========================= Состояния и методы =========================
+SwiperCore.use([Navigation, Pagination]);
 
-class Quests extends React.Component {
+class Quests extends Component {
     constructor(props) {
         super(props);
+        this.swiperRef = React.createRef();
         this.state = {
             query: '',
             selectedStatus: null,
             selectedChains: [],
         };
+        this.handlePrev = this.handlePrev.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
 
+    handlePrev() {
+        if (this.swiperRef.current && this.swiperRef.current.swiper) {
+            this.swiperRef.current.swiper.slidePrev();
+        }
+    }
+
+    handleNext() {
+        if (this.swiperRef.current && this.swiperRef.current.swiper) {
+            this.swiperRef.current.swiper.slideNext();
+        }
+    }
 
     handleInputChange = (event) => {
         this.setState({ query: event.target.value });
@@ -43,21 +59,6 @@ class Quests extends React.Component {
         // Логика обработки поиска
     };
 
-    swiperRef = null;
-
-    handlePrev = () => {
-        if (this.swiperRef && this.swiperRef.swiper) {
-            this.swiperRef.swiper.slidePrev(3); // Листает на 3 слайда назад
-        }
-    };
-
-    handleNext = () => {
-        if (this.swiperRef && this.swiperRef.swiper) {
-            this.swiperRef.swiper.slideNext(3); // Листает на 3 слайда вперед
-        }
-    };
-
-     // Обработчик для выбора статуса
     handleStatusClick = (status) => {
         const { selectedStatus } = this.state;
         if (selectedStatus === status) {
@@ -69,7 +70,6 @@ class Quests extends React.Component {
         }
     };
 
-    // Обработчик для выбора цепи
     handleChainClick = (chain) => {
         const { selectedChains } = this.state;
         if (selectedChains.includes(chain)) {
@@ -77,13 +77,11 @@ class Quests extends React.Component {
             this.setState({
                 selectedChains: selectedChains.filter((selectedChain) => selectedChain !== chain),
             });
-            } else {
-                // Если элемент не выбран, добавляем его в массив
-                this.setState({ selectedChains: [...selectedChains, chain] });
-            }
-        };
-
-    // ========================= Рендеринг =========================
+        } else {
+            // Если элемент не выбран, добавляем его в массив
+            this.setState({ selectedChains: [...selectedChains, chain] });
+        }
+    };
 
     renderSearchBar() {
         return (
@@ -107,31 +105,31 @@ class Quests extends React.Component {
         return (
             <div className='welcome-banner'>
                 <div className='welcome-banner-text'>
-                        <span>
-                            <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span">
-                                Earn
-                            </span>
-                            <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2">
-                                points
-                                <br/>
-                            </span>
-                            <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span3">
-                                and
-                            </span>
-                            <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4">
-                                rewards
-                                <br/>
-                            </span>
-                            <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span5">
-                                by Contributing to
-                                <br/>
-                                Your
-                                <br/>
-                                Favourite Web3
-                                <br/>
-                                Community
-                            </span>
+                    <span>
+                        <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span">
+                            Earn
                         </span>
+                        <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2">
+                            points
+                            <br/>
+                        </span>
+                        <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span3">
+                            and
+                        </span>
+                        <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4">
+                            rewards
+                            <br/>
+                        </span>
+                        <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span5">
+                            by Contributing to
+                            <br/>
+                            Your
+                            <br/>
+                            Favourite Web3
+                            <br/>
+                            Community
+                        </span>
+                    </span>
                     {this.renderChainLinks()}
                 </div>
                 {this.renderWelcomeBannerSlider()}
@@ -184,18 +182,16 @@ class Quests extends React.Component {
                     spaceBetween={30}
                     centeredSlides={true}
                     autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
+                        delay: 3000,
+                        disableOnInteraction: false,
                     }}
                     loop={true}
-                    // pagination={{ clickable: true }}
                     grabCursor={true}
                     className='mySwiper'
                 >
                     <SwiperSlide>{this.renderSlide(image1, "Image 1")}</SwiperSlide>
                     <SwiperSlide>{this.renderSlide(image2, "Image 2")}</SwiperSlide>
                     <SwiperSlide>{this.renderSlide(image3, "Image 3")}</SwiperSlide>
-                    {/* Добавьте больше слайдов по необходимости */}
                 </Swiper>
             </div>
         );
@@ -220,17 +216,13 @@ class Quests extends React.Component {
         const { selectedStatus, selectedChains } = this.state;
         return (
             <div className="sidebarFilters">
-                {/* Sort By */}
                 <div className="sort-by">
                     <label htmlFor="sortSelect">Sort by</label>
                     <select id="sortSelect">
                         <option value="lastAdded">Last Added</option>
                         <option value="expiringDate">Expiring Date</option>
-                        {/* Другие опции можно добавить здесь */}
                     </select>
                 </div>
-            
-                {/* Status */}
                 <div className="status">
                     <label>Status</label>
                     <div
@@ -252,72 +244,69 @@ class Quests extends React.Component {
                         New
                     </div>
                 </div>
-            
-                {/* Chain */}
                 <div className="chain">
                     <label>Chain</label>
                     <div className="scroll-menu">
                         <div
-                        className={`chain-tile ${selectedChains.includes('bnbChain') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('bnbChain')}
+                            className={`chain-tile ${selectedChains.includes('bnbChain') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('bnbChain')}
                         >
                             BNB Chain
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('opMainnet') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('opMainnet')}
+                            className={`chain-tile ${selectedChains.includes('opMainnet') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('opMainnet')}
                         >
                             OP Mainnet
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('scroll') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('scroll')}
+                            className={`chain-tile ${selectedChains.includes('scroll') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('scroll')}
                         >
                             Scroll
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
                         <div
-                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                        onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('arbitrum')}
                         >
                             Arbitrum
                         </div>
-                        {/* Добавьте другие элементы здесь */}
                     </div>
                 </div>
             </div>
@@ -342,24 +331,43 @@ class Quests extends React.Component {
                     </div>
                 </div>
                 <div className='sidebarProgressXP-score-points-arrowNext'>
-                    <img src={arrowNext} alt={arrowNext} />
+                    <img src={arrowNext} alt="Next" />
                 </div>
             </a>
         );
     }
 
     renderContent() {
+        const slides = Array.from({ length: 10 }).map((_, index) => (
+            <SwiperSlide key={index}>
+                <div className="card">Card {index + 1}</div>
+            </SwiperSlide>
+        ));
         return (
             <div className='quests-content'>
                 <div className="content-section-text">
                     <p>New</p>
                 </div>
-                
+                <div className='content-section-slider-new'>
+                    <div className="custom-button-prev" onClick={this.handlePrev}>
+                        <img src={arrowBack} alt="Back" />
+                    </div>
+                    <div className="swiper-container">
+                        <Swiper
+                            ref={this.swiperRef}
+                            spaceBetween={91}
+                            slidesPerView={3}
+                        >
+                            {slides}
+                        </Swiper>
+                    </div>
+                    <div className="custom-button-next" onClick={this.handleNext}>
+                        <img src={arrowNext} alt="Next" />
+                    </div>
+                </div>
             </div>
-            
         );
     }
-
 
     render() {
         return (
@@ -367,9 +375,7 @@ class Quests extends React.Component {
                 {this.renderSearchBar()}
                 {this.renderWelcomeBanner()}
                 <div className="main-part-of-quest-page">
-                    <div className="quest-cards-container">
-                        {this.renderContent()}
-                    </div>
+                    {this.renderContent()}
                     <div className='quest-filter-container'>
                         {this.renderSidebarFilters()}
                         <p className='MyProgressLabel'>My Progress</p>

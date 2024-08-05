@@ -1,78 +1,67 @@
-.quest-cards-container {
-    width: 100%;
-    box-sizing: border-box;
-    min-width: 400px;
-}
-
 .quests-content {
     flex: 1;
+    display: block; /* Обеспечивает вертикальное расположение "New" и слайдера */
     align-items: center;
-    display: block;
+    justify-content: center;
     width: 100%;
     max-width: 1244px;
-}
-
-.quests-content .swiper-slide {
-    max-width: 300px;
-    /* padding: 0 45px; */
-    /* align-items: center; */
+    margin: 0 auto; /* Центрирование всего контейнера */
 }
 
 .content-section-text {
-    margin-left: 0;
     font-size: 36px;
-    padding: 0;
+    padding: 0 30px;
     font-family: 'Pixel Operator HB 8', sans-serif;
+    margin-bottom: 20px; /* Отступ между текстом и слайдером */
 }
 
-.carousel-container {
+.content-section-slider-new {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    display: flex;
+    max-height: 404px;
+    align-items: center;
+}
+
+.swiper-container {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+}
+
+
+.card {
+    border: 2px solid #fff;
+    width: 300px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: auto;
-    max-width: 1200px;
-    position: relative;
-    overflow: hidden;
-    padding-right: 20px;
+    background-color: #ccc;
 }
 
-.quest-card {
-    width: 300px;
-    height: 400px;
-    background-color: #000;
-    border: 2px solid #fff;
+.custom-button-prev img, .custom-button-next img {
+    height: 45px;
+    width: 45px;
+}
+
+.custom-button-prev, .custom-button-next {
     display: flex;
-    flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
-    /* text-align: center; */
-    padding: 10px;
+    align-items: center;
 }
 
-.quest-card img {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 0px;
+.custom-button-prev {
+    width: 50px;
+    height: 404px;
+    padding: 0 10px;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-    content: none !important;
-    display: none;
+.custom-button-next {
+    width: 50px;
+    height: 404px;
+    padding: 0 10px;
 }
 
-.swiper-button-next {
-    background-image: url('../../assets/quests/images/arrow_next.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.swiper-button-prev {
-    background-image: url('../../assets/quests/images/arrow_back.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
