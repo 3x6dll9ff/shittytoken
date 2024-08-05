@@ -48,6 +48,15 @@
     font-family: 'Pixel Operator HB SC', sans-serif;
 }
 
+.tokenomics-rescan-button:hover {
+    background-color: #777777;
+}
+
+.tokenomics-rescan-button:active {
+    background-color: #333333;
+    transform: translate(-50%, 1px);
+}
+
 .tokenomics-rescan-button.hidden {
     opacity: 0;
 }
