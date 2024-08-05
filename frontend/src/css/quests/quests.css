@@ -12,12 +12,6 @@
 }
 
 @media (max-width: 1736px) {
-  .search-bar-area,
-  .main-part-of-quest-page {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
   .welcome-banner-text {
     font-size: 20px;
     padding-left: 0;
@@ -206,20 +200,6 @@
   max-width: 100%;
 }
 
-.quests-content {
-  flex: 1;
-  align-items: center;
-  display: block;
-  width: 100%;
-  max-width: 1244px;
-}
-
-.quest-cards-container {
-  width: 100%;
-  box-sizing: border-box;
-  min-width: 400px;
-}
-
 .quest-filter-container {
   position:sticky;
   top: 110px;
@@ -239,14 +219,6 @@
   max-width: 320px;
   height: 100%;
 }
-
-
-
-
-
-
-
-
 
 .sort-by,
 .status,
@@ -310,7 +282,6 @@ select {
   font-size: 24px;
   font-family: 'Pixel Operator HB', sans-serif;
 }
-
 
 .sidebarProgressXP {
   display: flex;
@@ -405,96 +376,3 @@ select {
   width: 25px;
   height: 25px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.content-section-text {
-  margin-left: 0;
-  font-size: 36px;
-  padding: 0;
-  font-family: 'Pixel Operator HB 8', sans-serif;
-}
-
-.carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  max-width: 1244px;
-  position: relative;
-  overflow: hidden;
-}
-
-.quest-card {
-  width: 300px;
-  height: 400px;
-  background-color: #000;
-  border: 2px solid #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-left: 45px;
-}
-
-/* .quest-card img {
-  width: 100%;
-  height: 210px;
-  margin-bottom: 0px;
-} */
-
-.swiper-button-next,
-.swiper-button-prev {
-  background: none;
-  border: none;
-  width: 50px;
-  height: 50px;
-}
-
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  content: none !important;
-  display: none;
-}
-
-.swiper-button-next {
-  background-image: url('../../assets/quests/images/arrow_next.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.swiper-button-prev {
-  background-image: url('../../assets/quests/images/arrow_back.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-
-

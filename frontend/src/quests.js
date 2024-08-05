@@ -4,6 +4,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
+import './css/quests/quests-main-part-quests-cards.css';
 import searchIcon from './assets/quests/images/searchIcon.png';
 import BNBChain from './assets/quests/images/BNBChain.png';
 import Polygonchain from './assets/quests/images/Polygonchain.png';
@@ -29,31 +30,9 @@ class Quests extends React.Component {
             query: '',
             selectedStatus: null,
             selectedChains: [],
-            isFixed: false, // Добавлено состояние для отслеживания фиксации
         };
-        this.questFilterRef = React.createRef(); // Ссылка на элемент .quest-filter-container
     }
 
-        // Функция для обработки прокрутки
-    handleScroll = () => {
-        const filterContainer = this.questFilterRef.current;
-        const filterRect = filterContainer.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-    
-        if (filterRect.bottom > viewportHeight - 50) {
-            this.setState({ isFixed: true });
-        } else {
-            this.setState({ isFixed: false });
-        }
-    };
-    
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-    }
-    
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
 
     handleInputChange = (event) => {
         this.setState({ query: event.target.value });
@@ -338,7 +317,6 @@ class Quests extends React.Component {
                         >
                             Arbitrum
                         </div>
-
                         {/* Добавьте другие элементы здесь */}
                     </div>
                 </div>
@@ -376,82 +354,7 @@ class Quests extends React.Component {
                 <div className="content-section-text">
                     <p>New</p>
                 </div>
-                <div className="carousel-container">
-                    <Swiper
-                        ref={(node) => { this.swiperRef = node; }}
-                        modules={[Navigation, Pagination, Autoplay]}
-                        slidesPerView={3}
-                        spaceBetween={0}
-                        navigation
-                        loop={false}
-                        autoplay={false}
-                        className="mySwiperNewQuests"
-                    >
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image1} alt="Quest 1" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image2} alt="Quest 2" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="quest-card">
-                                <img src={image3} alt="Quest 3" />
-                                <p>Stablecoin Yields on Optimism</p>
-                                <p>7 tasks | 508 exp</p>
-                            </div>
-                        </SwiperSlide>
-                    </Swiper>
-                </div>
+                
             </div>
             
         );
@@ -459,7 +362,6 @@ class Quests extends React.Component {
 
 
     render() {
-        const { isFixed } = this.state;
         return (
             <div className='quests-page'>
                 {this.renderSearchBar()}
@@ -468,8 +370,7 @@ class Quests extends React.Component {
                     <div className="quest-cards-container">
                         {this.renderContent()}
                     </div>
-                    <div className={`quest-filter-container ${isFixed ? 'fixed' : ''}`}
-                        ref={this.questFilterRef}>
+                    <div className='quest-filter-container'>
                         {this.renderSidebarFilters()}
                         <p className='MyProgressLabel'>My Progress</p>
                         {this.renderSidebarProgressXP()}
