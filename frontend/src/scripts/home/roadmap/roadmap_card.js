@@ -7,8 +7,8 @@ const RoadmapCard = ({ season_number, className, header, text,}) => {
     <div className={`roadmap-card ${className ? className : ''}`}>
         <div className="roadmap-content">
             <div className={`roadmap-text-container ${className ? className : ''}`}>
-                <h2>{header}</h2>
-                <p>{text}</p>
+                <h2 className='broken-text'>{header}</h2>
+                <p className='broken-text'>{text}</p>
             </div>
             <Ellipse season_number={season_number} className={className}/>
         </div>

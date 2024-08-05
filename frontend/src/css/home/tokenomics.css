@@ -18,12 +18,9 @@
 .tokenomics-supply-text {
     position: absolute;
     font-family: 'Pixel Operator HB SC', sans-serif;
-    font-size: 48pt;
-    offset-anchor: top;
+    font-size: 4vw;
     right: 9.6%;
     bottom: 23%;
-    letter-spacing: 1.5px;
-    margin-top: 0;
     color: white;
     z-index: 1;
 }
