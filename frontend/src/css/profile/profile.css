@@ -368,7 +368,7 @@
 
 .header-complited-quests {
   font-size: 28pt;
-  font-family: var(--Pixel-HB);
+  font-family: var(--Pixel-HB), sans-serif;
   text-align: center;
 }
 

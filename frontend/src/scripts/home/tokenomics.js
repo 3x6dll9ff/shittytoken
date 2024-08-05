@@ -1,43 +1,91 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PageName from './page_name';
 import '../../css/home/tokenomics.css';
-import hdd from '../../assets/home/images/hdd.png'
+import tokenomics_bg from '../../assets/home/video/tokenomics_bg.mp4';
+
 
 const Tokenomics = () => {
-  return (
-    <div className='tokenomics-wrapper'>
+    const [videoFirstLaunched, setVideoFirstLaunched] = useState(false);
+    const [videoEnded, setVideoEnded] = useState(true);
+    const videoRef = useRef(null);
 
-      <div className="tokenomics-container">
-        <div className='allocation-video'>
-          <div className='hdd-container'>
-              <img src={hdd} alt="Hdd" />
-              <p className="hdd-text">
-                <span className="percentage">20%</span> - Ecosystem
-              </p>
-          </div>
+    const handleScroll = () => {
+        if (videoRef.current) {
+            const rect = videoRef.current.getBoundingClientRect();
+            const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            if (!videoFirstLaunched) {
+                if (isVisible) {
+                    videoRef.current.play();
+                    setVideoEnded(false);
+                    setVideoFirstLaunched(true);
+                }
+                else {
+                    videoRef.current.pause();
+                }
+            }
+        }
+    };
+
+    const handleVideoEnded = () => {
+        setVideoEnded(true);
+    };
+
+    const handleRestart = () => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+            setVideoEnded(false);
+        }
+    };
+
+    useEffect(() => {
+        const handleVideoLoad = () => {
+            if (videoRef.current) {
+                videoRef.current.load();
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleVideoLoad);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('load', handleVideoLoad);
+        };
+    });
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.addEventListener('ended', handleVideoEnded);
+        }
+        return () => {
+            if (videoRef.current) {
+                videoRef.current.removeEventListener('ended', handleVideoEnded);
+            }
+        };
+    });
+
+    return (
+        <div className='tokenomics-wrapper'>
+            <video
+                ref={videoRef}
+                className='tokenomics-video'
+                src={tokenomics_bg}
+                muted
+                playsInline
+                preload="auto"
+            />
+            <p className={`tokenomics-supply-text ${!videoEnded || !videoFirstLaunched ? 'hidden' : ''}`}>
+                Total Supply - <span className="tokenomics-supply-text-percentage">10,000,000</span>
+            </p>
+            <PageName pageName='TOKENOMICS' />
+            <button
+                className={`tokenomics-rescan-button ${!videoEnded || !videoFirstLaunched ? 'hidden' : ''}`}
+                onClick={handleRestart}
+            >
+                Rescan
+            </button>
         </div>
-
-        <div className='allocation-text-wrapper'>
-            <p className='header-allocation'>Percentage allocation</p>
-            <p className="hdd-text">
-              <span className="percentage">20%</span> - Ecosystem
-            </p>
-            <p className="hdd-text">
-              <span className="percentage">5%</span> - IDO / ICO
-            </p>
-            <p className="hdd-text">
-              <span className="percentage">75%</span> - Community
-            </p>
-        </div>
-      </div>
-
-      <p className="supply-text">
-        Total Supply - <span className="percentage">21,000,000</span> 
-      </p>
-
-        <PageName pageName='TOKENOMICS'/>
-    </div>
-  );
+    );
 };
 
 export default Tokenomics;
