@@ -15,9 +15,10 @@ import AvalancheChain from './assets/quests/images/AvalancheChain.png';
 import VillagerChain from './assets/quests/images/VillagerChain.png';
 import ScroolChain from './assets/quests/images/ScrollChain.png';
 import QredoChain from './assets/quests/images/QredoChain.png';
-import image1 from './assets/quests/images/quest_pic.png';
-import image2 from './assets/quests/images/quest_pic.png';
-import image3 from './assets/quests/images/quest_pic.png';
+import image1 from './assets/quests/images/quest_pic_big.png';
+import image2 from './assets/quests/images/quest_pic_big.png';
+import image3 from './assets/quests/images/quest_pic_big.png';
+import arrowNext from '../src/assets/quests/images/arrow_next.png'
 
 // ========================= Состояния и методы =========================
 
@@ -25,8 +26,33 @@ class Quests extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: ''
+            query: '',
+            selectedStatus: null,
+            selectedChains: [],
+            isFixed: false, // Добавлено состояние для отслеживания фиксации
         };
+        this.questFilterRef = React.createRef(); // Ссылка на элемент .quest-filter-container
+    }
+
+        // Функция для обработки прокрутки
+    handleScroll = () => {
+        const filterContainer = this.questFilterRef.current;
+        const filterRect = filterContainer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+    
+        if (filterRect.bottom > viewportHeight - 50) {
+            this.setState({ isFixed: true });
+        } else {
+            this.setState({ isFixed: false });
+        }
+    };
+    
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     handleInputChange = (event) => {
@@ -52,6 +78,32 @@ class Quests extends React.Component {
         }
     };
 
+     // Обработчик для выбора статуса
+    handleStatusClick = (status) => {
+        const { selectedStatus } = this.state;
+        if (selectedStatus === status) {
+            // Если статус уже выбран, снять выбор
+            this.setState({ selectedStatus: null });
+        } else {
+            // Если статус не выбран, установить его как текущий
+            this.setState({ selectedStatus: status });
+        }
+    };
+
+    // Обработчик для выбора цепи
+    handleChainClick = (chain) => {
+        const { selectedChains } = this.state;
+        if (selectedChains.includes(chain)) {
+            // Если элемент уже выбран, удаляем его из массива
+            this.setState({
+                selectedChains: selectedChains.filter((selectedChain) => selectedChain !== chain),
+            });
+            } else {
+                // Если элемент не выбран, добавляем его в массив
+                this.setState({ selectedChains: [...selectedChains, chain] });
+            }
+        };
+
     // ========================= Рендеринг =========================
 
     renderSearchBar() {
@@ -76,17 +128,16 @@ class Quests extends React.Component {
         return (
             <div className='welcome-banner'>
                 <div className='welcome-banner-text'>
-                    <div className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community">
                         <span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span">
                                 Earn
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span2">
                                 points
+                                <br/>
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span3">
                                 and
-                                <br/>
                             </span>
                             <span className="earn-points-and-rewards-by-contributing-to-your-favourite-web-3-community-span4">
                                 rewards
@@ -102,7 +153,6 @@ class Quests extends React.Component {
                                 Community
                             </span>
                         </span>
-                    </div>
                     {this.renderChainLinks()}
                 </div>
                 {this.renderWelcomeBannerSlider()}
@@ -112,7 +162,7 @@ class Quests extends React.Component {
 
     renderChainLinks() {
         return (
-            <>
+            <div className="chain-link-images">
                 <a href="https://www.bnbchain.org" rel="noopener noreferrer">
                     <img className="image-66" src={BNBChain} alt="BNB Chain" />
                 </a>
@@ -143,7 +193,7 @@ class Quests extends React.Component {
                 <a href="https://qredo.com" rel="noopener noreferrer">
                     <img className="image-75" src={QredoChain} alt="Qredo Chain" />
                 </a>
-            </>
+            </div>
         );
     }
 
@@ -159,7 +209,7 @@ class Quests extends React.Component {
                     disableOnInteraction: false,
                     }}
                     loop={true}
-                    pagination={{ clickable: true }}
+                    // pagination={{ clickable: true }}
                     grabCursor={true}
                     className='mySwiper'
                 >
@@ -175,49 +225,148 @@ class Quests extends React.Component {
     renderSlide(imageSrc, altText) {
         return (
             <div className='slide'>
-                <a href="https://qredo.com" rel="noopener noreferrer">
+                <a href="https://qredo.com" rel="noopener noreferrer" className='slide-img'>
                     <img src={imageSrc} alt={altText} />
                 </a>
-                <p>XRP Ledger</p>
-                <p>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
+                <div className='quests-pic-name-company'>
+                    <img src={QredoChain} alt='pic-project' />
+                    <p>XRP Ledger</p>
+                </div>
+                <p className='quests-slide-text-name-quest'>XRP Ledger Universe - Earn Exclusive NFTs & Rewards - Phase 1</p>
             </div>
         );
     }
 
-    renderSidebar() {
+    renderSidebarFilters() {
+        const { selectedStatus, selectedChains } = this.state;
         return (
-            <div className="sidebar">
-                <div className="sidebar-section">
-                    <label>Sort by</label>
-                    <select>
-                    <option>Last Added</option>
-                    {/* Другие опции */}
+            <div className="sidebarFilters">
+                {/* Sort By */}
+                <div className="sort-by">
+                    <label htmlFor="sortSelect">Sort by</label>
+                    <select id="sortSelect">
+                        <option value="lastAdded">Last Added</option>
+                        <option value="expiringDate">Expiring Date</option>
+                        {/* Другие опции можно добавить здесь */}
                     </select>
                 </div>
-                <div className="sidebar-section1">
+            
+                {/* Status */}
+                <div className="status">
                     <label>Status</label>
-                    <div>Recommended</div>
-                    <div>In Progress</div>
-                    <div>New</div>
+                    <div
+                        className={`status-tile ${selectedStatus === 'recommended' ? 'selected' : ''}`}
+                        onClick={() => this.handleStatusClick('recommended')}
+                    >
+                        Recommended
+                    </div>
+                    <div
+                        className={`status-tile ${selectedStatus === 'inProgress' ? 'selected' : ''}`}
+                        onClick={() => this.handleStatusClick('inProgress')}
+                    >
+                        In Progress
+                    </div>
+                    <div
+                        className={`status-tile ${selectedStatus === 'new' ? 'selected' : ''}`}
+                        onClick={() => this.handleStatusClick('new')}
+                    >
+                        New
+                    </div>
                 </div>
-                <div className="sidebar-section">
+            
+                {/* Chain */}
+                <div className="chain">
                     <label>Chain</label>
-                    <div>BNB Chain</div>
-                    <div>OP Mainnet</div>
-                    <div>Scroll</div>
-                    <div>Arbitrum</div>
-                </div>
-                <div className="sidebar-section">
-                    <label>My Progress</label>
-                    <div>Collected 65750 exp</div>
-                    <div>Complete quests and get exp</div>
-                </div>
-                <div className="sidebar-section">
-                    <label>DOCs Streak</label>
-                    <div>546 days</div>
-                    <button>GRAB DOCS</button>
+                    <div className="scroll-menu">
+                        <div
+                        className={`chain-tile ${selectedChains.includes('bnbChain') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('bnbChain')}
+                        >
+                            BNB Chain
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('opMainnet') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('opMainnet')}
+                        >
+                            OP Mainnet
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('scroll') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('scroll')}
+                        >
+                            Scroll
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+                        <div
+                        className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
+                        onClick={() => this.handleChainClick('arbitrum')}
+                        >
+                            Arbitrum
+                        </div>
+
+                        {/* Добавьте другие элементы здесь */}
+                    </div>
                 </div>
             </div>
+        );
+    }
+
+    renderSidebarProgressXP() {
+        const expPoints = 65750; // Здесь можно использовать динамическое значение
+        return (
+            <a href="https://qredo.com" className="sidebarProgressXP">
+                <div className="quest-pentagon-container">
+                    <div className="quest-pentagon-white">
+                        <div className="quest-pentagon-black">
+                            <div className="quest-grade-number">1</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='sidebarProgressXP-score-points'>
+                    <div className='sidebarProgressXP-score-points-text'>
+                        <p>Collected {expPoints} exp</p>
+                        <p>Complete quests and get exp</p>
+                    </div>
+                </div>
+                <div className='sidebarProgressXP-score-points-arrowNext'>
+                    <img src={arrowNext} alt={arrowNext} />
+                </div>
+            </a>
         );
     }
 
@@ -310,6 +459,7 @@ class Quests extends React.Component {
 
 
     render() {
+        const { isFixed } = this.state;
         return (
             <div className='quests-page'>
                 {this.renderSearchBar()}
@@ -318,7 +468,12 @@ class Quests extends React.Component {
                     <div className="quest-cards-container">
                         {this.renderContent()}
                     </div>
-                    {this.renderSidebar()}
+                    <div className={`quest-filter-container ${isFixed ? 'fixed' : ''}`}
+                        ref={this.questFilterRef}>
+                        {this.renderSidebarFilters()}
+                        <p className='MyProgressLabel'>My Progress</p>
+                        {this.renderSidebarProgressXP()}
+                    </div>
                 </div>
             </div>
         );
