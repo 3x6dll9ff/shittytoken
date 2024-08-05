@@ -1,0 +1,67 @@
+.quests-content {
+    flex: 1;
+    display: block; /* Обеспечивает вертикальное расположение "New" и слайдера */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1244px;
+    margin: 0 auto; /* Центрирование всего контейнера */
+}
+
+.content-section-text {
+    font-size: 36px;
+    padding: 0 30px;
+    font-family: 'Pixel Operator HB 8', sans-serif;
+    margin-bottom: 20px; /* Отступ между текстом и слайдером */
+}
+
+.content-section-slider-new {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    display: flex;
+    max-height: 404px;
+    align-items: center;
+}
+
+.swiper-container {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+}
+
+
+.card {
+    border: 2px solid #fff;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+
+.custom-button-prev img, .custom-button-next img {
+    height: 45px;
+    width: 45px;
+}
+
+.custom-button-prev, .custom-button-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-button-prev {
+    width: 50px;
+    height: 404px;
+    padding: 0 10px;
+}
+
+.custom-button-next {
+    width: 50px;
+    height: 404px;
+    padding: 0 10px;
+}
+
+
