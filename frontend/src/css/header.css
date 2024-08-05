@@ -1,6 +1,6 @@
 :root {
-    --logo: url('../assets/header/images/logo_small.png');
-    --logo-hover: url('../assets/header/images/logo_small_hover.png');
+    --logo: url('../assets/header/images/header_logo.png');
+    --logo-hover: url('../assets/header/images/header_logo_hover.png');
 }
 
 .ticker-container {

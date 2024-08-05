@@ -50,7 +50,6 @@ class Home extends Component {
                 <Roadmap />
                 <WhiteLine />
                 <Stuff />
-                <WhiteLine className='black-line'/>
                 <Footer />
             </div>
         );
