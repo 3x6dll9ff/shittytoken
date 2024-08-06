@@ -22,13 +22,14 @@ import image2 from './assets/quests/images/quest_pic_big.png';
 import image3 from './assets/quests/images/quest_pic_big.png';
 import arrowNext from '../src/assets/quests/images/arrow_next.png';
 import arrowBack from '../src/assets/quests/images/arrow_back.png';
-
+import questsCardCompanyImg from '../src/assets/quests/images/quests-card-company-img.png'
 SwiperCore.use([Navigation, Pagination]);
 
 class Quests extends Component {
     constructor(props) {
         super(props);
         this.swiperRef = React.createRef();
+        this.swiperRefEcosystems = React.createRef();
         this.state = {
             query: '',
             selectedStatus: null,
@@ -36,6 +37,8 @@ class Quests extends Component {
         };
         this.handlePrev = this.handlePrev.bind(this);
         this.handleNext = this.handleNext.bind(this);
+        this.handlePrevEcosystems = this.handlePrevEcosystems.bind(this);
+        this.handleNextEcosystems = this.handleNextEcosystems.bind(this);
     }
 
     handlePrev() {
@@ -49,6 +52,19 @@ class Quests extends Component {
             this.swiperRef.current.swiper.slideNext();
         }
     }
+
+    handlePrevEcosystems() {
+        if (this.swiperRefEcosystems.current && this.swiperRefEcosystems.current.swiper) {
+            this.swiperRefEcosystems.current.swiper.slidePrev();
+        }
+    }
+    
+    handleNextEcosystems() {
+        if (this.swiperRefEcosystems.current && this.swiperRefEcosystems.current.swiper) {
+            this.swiperRefEcosystems.current.swiper.slideNext();
+        }
+    }
+    
 
     handleInputChange = (event) => {
         this.setState({ query: event.target.value });
@@ -339,8 +355,49 @@ class Quests extends Component {
 
     renderContent() {
         const slides = Array.from({ length: 10 }).map((_, index) => (
-            <SwiperSlide key={index}>
-                <div className="card">Card {index + 1}</div>
+            <SwiperSlide>
+                <div className="quests-card-quests">
+                    <a href="https://qredo.com" rel="noopener noreferrer">
+                        <div className='quests-card-quests-img-info'>
+                            <a href="https://optimism.io" rel="noopener noreferrer">
+                                <div className='quests-card-quests-img-info-company'>
+                                    <img src={questsCardCompanyImg} alt="Company Logo" />
+                                    <p>Aave</p>
+                                </div>
+                            </a>
+                            <a href="https://optimism.io" rel="noopener noreferrer">
+                                <div className='quests-card-quests-img-info-chain'>
+                                    <img src={OPChain} alt="Chain Logo Card" />
+                                </div>
+                            </a>
+                        </div>
+                        <img src={image1} alt={'altText'} />
+                        <div className="quests-card-quests-text">
+                            <p>Stablecoin Yields on Optimism</p>
+                        </div>
+                        <div className="quests-card-quests-points-tasks">
+                            <div class="quests-card-quests-points-tasks-inner">
+                                <div className="quests-card-quests-tasks">
+                                    <p>7 tasks</p>
+                                </div>
+                                <div className="quests-card-quests-points"> 
+                                    <p>500 exp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </SwiperSlide>
+        ));
+        const slides_ecosystems = Array.from({ length: 10 }).map((_, index) => (
+            <SwiperSlide>
+                <div className="quests-card-quests-ecosystems">
+                    <a href="https://qredo.com" rel="noopener noreferrer">
+                            <img className="image-66" src={BNBChain} alt="BNB Chain" />
+                            <p className='quests-card-quests-ecosystems-name-chain'>BNB chain</p>
+                            <p className='quests-card-quests-ecosystems-count-quests'>52 quests</p>
+                    </a>
+                </div>
             </SwiperSlide>
         ));
         return (
@@ -362,6 +419,26 @@ class Quests extends Component {
                         </Swiper>
                     </div>
                     <div className="custom-button-next" onClick={this.handleNext}>
+                        <img src={arrowNext} alt="Next" />
+                    </div>
+                </div>
+                <div className="content-section-text-ecosystems">
+                    <p>Ecosystems</p>
+                </div>
+                <div className='content-section-slider-ecosystems'>
+                    <div className="custom-button-prev-ecosystems" onClick={this.handlePrevEcosystems}>
+                        <img src={arrowBack} alt="Back" />
+                    </div>
+                    <div className="swiper-container-ecosystems">
+                        <Swiper
+                            ref={this.swiperRefEcosystems}
+                            spaceBetween={15}
+                            slidesPerView={5}
+                        >
+                            {slides_ecosystems}
+                        </Swiper>
+                    </div>
+                    <div className="custom-button-next-ecosystems" onClick={this.handleNextEcosystems}>
                         <img src={arrowNext} alt="Next" />
                     </div>
                 </div>
