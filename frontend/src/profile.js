@@ -5,6 +5,45 @@ import docImage from "../src/assets/images/doc.png";
 import ProgressBar from "./scripts/profile/progress_bar";
 import SeasonProgressBar from "./scripts/profile/season_pass_bar";
 import Achievements from "./scripts/profile/achievements_view"
+import OPChain from './assets/quests/images/OPChain.png';
+import questsCardCompanyImg from '../src/assets/quests/images/quests-card-company-img.png'
+import image1 from './assets/quests/images/quest_pic_big.png';
+
+
+
+const slides = Array.from({ length: 10 }).map((_, index) => (
+    <div className="quests-card-quests">
+        <a href="https://qredo.com" rel="noopener noreferrer">
+            <div className='quests-card-quests-img-info'>
+                <a href="https://optimism.io" rel="noopener noreferrer">
+                    <div className='quests-card-quests-img-info-company'>
+                        <img src={questsCardCompanyImg} alt="Company Logo"/>
+                        <p>Aave</p>
+                    </div>
+                </a>
+                <a href="https://optimism.io" rel="noopener noreferrer">
+                    <div className='quests-card-quests-img-info-chain'>
+                        <img src={OPChain} alt="Chain Logo Card"/>
+                    </div>
+                </a>
+            </div>
+            <img src={image1} alt={'altText'}/>
+            <div className="quests-card-quests-text">
+                <p>Stablecoin Yields on Optimism</p>
+            </div>
+            <div className="quests-card-quests-points-tasks">
+                <div className="quests-card-quests-points-tasks-inner">
+                    <div className="quests-card-quests-tasks">
+                        <p>7 tasks</p>
+                    </div>
+                    <div className="quests-card-quests-points">
+                        <p>500 exp</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+));
 
 class Profile extends React.Component {
     render() {
@@ -38,7 +77,7 @@ class Profile extends React.Component {
                             </div>
                         </div>
                         <div className="level-grade">
-                            <div className="pentagon-container">
+                        <div className="pentagon-container">
                                 <div className="pentagon-white">
                                     <div className="pentagon-black">
                                         <div className="grade-number">1</div>
@@ -89,8 +128,6 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
                 {/* Achievements Container */}
                 <div className="achievements-container">
                     <div className="achievements-block">
@@ -120,19 +157,13 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 {/* Quests Container */}
                 <div className="quests-container">
                     <div className="quests-block">
                         <div className="header-complited-quests">Completed quests</div>
                         <div className="profile-done-cards">
-                            <div className={'cards-wrapper'}>
-                                <div className="card">Card 1</div>
-                                <div className="card">Card 2</div>
-                                <div className="card">Card 3</div>
-                                <div className="card">Card 4</div>
-                                <div className="card">Card 5</div>
-                                <div className="card">Card 6</div>
+                            <div className="cards-wrapper">
+                                {slides}
                             </div>
                         </div>
 

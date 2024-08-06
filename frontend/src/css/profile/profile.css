@@ -370,8 +370,8 @@
   overflow-y: auto; /* Вертикальная прокрутка */
 }
 
-.profile-done-cards .card {
-  flex: 0 0 calc(33.333% - 20px);
+.profile-done-cards .quests-card-quests {
+  flex: 0 0 calc(33.333% - 20px); /* Обновлено на .quests-card-quests */
   box-sizing: border-box;
   padding: 10px;
 }
