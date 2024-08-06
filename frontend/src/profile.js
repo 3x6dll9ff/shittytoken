@@ -1,13 +1,14 @@
 import React from 'react';
+import ProgressBar from "./scripts/profile/progress_bar";
+import SeasonProgressBar from "./scripts/profile/season_pass_bar";
+import Achievements from "./scripts/profile/achievements_view";
+import { connectWallet } from "./scripts/wallet_connect";
+import { formatWalletAddress } from "./scripts/utils";
 import "./css/profile/profile.css";
 import avatarImage from "../src/assets/images/placeholder_profile.png";
 import docImage from "../src/assets/images/doc.png";
-import ProgressBar from "./scripts/profile/progress_bar";
-import SeasonProgressBar from "./scripts/profile/season_pass_bar";
-import Achievements from "./scripts/profile/achievements_view"
-import { connectWallet }  from "./scripts/wallet_connect";
 import OPChain from './assets/quests/images/OPChain.png';
-import questsCardCompanyImg from '../src/assets/quests/images/quests-card-company-img.png'
+import questsCardCompanyImg from "../src/assets/quests/images/quests-card-company-img.png";
 import image1 from './assets/quests/images/quest_pic_big.png';
 
 
@@ -52,21 +53,12 @@ class Profile extends React.Component {
         this.state = {
             userAccount: null
         };
-        this.onConnect = this.onConnect.bind(this);
     }
 
-    // Метод для подключения кошелька
-    onConnect() {
-        connectWallet(account => {
+    async componentDidMount() {
+        await connectWallet(account => {
             this.setState({ userAccount: account });
-            console.log(account);
         });
-    }
-
-    // Метод для форматирования адреса кошелька
-    formatWalletAddress(address) {
-        if (!address) return 'No wallet connected';
-        return `${address.slice(0, 5)}...${address.slice(-5)}`;
     }
 
     render() {
@@ -83,7 +75,7 @@ class Profile extends React.Component {
                         </div>
                         <div className="profile-details">
                             <div className="name-profile">HAZE</div>
-                            <div className="wallet-profile"> {userAccount ? this.formatWalletAddress(userAccount) : 'No wallet connected'}</div>
+                            <div className="wallet-profile"> {formatWalletAddress(userAccount)}</div>
                             <div className="user-stats">
                                 <div className="user-stat">
                                     <div className="stat-title">Docs</div>
@@ -148,7 +140,7 @@ class Profile extends React.Component {
                         <div className="profile-claim-block">
                             <div className="profile-claim-text">Collect your reward!</div>
                             <div className="profile-button-claim">
-                                <div onClick={this.onConnect} className="profile-button-claim-text">Claim</div>
+                                <div className="profile-button-claim-text">Claim</div>
                             </div>
                         </div>
                     </div>
