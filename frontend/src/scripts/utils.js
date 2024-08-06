@@ -29,4 +29,13 @@ const unixTimesptampToTime = (timestamp) => {
     return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
 };
 
-export {dataLoaded, unixTimesptampToTime, insertCharIn};
+const formatWalletAddress = (address) => {
+    if (!address) {
+        return 'No wallet connected';
+    }
+    else {
+        return `${address.slice(0, 5)}...${address.slice(-5)}`;
+    }
+}
+
+export {dataLoaded, unixTimesptampToTime, insertCharIn, formatWalletAddress};
