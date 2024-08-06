@@ -7,10 +7,12 @@ export const connectWallet = async (onAccountConnected) => {
             if (onAccountConnected) {
                 onAccountConnected(accounts[0]);
             }
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
-    } else {
+    }
+    else {
         alert('Please download MetaMask extension');
     }
 };
