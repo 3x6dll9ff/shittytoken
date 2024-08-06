@@ -18,26 +18,21 @@ const blogPath = `/blog`;
 const profilePath = `/profile`;
 
 const App = () => {
-    const [maskStyle, setMaskStyle] = useState({});
+    const [clientCursorCoordinates, setClientCursorCoordinates] = useState({x: 0, y: 0})
 
-    const handleMouseMove = (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-
-        setMaskStyle({
-            background: `radial-gradient(circle at ${x}px ${y}px, transparent 0%, rgba(0, 0, 0, 1) 150px)`
-        });
+    const handlePointerMove = (event) => {
+        const x = event.clientX;
+        const y = event.clientY;
+        setClientCursorCoordinates({x, y});
     };
 
     return (
         <div
             className={`body`}
-            onMouseMove={handleMouseMove}
+            onPointerMove={handlePointerMove}
         >
             <Router>
-                <Header
-                    maskStyle={maskStyle}
-                />
+                <Header clientCursorCoordinates={clientCursorCoordinates}/>
                 <Routes>
                     <Route path={homePath} element={<Home />}/>
                     <Route path={cryptoPath} element={<Crypto />}/>
