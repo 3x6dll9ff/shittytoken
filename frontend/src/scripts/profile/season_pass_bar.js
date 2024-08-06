@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../css/profile/season_progress.css';
+import '../../css/profile/season_progress.css'; // Убедитесь, что путь к CSS правильный
 
 const SeasonProgressBar = ({ initialSeasonProgress }) => {
   const [currentProgress, setCurrentProgress] = useState(initialSeasonProgress);
@@ -9,10 +9,10 @@ const SeasonProgressBar = ({ initialSeasonProgress }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevProgress(currentProgress);
-      setCurrentProgress((prev) => Math.min(prev + 0, 100)); // можно изменить значение 0, чтобы посмотреть как прибавляется полученная экспа
+      setCurrentProgress((prev) => Math.min(prev + 1, 100)); // Увеличиваем прогресс на 1% каждую секунду
     }, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [currentProgress]);
 
   useEffect(() => {
@@ -30,18 +30,18 @@ const SeasonProgressBar = ({ initialSeasonProgress }) => {
   }, [currentProgress, prevProgress]);
 
   return (
-    <div className="season-progress-bar-container">
-      <div
-        className="season-progress-bar"
-        style={{ width: `${prevProgress}%` }}
-      ></div>
-      {difference > 0 && (
+      <div className="season-progress-bar-container">
         <div
-          className="season-progress-bar-difference"
-          style={{ width: `${difference}%`, left: `${prevProgress}%` }}
+            className="season-progress-bar"
+            style={{ width: `${prevProgress}%` }}
         ></div>
-      )}
-    </div>
+        {difference > 0 && (
+            <div
+                className="season-progress-bar-difference"
+                style={{ width: `${difference}%`, left: `${prevProgress}%` }}
+            ></div>
+        )}
+      </div>
   );
 };
 

@@ -221,11 +221,6 @@
   padding: 5px;
 }
 
-.profile-seasonpass-block {
-  background: rgb(57, 39, 39);
-  width: 80%;
-}
-
 .profile-claim-block {
   width: 20%;
   overflow: hidden;
@@ -302,7 +297,6 @@
 
 .achievements-content.locked {
   filter: saturate(0) brightness(75%);
-;
 }
 
 .achievements-image {
@@ -348,8 +342,6 @@
   color: #BFBFBF;
 }
 
-
-
 .available-achievements {
   font-size: 16pt;
   font-family: var(--Pixel), sans-serif;
@@ -357,13 +349,38 @@
   color: #BFBFBF;
 }
 
-
-
-
-
-
 .quests-block {
   height: 650px;
+}
+
+.profile-done-cards {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 15px;
+  max-width: 100%; /* Ограничиваем максимальную ширину */
+  height: 550px; /* Фиксированная высота для создания области прокрутки */
+  overflow-y: auto; /* Вертикальная прокрутка */
+}
+
+.profile-done-cards .card {
+  flex: 0 0 calc(33.333% - 20px);
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* Completed quests header styling */
+.header-completed-quests {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .header-complited-quests {

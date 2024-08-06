@@ -55,24 +55,32 @@ class Profile extends React.Component {
                     <div className="header-drops">Season Pass</div>
                     <div className="drops-block">
                         <div className="profile-seasonpass-block">
-                            <div className="pentagon-container">
-                                <div className="pentagon-white">
-                                    <div className="pentagon-black">
-                                        <div className="grade-number">1</div>
+                            <div className="season-pentagon-container pentagon-start">
+                                <div className="pentagon-start-white">
+                                    <div className="pentagon-start-black">
+                                        <div className="season-grade-number">1</div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="pentagon-container">
-                                <div className="pentagon-white">
-                                    <div className="pentagon-black">
-                                        <div className="grade-number">1</div>
+                            <div className="season-progress-bar-container">
+                                <SeasonProgressBar initialSeasonProgress={50}/>
+                            </div>
+                            <div className="season-pentagon-container pentagon-middle">
+                                <div className="pentagon-middle-white">
+                                    <div className="pentagon-middle-black">
+                                        <div className="season-grade-number">2</div>
                                     </div>
                                 </div>
                             </div>
-
-                            <SeasonProgressBar initialSeasonProgress={20}/>
-
+                            <div className="season-pentagon-container pentagon-end">
+                                <div className="pentagon-end-white">
+                                    <div className="pentagon-end-black">
+                                        <div className="season-grade-number">3</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div className="profile-claim-block">
                             <div className="profile-claim-text">Collect your reward!</div>
                             <div className="profile-button-claim">
@@ -81,6 +89,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
+
 
                 {/* Achievements Container */}
                 <div className="achievements-container">
@@ -116,7 +125,16 @@ class Profile extends React.Component {
                 <div className="quests-container">
                     <div className="quests-block">
                         <div className="header-complited-quests">Completed quests</div>
-
+                        <div className="profile-done-cards">
+                            <div className={'cards-wrapper'}>
+                                <div className="card">Card 1</div>
+                                <div className="card">Card 2</div>
+                                <div className="card">Card 3</div>
+                                <div className="card">Card 4</div>
+                                <div className="card">Card 5</div>
+                                <div className="card">Card 6</div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
