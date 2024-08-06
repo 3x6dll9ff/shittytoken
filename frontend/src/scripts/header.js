@@ -1,22 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { connectWallet } from "./wallet_connect";
+import { formatWalletAddress } from "./utils"
 import "../css/header.css";
+import header_logo_back from "../assets/header/images/header_logo_back.png";
+import header_logo_middle from "../assets/header/images/header_logo_middle.png";
+import header_logo_front from "../assets/header/images/header_logo_front.png";
+import header_logo_hover from "../assets/header/images/header_logo_hover.png";
 import pixel_mask from "../assets/header/images/pixel_mask.png";
 import profile_picture from "../assets/images/placeholder_profile.png";
 import profile_icon from "../assets/header/images/profile.png";
 import achievement_icon from "../assets/header/images/achievements.png";
 import logout_icon from "../assets/header/images/logout.png";
 
-const Header = ({maskStyle}) => {
+const Header = ({clientCursorCoordinates}) => {
+    const x = clientCursorCoordinates.x;
+    const y = clientCursorCoordinates.y;
+
     return (
         <div>
             <Ticker />
-            <div
-                className={`header`}
-            >
-                <div
-                    className={`header-pixel-mask-container`}
-                >
+            <div className={`header`}>
+                <div className={`header-pixel-mask-container`}>
                     <img
                         className={`header-pixel-mask-image`}
                         src={pixel_mask}
@@ -24,13 +29,10 @@ const Header = ({maskStyle}) => {
                     />
                     <div
                         className={`header-pixel-mask`}
-                        style={maskStyle}
+                        style={{background: `radial-gradient(circle at ${x}px ${y}px, transparent 0%, rgba(0, 0, 0, 1) 150px)`}}
                     />
                 </div>
-                <Link
-                    to={`/`}
-                    className={`header-logo`}
-                />
+                <Logo clientCursorCoordinates={clientCursorCoordinates} />
                 <div className={`header-menu-items-container`}>
                     <LinkItem
                         title={`HOME`}
@@ -81,6 +83,82 @@ const Ticker = () => {
     );
 };
 
+const Logo = ({ clientCursorCoordinates }) => {
+    const [moddedCoordinates, setModdedCoordinates] = useState({ x: 0, y: 0 });
+    const [isHovered, setHovered] = useState(false);
+    const middlePhotoRef = useRef(null);
+    const containerRef = useRef(null);
+
+    const handleMouseEnter = () => setHovered(true);
+    const handleMouseLeave = () => setHovered(false);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            const containerRect = containerRef.current.getBoundingClientRect();
+            const moddedX = clientCursorCoordinates.x - containerRect.left;
+            const moddedY = clientCursorCoordinates.y - containerRect.top;
+            setModdedCoordinates({ x: moddedX, y: moddedY });
+        }
+    }, [clientCursorCoordinates]);
+
+    useEffect(() => {
+        if (middlePhotoRef.current && containerRef.current) {
+            const middlePhotoRect = middlePhotoRef.current.getBoundingClientRect();
+            const containerRect = containerRef.current.getBoundingClientRect();
+
+            const middlePhotoX = Math.min(
+                Math.max(moddedCoordinates.x - middlePhotoRect.width / 2, 0),
+                containerRect.width - middlePhotoRect.width
+            );
+            const middlePhotoY = Math.min(
+                Math.max(moddedCoordinates.y - middlePhotoRect.height / 2, 0),
+                containerRect.height - middlePhotoRect.height
+            );
+
+            middlePhotoRef.current.style.transform = `translate(${middlePhotoX}px, ${middlePhotoY}px)`;
+        }
+    }, [moddedCoordinates]);
+
+    return (
+        <Link
+            className="header-logo-container"
+            ref={containerRef}
+            to="/"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            {isHovered ? (
+                <img
+                    className="header-logo"
+                    src={header_logo_hover}
+                    alt="logo"
+                />
+            ) : (
+                <div>
+                    <div className="header-logo back">
+                        <img
+                            src={header_logo_back}
+                            alt="logo"
+                        />
+                    </div>
+                    <div className="header-logo middle" ref={middlePhotoRef}>
+                        <img
+                            src={header_logo_middle}
+                            alt="logo"
+                        />
+                    </div>
+                    <div className="header-logo front">
+                        <img
+                            src={header_logo_front}
+                            alt="logo"
+                        />
+                    </div>
+                </div>
+            )}
+        </Link>
+    );
+};
+
 const LinkItem = ({title, url}) => {
     const isActive = useLocation().pathname === url;
 
@@ -95,15 +173,22 @@ const LinkItem = ({title, url}) => {
 };
 
 const ProfileContainer = () => {
+    const [userAccount, setUserAccount] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
     const [profileExpanded, setProfileExpanded] = useState(false);
+    const containerRef = useRef(null);
 
-    const logoutButton = () => {
+    const handleConnectButton = async () => {
+        await connectWallet(account => {
+            setUserAccount(account)
+            setLoggedIn(true)
+        });
+    }
+
+    const handleLogoutButton = () => {
         setLoggedIn(false);
         setProfileExpanded(false);
     };
-
-    const containerRef = useRef(null);
 
     const preventScroll = (event) => {
         event.preventDefault();
@@ -134,16 +219,13 @@ const ProfileContainer = () => {
         return (
             <div
                 className={`header-wallet-button`}
-                onClick={() => setLoggedIn(true)}
+                onClick={handleConnectButton}
             >
                 Connect Wallet
             </div>
         );
-    } else {
-        let walletAddress = '0x1234567890abcdef';
-        if (walletAddress.length > 13) {
-            walletAddress = walletAddress.slice(0, 13) + '...';
-        }
+    }
+    else {
         return (
             <div
                 className={`header-profile-container ${profileExpanded ? 'expanded' : ''}`}
@@ -154,10 +236,10 @@ const ProfileContainer = () => {
                 <div className={`header-profile-info`}>
                     <div className={`header-profile-text-container`}>
                         <div className={`header-profile-username`}>
-                            {walletAddress}
+                            {formatWalletAddress(userAccount)}
                         </div>
                         <div className={`header-profile-wallet-address`}>
-                            {walletAddress}
+                            {formatWalletAddress(userAccount)}
                         </div>
                     </div>
                     <Link
@@ -188,7 +270,7 @@ const ProfileContainer = () => {
                     <ProfileButton
                         title={`Logout`}
                         img_src={logout_icon}
-                        onClick={logoutButton}
+                        onClick={handleLogoutButton}
                         alt={true}
                     />
                 </div>
