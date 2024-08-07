@@ -60,18 +60,22 @@
     position: absolute; /* Абсолютное позиционирование */
     width: 100%;
     max-width: 270px;
-    z-index: 1; /* Устанавливаем z-index для нахождения поверх других элементов */
     height: 100%;
-    max-height: 230px;
+    max-height: 65px;
     padding: 0 15px;
     display: flex;
     justify-content: space-between; /* Распределяет элементы по краям */
-    /* align-items: center; */
+    align-items: center;
 }
+
+.quests-card-quests-img-info a {
+    height: 100%;
+    max-height: 35px;
+}
+
 
 .quests-card-quests-img-info-company {
     display: flex;
-    margin-top: 350px;
     width: max-content;
     max-width: 100px;
     height: 35px;
@@ -84,7 +88,6 @@
 }
 
 .quests-card-quests-img-info-chain {
-    margin-top: 350px;
     width: max-content;
     max-width: 100px;
     height: 35px;

@@ -7,9 +7,9 @@ import { formatWalletAddress } from "./scripts/utils";
 import "./css/profile/profile.css";
 import avatarImage from "../src/assets/images/placeholder_profile.png";
 import docImage from "../src/assets/images/doc.png";
-import OPChain from './assets/quests/images/OPChain.png';
-import questsCardCompanyImg from "../src/assets/quests/images/quests-card-company-img.png";
-import image1 from './assets/quests/images/quest_pic_big.png';
+import OPChain from './assets/quests/chainsPics/OPChain.png';
+import questsCardCompanyImg from "../src/assets/quests/companyPics/company1CardPic.png";
+import image1 from '../src/assets/quests/questsCardsPics/questCard1QuestPic.jpg';
 
 
 
