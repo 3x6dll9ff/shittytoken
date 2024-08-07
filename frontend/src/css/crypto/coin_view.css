@@ -9,21 +9,20 @@
     justify-content: center;
     align-items: center;
     z-index: 5;
-    animation: showWindow 0.2s ease;
 }
 
 .coin-view-window {
-    background-color: #121212;
+    background-color: #000000;
+    border: solid 2px #FFFFFF;
     width: 80%;
-    height: 85%;
-    border-radius: 10px;
+    height: 80%;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
 }
 
 .coin-view-top-bar {
-    border-bottom: solid #333333 2px;
+    border-bottom: solid #FFFFFF 2px;
     min-width: 100%;
     height: 45px;
     display: flex;
@@ -42,17 +41,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.coin-view-top-bar-close-button:hover {
-    opacity: 75%;
+    cursor: var(--pointer);
 }
 
 .coin-view-top-bar-close-button-icon {
     width: 25px;
     height: 25px;
+    cursor: var(--pointer);
+}
+
+.coin-view-top-bar-close-button-icon path {
+    cursor: var(--pointer);
+}
+
+.coin-view-top-bar-close-button-icon:hover {
+    opacity: 75%;
 }
 
 .coin-view-all-info-container {
@@ -75,12 +78,11 @@
 }
 
 .coin-view-base-info-rank {
-    background-color: #83be1c;
+    background-color: #FFFFFF;
     color: black;
     font-weight: bold;
     width: fit-content;
     min-width: 30px;
-    border-radius: 5px;
     margin-top: 30px;
     margin-left: 30px;
     padding: 5px;
@@ -150,7 +152,6 @@
     min-width: 80px;
     height: 35px;
     margin: auto;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,11 +161,11 @@
 }
 
 .coin-view-base-info-percentage-block.green {
-    background-color: #142814;
+    background-color: rgba(0, 255, 0, 0.25);
 }
 
 .coin-view-base-info-percentage-block.red {
-    background-color: #2E110F;
+    background-color: rgba(255, 0, 0, 0.25);
 }
 
 .coin-view-base-info-percentage-arrow {
@@ -241,13 +242,11 @@
 }
 
 .coin-view-graph-period-container {
+    border-top: solid #FFFFFF 2px;
+    border-right: solid #FFFFFF 2px;
+    border-left: solid #FFFFFF 2px;
     width: 30%;
     height: 7%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-top: solid #333333 2px;
-    border-right: solid #333333 2px;
-    border-left: solid #333333 2px;
     margin-top: 30px;
     margin-right: 30px;
     display: flex;
@@ -257,11 +256,8 @@
 }
 
 .coin-view-graph-info {
+    border: solid #FFFFFF 2px;
     width: 90%;
     height: 70%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: solid #333333 2px;
     margin-right: 30px;
 }

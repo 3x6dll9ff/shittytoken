@@ -12,7 +12,6 @@ import {CoinStatsAPI} from "./api";
 import CurrencyFormat from "./currency_format";
 import {arrowDirection, positivePercentage, widgetColor} from './utils';
 import {unixTimesptampToTime} from '../utils';
-import '../../css/animations.css';
 import '../../css/crypto/coin_view.css';
 
 const CoinView = ({coinInfo, onClose, showWindow}) => {

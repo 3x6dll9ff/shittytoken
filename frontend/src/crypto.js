@@ -142,8 +142,6 @@ class Crypto extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`coins-list-separator`}></div>
-
                             <CoinsTiles
                                 data={{
                                     coins: coinsData.slice(0, 100),
@@ -196,7 +194,7 @@ const MVTile = ({data, label, value, changePercentage, percentType}) => {
 
     return (
         <div
-            className={`MV-block ${color}`}
+            className={`MV-block`}
         >
             <div className={`MV-label-percentage`}>
                 <div className={`MV-label`}>
