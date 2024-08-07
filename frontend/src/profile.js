@@ -12,23 +12,9 @@ import questsCardCompanyImg from "../src/assets/quests/companyPics/company1CardP
 import image1 from '../src/assets/quests/questsCardsPics/questCard1QuestPic.jpg';
 
 
-
-const slides = Array.from({ length: 10 }).map((_, index) => (
+const slides = Array.from({ length: 9 }).map((_, index) => (
     <div className="quests-card-quests">
         <a href="https://qredo.com" rel="noopener noreferrer">
-            <div className='quests-card-quests-img-info'>
-                <a href="https://optimism.io" rel="noopener noreferrer">
-                    <div className='quests-card-quests-img-info-company'>
-                        <img src={questsCardCompanyImg} alt="Company Logo"/>
-                        <p>Aave</p>
-                    </div>
-                </a>
-                <a href="https://optimism.io" rel="noopener noreferrer">
-                    <div className='quests-card-quests-img-info-chain'>
-                        <img src={OPChain} alt="Chain Logo Card"/>
-                    </div>
-                </a>
-            </div>
             <img src={image1} alt={'altText'}/>
             <div className="quests-card-quests-text">
                 <p>Stable-coin Yields on Optimism</p>
@@ -43,8 +29,25 @@ const slides = Array.from({ length: 10 }).map((_, index) => (
                     </div>
                 </div>
             </div>
+            <div className='quests-card-quests-img-info' style={{
+                marginLeft: -15,
+                marginTop: 10,
+            }}>
+                <a href="https://optimism.io" rel="noopener noreferrer">
+                    <div className='quests-card-quests-img-info-company'>
+                        <img src={questsCardCompanyImg} alt="Company Logo"/>
+                        <p>Aave</p>
+                    </div>
+                </a>
+                <a href="https://optimism.io" rel="noopener noreferrer">
+                    <div className='quests-card-quests-img-info-chain'>
+                        <img src={OPChain} alt="Chain Logo Card"/>
+                    </div>
+                </a>
+            </div>
         </a>
     </div>
+
 ));
 
 class Profile extends React.Component {
@@ -57,12 +60,12 @@ class Profile extends React.Component {
 
     async componentDidMount() {
         await connectWallet(account => {
-            this.setState({ userAccount: account });
+            this.setState({userAccount: account});
         });
     }
 
     render() {
-        const { userAccount } = this.state;
+        const {userAccount} = this.state;
 
         return (
             <div className="profile-container">
@@ -70,7 +73,7 @@ class Profile extends React.Component {
                 <div className="id-container">
                     <div className="header-id">ID CARD</div>
                     <div className="id-block">
-                        <div className="avatar-profile">
+                    <div className="avatar-profile">
                             <img src={avatarImage} alt="Avatar"/>
                         </div>
                         <div className="profile-details">
@@ -177,7 +180,7 @@ class Profile extends React.Component {
                 {/* Quests Container */}
                 <div className="quests-container">
                     <div className="quests-block">
-                        <div className="header-complited-quests">Completed quests</div>
+                        <div className="header-completed-quests">Completed quests</div>
                         <div className="profile-done-cards">
                             <div className="cards-wrapper">
                                 {slides}

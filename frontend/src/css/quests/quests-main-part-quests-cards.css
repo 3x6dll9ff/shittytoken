@@ -39,7 +39,7 @@
     height: 400px;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+     align-items: center;
     background-color: #000000;
 }
 
@@ -54,10 +54,8 @@
     margin: 0px;
 }
 
-
-
 .quests-card-quests-img-info {
-    position: absolute; /* Абсолютное позиционирование */
+    position: relative; /* Абсолютное позиционирование */
     width: 100%;
     max-width: 270px;
     height: 100%;
@@ -66,6 +64,7 @@
     display: flex;
     justify-content: space-between; /* Распределяет элементы по краям */
     align-items: center;
+    margin-top: 5px;
 }
 
 .quests-card-quests-img-info a {
