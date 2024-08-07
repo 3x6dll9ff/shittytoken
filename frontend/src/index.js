@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import * as ReactDOMClient from "react-dom/client";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./scripts/header";
+import Footer from "./scripts/footer";
 import Home from "./home";
 import Crypto from "./crypto";
 import Quests from "./quests";
@@ -40,6 +41,7 @@ const App = () => {
                     <Route path={blogPath} element={<Blog />}/>
                     <Route path={profilePath} element={<Profile />}/>
                 </Routes>
+                <Footer/>
             </Router>
         </div>
     );

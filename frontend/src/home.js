@@ -4,7 +4,6 @@ import WhiteLine from './scripts/home/white_line';
 import Tokenomics from './scripts/home/tokenomics';
 import Roadmap from './scripts/home/roadmap/roadmap';
 import Stuff from './scripts/home/stuff/stuff';
-import Footer from './scripts/home/footer';
 import PageSwitcher from './scripts/home/page_switcher';
 import './css/home/home.css';
 
@@ -50,7 +49,6 @@ class Home extends Component {
                 <Roadmap />
                 <WhiteLine />
                 <Stuff />
-                <Footer />
             </div>
         );
     }
