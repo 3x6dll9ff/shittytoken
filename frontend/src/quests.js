@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
+import { Link } from 'react-router-dom';
 import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
@@ -336,40 +337,40 @@ class Quests extends Component {
                             Arbitrum
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('avax') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('avax')}
                         >
-                            Arbitrum
+                            Avalanche
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('Polygon') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('Polygon')}
                         >
-                            Arbitrum
+                            Polygon
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('Qredo') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('Qredo')}
                         >
-                            Arbitrum
+                            Qredo
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('Solana') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('Solana')}
                         >
-                            Arbitrum
+                            Solana
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('Villager') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('Villager')}
                         >
-                            Arbitrum
+                            Villager
                         </div>
                         <div
-                            className={`chain-tile ${selectedChains.includes('arbitrum') ? 'selected' : ''}`}
-                            onClick={() => this.handleChainClick('arbitrum')}
+                            className={`chain-tile ${selectedChains.includes('Zebra') ? 'selected' : ''}`}
+                            onClick={() => this.handleChainClick('Zebra')}
                         >
-                            Arbitrum
+                            Zebra
                         </div>
                     </div>
                 </div>
@@ -380,7 +381,7 @@ class Quests extends Component {
     renderSidebarProgressXP() {
         const expPoints = 65750; // Здесь можно использовать динамическое значение
         return (
-            <a href="https://qredo.com" className="sidebarProgressXP">
+            <Link to="/profile" className="sidebarProgressXP">
                 <div className="quest-pentagon-container">
                     <div className="quest-pentagon-white">
                         <div className="quest-pentagon-black">
@@ -397,7 +398,7 @@ class Quests extends Component {
                 <div className='sidebarProgressXP-score-points-arrowNext'>
                     <img src={arrowNext} alt="Next" />
                 </div>
-            </a>
+            </Link>
         );
     }
 
