@@ -1,15 +1,19 @@
 import React from 'react';
 import '../../css/home/token.css';
-import token_picture from '../../assets/home/images/token.png'
+import coin_gif from '../../assets/home/images/coin.gif';
 
 const Token = () => {
-  return (
-    <div className="token-container">
-        <img className="token-image" src={token_picture} alt="Token" />
-        <p className='token-name'>TOKENNAME</p>
-        <p className='token-description'>Lorem ipsum dolor sit amet</p>
-    </div>
-  );
+    return (
+        <div className="token-container">
+            <img
+                className="token-image"
+                src={coin_gif}
+                alt="Token"
+            />
+            <p className='token-name'>ANTI-SOCIAL</p>
+            <p className='token-description'>C0in that n3v3r sl33ps</p>
+        </div>
+    );
 };
 
 export default Token;
