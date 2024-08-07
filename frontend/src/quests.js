@@ -6,23 +6,29 @@ import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
 import './css/quests/quests-main-part-quests-cards.css';
-import searchIcon from './assets/quests/images/searchIcon.png';
-import BNBChain from './assets/quests/images/BNBChain.png';
-import Polygonchain from './assets/quests/images/Polygonchain.png';
-import SolanaChain from './assets/quests/images/SolanaChain.png';
-import OPChain from './assets/quests/images/OPChain.png';
-import ArbitrumChain from './assets/quests/images/ArbitrumChain.png';
-import ZebraChain from './assets/quests/images/ZebraChain.png';
-import AvalancheChain from './assets/quests/images/AvalancheChain.png';
-import VillagerChain from './assets/quests/images/VillagerChain.png';
-import ScroolChain from './assets/quests/images/ScrollChain.png';
-import QredoChain from './assets/quests/images/QredoChain.png';
-import image1 from './assets/quests/images/quest_pic_big.png';
-import image2 from './assets/quests/images/quest_pic_big.png';
-import image3 from './assets/quests/images/quest_pic_big.png';
-import arrowNext from '../src/assets/quests/images/arrow_next.png';
-import arrowBack from '../src/assets/quests/images/arrow_back.png';
-import questsCardCompanyImg from '../src/assets/quests/images/quests-card-company-img.png'
+//Services pics
+import searchIcon from './assets/quests/servicesPics/searchIcon.png';
+import arrowNext from '../src/assets/quests/servicesPics/arrow_next.png';
+import arrowBack from '../src/assets/quests/servicesPics/arrow_back.png';
+//Chains pics
+import BNBChain from './assets/quests/chainsPics/BNBChain.png';
+import Polygonchain from './assets/quests/chainsPics/Polygonchain.png';
+import SolanaChain from './assets/quests/chainsPics/SolanaChain.png';
+import OPChain from './assets/quests/chainsPics/OPChain.png';
+import ArbitrumChain from './assets/quests/chainsPics/ArbitrumChain.png';
+import ZebraChain from './assets/quests/chainsPics/ZebraChain.png';
+import AvalancheChain from './assets/quests/chainsPics/AvalancheChain.png';
+import VillagerChain from './assets/quests/chainsPics/VillagerChain.png';
+import ScroolChain from './assets/quests/chainsPics/ScrollChain.png';
+import QredoChain from './assets/quests/chainsPics/QredoChain.png';
+//Quests cards pics
+import questCard1QuestPic from './assets/quests/questsCardsPics/questCard1QuestPic.png'
+import questCard2QuestPic from '../src/assets/quests/questsCardsPics/questCard2QuestPic.png'
+import questCard3QuestPic from '../src/assets/quests/questsCardsPics/questCard3QuestPic.png'
+import questCard4QuestPic from '../src/assets/quests/questsCardsPics/questCard4QuestPic.png'
+import questCard5QuestPic from '../src/assets/quests/questsCardsPics/questCard5QuestPic.png'
+import questCard6QuestPic from '../src/assets/quests/questsCardsPics/questCard6QuestPic.png'
+
 SwiperCore.use([Navigation, Pagination]);
 
 class Quests extends Component {
@@ -205,9 +211,9 @@ class Quests extends Component {
                     grabCursor={true}
                     className='mySwiper'
                 >
-                    <SwiperSlide>{this.renderSlide(image1, "Image 1")}</SwiperSlide>
-                    <SwiperSlide>{this.renderSlide(image2, "Image 2")}</SwiperSlide>
-                    <SwiperSlide>{this.renderSlide(image3, "Image 3")}</SwiperSlide>
+                    <SwiperSlide>{this.renderSlide(questCard1QuestPic, "Image 1")}</SwiperSlide>
+                    <SwiperSlide>{this.renderSlide(questCard2QuestPic, "Image 2")}</SwiperSlide>
+                    <SwiperSlide>{this.renderSlide(questCard3QuestPic, "Image 3")}</SwiperSlide>
                 </Swiper>
             </div>
         );
@@ -354,41 +360,118 @@ class Quests extends Component {
     }
 
     renderContent() {
-        const slides = Array.from({ length: 10 }).map((_, index) => (
-            <SwiperSlide>
+        const slidesData = [
+            {
+                mainLink: 'https://optimism.io',
+                image: questCard1QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://www.bnbchain.org',
+                chainLogo: BNBChain,
+            },
+            {
+                mainLink: 'https://qredo.com',
+                image: questCard2QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://optimism.io',
+                chainLogo: OPChain,
+            },
+            {
+                mainLink: 'https://qredo.com',
+                image: questCard3QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://zebrachain.org',
+                chainLogo: ZebraChain,
+            },
+            {
+                mainLink: 'https://qredo.com',
+                image: questCard4QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://qredo.com',
+                chainLogo: QredoChain,
+            },
+            {
+                mainLink: 'https://qredo.com',
+                image: questCard5QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://avax.network',
+                chainLogo: AvalancheChain,
+            },
+            {
+                mainLink: 'https://qredo.com',
+                image: questCard6QuestPic,
+                title: 'Stablecoin Yields on Optimism',
+                tasks: '7 tasks',
+                exp: '500 exp',
+                companyLink: 'https://optimism.io',
+                companyLogo: 'path/to/companyLogo1.jpg',
+                companyName: 'Aave',
+                chainLink: 'https://scroll.io',
+                chainLogo: ScroolChain,
+            },
+            //Add new clides
+        ];
+        
+        const slides = slidesData.map((slide, index) => (
+            <SwiperSlide key={index}>
                 <div className="quests-card-quests">
-                    <a href="https://qredo.com" rel="noopener noreferrer">
-                        <div className='quests-card-quests-img-info'>
-                            <a href="https://optimism.io" rel="noopener noreferrer">
-                                <div className='quests-card-quests-img-info-company'>
-                                    <img src={questsCardCompanyImg} alt="Company Logo" />
-                                    <p>Aave</p>
-                                </div>
-                            </a>
-                            <a href="https://optimism.io" rel="noopener noreferrer">
-                                <div className='quests-card-quests-img-info-chain'>
-                                    <img src={OPChain} alt="Chain Logo Card" />
-                                </div>
-                            </a>
-                        </div>
-                        <img src={image1} alt={'altText'} />
+                    <a href={slide.mainLink} rel="noopener noreferrer">
+                        <img src={slide.image} alt={`Slide ${index} Image`} />
                         <div className="quests-card-quests-text">
-                            <p>Stablecoin Yields on Optimism</p>
+                            <p>{slide.title}</p>
                         </div>
                         <div className="quests-card-quests-points-tasks">
-                            <div class="quests-card-quests-points-tasks-inner">
+                            <div className="quests-card-quests-points-tasks-inner">
                                 <div className="quests-card-quests-tasks">
-                                    <p>7 tasks</p>
+                                    <p>{slide.tasks}</p>
                                 </div>
                                 <div className="quests-card-quests-points"> 
-                                    <p>500 exp</p>
+                                    <p>{slide.exp}</p>
                                 </div>
                             </div>
+                        </div>
+                        <div className='quests-card-quests-img-info'>
+                            <a href={slide.companyLink} rel="noopener noreferrer">
+                                <div className='quests-card-quests-img-info-company'>
+                                    <img src={slide.companyLogo} alt={`${slide.companyName} Logo`} />
+                                    <p>{slide.companyName}</p>
+                                </div>
+                            </a>
+                            <a href={slide.chainLink} rel="noopener noreferrer">
+                                <div className='quests-card-quests-img-info-chain'>
+                                    <img src={slide.chainLogo} alt="Chain Logo Card" />
+                                </div>
+                            </a>
                         </div>
                     </a>
                 </div>
             </SwiperSlide>
         ));
+
         const slides_ecosystems = Array.from({ length: 10 }).map((_, index) => (
             <SwiperSlide>
                 <div className="quests-card-quests-ecosystems">
