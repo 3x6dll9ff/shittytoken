@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../css/home/token.css';
+import '../../css/home/coin.css';
 import coin_gif from '../../assets/home/images/coin.gif';
 
-const Token = () => {
+const Coin = () => {
     return (
         <div className="token-container">
             <img
@@ -16,4 +16,4 @@ const Token = () => {
     );
 };
 
-export default Token;
+export default Coin;

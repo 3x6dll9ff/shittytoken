@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Token from './token';
+import Token from './coin';
 import '../../css/home/background_video.css';
 import transition from '../../assets/home/video/transition.mp4';
 import city1 from '../../assets/home/video/city1.mp4';
