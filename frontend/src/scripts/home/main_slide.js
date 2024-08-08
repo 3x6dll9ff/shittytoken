@@ -8,7 +8,7 @@ import city3 from '../../assets/home/video/city3.mp4';
 import city4 from '../../assets/home/video/city4.mp4';
 import coin_gif from "../../assets/home/images/coin.gif";
 
-const BackgroundVideo = ({alt = true}) => {
+const MainSlide = ({alt = true}) => {
     const videos = [city1, city2, city3, city4];
     const [videoIndex, setVideoIndex] = useState(0);
     const [currentVideo, setCurrentVideo] = useState(transition);
@@ -86,4 +86,4 @@ const BackgroundVideo = ({alt = true}) => {
     );
 };
 
-export default BackgroundVideo;
+export default MainSlide;
