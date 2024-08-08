@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import PageName from './page_name';
+import SlideTitle from './slide_title';
 import '../../css/home/tokenomics.css';
-import tokenomics_bg from '../../assets/home/video/tokenomics-bg.mp4';
+import tokenomics_video from '../../assets/home/video/tokenomics-video.mp4';
 
 
-const Tokenomics = () => {
+const TokenomicsSlide = () => {
     const [videoFirstLaunched, setVideoFirstLaunched] = useState(false);
     const [videoEnded, setVideoEnded] = useState(true);
     const videoRef = useRef(null);
@@ -69,7 +69,7 @@ const Tokenomics = () => {
             <video
                 ref={videoRef}
                 className='tokenomics-video'
-                src={tokenomics_bg}
+                src={tokenomics_video}
                 muted
                 playsInline
                 preload="auto"
@@ -77,7 +77,7 @@ const Tokenomics = () => {
             <p className={`tokenomics-supply-text ${!videoEnded || !videoFirstLaunched ? 'hidden' : ''}`}>
                 Total Supply - <span className="tokenomics-supply-text-percentage">10,000,000</span>
             </p>
-            <PageName pageName='TOKENOMICS' />
+            <SlideTitle pageName='TOKENOMICS' />
             <button
                 className={`tokenomics-rescan-button ${!videoEnded || !videoFirstLaunched ? 'hidden' : ''}`}
                 onClick={handleRestart}
@@ -88,4 +88,4 @@ const Tokenomics = () => {
     );
 };
 
-export default Tokenomics;
+export default TokenomicsSlide;
