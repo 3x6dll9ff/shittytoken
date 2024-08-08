@@ -168,6 +168,7 @@
     width: 50px;
     height: 404px;
     padding: 0 10px;
+    transform: rotate(180deg);
 }
 
 .custom-button-next {
@@ -260,6 +261,7 @@
     width: 35px;
     height: auto;
     padding: 0 15px;
+    transform: rotate(180deg);
 }
 
 .custom-button-next-ecosystems {

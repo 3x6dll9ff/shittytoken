@@ -8,34 +8,33 @@ import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
 import './css/quests/quests-main-part-quests-cards.css';
 //Services pics
-import searchIcon from './assets/quests/servicesPics/searchIcon.png';
-import arrowNext from '../src/assets/quests/servicesPics/arrow_next.png';
-import arrowBack from '../src/assets/quests/servicesPics/arrow_back.png';
+import searchIcon from './assets/quests/services-pics/search-icon.png';
+import arrow from './assets/quests/services-pics/arrow.png';
 //Chains pics
-import BNBChain from './assets/quests/chainsPics/BNBChain.png';
-import Polygonchain from './assets/quests/chainsPics/Polygonchain.png';
-import SolanaChain from './assets/quests/chainsPics/SolanaChain.png';
-import OPChain from './assets/quests/chainsPics/OPChain.png';
-import ArbitrumChain from './assets/quests/chainsPics/ArbitrumChain.png';
-import ZebraChain from './assets/quests/chainsPics/ZebraChain.png';
-import AvalancheChain from './assets/quests/chainsPics/AvalancheChain.png';
-import VillagerChain from './assets/quests/chainsPics/VillagerChain.png';
-import ScroolChain from './assets/quests/chainsPics/ScrollChain.png';
-import QredoChain from './assets/quests/chainsPics/QredoChain.png';
+import BNBChain from './assets/quests/chains-pics/bnb-chain.png';
+import Polygonchain from './assets/quests/chains-pics/polygon-chain.png';
+import SolanaChain from './assets/quests/chains-pics/solana-chain.png';
+import OPChain from './assets/quests/chains-pics/op-chain.png';
+import ArbitrumChain from './assets/quests/chains-pics/arbitrum-chain.png';
+import ZebraChain from './assets/quests/chains-pics/zebra-chain.png';
+import AvalancheChain from './assets/quests/chains-pics/avalanche-chain.png';
+import VillagerChain from './assets/quests/chains-pics/villager-chain.png';
+import ScroolChain from './assets/quests/chains-pics/scroll-chain.png';
+import QredoChain from './assets/quests/chains-pics/qredo-chain.png';
 //Quests cards pics
-import questCard1QuestPic from './assets/quests/questsCardsPics/questCard1QuestPic.jpg'
-import questCard2QuestPic from './assets/quests/questsCardsPics/questCard2QuestPic.jpg'
-import questCard3QuestPic from './assets/quests/questsCardsPics/questCard3QuestPic.jpg'
-import questCard4QuestPic from './assets/quests/questsCardsPics/questCard4QuestPic.jpg'
-import questCard5QuestPic from './assets/quests/questsCardsPics/questCard5QuestPic.jpg'
-import questCard6QuestPic from './assets/quests/questsCardsPics/questCard6QuestPic.jpg'
+import questCard1QuestPic from './assets/quests/quests-cards-pics/quest-card-1-quest-pic.jpg'
+import questCard2QuestPic from './assets/quests/quests-cards-pics/quest-card-2-quest-pic.jpg'
+import questCard3QuestPic from './assets/quests/quests-cards-pics/quest-card-3-quest-pic.jpg'
+import questCard4QuestPic from './assets/quests/quests-cards-pics/quest-card-4-quest-pic.jpg'
+import questCard5QuestPic from './assets/quests/quests-cards-pics/quest-card-5-quest-pic.jpg'
+import questCard6QuestPic from './assets/quests/quests-cards-pics/quest-card-6-quest-pic.jpg'
 //Company cards pics
-import company1CardPic from './assets/quests/companyPics/company1CardPic.png'
-import company2CardPic from './assets/quests/companyPics/company2CardPic.png'
-import company3CardPic from './assets/quests/companyPics/company3CardPic.png'
-import company4CardPic from './assets/quests/companyPics/company4CardPic.png'
-import company5CardPic from './assets/quests/companyPics/company5CardPic.png'
-import company6CardPic from './assets/quests/companyPics/company6CardPic.png'
+import company1CardPic from './assets/quests/company-pics/company-1-card-pic.png'
+import company2CardPic from './assets/quests/company-pics/company-2-card-pic.png'
+import company3CardPic from './assets/quests/company-pics/company-3-card-pic.png'
+import company4CardPic from './assets/quests/company-pics/company-4-card-pic.png'
+import company5CardPic from './assets/quests/company-pics/company-5-card-pic.png'
+import company6CardPic from './assets/quests/company-pics/company-6-card-pic.png'
 SwiperCore.use([Navigation, Pagination]);
 
 class Quests extends Component {
@@ -396,7 +395,7 @@ class Quests extends Component {
                     </div>
                 </div>
                 <div className='sidebarProgressXP-score-points-arrowNext'>
-                    <img src={arrowNext} alt="Next" />
+                    <img src={arrow} alt="Next" />
                 </div>
             </Link>
         );
@@ -596,7 +595,7 @@ class Quests extends Component {
                 </div>
                 <div className='content-section-slider-new'>
                     <div className="custom-button-prev" onClick={this.handlePrev}>
-                        <img src={arrowBack} alt="Back" />
+                        <img src={arrow} alt="Back" />
                     </div>
                     <div className="swiper-container">
                         <Swiper
@@ -608,7 +607,7 @@ class Quests extends Component {
                         </Swiper>
                     </div>
                     <div className="custom-button-next" onClick={this.handleNext}>
-                        <img src={arrowNext} alt="Next" />
+                        <img src={arrow} alt="Next" />
                     </div>
                 </div>
                 <div className="content-section-text-ecosystems">
@@ -616,7 +615,7 @@ class Quests extends Component {
                 </div>
                 <div className='content-section-slider-ecosystems'>
                     <div className="custom-button-prev-ecosystems" onClick={this.handlePrevEcosystems}>
-                        <img src={arrowBack} alt="Back" />
+                        <img src={arrow} alt="Back" />
                     </div>
                     <div className="swiper-container-ecosystems">
                         <Swiper
@@ -628,7 +627,7 @@ class Quests extends Component {
                         </Swiper>
                     </div>
                     <div className="custom-button-next-ecosystems" onClick={this.handleNextEcosystems}>
-                        <img src={arrowNext} alt="Next" />
+                        <img src={arrow} alt="Next" />
                     </div>
                 </div>
             </div>

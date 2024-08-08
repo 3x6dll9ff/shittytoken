@@ -7,12 +7,12 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js';
-import {MdClose} from 'react-icons/md';
 import {CoinStatsAPI} from "./api";
 import CurrencyFormat from "./currency_format";
 import {arrowDirection, positivePercentage, widgetColor} from './utils';
 import {unixTimesptampToTime} from '../utils';
 import '../../css/crypto/coin_view.css';
+import close_icon from '../../assets/crypto/images/close-icon.png';
 
 const CoinView = ({coinInfo, onClose, showWindow}) => {
     const api = new CoinStatsAPI();
@@ -60,7 +60,11 @@ const CoinView = ({coinInfo, onClose, showWindow}) => {
                             className={`coin-view-top-bar-close-button`}
                             onClick={onClose}
                         >
-                            <MdClose className={`coin-view-top-bar-close-button-icon`}/>
+                            <img
+                                className={`coin-view-top-bar-close-button-icon`}
+                                src={close_icon}
+                                alt={`close-icon`}
+                            />
                         </div>
                     </div>
                     <div className={`coin-view-all-info-container`}>

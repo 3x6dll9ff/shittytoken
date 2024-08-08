@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PageName from './page_name';
 import '../../css/home/tokenomics.css';
-import tokenomics_bg from '../../assets/home/video/tokenomics_bg.mp4';
+import tokenomics_bg from '../../assets/home/video/tokenomics-bg.mp4';
 
 
 const Tokenomics = () => {

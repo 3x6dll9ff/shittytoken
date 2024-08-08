@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../css/home/home.css';
-import arrow from '../../assets/home/images/arrow_down.png';
+import arrow from '../../assets/home/images/arrow-down.png';
 
 const PageSwitcher = ({ onSwitch }) => {
     const [isVisible, setIsVisible] = useState(true);
