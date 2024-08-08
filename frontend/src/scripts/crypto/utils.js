@@ -1,5 +1,5 @@
-import arrowUp from "../../assets/crypto/images/arrow-up.png";
-import arrowDown from "../../assets/crypto/images/arrow-down.png";
+import arrowUp from "../../assets/crypto/images/arrow_up.png";
+import arrowDown from "../../assets/crypto/images/arrow_down.png";
 
 const positivePercentage = (percentage) => {
     return (percentage >= 0 ? percentage : (percentage - 2 * percentage));
