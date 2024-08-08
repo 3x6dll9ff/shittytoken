@@ -45,8 +45,12 @@
 }
 
 .coin-view-top-bar-close-button-icon {
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
+    cursor: var(--pointer);
+}
+
+.coin-view-top-bar-close-button-icon path {
     cursor: var(--pointer);
 }
 
