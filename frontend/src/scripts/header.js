@@ -3,12 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { connectWallet } from "./wallet_connect";
 import { formatWalletAddress } from "./utils"
 import "../css/header.css";
-import header_logo_back from "../assets/header/images/header_logo_back.png";
-import header_logo_middle from "../assets/header/images/header_logo_middle.png";
-import header_logo_front from "../assets/header/images/header_logo_front.png";
-import header_logo_hover from "../assets/header/images/header_logo_hover.png";
-import pixel_mask from "../assets/header/images/pixel_mask.png";
-import profile_picture from "../assets/images/placeholder_profile.png";
+import header_logo_back from "../assets/header/images/header-logo-back.png";
+import header_logo_middle from "../assets/header/images/header-logo-middle.png";
+import header_logo_front from "../assets/header/images/header-logo-front.png";
+import header_logo_hover from "../assets/header/images/header-logo-hover.png";
+import pixel_mask from "../assets/header/images/pixel-mask.png";
+import profile_picture from "../assets/images/placeholder-profile.png";
 import profile_icon from "../assets/header/images/profile.png";
 import achievement_icon from "../assets/header/images/achievements.png";
 import logout_icon from "../assets/header/images/logout.png";
