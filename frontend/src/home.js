@@ -1,10 +1,9 @@
-import React, { createRef } from 'react';
-import BackgroundVideo from './scripts/home/background_video';
-import WhiteLine from './scripts/home/white_line';
-import Tokenomics from './scripts/home/tokenomics';
-import Roadmap from './scripts/home/roadmap/roadmap';
+import React, {createRef, forwardRef} from 'react';
+import MainSlide from './scripts/home/main_slide';
+import TokenomicsSlide from './scripts/home/tokenomics_slide';
+import RoadmapSlide from './scripts/home/roadmap/roadmap';
 import Stuff from './scripts/home/stuff/stuff';
-import PageSwitcher from './scripts/home/page_switcher';
+import SlideSwitcher from './scripts/home/slide_switcher';
 import './css/home/home.css';
 
 class Home extends React.Component {
@@ -12,7 +11,6 @@ class Home extends React.Component {
         super(props);
         this.secondWhiteLine = createRef();
     }
-
 
     scrollToSecondWhiteLine = () => {
         const nextWhiteLineRef = this.secondWhiteLine
@@ -38,17 +36,24 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home-page">
-                <PageSwitcher onSwitch={this.scrollToSecondWhiteLine}/>
-                <BackgroundVideo />
-                <WhiteLine />
-                <Tokenomics />
-                <WhiteLine ref={this.secondWhiteLine} />
-                <Roadmap />
-                <WhiteLine />
+                <SlideSwitcher onSwitch={this.scrollToSecondWhiteLine}/>
+                <MainSlide />
+                <SlideSeparator />
+                <TokenomicsSlide />
+                <SlideSeparator ref={this.secondWhiteLine} />
+                <RoadmapSlide />
+                <SlideSeparator />
                 <Stuff />
             </div>
         );
     }
 }
+
+const SlideSeparator = forwardRef(({ className }, ref) => {
+    return (
+        <div ref={ref} className={`white-line ${className ? className : ''}`}>
+        </div>
+    );
+});
 
 export default Home;
