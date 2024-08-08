@@ -39,8 +39,19 @@
     height: 400px;
     display: flex;
     justify-content: center;
-     align-items: center;
+    align-items: center;
     background-color: #000000;
+}
+
+.quests-card-quests a {
+    height: 100%;
+}
+
+.quests-card-quests img {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+    margin-top: 0;
 }
 
 .quests-card-quests-text {
@@ -107,11 +118,7 @@
     font-size: 24px;
 }
 
-.quests-card-quests img {
-    width: 100%;
-    height: 100%;
-    max-height: 200px;
-}
+
 
 .quests-card-quests-points-tasks {
     height: auto;

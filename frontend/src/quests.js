@@ -483,7 +483,7 @@ class Quests extends Component {
             <SwiperSlide key={index}>
                 <div className="quests-card-quests">
                     <a href={slidesNewQuests.mainLink} rel="noopener noreferrer">
-                        <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} />
+                        <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                         <div className="quests-card-quests-text">
                             <p>{slidesNewQuests.title}</p>
                         </div>
