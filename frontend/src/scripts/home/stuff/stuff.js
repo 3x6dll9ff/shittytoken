@@ -1,11 +1,11 @@
 import React from 'react';
-import PageName from '../page_name';
+import SlideTitle from '../slide_title';
 import Card from './card';
 import '../../../css/home/stuff.css';
 
-import hacker1 from '../../../assets/home/images/hackers/hacker1.png'
-import hacker2 from '../../../assets/home/images/hackers/hacker2.png'
-import hacker3 from '../../../assets/home/images/hackers/hacker3.png'
+import hacker1 from '../../../assets/home/images/hackers/hacker1.png';
+import hacker2 from '../../../assets/home/images/hackers/hacker2.png';
+import hacker3 from '../../../assets/home/images/hackers/hacker3.png';
 
 
 const cardData = {
@@ -28,7 +28,7 @@ const cardData = {
 const Stuff = () => {
   return (
     <div className="stuff-container">
-      <PageName pageName='STUFF'/>
+      <SlideTitle pageName='STUFF'/>
       <Card signature='@HAZE' image={hacker1} description_data={cardData}/>
       <Card signature='@NOTHACKER' image={hacker2} description_data={cardData}/>
       <Card signature='@FINGERPRINT' image={hacker3} description_data={cardData}/>
