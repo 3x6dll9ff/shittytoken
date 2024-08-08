@@ -1,20 +1,18 @@
 from pydantic import BaseModel
+from typing import Optional
+from datetime import datetime
 
-# --- Example ---
+class UserBase(BaseModel):
+    id: int
+    web3_wallet: str
+    username: str
+    experience: int
+    registered_at: Optional[datetime]
+    avatar: str
 
-# class UserBase(BaseModel):
-#     username: str
-#     email: str
+class UserAuth(BaseModel):
+    web3_wallet: str
+    nonce: str
 
-
-# class UserRegister(UserBase):
-#     password: str
-
-
-# class UserInDB(UserBase):
-#     id: int
-#     hashed_password: str
-
-#     class Config:
-#         from_attributes = True
-
+    class Config:
+        from_attributes = True

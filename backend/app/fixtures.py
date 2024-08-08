@@ -5,14 +5,10 @@ from sqlalchemy.sql import func
 
 from app.models import Base, User, IpAddress, Quest, Chain, Project  # Замените на актуальные пути
 
-# Замените URL подключения на ваш URL подключения к базе данных
-DATABASE_URL = "sqlite:///../test.db"
+from database import get_db, engine
 
 def create_fixtures():
-    # Создаем подключение к базе данных
-    engine = create_engine(DATABASE_URL, echo=True)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    session = SessionLocal()
+    session = get_db().__next__()
 
     try:
         # Создаем все таблицы, если они еще не существуют
