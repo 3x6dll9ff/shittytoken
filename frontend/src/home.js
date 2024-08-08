@@ -1,4 +1,4 @@
-import React, { createRef, Component } from 'react';
+import React, { createRef } from 'react';
 import BackgroundVideo from './scripts/home/background_video';
 import WhiteLine from './scripts/home/white_line';
 import Tokenomics from './scripts/home/tokenomics';
@@ -7,13 +7,10 @@ import Stuff from './scripts/home/stuff/stuff';
 import PageSwitcher from './scripts/home/page_switcher';
 import './css/home/home.css';
 
-class Home extends Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
-
         this.secondWhiteLine = createRef();
-
-        this.headerHeight = 90; // Высота фиксированного хедера
     }
 
 
