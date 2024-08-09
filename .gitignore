@@ -53,7 +53,7 @@ frontend/src/assets/raw/*
 
 
 # Byte-compiled / optimized / DLL files
-backend/__pycache__/
+*__pycache__/
 backend/*.py[cod]
 backend/*$py.class
 
@@ -176,10 +176,8 @@ backend/celerybeat.pid
 backend/*.sage.py
 
 # Environments
-#backend/.env
-#backend/.venv
-backend/env/
-backend/venv/
+*.env
+*venv
 backend/ENV/
 backend/env.bak/
 backend/venv.bak/

@@ -8,7 +8,7 @@ class UserBase(BaseModel):
     username: str
     experience: int
     registered_at: Optional[datetime]
-    avatar: str
+    avatar_file_path: str
 
 class UserAuth(BaseModel):
     web3_wallet: str
