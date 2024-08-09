@@ -482,7 +482,7 @@ class Quests extends Component {
             <SwiperSlide key={index}>
                 <div className="quests-card-quests">
                     <a href={slidesNewQuests.mainLink} rel="noopener noreferrer">
-                        <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} />
+                        <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                         <div className="quests-card-quests-text">
                             <p>{slidesNewQuests.title}</p>
                         </div>
@@ -600,8 +600,18 @@ class Quests extends Component {
                     <div className="swiper-container">
                         <Swiper
                             ref={this.swiperRef}
-                            spaceBetween={91}
-                            slidesPerView={3}
+                            slidesPerView= {1}
+                            spaceBetween= {10}
+                            breakpoints={{
+                                1580 : {
+                                    slidesPerView: 3,
+                                    spaceBetween: 95,
+                                },
+                                1330: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                            }}
                         >
                             {slidesNewQuests}
                         </Swiper>
@@ -621,7 +631,17 @@ class Quests extends Component {
                         <Swiper
                             ref={this.swiperRefEcosystems}
                             spaceBetween={15}
-                            slidesPerView={5}
+                            slidesPerView={2}
+                            breakpoints={{
+                                1580 : {
+                                    slidesPerView: 5,
+                                    spaceBetween: 15,
+                                },
+                                1330: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 5,
+                                },
+                            }}
                         >
                             {slides_ecosystems}
                         </Swiper>
