@@ -416,6 +416,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
     }
 
     const connectWallet = async (wallet) => {
+        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         const createSignInMessage = () => {
             return `Sign-in message: ${new Date().toISOString()}`;
@@ -481,6 +482,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                     break;
                 }
                 case ('rabby'): {
+                    await delay(500);
                     signature = await window.rabby.request({
                         method: 'personal_sign',
                         params: [encodedMessage, account],
