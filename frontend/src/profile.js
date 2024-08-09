@@ -2,11 +2,10 @@ import React from 'react';
 import ProgressBar from "./scripts/profile/progress_bar";
 import SeasonProgressBar from "./scripts/profile/season_pass_bar";
 import Achievements from "./scripts/profile/achievements_view";
-import { connectWallet } from "./scripts/wallet_connect";
 import { formatWalletAddress } from "./scripts/utils";
 import "./css/profile/profile.css";
 import avatarImage from "./assets/images/placeholder-profile.png";
-import docImage from "../src/assets/images/doc.png";
+import docImage from "./assets/images/docs-icon.png";
 import OPChain from './assets/quests/chains-pics/op-chain.png';
 import questsCardCompanyImg from "./assets/quests/company-pics/company-1-card-pic.png";
 import image1 from './assets/quests/quests-cards-pics/quest-card-1-quest-pic.jpg';
@@ -59,9 +58,9 @@ class Profile extends React.Component {
     }
 
     async componentDidMount() {
-        await connectWallet(account => {
-            this.setState({userAccount: account});
-        });
+        // await connectWallet(account => {
+        //     this.setState({userAccount: account});
+        // });
     }
 
     render() {
