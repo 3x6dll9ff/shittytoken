@@ -12,7 +12,7 @@ import CurrencyFormat from "./currency_format";
 import {arrowDirection, positivePercentage, widgetColor} from './utils';
 import {unixTimesptampToTime} from '../utils';
 import '../../css/crypto/coin_view.css';
-import close_icon from '../../assets/crypto/images/close-icon.png';
+import close_icon from '../../assets/images/close-icon.png';
 
 const CoinView = ({coinInfo, onClose, showWindow}) => {
     const api = new CoinStatsAPI();
