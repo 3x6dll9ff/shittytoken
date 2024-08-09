@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../../css/home/home.css';
 import arrow from '../../assets/home/images/arrow-down.png';
 
-const PageSwitcher = ({ onSwitch }) => {
+const SlideSwitcher = ({ onSwitch }) => {
     const [isVisible, setIsVisible] = useState(true);
     const arrowRef = useRef(null);
 
@@ -41,4 +40,4 @@ const PageSwitcher = ({ onSwitch }) => {
     );
 }
 
-export default PageSwitcher;
+export default SlideSwitcher;

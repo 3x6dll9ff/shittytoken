@@ -1,6 +1,5 @@
 import React from 'react';
 import Ellipse from './ellipse';
-import '../../../css/home/roadmap.css';
 
 const RoadmapCard = ({ season_number, className, header, text,}) => {
   return (

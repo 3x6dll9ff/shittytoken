@@ -108,8 +108,7 @@
     margin-left: 20px;
 }
 
-.header-menu-item,
-.header-menu-item-active {
+.header-menu-item {
     font-family: "Pixel Operator HB", sans-serif;
     font-size: 24pt;
     text-shadow:
@@ -126,12 +125,12 @@
     user-select: none;
 }
 
-.header-menu-item-active {
+.header-menu-item.active {
     color: #333333;
     transform: translateY(1px);
 }
 
-.header-menu-item-active:hover {
+.header-menu-item.active:hover {
     cursor: var(--not-allowed);
 }
 

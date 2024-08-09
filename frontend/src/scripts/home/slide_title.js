@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageName = ({ pageName }) => {
+const SlideTitle = ({ pageName }) => {
     return (
         <div className='page-name-container'>
             <p>{pageName}</p>
@@ -8,4 +8,4 @@ const PageName = ({ pageName }) => {
     );
 }
 
-export default PageName;
+export default SlideTitle;

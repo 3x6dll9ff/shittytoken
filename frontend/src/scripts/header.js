@@ -164,7 +164,7 @@ const LinkItem = ({title, url}) => {
 
     return (
         <Link
-            className={`header-menu-item${isActive ? '-active' : ''}`}
+            className={`header-menu-item ${isActive ? 'active' : ''}`}
             to={url}
         >
             {title}

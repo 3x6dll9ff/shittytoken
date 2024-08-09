@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
+
 from app.database import get_db
 from app import crud, schemas
 from app.authorization import generate_nonce, verify_signature
