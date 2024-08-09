@@ -600,8 +600,25 @@ class Quests extends Component {
                     <div className="swiper-container">
                         <Swiper
                             ref={this.swiperRef}
-                            spaceBetween={91}
-                            slidesPerView={3}
+                            
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 10,
+                                },
+                                480: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 20,
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 0,
+                                },
+                                1300: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 90,
+                                }
+                            }}
                         >
                             {slidesNewQuests}
                         </Swiper>
