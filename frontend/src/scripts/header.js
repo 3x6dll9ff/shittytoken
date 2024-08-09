@@ -398,7 +398,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
     const walletInstalled = (wallet) => {
         switch (wallet) {
             case ('metamask'): {
-                return window.ethereum;
+                return window.ethereum && window.ethereum.isMetaMask;
             }
             case ('rabby'): {
                 return window.rabby;
