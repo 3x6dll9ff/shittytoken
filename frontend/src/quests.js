@@ -650,6 +650,7 @@ class Quests extends Component {
                         <img src={arrow} alt="Next" />
                     </div>
                 </div>
+                
             </div>
         );
     }
