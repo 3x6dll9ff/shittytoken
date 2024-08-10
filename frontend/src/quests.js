@@ -46,6 +46,10 @@ class Quests extends Component {
             query: '',
             selectedStatus: null,
             selectedChains: [],
+            isPrevButtonDisabled: true,
+            isNextButtonDisabled: false,
+            isPrevButtonEcosystemsDisabled: true,
+            isNextButtonEcosystemsDisabled: false,
         };
         this.handlePrev = this.handlePrev.bind(this);
         this.handleNext = this.handleNext.bind(this);
@@ -53,31 +57,68 @@ class Quests extends Component {
         this.handleNextEcosystems = this.handleNextEcosystems.bind(this);
     }
 
+    updateButtonStates(swiper) {
+        if (swiper.isBeginning) {
+            this.setState({ isPrevButtonDisabled: true });
+        } else {
+            this.setState({ isPrevButtonDisabled: false });
+        }
+        if (swiper.isEnd) {
+            this.setState({ isNextButtonDisabled: true });
+        } else {
+            this.setState({ isNextButtonDisabled: false });
+        }
+    }
+
+    updateButtonStatesEcosystems(swiper) {
+        if (swiper.isBeginning) {
+            this.setState({ isPrevButtonEcosystemsDisabled: true });
+        } else {
+            this.setState({ isPrevButtonEcosystemsDisabled: false });
+        }
+        if (swiper.isEnd) {
+            this.setState({ isNextButtonEcosystemsDisabled: true });
+        } else {
+            this.setState({ isNextButtonEcosystemsDisabled: false });
+        }
+    }
+
     handlePrev() {
         if (this.swiperRef.current && this.swiperRef.current.swiper) {
             this.swiperRef.current.swiper.slidePrev();
+            this.updateButtonStates(this.swiperRef.current.swiper);
         }
     }
-
+    
     handleNext() {
         if (this.swiperRef.current && this.swiperRef.current.swiper) {
             this.swiperRef.current.swiper.slideNext();
+            this.updateButtonStates(this.swiperRef.current.swiper);
         }
     }
-
+    
     handlePrevEcosystems() {
         if (this.swiperRefEcosystems.current && this.swiperRefEcosystems.current.swiper) {
             this.swiperRefEcosystems.current.swiper.slidePrev();
+            this.updateButtonStatesEcosystems(this.swiperRefEcosystems.current.swiper);
         }
     }
     
     handleNextEcosystems() {
         if (this.swiperRefEcosystems.current && this.swiperRefEcosystems.current.swiper) {
             this.swiperRefEcosystems.current.swiper.slideNext();
+            this.updateButtonStatesEcosystems(this.swiperRefEcosystems.current.swiper);
         }
     }
-    
 
+    handleSwiperSlideChange = (swiper) => {
+        this.updateButtonStates(swiper);
+    }
+    
+    handleSwiperSlideChangeEcosystems = (swiper) => {
+        this.updateButtonStatesEcosystems(swiper);
+    }   
+    
     handleInputChange = (event) => {
         this.setState({ query: event.target.value });
     };
@@ -594,7 +635,8 @@ class Quests extends Component {
                     <p>New</p>
                 </div>
                 <div className='content-section-slider-new'>
-                    <div className="custom-button-prev" onClick={this.handlePrev}>
+                    <div className={`custom-button-prev ${this.state.isPrevButtonDisabled ? 'disabled' : ''}`}
+                                    onClick={this.handlePrev}>
                         <img src={arrow} alt="Back" />
                     </div>
                     <div className="swiper-container">
@@ -619,13 +661,15 @@ class Quests extends Component {
                                     slidesPerView: 1,
                                     spaceBetween: 0,
                                 }
-
+                                
                             }}
+                            onSlideChange={this.handleSwiperSlideChange}
                         >
                             {slidesNewQuests}
                         </Swiper>
                     </div>
-                    <div className="custom-button-next" onClick={this.handleNext}>
+                    <div className={`custom-button-next ${this.state.isNextButtonDisabled ? 'disabled' : ''}`}
+                                    onClick={this.handleNext}>
                         <img src={arrow} alt="Next" />
                     </div>
                 </div>
@@ -633,7 +677,8 @@ class Quests extends Component {
                     <p>Ecosystems</p>
                 </div>
                 <div className='content-section-slider-ecosystems'>
-                    <div className="custom-button-prev-ecosystems" onClick={this.handlePrevEcosystems}>
+                    <div className={`custom-button-prev-ecosystems ${this.state.isPrevButtonEcosystemsDisabled ? 'disabled' : ''}`}
+                                    onClick={this.handlePrevEcosystems}>
                         <img src={arrow} alt="Back" />
                     </div>
                     <div className="swiper-container-ecosystems">
@@ -659,50 +704,13 @@ class Quests extends Component {
                                     spaceBetween: 5,
                                 }
                             }}
+                            onSlideChange={this.handleSwiperSlideChangeEcosystems}
                         >
                             {slides_ecosystems}
                         </Swiper>
                     </div>
-                    <div className="custom-button-next-ecosystems" onClick={this.handleNextEcosystems}>
-                        <img src={arrow} alt="Next" />
-                    </div>
-                </div>
-                <div className="content-section-text">
-                    <p>New</p>
-                </div>
-                <div className='content-section-slider-new'>
-                    <div className="custom-button-prev" onClick={this.handlePrev}>
-                        <img src={arrow} alt="Back" />
-                    </div>
-                    <div className="swiper-container">
-                        <Swiper
-                            ref={this.swiperRef}
-                            slidesPerView= {1}
-                            spaceBetween= {0}
-                            breakpoints={{
-                                1580 : {
-                                    slidesPerView: 3,
-                                    spaceBetween: 95,
-                                },
-                                1330: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
-                                },
-                                1100: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                },
-                                768: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 0,
-                                }
-
-                            }}
-                        >
-                            {slidesNewQuests}
-                        </Swiper>
-                    </div>
-                    <div className="custom-button-next" onClick={this.handleNext}>
+                    <div className={`custom-button-next-ecosystems ${this.state.isNextButtonEcosystemsDisabled ? 'disabled' : ''}`}
+                                    onClick={this.handleNextEcosystems}>
                         <img src={arrow} alt="Next" />
                     </div>
                 </div>

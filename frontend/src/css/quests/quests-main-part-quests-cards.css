@@ -229,9 +229,18 @@
 }
 
 .custom-button-next {
-    width: 55px;
+    width: 50px;
     height: 404px;
     padding: 0 10px;
+}
+
+.custom-button-prev, .custom-button-next {
+    transition: opacity 0.3s;
+}
+
+.custom-button-prev.disabled, .custom-button-next.disabled {
+    opacity: 0.2;
+    pointer-events: none;
 }
 
 /*Ecosystems */
@@ -357,4 +366,13 @@
     width: 35px;
     height: auto;
     padding: 0 15px;
+}
+
+.custom-button-prev-ecosystems, .custom-button-next-ecosystems {
+    transition: opacity 0.3s;
+}
+
+.custom-button-prev-ecosystems.disabled, .custom-button-next-ecosystems.disabled {
+    opacity: 0.2;
+    pointer-events: none;
 }
