@@ -410,7 +410,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                 return window.backpack;
             }
             default: {
-                return false;
+                return true;
             }
         }
     }
