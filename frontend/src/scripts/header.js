@@ -398,7 +398,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
     const walletInstalled = (wallet) => {
         switch (wallet) {
             case ('metamask'): {
-                return window.ethereum;
+                return window.ethereum && window.ethereum.isMetaMask;
             }
             case ('rabby'): {
                 return window.rabby;
@@ -410,12 +410,13 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                 return window.backpack;
             }
             default: {
-                return false;
+                return true;
             }
         }
     }
 
     const connectWallet = async (wallet) => {
+        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         const createSignInMessage = () => {
             return `Sign-in message: ${new Date().toISOString()}`;
@@ -445,6 +446,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                     break;
                 }
             }
+            await delay(500);
 
             let account = null;
             if (accounts) {
