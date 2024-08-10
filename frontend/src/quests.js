@@ -601,16 +601,25 @@ class Quests extends Component {
                         <Swiper
                             ref={this.swiperRef}
                             slidesPerView= {1}
-                            spaceBetween= {10}
+                            spaceBetween= {0}
                             breakpoints={{
                                 1580 : {
                                     slidesPerView: 3,
                                     spaceBetween: 95,
                                 },
                                 1330: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20,
+                                },
+                                1100: {
                                     slidesPerView: 2,
                                     spaceBetween: 20,
                                 },
+                                768: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 0,
+                                }
+
                             }}
                         >
                             {slidesNewQuests}
@@ -638,9 +647,17 @@ class Quests extends Component {
                                     spaceBetween: 15,
                                 },
                                 1330: {
-                                    slidesPerView: 3,
+                                    slidesPerView: 4,
                                     spaceBetween: 5,
                                 },
+                                1100: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20,
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 5,
+                                }
                             }}
                         >
                             {slides_ecosystems}
@@ -650,7 +667,45 @@ class Quests extends Component {
                         <img src={arrow} alt="Next" />
                     </div>
                 </div>
-                
+                <div className="content-section-text">
+                    <p>New</p>
+                </div>
+                <div className='content-section-slider-new'>
+                    <div className="custom-button-prev" onClick={this.handlePrev}>
+                        <img src={arrow} alt="Back" />
+                    </div>
+                    <div className="swiper-container">
+                        <Swiper
+                            ref={this.swiperRef}
+                            slidesPerView= {1}
+                            spaceBetween= {0}
+                            breakpoints={{
+                                1580 : {
+                                    slidesPerView: 3,
+                                    spaceBetween: 95,
+                                },
+                                1330: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20,
+                                },
+                                1100: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                                768: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 0,
+                                }
+
+                            }}
+                        >
+                            {slidesNewQuests}
+                        </Swiper>
+                    </div>
+                    <div className="custom-button-next" onClick={this.handleNext}>
+                        <img src={arrow} alt="Next" />
+                    </div>
+                </div>
             </div>
         );
     }
