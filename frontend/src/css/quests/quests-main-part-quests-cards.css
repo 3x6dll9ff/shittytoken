@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1230px;
+    max-width: 1270px;
     margin: 0 auto; /* Центрирование всего контейнера */
 }
 
@@ -39,19 +39,29 @@
 
 @media (max-width: 1580px) {
     .content-section-slider-new {
-        max-width: 600px;
+        max-width: 800px;
+        margin: 0;
     }
 
     .quests-content {
-        max-width: 1000px;
+        width: 1000px;
     }
 
-    .content-section-slider-ecosystems {
-        max-width: 1000px;
-    }
 }
 
 @media (max-width: 1330px) {
+    .content-section-slider-new {
+        max-width: 550px;
+        margin: 0;
+    }
+
+    .quests-content {
+        max-width: 600px;
+    }
+
+}
+
+@media (max-width: 1100px) {
     .content-section-slider-new {
         max-width: 300px;
         margin: 0;
@@ -59,6 +69,21 @@
 
     .quests-content {
         max-width: 600px;
+    }
+}
+
+@media (max-width: 748px) {
+    .content-section-slider-new {
+        max-width: 300px;
+        margin: 0;
+    }
+
+    .quests-content {
+        max-width: 400px;
+    }
+
+    .quest-filter-container {
+        display: none;
     }
 }
 
@@ -209,6 +234,15 @@
     padding: 0 10px;
 }
 
+.custom-button-prev, .custom-button-next {
+    transition: opacity 0.3s;
+}
+
+.custom-button-prev.disabled, .custom-button-next.disabled {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
 /*Ecosystems */
 
 .content-section-text-ecosystems {
@@ -217,7 +251,8 @@
     padding: 0 30px;
     font-family: 'Pixel Operator HB 8', sans-serif;
     margin-bottom: 20px; /* Отступ между текстом и слайдером */
-    
+    margin: auto;
+    margin-top: 70px;
 }
 
 .content-section-slider-ecosystems {
@@ -233,19 +268,32 @@
 
 @media (max-width: 1580px) {
     .content-section-slider-ecosystems {
-        max-width: 600px;
+        max-width: 800px;
+        margin: 0;
     }
 
 }
 
 @media (max-width: 1330px) {
     .content-section-slider-ecosystems {
+        max-width: 550px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 1100px) {
+    .content-section-slider-ecosystems {
         max-width: 300px;
         margin: 0;
     }
-
 }
 
+@media (max-width: 748px) {
+    .content-section-slider-ecosystems {
+        max-width: 300px;
+        margin: 0;
+    }
+}
 
 .swiper-container-ecosystems {
     position: relative;
@@ -263,7 +311,6 @@
     align-items: center; /* Center the contents vertically */
     flex-direction: column; /* Arrange the contents in a column */
     text-align: center;
-    
 }
 
 .quests-card-quests-ecosystems-count-quests {
@@ -319,4 +366,13 @@
     width: 35px;
     height: auto;
     padding: 0 15px;
+}
+
+.custom-button-prev-ecosystems, .custom-button-next-ecosystems {
+    transition: opacity 0.3s;
+}
+
+.custom-button-prev-ecosystems.disabled, .custom-button-next-ecosystems.disabled {
+    opacity: 0.2;
+    pointer-events: none;
 }
