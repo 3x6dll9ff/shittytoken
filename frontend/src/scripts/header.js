@@ -446,6 +446,7 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                     break;
                 }
             }
+            await delay(500);
 
             let account = null;
             if (accounts) {
@@ -482,7 +483,6 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
                     break;
                 }
                 case ('rabby'): {
-                    await delay(500);
                     signature = await window.rabby.request({
                         method: 'personal_sign',
                         params: [encodedMessage, account],
