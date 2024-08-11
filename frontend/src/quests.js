@@ -693,7 +693,7 @@ class Quests extends Component {
                                 },
                                 1330: {
                                     slidesPerView: 4,
-                                    spaceBetween: 5,
+                                    spaceBetween: 25,
                                 },
                                 1100: {
                                     slidesPerView: 3,
