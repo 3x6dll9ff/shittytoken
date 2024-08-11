@@ -8,7 +8,6 @@
 .search-bar-area {
   display: flex;
   width: 100%;
-  /* padding-left: 60px; */
 }
 
 @media (max-width: 1736px) {
@@ -98,7 +97,6 @@
 }
 
 .welcome-banner-text {
-  /* width: 100%; */
   max-width: 100%;
   font-family: "Pixel Operator HB 8", sans-serif;
   font-size: 40px;
@@ -218,7 +216,7 @@
 .sidebarFilters {
   padding: 1rem;
   border: 2px solid #fff;
-  background-color: #000000; /* Цвет фона */
+  background-color: #000000;
   width: 100%;
   max-width: 300px;
   height: 100%;
@@ -251,8 +249,8 @@ select {
 }
 
 .select:focus {
-  outline: none; /* Убирает стандартное выделение при фокусе */
-  border-color: #555; /* Изменяет цвет рамки при фокусе */
+  outline: none;
+  border-color: #555;
 }
 
 .status-tile,
@@ -296,11 +294,11 @@ select {
   align-items: center;
   padding: 1rem;
   border: 2px solid #fff;
-  background-color: #000000; /* Цвет фона */
+  background-color: #000000;
   width: 100%;
   max-width: 300px;
-  text-decoration: none; /* Убираем подчеркивание */
-  background-color: black; /* Цвет фона кнопки */
+  text-decoration: none;
+  background-color: black;
 }
 
 .quest-pentagon-container {
@@ -363,13 +361,13 @@ select {
 }
 
 .sidebarProgressXP-score-points-text p:first-child {
-  font-size: 24px; /* Размер шрифта для первой строки */
+  font-size: 24px;
   font-family: "Pixel Operator HB", sans-serif;
 }
 
 .sidebarProgressXP-score-points-text p:last-child {
-  font-size: 14px; /* Размер шрифта для второй строки */
-  color: gray; /* Цвет шрифта для второй строки */
+  font-size: 14px; 
+  color: gray;
   padding-top: 5px;
   font-family: "Pixel Operator", sans-serif;
 }

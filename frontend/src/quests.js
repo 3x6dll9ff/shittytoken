@@ -445,7 +445,7 @@ class Quests extends Component {
     renderContent() {
         const slidesDataNewQuests = [
             {
-                mainLink: 'https://optimism.io',
+                mainLink: '/quest-tasks-page',
                 image: questCard1QuestPic,
                 title: 'Stablecoin Yields on Optimism',
                 tasks: '7 tasks',
@@ -522,7 +522,7 @@ class Quests extends Component {
         const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
             <SwiperSlide key={index}>
                 <div className="quests-card-quests">
-                    <a href={slidesNewQuests.mainLink} rel="noopener noreferrer">
+                    <Link to={slidesNewQuests.mainLink} rel="noopener noreferrer">
                         <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                         <div className="quests-card-quests-text">
                             <p>{slidesNewQuests.title}</p>
@@ -550,7 +550,7 @@ class Quests extends Component {
                                 </div>
                             </a>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </SwiperSlide>
         ));
