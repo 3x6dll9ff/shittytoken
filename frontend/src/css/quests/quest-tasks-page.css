@@ -1,6 +1,18 @@
 .quest-tasks-page {
     max-width: 1600px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 110px 65px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.quest-tasks-page-left-section {
+    width: 100%;
+    max-width: 530px;
+    height: fit-content;
+    padding-top: 20px;
+    display: flex;
+    gap: 16px;
 }

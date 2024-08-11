@@ -1,48 +1,80 @@
-import React, { Component } from 'react';
+import React from 'react'; // useEffect и useState можно временно удалить, если они больше не используются
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import '../../css/quests/quest-tasks-page.css';
 import SwiperCore from 'swiper';
 import { Link } from 'react-router-dom';
-import '../node_modules/swiper/swiper-bundle.min.css';
-import '../node_modules/swiper/swiper.min.css';
-import './css/quests/quest-tasks-page.css';
-//Services pics
-import arrow from './assets/quests/services-pics/arrow.png';
-//Chains pics
-import BNBChain from './assets/quests/chains-pics/bnb-chain.png';
-import Polygonchain from './assets/quests/chains-pics/polygon-chain.png';
-import SolanaChain from './assets/quests/chains-pics/solana-chain.png';
-import OPChain from './assets/quests/chains-pics/op-chain.png';
-import ArbitrumChain from './assets/quests/chains-pics/arbitrum-chain.png';
-import ZebraChain from './assets/quests/chains-pics/zebra-chain.png';
-import AvalancheChain from './assets/quests/chains-pics/avalanche-chain.png';
-import VillagerChain from './assets/quests/chains-pics/villager-chain.png';
-import ScroolChain from './assets/quests/chains-pics/scroll-chain.png';
-import QredoChain from './assets/quests/chains-pics/qredo-chain.png';
-//Company cards pics
-import company1CardPic from './assets/quests/company-pics/company-1-card-pic.png'
-import company2CardPic from './assets/quests/company-pics/company-2-card-pic.png'
-import company3CardPic from './assets/quests/company-pics/company-3-card-pic.png'
-import company4CardPic from './assets/quests/company-pics/company-4-card-pic.png'
-import company5CardPic from './assets/quests/company-pics/company-5-card-pic.png'
-import company6CardPic from './assets/quests/company-pics/company-6-card-pic.png'
+import { useParams } from 'react-router-dom';
+
 SwiperCore.use([Navigation, Pagination]);
 
-class QuestTasksPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            query: '',
-        };
-    }
+const QuestTasksPage = () => {
+    const { questId } = useParams();
 
-    render() {
-        return (
-            <div className='quest-tasks-page'>
-                <p>Ghbdtn vbh</p>
-            </div>
-        );
-    }
-}
+    // Закомментированный код для загрузки данных
+    // const [questData, setQuestData] = useState(null);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(null);
 
-export default Quests;
+    // useEffect(() => {
+    //     const fetchQuestData = async (questId) => {
+    //         try {
+    //             const response = await fetch(`https://yourapi.com/quests/${questId}`);
+    //             const data = await response.json();
+    //             setQuestData(data);
+    //         } catch (error) {
+    //             setError(error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+
+    //     fetchQuestData(questId);
+    // }, [questId]);
+
+    // Закомментированный условный рендеринг
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
+
+    // if (error) {
+    //     return <div>Error loading data</div>;
+    // }
+
+    return (
+        <div className='quest-tasks-page'>
+            <section className='quest-tasks-page-left-section'>
+                <div className='quest-tasks-page-left-section-all'>
+                    <div className='quest-tasks-page-left-section-description'>
+                        <div className='quest-tasks-page-left-section-description-pic'>
+                            <a>
+
+                            </a>
+                        </div>
+                        <div className='quest-tasks-page-left-section-description-text'>
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div className='quest-tasks-page-left-section-description-chain-exp'>
+                            <a>
+
+                            </a>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default QuestTasksPage;

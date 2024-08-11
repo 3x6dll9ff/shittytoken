@@ -522,7 +522,7 @@ class Quests extends Component {
         const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
             <SwiperSlide key={index}>
                 <div className="quests-card-quests">
-                    <Link to={slidesNewQuests.mainLink} rel="noopener noreferrer">
+                    <Link to={`/quest-tasks-page/${slidesNewQuests.id}`} rel="noopener noreferrer">
                         <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                         <div className="quests-card-quests-text">
                             <p>{slidesNewQuests.title}</p>
