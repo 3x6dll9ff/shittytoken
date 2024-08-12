@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import * as ReactDOMClient from "react-dom/client";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Cookies from "js-cookie";
+import userAPI from "./scripts/user-auth/user-api";
 import Header from "./scripts/header";
 import Footer from "./scripts/footer";
 import Home from "./home";
@@ -18,33 +20,44 @@ const questsPath = `/quests`;
 const blogPath = `/blog`;
 const profilePath = `/profile`;
 
-const App = () => {
-    const [clientCursorCoordinates, setClientCursorCoordinates] = useState({x: 0, y: 0})
-
-    const handlePointerMove = (event) => {
-        const x = event.clientX;
-        const y = event.clientY;
-        setClientCursorCoordinates({x, y});
-    };
-
-    return (
-        <div
-            className={`body`}
-            onPointerMove={handlePointerMove}
-        >
-            <Router>
-                <Header clientCursorCoordinates={clientCursorCoordinates}/>
-                <Routes>
-                    <Route path={homePath} element={<Home />}/>
-                    <Route path={cryptoPath} element={<Crypto />}/>
-                    <Route path={questsPath} element={<Quests />}/>
-                    <Route path={blogPath} element={<Blog />}/>
-                    <Route path={profilePath} element={<Profile />}/>
-                </Routes>
-                <Footer/>
-            </Router>
-        </div>
-    );
+let cursorCoordinates = {x: 0, y: 0};
+document.addEventListener('mousemove', (event) => {
+    cursorCoordinates.x = event.clientX;
+    cursorCoordinates.y = event.clientY;
+});
+const getCursorCoordinates = () => {
+    return {...cursorCoordinates}
 };
 
+class App extends React.Component {
+    async componentDidMount() {
+        const accessToken = Cookies.get('access_token');
+        if (accessToken) {
+            const tokenIdValidJson = await userAPI.authIsValid(accessToken)
+            const tokenIdValid = tokenIdValidJson['is_valid'];
+            if (!tokenIdValid) { Cookies.remove('access_token'); }
+        }
+    }
+
+    render () {
+        return (
+            <div className={`body`}>
+                <Router>
+                    <Header/>
+                    <Routes>
+                        <Route path={homePath} element={<Home/>}/>
+                        <Route path={cryptoPath} element={<Crypto/>}/>
+                        <Route path={questsPath} element={<Quests/>}/>
+                        <Route path={blogPath} element={<Blog/>}/>
+                        <Route path={profilePath} element={<Profile/>}/>
+                    </Routes>
+                    <Footer/>
+                </Router>
+            </div>
+        );
+    }
+}
+
 root.render(<App/>);
+
+export default getCursorCoordinates;
