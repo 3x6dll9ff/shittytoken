@@ -8,6 +8,7 @@ import Crypto from "./crypto";
 import Quests from "./quests";
 import Blog from "./blog";
 import Profile from "./profile";
+import QuestTasksPage from "./scripts/quests/quest-tasks-page";
 import "./css/index.css";
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
@@ -17,6 +18,7 @@ const cryptoPath = `/crypto`;
 const questsPath = `/quests`;
 const blogPath = `/blog`;
 const profilePath = `/profile`;
+const questTasksPage = "/quest-tasks-page"
 
 const App = () => {
     const [clientCursorCoordinates, setClientCursorCoordinates] = useState({x: 0, y: 0})
@@ -40,6 +42,7 @@ const App = () => {
                     <Route path={questsPath} element={<Quests />}/>
                     <Route path={blogPath} element={<Blog />}/>
                     <Route path={profilePath} element={<Profile />}/>
+                    <Route path="/quest-tasks-page/:questId" element={<QuestTasksPage />} />
                 </Routes>
                 <Footer/>
             </Router>

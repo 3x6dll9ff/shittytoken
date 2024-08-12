@@ -445,7 +445,7 @@ class Quests extends Component {
     renderContent() {
         const slidesDataNewQuests = [
             {
-                mainLink: 'https://optimism.io',
+                mainLink: '/quest-tasks-page',
                 image: questCard1QuestPic,
                 title: 'Stablecoin Yields on Optimism',
                 tasks: '7 tasks',
@@ -522,7 +522,7 @@ class Quests extends Component {
         const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
             <SwiperSlide key={index}>
                 <div className="quests-card-quests">
-                    <a href={slidesNewQuests.mainLink} rel="noopener noreferrer">
+                    <Link to={`/quest-tasks-page/${slidesNewQuests.id}`} rel="noopener noreferrer">
                         <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                         <div className="quests-card-quests-text">
                             <p>{slidesNewQuests.title}</p>
@@ -550,7 +550,7 @@ class Quests extends Component {
                                 </div>
                             </a>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </SwiperSlide>
         ));
@@ -645,15 +645,19 @@ class Quests extends Component {
                             slidesPerView= {1}
                             spaceBetween= {0}
                             breakpoints={{
-                                1580 : {
+                                1700 : {
                                     slidesPerView: 3,
                                     spaceBetween: 95,
                                 },
-                                1330: {
+                                1400 : {
                                     slidesPerView: 3,
                                     spaceBetween: 20,
                                 },
-                                1100: {
+                                // 1330: {
+                                //     slidesPerView: 3,
+                                //     spaceBetween: 20,
+                                // },
+                                1200: {
                                     slidesPerView: 2,
                                     spaceBetween: 20,
                                 },
@@ -687,15 +691,15 @@ class Quests extends Component {
                             spaceBetween={15}
                             slidesPerView={2}
                             breakpoints={{
-                                1580 : {
+                                1700 : {
                                     slidesPerView: 5,
                                     spaceBetween: 15,
                                 },
-                                1330: {
-                                    slidesPerView: 4,
+                                1400: {
+                                    slidesPerView: 5,
                                     spaceBetween: 25,
                                 },
-                                1100: {
+                                1200: {
                                     slidesPerView: 3,
                                     spaceBetween: 20,
                                 },
