@@ -8,7 +8,8 @@ import {
     PointElement
 } from 'chart.js';
 import CoinView from './scripts/crypto/coin_view';
-import {CoinStatsAPI} from './scripts/crypto/api';
+import LoadingScreen from "./scripts/loading-screen";
+import {CoinStatsAPI} from './scripts/crypto/crypto-api';
 import CurrencyFormat from './scripts/crypto/currency_format';
 import {dataLoaded} from './scripts/utils';
 import {positivePercentage, widgetColor, arrowDirection} from './scripts/crypto/utils';
@@ -156,37 +157,6 @@ class Crypto extends React.Component {
     }
 }
 
-const LoadingScreen = () => {
-    const [index, setIndex] = useState(0);
-    const interval = 100;
-    const frames = [
-        '|',
-        '/',
-        '—',
-        '\\',
-    ];
-    const [displayText, setDisplayText] = useState(frames[index]);
-
-    useEffect(() => {
-        const tick = () => {
-            setIndex(index + 1);
-            setDisplayText(frames[index % frames.length]);
-        }
-
-        const intervalId = setInterval(tick, interval);
-
-        return () => clearInterval(intervalId);
-    });
-
-    return (
-        <div className={`loading-bg`}>
-            <div className={`loading-anim`}>
-                {displayText}
-            </div>
-        </div>
-    );
-};
-
 const MVTile = ({data, label, value, changePercentage, percentType}) => {
     const percentage = data[changePercentage];
     const color = widgetColor(percentage);
@@ -257,14 +227,14 @@ const CoinTile = ({data}, key) => {
     const percentage1wColor = widgetColor(coinInfo['priceChange1w']);
     const percentage1wArrow = arrowDirection(percentage1wColor);
 
-    const [coinViewWindowOpened, setCoinViewWindowOpened] = useState(false);
+    const [coinViewPopupVisible, setCoinViewPopupVisible] = useState(false);
 
     const showCoinViewWindow = () => {
-        setCoinViewWindowOpened(true);
+        setCoinViewPopupVisible(true);
     }
 
     const hideCoinViewWindow = () => {
-        setCoinViewWindowOpened(false);
+        setCoinViewPopupVisible(false);
     }
 
     return (
@@ -272,7 +242,7 @@ const CoinTile = ({data}, key) => {
             <CoinView
                 coinInfo={coinInfo}
                 onClose={hideCoinViewWindow}
-                showWindow={coinViewWindowOpened}
+                visible={coinViewPopupVisible}
             />
             <div
                 className={`coins-list-tile`}
@@ -364,6 +334,11 @@ const CoinTile = ({data}, key) => {
 };
 
 const MiniPriceChart = ({rawData, color}) => {
+    const chartColors = {
+        green: '#00FF00',
+        red: '#FF0000'
+    }
+
     const chartTimePoints = [];
     const chartPricePoints = [];
 
@@ -377,8 +352,7 @@ const MiniPriceChart = ({rawData, color}) => {
         labels: chartTimePoints,
         datasets: [{
             data: chartPricePoints,
-            backgroundColor: '#121212',
-            borderColor: color,
+            borderColor: chartColors[color],
             fill: false,
             tension: 0,
             borderWidth: 1,
