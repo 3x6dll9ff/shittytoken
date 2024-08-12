@@ -7,14 +7,14 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js';
-import {CoinStatsAPI} from "./api";
+import PopupMenu from "../popup-menu";
+import {CoinStatsAPI} from "./crypto-api";
 import CurrencyFormat from "./currency_format";
 import {arrowDirection, positivePercentage, widgetColor} from './utils';
 import {unixTimesptampToTime} from '../utils';
 import '../../css/crypto/coin_view.css';
-import close_icon from '../../assets/images/close-icon.png';
 
-const CoinView = ({coinInfo, onClose, showWindow}) => {
+const CoinView = ({visible, onClose, coinInfo}) => {
     const api = new CoinStatsAPI();
     const [chartsPeriod, setChartsPeriod] = useState('1w');
     const [charts, setCharts] = useState(null);
@@ -37,161 +37,139 @@ const CoinView = ({coinInfo, onClose, showWindow}) => {
         updateCharts();
     }
 
-    if (showWindow) {
-        let lastKeyPressTime = 0;
-        const delay = 500;
-        const handleKeyDown = (event) => {
-            const currentTime = new Date().getTime();
-            if (event.key === 'Escape' && currentTime - lastKeyPressTime > delay) {
-                onClose();
-                lastKeyPressTime = currentTime;
-            }
-        };
-        document.addEventListener('keydown', handleKeyDown);
+    return (
+        <PopupMenu
+            visible={visible}
+            onClose={onClose}
+            title={`COIN_VIEW.exe (${coinInfo['name']})`}
+            style={{
+                width: '80%',
+                height: '80%'
+            }}
+        >
+            <div className={`coin-view-all-info-container`}>
+                <div className={`coin-view-base-info-container`}>
+                    <div className={`coin-view-base-info-rank`}>
+                        #{coinInfo['rank']}
+                    </div>
 
-        updateCharts();
+                    <div className={`coin-view-base-info-icon-name-symbol-container`}>
+                        <img
+                            className={`coin-view-base-info-icon`}
+                            src={coinInfo['icon']}
+                            alt={`coin-icon`}
+                        />
+                        <div className={`coin-view-base-info-icon-name-container`}>
+                            <div className={`coin-view-base-info-name`}>
+                                {coinInfo['name']}
+                            </div>
+                            <div className={`coin-view-base-info-symbol`}>
+                                ▸ {coinInfo['symbol']}
+                            </div>
+                        </div>
+                    </div>
 
-        return (
-            <div className={`coin-view-container`}>
-                <div className={`coin-view-window`}>
-                    <div className={`coin-view-top-bar`}>
-                        <div className={`coin-view-top-bar-filler`}></div>
-                        <div
-                            className={`coin-view-top-bar-close-button`}
-                            onClick={onClose}
-                        >
+                    <div className={`coin-view-base-info-price`}>
+                        <CurrencyFormat value={coinInfo['price']}/>
+                    </div>
+                    <div className={`coin-view-base-info-price-btc`}>
+                        <CurrencyFormat
+                            value={coinInfo['priceBtc']}
+                            currency={'BTC '}
+                        />
+                    </div>
+
+                    <div className={`coin-view-base-info-percentage-container`}>
+                        <div className={`coin-view-base-info-percentage-block`}>
+                            <div className={`coin-view-base-info-percentage-text`}>
+                                1h %
+                            </div>
+                        </div>
+                        <div className={`coin-view-base-info-percentage-block`}>
+                            1d %
+                        </div>
+                        <div className={`coin-view-base-info-percentage-block`}>
+                            1w %
+                        </div>
+                    </div>
+
+                    <div className={`coin-view-base-info-percentage-container`}>
+                        <div className={`coin-view-base-info-percentage-block ${percentage1hColor}`}>
                             <img
-                                className={`coin-view-top-bar-close-button-icon`}
-                                src={close_icon}
-                                alt={`close-icon`}
+                                className={`coin-view-base-info-percentage-arrow`}
+                                src={percentage1hArrow}
+                                alt={`arrow`}
+                            />
+                            <div className={`coin-view-base-info-percentage-text ${percentage1hColor}`}>
+                                {`${percentage1h}%`}
+                            </div>
+                        </div>
+
+                        <div className={`coin-view-base-info-percentage-block ${percentage1dColor}`}>
+                            <img
+                                className={`coin-view-base-info-percentage-arrow`}
+                                src={percentage1dArrow}
+                                alt={`arrow`}
+                            />
+                            <div className={`coin-view-base-info-percentage-text ${percentage1dColor}`}>
+                                {`${percentage1d}%`}
+                            </div>
+                        </div>
+
+                        <div className={`coin-view-base-info-percentage-block ${percentage1wColor}`}>
+                            <img
+                                className={`coin-view-base-info-percentage-arrow`}
+                                src={percentage1wArrow}
+                                alt={`arrow`}
+                            />
+                            <div className={`coin-view-base-info-percentage-text ${percentage1wColor}`}>
+                                {`${percentage1w}%`}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className={`coin-view-base-info-MV-container alt`}>
+                        <div className={`coin-view-base-info-MV-value alt`}>
+                            Market Cap
+                        </div>
+                        <div className={`coin-view-base-info-MV-value alt`}>
+                            Volume 24h
+                        </div>
+                    </div>
+                    <div className={`coin-view-base-info-MV-container`}>
+                        <div className={`coin-view-base-info-MV-value`}>
+                            <CurrencyFormat
+                                value={coinInfo['marketCap']}
+                                dividerChar={`B`}
+                            />
+                        </div>
+                        <div className={`coin-view-base-info-MV-value`}>
+                            <CurrencyFormat
+                                value={coinInfo['volume']}
+                                dividerChar={`M`}
                             />
                         </div>
                     </div>
-                    <div className={`coin-view-all-info-container`}>
-                        <div className={`coin-view-base-info-container`}>
-                            <div className={`coin-view-base-info-rank`}>
-                                #{coinInfo['rank']}
-                            </div>
 
-                            <div className={`coin-view-base-info-icon-name-symbol-container`}>
-                                <img
-                                    className={`coin-view-base-info-icon`}
-                                    src={coinInfo['icon']}
-                                    alt={`coin-icon`}
-                                />
-                                <div className={`coin-view-base-info-icon-name-container`}>
-                                    <div className={`coin-view-base-info-name`}>
-                                        {coinInfo['name']}
-                                    </div>
-                                    <div className={`coin-view-base-info-symbol`}>
-                                        ▸ {coinInfo['symbol']}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={`coin-view-base-info-price`}>
-                                <CurrencyFormat value={coinInfo['price']}/>
-                            </div>
-                            <div className={`coin-view-base-info-price-btc`}>
-                                <CurrencyFormat
-                                    value={coinInfo['priceBtc']}
-                                    currency={'BTC '}
-                                />
-                            </div>
-
-                            <div className={`coin-view-base-info-percentage-container`}>
-                                <div className={`coin-view-base-info-percentage-block`}>
-                                    <div className={`coin-view-base-info-percentage-text`}>
-                                        1h %
-                                    </div>
-                                </div>
-                                <div className={`coin-view-base-info-percentage-block`}>
-                                    1d %
-                                </div>
-                                <div className={`coin-view-base-info-percentage-block`}>
-                                    1w %
-                                </div>
-                            </div>
-
-                            <div className={`coin-view-base-info-percentage-container`}>
-                                <div className={`coin-view-base-info-percentage-block ${percentage1hColor}`}>
-                                    <img
-                                        className={`coin-view-base-info-percentage-arrow`}
-                                        src={percentage1hArrow}
-                                        alt={`arrow`}
-                                    />
-                                    <div className={`coin-view-base-info-percentage-text ${percentage1hColor}`}>
-                                        {`${percentage1h}%`}
-                                    </div>
-                                </div>
-
-                                <div className={`coin-view-base-info-percentage-block ${percentage1dColor}`}>
-                                    <img
-                                        className={`coin-view-base-info-percentage-arrow`}
-                                        src={percentage1dArrow}
-                                        alt={`arrow`}
-                                    />
-                                    <div className={`coin-view-base-info-percentage-text ${percentage1dColor}`}>
-                                        {`${percentage1d}%`}
-                                    </div>
-                                </div>
-
-                                <div className={`coin-view-base-info-percentage-block ${percentage1wColor}`}>
-                                    <img
-                                        className={`coin-view-base-info-percentage-arrow`}
-                                        src={percentage1wArrow}
-                                        alt={`arrow`}
-                                    />
-                                    <div className={`coin-view-base-info-percentage-text ${percentage1wColor}`}>
-                                        {`${percentage1w}%`}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className={`coin-view-base-info-MV-container alt`}>
-                                <div className={`coin-view-base-info-MV-value alt`}>
-                                    Market Cap
-                                </div>
-                                <div className={`coin-view-base-info-MV-value alt`}>
-                                    Volume 24h
-                                </div>
-                            </div>
-                            <div className={`coin-view-base-info-MV-container`}>
-                                <div className={`coin-view-base-info-MV-value`}>
-                                    <CurrencyFormat
-                                        value={coinInfo['marketCap']}
-                                        dividerChar={`B`}
-                                    />
-                                </div>
-                                <div className={`coin-view-base-info-MV-value`}>
-                                    <CurrencyFormat
-                                        value={coinInfo['volume']}
-                                        dividerChar={`M`}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className={`coin-view-base-info-supply-text`}>
-                                Supply
-                            </div>
-                            <div className={`coin-view-base-info-supply-subtext`}>
-                                {coinInfo['availableSupply']} / {coinInfo['totalSupply']}
-                            </div>
-                        </div>
-                        <div className={`coin-view-graph-info-container`}>
-                            <div className={`coin-view-graph-period-container`}>
-                                24h 1w 1m 3m 1y all
-                            </div>
-                            <div className={`coin-view-graph-info`}>
-                                <PriceChart rawData={charts}/>
-                            </div>
-                        </div>
+                    <div className={`coin-view-base-info-supply-text`}>
+                        Supply
+                    </div>
+                    <div className={`coin-view-base-info-supply-subtext`}>
+                        {coinInfo['availableSupply']} / {coinInfo['totalSupply']}
+                    </div>
+                </div>
+                <div className={`coin-view-graph-info-container`}>
+                    <div className={`coin-view-graph-period-container`}>
+                        24h 1w 1m 3m 1y all
+                    </div>
+                    <div className={`coin-view-graph-info`}>
+                        <PriceChart rawData={charts}/>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </PopupMenu>
+    );
 };
 
 const PriceChart = ({rawData}) => {
@@ -206,13 +184,12 @@ const PriceChart = ({rawData}) => {
 
     const firstChartPricePoint = chartPricePoints[0]
     const lastChartPricePoint = chartPricePoints[chartPricePoints.length - 1]
-    const color = (firstChartPricePoint <= lastChartPricePoint) ? 'green' : 'red';
+    const color = (firstChartPricePoint <= lastChartPricePoint) ? '#00FF00' : '#FF0000';
 
     const data = {
         labels: chartTimePoints,
         datasets: [{
             data: chartPricePoints,
-            backgroundColor: '#121212',
             borderColor: color,
             fill: false,
             tension: 0,
