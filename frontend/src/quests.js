@@ -645,15 +645,19 @@ class Quests extends Component {
                             slidesPerView= {1}
                             spaceBetween= {0}
                             breakpoints={{
-                                1580 : {
+                                1700 : {
                                     slidesPerView: 3,
                                     spaceBetween: 95,
                                 },
-                                1330: {
+                                1400 : {
                                     slidesPerView: 3,
                                     spaceBetween: 20,
                                 },
-                                1100: {
+                                // 1330: {
+                                //     slidesPerView: 3,
+                                //     spaceBetween: 20,
+                                // },
+                                1200: {
                                     slidesPerView: 2,
                                     spaceBetween: 20,
                                 },
@@ -687,15 +691,15 @@ class Quests extends Component {
                             spaceBetween={15}
                             slidesPerView={2}
                             breakpoints={{
-                                1580 : {
+                                1700 : {
                                     slidesPerView: 5,
                                     spaceBetween: 15,
                                 },
-                                1330: {
-                                    slidesPerView: 4,
+                                1400: {
+                                    slidesPerView: 5,
                                     spaceBetween: 25,
                                 },
-                                1100: {
+                                1200: {
                                     slidesPerView: 3,
                                     spaceBetween: 20,
                                 },
