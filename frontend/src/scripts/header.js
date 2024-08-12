@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import Web3 from "web3";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
+import PopupMenu from "./popup-menu";
+import userAPI from "./user-auth/user-api";
+import { walletInstalled, okxReplaces, connectWallet } from "./user-auth/wallets_interaction";
+import getCursorCoordinates from "../index";
 import { formatWalletAddress } from "./utils"
 import "../css/header.css";
 
@@ -13,20 +17,30 @@ import header_logo_hover from "../assets/header/images/header-logo-icons/header-
 
 import docs_icon from "../assets/images/docs-icon.png";
 
-import close_icon from "../assets/images/close-icon.png";
-import metamask_icon from "../assets/header/images/wallets-popup-icons/metamask-logo.png";
-import rabby_icon from "../assets/header/images/wallets-popup-icons/rabby-logo.png";
-import phantom_icon from "../assets/header/images/wallets-popup-icons/phantom-logo.png";
-import backpack_icon from "../assets/header/images/wallets-popup-icons/backpack-logo.png"
+import metamask_icon from "../assets/wallets_integration/images/metamask-logo.png";
+import rabby_icon from "../assets/wallets_integration/images/rabby-logo.png";
+import phantom_icon from "../assets/wallets_integration/images/phantom-logo.png";
+import backpack_icon from "../assets/wallets_integration/images/backpack-logo.png"
+import okx_icon from "../assets/wallets_integration/images/okx-logo.png";
 
 import profile_picture from "../assets/images/placeholder-profile.png";
 import profile_icon from "../assets/header/images/profile-menu-icons/profile.png";
 import achievement_icon from "../assets/header/images/profile-menu-icons/achievements.png";
 import logout_icon from "../assets/header/images/profile-menu-icons/logout.png";
 
-const Header = ({clientCursorCoordinates}) => {
-    const x = clientCursorCoordinates.x;
-    const y = clientCursorCoordinates.y;
+const Header = () => {
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+
+    useEffect(() => {
+        const tick = () => {
+            const { x, y } = getCursorCoordinates();
+            setX(x);
+            setY(y);
+        }
+        const intervalId = setInterval(tick, 0);
+        return () => clearInterval(intervalId);
+    });
 
     return (
         <div>
@@ -43,7 +57,7 @@ const Header = ({clientCursorCoordinates}) => {
                         style={{background: `radial-gradient(circle at ${x}px ${y}px, transparent 0%, rgba(0, 0, 0, 1) 150px)`}}
                     />
                 </div>
-                <Logo clientCursorCoordinates={clientCursorCoordinates} />
+                <Logo/>
                 <div className={`header-menu-items-container`}>
                     <LinkItem
                         title={`HOME`}
@@ -90,7 +104,7 @@ const Ticker = () => {
     );
 };
 
-const Logo = ({clientCursorCoordinates}) => {
+const Logo = () => {
     const [moddedCoordinates, setModdedCoordinates] = useState({ x: 0, y: 0 });
     const [isHovered, setHovered] = useState(false);
     const middlePhotoRef = useRef(null);
@@ -102,11 +116,11 @@ const Logo = ({clientCursorCoordinates}) => {
     useEffect(() => {
         if (containerRef.current) {
             const containerRect = containerRef.current.getBoundingClientRect();
-            const moddedX = clientCursorCoordinates.x - containerRect.left;
-            const moddedY = clientCursorCoordinates.y - containerRect.top;
+            const moddedX = getCursorCoordinates().x - containerRect.left;
+            const moddedY = getCursorCoordinates().y - containerRect.top;
             setModdedCoordinates({ x: moddedX, y: moddedY });
         }
-    }, [clientCursorCoordinates]);
+    }, [getCursorCoordinates]);
 
     useEffect(() => {
         if (middlePhotoRef.current && containerRef.current) {
@@ -181,26 +195,33 @@ const LinkItem = ({title, url}) => {
 
 const ProfileData = () => {
     const [walletsPopupVisible, setWalletsPopupVisible] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
     const [profileExpanded, setProfileExpanded] = useState(false);
-    const [userAccount, setUserAccount] = useState(null);
-    const [docsCount, /* TODO uncomment -> setDocsCount */ ] = useState(37);
     const containerRef = useRef(null);
+    const [userAccount, setUserAccount] = useState({});
+    const [userAvatar, setUserAvatar] = useState(null);
 
     const preventEvents = (event) => {
         event.preventDefault();
     };
 
-    const handleWalletConnect = (account) => {
-        setUserAccount(account)
-        setLoggedIn(true);
+    const handleWalletConnect = async (accessToken) => {
+        Cookies.set(
+            'access_token',
+            accessToken,
+            { expires: 7 }
+        );
+        setUserAccount(await userAPI.getUser(accessToken));
+        // TODO rewrite -> setUserAvatar(await userAPI.getUserAvatar(accessToken))
         setWalletsPopupVisible(false);
     };
 
-    const handleLogoutButton = () => {
-        setUserAccount(null)
-        setLoggedIn(false);
+    const handleLogoutButton = async () => {
+        const accessToken = Cookies.get('access_token');
+        await userAPI.deactivateToken(accessToken)
+        Cookies.remove('access_token');
+        setUserAccount({});
         setProfileExpanded(false);
+        window.location.reload();
     };
 
     const handlePointerEnter = () => {
@@ -227,14 +248,32 @@ const ProfileData = () => {
         };
     });
 
-    if (!loggedIn) {
+    useEffect(() => {
+        const fetchUserAccount = async () => {
+            const accessToken = Cookies.get('access_token');
+            if (accessToken) {
+                setUserAccount(await userAPI.getUser(accessToken));
+                // TODO rewrite -> setUserAvatar(await userAPI.getUserAvatar(accessToken));
+            }
+        };
+
+        fetchUserAccount();
+    }, []);
+
+    if (!userAccount.hasOwnProperty('id') && !userAccount['id']) {
         return (
             <div className={`header-profile-data-container`}>
-                <WalletsPopup
+                <PopupMenu
                     visible={walletsPopupVisible}
                     onClose={() => setWalletsPopupVisible(false)}
-                    onWalletConnect={handleWalletConnect}
-                />
+                    title={`CONNECT_WALLET.exe`}
+                    style={{width: '35%'}}
+                >
+                    <WalletsPopupButton wallet={`metamask`} onWalletConnect={handleWalletConnect}/>
+                    <WalletsPopupButton wallet={`rabby`} onWalletConnect={handleWalletConnect}/>
+                    <WalletsPopupButton wallet={`phantom`} onWalletConnect={handleWalletConnect}/>
+                    <WalletsPopupButton wallet={`backpack`} onWalletConnect={handleWalletConnect}/>
+                </PopupMenu>
                 <div
                     className={`header-profile-wallet-button`}
                     onClick={() => setWalletsPopupVisible(true)}
@@ -245,6 +284,10 @@ const ProfileData = () => {
         );
     }
     else {
+        const userDocs = userAccount['curr_docs_streak'];
+        const username = userAccount['username'];
+        const userAddress = userAccount['web3_address'];
+
         return (
             <div className={`header-profile-data-container`}>
                 <div className={`header-profile-docs-counter`}>
@@ -254,7 +297,7 @@ const ProfileData = () => {
                         alt={`docs counter icon`}
                     />
                     <div className={`header-profile-docs-counter-text`}>
-                        {docsCount}
+                        {userDocs}
                     </div>
                 </div>
                 <div
@@ -266,10 +309,10 @@ const ProfileData = () => {
                     <div className={`header-profile-info`}>
                         <div className={`header-profile-info-text-container`}>
                             <div className={`header-profile-info-username`}>
-                                {formatWalletAddress(userAccount)}
+                                {formatWalletAddress(username)}
                             </div>
                             <div className={`header-profile-info-wallet-address`}>
-                                {formatWalletAddress(userAccount)}
+                                {formatWalletAddress(userAddress)}
                             </div>
                         </div>
                         <Link
@@ -310,74 +353,6 @@ const ProfileData = () => {
     }
 };
 
-const WalletsPopup = ({visible, onClose, onWalletConnect}) => {
-    const popupRef = useRef(null);
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Escape') {
-            onClose()
-            document.removeEventListener('keydown', handleKeyDown);
-        }
-    };
-
-    const preventEvents = (event) => {
-        event.preventDefault();
-    };
-
-    useEffect(() => {
-        if (popupRef.current) {
-            popupRef.current.addEventListener('wheel', preventEvents, { passive: false });
-            popupRef.current.addEventListener('mousedown', preventEvents, { passive: false });
-        }
-
-        return () => {
-            if (popupRef.current) {
-                popupRef.current.removeEventListener('wheel', preventEvents);
-                popupRef.current.removeEventListener('mousedown', preventEvents);
-            }
-        };
-    });
-
-    if (visible) {
-        document.addEventListener('keydown', handleKeyDown);
-
-        return (
-            <div
-                className={`header-profile-wallet-popup-container`}
-                ref={popupRef}
-            >
-                <div
-                    className={`header-profile-wallet-popup-bg`}
-                    onClick={onClose}
-                />
-                <div className={`header-profile-wallet-popup-window`}>
-                    <div className={`header-profile-wallet-popup-top-bar`}>
-                        <div className={`header-profile-wallet-popup-top-bar-title`}>
-                            CONNECT_WALLET.exe
-                        </div>
-                        <div
-                            className={`header-profile-wallet-popup-top-bar-close-button`}
-                            onClick={onClose}
-                        >
-                            <img
-                                className={`header-profile-wallet-popup-top-bar-close-button-icon`}
-                                src={close_icon}
-                                alt={`close-icon`}
-                            />
-                        </div>
-                    </div>
-                    <div className={`header-profile-wallet-popup-buttons-container`}>
-                        <WalletsPopupButton wallet={`metamask`} onWalletConnect={onWalletConnect}/>
-                        <WalletsPopupButton wallet={`rabby`} onWalletConnect={onWalletConnect}/>
-                        <WalletsPopupButton wallet={`phantom`} onWalletConnect={onWalletConnect}/>
-                        <WalletsPopupButton wallet={`backpack`} onWalletConnect={onWalletConnect}/>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
 const WalletsPopupButton = ({wallet, onWalletConnect}) => {
     const walletNames = {
         metamask: 'Metamask',
@@ -385,7 +360,6 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
         phantom: 'Phantom',
         backpack: 'Backpack',
     };
-    const walletName = walletNames[wallet] || wallet;
 
     const walletIcons = {
         metamask: metamask_icon,
@@ -395,144 +369,28 @@ const WalletsPopupButton = ({wallet, onWalletConnect}) => {
         default: ''
     };
 
-    const walletInstalled = (wallet) => {
-        switch (wallet) {
-            case ('metamask'): {
-                return window.ethereum && window.ethereum.isMetaMask;
-            }
-            case ('rabby'): {
-                return window.rabby;
-            }
-            case ('phantom'): {
-                return window.solana && window.solana.isPhantom;
-            }
-            case ('backpack'): {
-                return window.backpack;
-            }
-            default: {
-                return true;
-            }
-        }
-    }
-
-    const connectWallet = async (wallet) => {
-        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-        const createSignInMessage = () => {
-            return `Sign-in message: ${new Date().toISOString()}`;
-        };
-
-        const web3 = new Web3(window.ethereum);
-
-        try {
-            let accounts = null;
-            let response = null;
-            switch (wallet) {
-                case ('metamask'): {
-                    await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    accounts = await web3.eth.getAccounts();
-                    break;
-                }
-                case ('rabby'): {
-                    accounts = await window.rabby.request({ method: 'eth_requestAccounts' });
-                    break;
-                }
-                case ('phantom'): {
-                    response = await window.solana.connect();
-                    break;
-                }
-                case ('backpack'): {
-                    response = await window.backpack.connect();
-                    break;
-                }
-            }
-            await delay(500);
-
-            let account = null;
-            if (accounts) {
-                account = accounts[0];
-            }
-            else if (response) {
-                account = response.publicKey.toString();
-            }
-
-            if (!account) { throw Error(`Не удалось получить ${walletName} аккаунт.`); }
-
-            const message = createSignInMessage();
-            let encodedMessage = null;
-            switch (wallet) {
-                case ('metamask'):
-                case ('rabby'): {
-                    encodedMessage = web3.utils.asciiToHex(message);
-                    break;
-                }
-                case ('phantom'):
-                case ('backpack'): {
-                    encodedMessage = new TextEncoder().encode(message);
-                    break;
-                }
-            }
-
-            let signature = null;
-            switch (wallet) {
-                case ('metamask'): {
-                    signature = await window.ethereum.request({
-                        method: 'personal_sign',
-                        params: [encodedMessage, account],
-                    });
-                    break;
-                }
-                case ('rabby'): {
-                    signature = await window.rabby.request({
-                        method: 'personal_sign',
-                        params: [encodedMessage, account],
-                    });
-                    break;
-                }
-                case ('phantom'): {
-                    signature = await window.solana.signMessage(encodedMessage);
-                    break;
-                }
-                case ('backpack'): {
-                    signature = await window.backpack.signMessage(encodedMessage);
-                    break;
-                }
-            }
-
-            switch (wallet) {
-                case ('metamask'):
-                case ('rabby'): {
-                    console.log(`Message signed: ${message}, Signature: ${signature}`);
-                    break;
-                }
-                case ('phantom'):
-                case ('backpack'): {
-                    console.log(`Message signed: ${message}, Signature: ${signature.toString()}`);
-                    break;
-                }
-            }
-            console.log(`${walletName} подключен: ${account}`);
-
-            onWalletConnect(account);
-        }
-        catch (error) {
-            console.error(`Ошибка подключения кошелька ${walletName}:`, error);
-        }
-    };
-
     return (
         <div
             className={`header-profile-wallet-popup-button ${walletInstalled(wallet) ? '' : 'disabled'}`}
-            onClick={walletInstalled(wallet) ? () => connectWallet(wallet) : null}
+            onClick={walletInstalled(wallet) ? () => connectWallet(wallet, onWalletConnect) : null}
         >
-            <img
-                className={`header-profile-wallet-popup-button-icon ${walletInstalled(wallet) ? '' : 'disabled'}`}
-                src={walletIcons[wallet]}
-                alt={`header-profile-wallet-popup-button-icon`}
-            />
+            <div className={`header-profile-wallet-popup-button-icon-container`}>
+                {okxReplaces(wallet) ? (
+                    <img
+                        className={`header-profile-wallet-popup-button-icon right ${walletInstalled(wallet) ? '' : 'disabled'}`}
+                        src={okx_icon}
+                        alt={`header-profile-wallet-popup-button-icon`}
+                    />
+                ) : null}
+                <img
+                    className={`header-profile-wallet-popup-button-icon ${okxReplaces(wallet) ? 'left' : ''} ${walletInstalled(wallet) ? '' : 'disabled'}`}
+                    src={walletIcons[wallet]}
+                    alt={`header-profile-wallet-popup-button-icon`}
+                />
+            </div>
             <div className={`header-profile-wallet-popup-button-wallet-name-text-container ${walletInstalled(wallet) ? '' : 'disabled'}`}>
                 <div className={`header-profile-wallet-popup-button-wallet-name-text ${walletInstalled(wallet) ? '' : 'disabled'}`}>
-                    {walletNames[wallet] || wallet}
+                    {walletNames[wallet] || wallet}{okxReplaces(wallet) ? ' / OKX Wallet' : ''}
                 </div>
                 <div
                     className={`header-profile-wallet-popup-button-wallet-status-text ${walletInstalled(wallet) ? 'green' : 'red'}`}>
