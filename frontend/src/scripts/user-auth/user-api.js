@@ -1,0 +1,79 @@
+class UserAPI {
+    base_url = 'https://web-production-23fa.up.railway.app/';
+
+    generatedOptions = (method, acceptOption, token) => {
+        const acceptOptions = {
+            json: 'application/json',
+            formdata: 'multipart/form-data'
+        }
+        const options = {
+            method: method,
+            headers: {
+                accept: acceptOptions[acceptOption]
+            }
+        }
+        if (token) { options.headers['Authorization'] = `Bearer ${token}`; }
+        return options;
+    }
+
+    buildRequest = (args, params) => {
+        let url = this.base_url + args.join('/');
+        if (params) {
+            url += '?' + new URLSearchParams(params).toString();
+        }
+        return url;
+    };
+
+    getJsonResponse = async (method = 'GET', acceptOption = 'json', token = null, args, params = null) => {
+        try {
+            const response = await fetch(
+                this.buildRequest(args, params),
+                this.generatedOptions(method, acceptOption, token)
+            ).then(response => response.json());
+            if (
+                response.status === 400
+                || response.status === 405
+                || response.status === 422
+            ) {
+                return null;
+            }
+            return response;
+        }
+        catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
+        }
+    };
+
+    generateNonce = async (address) => {
+        return await this.getJsonResponse('POST', 'json',null, ['auth', 'web3', 'generate-nonce'], { address: address });
+    }
+
+    verifySignature = async (tempToken, signature) => {
+        return await this.getJsonResponse('POST', 'json',null,['auth', 'web3','verify-signature'], { temp_token: tempToken, signature: signature });
+    }
+
+    authIsValid = async (token) => {
+        return await this.getJsonResponse('GET', 'json', token, ['auth', 'web3', 'is-valid']);
+    }
+
+    deactivateToken = async (token) => {
+        return await this.getJsonResponse('DELETE', 'json', token, ['auth', 'web3', 'deactivate']);
+    }
+
+    getUser = async (token) => {
+        return await this.getJsonResponse('GET', 'json', token, ['user']);
+    }
+
+    uploadUserAvatar = async (token, file) => {
+        return await this.getJsonResponse('PATCH', 'formdata', token, ['files', 'user', 'upload-avatar'], {file: file});
+    }
+
+    getUserAvatar = async (token) => {
+        return await this.getJsonResponse('GET', 'json', token, ['files', 'user', 'avatar']);
+    }
+}
+
+const userAPI = new UserAPI();
+
+export default userAPI;
