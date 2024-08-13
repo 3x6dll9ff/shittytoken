@@ -29,6 +29,15 @@ const unixTimesptampToTime = (timestamp) => {
     return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
 };
 
+const datetimeToDDMMYYYY = (datetime) => {
+    const date = new Date(datetime);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${day}.${month}.${year}`;
+}
+
 const formatWalletAddress = (address) => {
     if (!address) {
         return 'No wallet connected';
@@ -38,4 +47,4 @@ const formatWalletAddress = (address) => {
     }
 }
 
-export {dataLoaded, unixTimesptampToTime, insertCharIn, formatWalletAddress};
+export {dataLoaded, unixTimesptampToTime, insertCharIn, datetimeToDDMMYYYY, formatWalletAddress};

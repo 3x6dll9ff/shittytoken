@@ -5,9 +5,8 @@ import LoadingScreen from "./scripts/loading-screen";
 import ProgressBar from "./scripts/profile/progress_bar";
 import SeasonProgressBar from "./scripts/profile/season_pass_bar";
 import Achievements from "./scripts/profile/achievements_view";
-import { formatWalletAddress } from "./scripts/utils";
+import { datetimeToDDMMYYYY, formatWalletAddress } from "./scripts/utils";
 import "./css/profile/profile.css";
-import avatarImage from "./assets/images/placeholder-profile.png";
 import docImage from "./assets/images/docs-icon.png";
 import OPChain from './assets/quests/chains-pics/op-chain.png';
 import questsCardCompanyImg from "./assets/quests/company-pics/company-1-card-pic.png";
@@ -75,6 +74,7 @@ class Profile extends React.Component {
             return (<LoadingScreen/>);
         }
         else {
+            const userAvatar = userAccount['avatar'];
             const username = userAccount['username'];
             const userAddress = userAccount['web3_address'];
             const userMaxDocs = userAccount['max_docs_streak'];
@@ -87,9 +87,11 @@ class Profile extends React.Component {
                     <div className="id-container">
                         <div className="header-id">ID CARD</div>
                         <div className="id-block">
-                            <div className="avatar-profile">
-                                <img src={avatarImage} alt="Avatar" />
-                            </div>
+                            <img
+                                className={`avatar-profile`}
+                                src={userAvatar}
+                                alt="Avatar"
+                            />
                             <div className="profile-details">
                                 <div className="name-profile">{formatWalletAddress(username)}</div>
                                 <div className="wallet-profile"> {formatWalletAddress(userAddress)}</div>
@@ -120,7 +122,7 @@ class Profile extends React.Component {
                                 </div>
                                 <ProgressBar initialProgress={userExperience} />
                             </div>
-                            <div className="wen-joined">Joined {userRegisteredAt}</div>
+                            <div className="wen-joined">Joined {datetimeToDDMMYYYY(userRegisteredAt)}</div>
                         </div>
                     </div>
                     {/* Drops Container */}
@@ -182,7 +184,9 @@ class Profile extends React.Component {
                                 <Achievements />
                                 <Achievements />
 
-                                <div className="available-achievements">Available achievements:</div>
+                                <div className="available-achievements">
+                                    Available achievements:
+                                </div>
                                 <Achievements locked={true} />
                                 <Achievements locked={true} />
                                 <Achievements locked={true} />
