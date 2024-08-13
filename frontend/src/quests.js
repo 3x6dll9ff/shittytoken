@@ -653,10 +653,6 @@ class Quests extends Component {
                                     slidesPerView: 3,
                                     spaceBetween: 20,
                                 },
-                                // 1330: {
-                                //     slidesPerView: 3,
-                                //     spaceBetween: 20,
-                                // },
                                 1200: {
                                     slidesPerView: 2,
                                     spaceBetween: 20,
@@ -697,7 +693,7 @@ class Quests extends Component {
                                 },
                                 1400: {
                                     slidesPerView: 5,
-                                    spaceBetween: 25,
+                                    spaceBetween: 15,
                                 },
                                 1200: {
                                     slidesPerView: 3,
@@ -718,6 +714,7 @@ class Quests extends Component {
                         <img src={arrow} alt="Next" />
                     </div>
                 </div>
+                
             </div>
         );
     }

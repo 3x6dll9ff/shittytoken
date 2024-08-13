@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1270px;
     margin: 0 auto; /* Центрирование всего контейнера */
+    max-width: 1270px;
 }
 
 /*New quests*/
