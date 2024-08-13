@@ -281,7 +281,7 @@ select {
 }
 
 .scroll-menu {
-  max-height: 210px;
+  height: 210px;
   overflow-y: scroll;
   scrollbar-width: none;
 }
