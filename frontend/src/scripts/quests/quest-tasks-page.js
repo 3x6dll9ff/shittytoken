@@ -142,13 +142,14 @@ const QuestTasksPage = () => {
                             </div>
                         </div>
                         <div className='quest-tasks-page-right-section-task-button'>
-                            <Link to={''}>
-
+                            <Link className='quest-tasks-page-right-section-task-button-link' to={''}>
+                                <p>Open Uniswap</p>
+                                <img className="pic-task-button" src={leftSectionLogoCompanyTasks} alt='picTaskButton'/>
                             </Link>
                         </div>
                         <div className='quest-tasks-page-right-section-task-button-verify'>
                             <button>
-
+                                <p>Verify</p>
                             </button>
                         </div>
                     </div>
