@@ -50,9 +50,9 @@ class App extends React.Component {
                         <Route path={homePath} element={<Home/>}/>
                         <Route path={cryptoPath} element={<Crypto/>}/>
                         <Route path={questsPath} element={<Quests/>}/>
+                        <Route path={`${questTasksPage}/:questId`} element={<QuestTasksPage/>}/>
                         <Route path={blogPath} element={<Blog/>}/>
                         <Route path={profilePath} element={<Profile/>}/>
-                        <Route path={`${questTasksPage}/:questId`} element={<QuestTasksPage/>}/>
                     </Routes>
                     <Footer/>
                 </Router>
