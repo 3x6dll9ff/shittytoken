@@ -23,7 +23,6 @@ import phantom_icon from "../assets/wallets_integration/images/phantom-logo.png"
 import backpack_icon from "../assets/wallets_integration/images/backpack-logo.png"
 import okx_icon from "../assets/wallets_integration/images/okx-logo.png";
 
-import profile_picture from "../assets/images/placeholder-profile.png";
 import profile_icon from "../assets/header/images/profile-menu-icons/profile.png";
 import achievement_icon from "../assets/header/images/profile-menu-icons/achievements.png";
 import logout_icon from "../assets/header/images/profile-menu-icons/logout.png";
@@ -198,7 +197,6 @@ const ProfileData = () => {
     const [profileExpanded, setProfileExpanded] = useState(false);
     const containerRef = useRef(null);
     const [userAccount, setUserAccount] = useState({});
-    const [userAvatar, setUserAvatar] = useState(null);
 
     const preventEvents = (event) => {
         event.preventDefault();
@@ -211,8 +209,8 @@ const ProfileData = () => {
             { expires: 7 }
         );
         setUserAccount(await userAPI.getUser(accessToken));
-        // TODO rewrite -> setUserAvatar(await userAPI.getUserAvatar(accessToken))
         setWalletsPopupVisible(false);
+        window.location.reload();
     };
 
     const handleLogoutButton = async () => {
@@ -253,7 +251,6 @@ const ProfileData = () => {
             const accessToken = Cookies.get('access_token');
             if (accessToken) {
                 setUserAccount(await userAPI.getUser(accessToken));
-                // TODO rewrite -> setUserAvatar(await userAPI.getUserAvatar(accessToken));
             }
         };
 
@@ -285,6 +282,7 @@ const ProfileData = () => {
     }
     else {
         const userDocs = userAccount['curr_docs_streak'];
+        const userAvatar = userAccount['avatar'];
         const username = userAccount['username'];
         const userAddress = userAccount['web3_address'];
 
@@ -323,7 +321,7 @@ const ProfileData = () => {
                             <div className={`header-profile-info-picture-bg`}>
                                 <img
                                     className={`header-profile-info-picture`}
-                                    src={profile_picture}
+                                    src={userAvatar}
                                     alt={`profile-picture`}
                                 />
                             </div>
