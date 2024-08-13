@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 //Данные-заглушки
 import leftSectionLogoCompanyTasks from '../../assets/quests/company-pics/company-1-card-pic.png'
 import rightSectionLogoCompanyTasks from '../../assets/quests/company-pics/company-2-card-pic.png'
+import linkTask from '../../assets/quests/services-pics/linkTask.png'
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -144,7 +145,7 @@ const QuestTasksPage = () => {
                         <div className='quest-tasks-page-right-section-task-button'>
                             <Link className='quest-tasks-page-right-section-task-button-link' to={''}>
                                 <p>Open Uniswap</p>
-                                <img className="pic-task-button" src={leftSectionLogoCompanyTasks} alt='picTaskButton'/>
+                                <img className="pic-task-button" src={linkTask} alt='picTaskButton'/>
                             </Link>
                         </div>
                         <div className='quest-tasks-page-right-section-task-button-verify'>

@@ -230,16 +230,20 @@
     align-items: flex-end;
     height: auto;
     margin-top: 8%;
+    
 }
 
 .quest-tasks-page-right-section-task-button-verify p {
     margin: 0;
     font-family: 'Pixel Operator HB', sans-serif;
     font-size: 30px;
+    color: #00FF38;
 }
 
 .quest-tasks-page-right-section-task-button-verify button {
     display: inline-block;
     text-align: center;
     padding: 5px 30px;
+    background-color: black;
+    border: 2px solid #fff;
 }
