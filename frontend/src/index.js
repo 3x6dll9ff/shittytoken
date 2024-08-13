@@ -18,9 +18,9 @@ const root = ReactDOMClient.createRoot(document.getElementById("root"));
 const homePath = `/`;
 const cryptoPath = `/crypto`;
 const questsPath = `/quests`;
+const questTasksPage = '/quest-tasks-page';
 const blogPath = `/blog`;
 const profilePath = `/profile`;
-const questTasksPage = '/quest-tasks-page';
 
 let cursorCoordinates = {x: 0, y: 0};
 document.addEventListener('mousemove', (event) => {
