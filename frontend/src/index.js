@@ -18,9 +18,9 @@ const root = ReactDOMClient.createRoot(document.getElementById("root"));
 const homePath = `/`;
 const cryptoPath = `/crypto`;
 const questsPath = `/quests`;
+const questTasksPage = '/quest-tasks-page';
 const blogPath = `/blog`;
 const profilePath = `/profile`;
-const questTasksPage = '/quest-tasks-page';
 
 let cursorCoordinates = {x: 0, y: 0};
 document.addEventListener('mousemove', (event) => {
@@ -50,9 +50,9 @@ class App extends React.Component {
                         <Route path={homePath} element={<Home/>}/>
                         <Route path={cryptoPath} element={<Crypto/>}/>
                         <Route path={questsPath} element={<Quests/>}/>
+                        <Route path={`${questTasksPage}/:questId`} element={<QuestTasksPage/>}/>
                         <Route path={blogPath} element={<Blog/>}/>
                         <Route path={profilePath} element={<Profile/>}/>
-                        <Route path={`${questTasksPage}/:questId`} element={<QuestTasksPage/>}/>
                     </Routes>
                     <Footer/>
                 </Router>
