@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import userAPI from "./scripts/user-auth/user-api";
 import LoadingScreen from "./scripts/loading-screen";
@@ -15,7 +14,7 @@ import questsCardCompanyImg from "./assets/quests/company-pics/company-1-card-pi
 import image1 from './assets/quests/quests-cards-pics/quest-card-1-quest-pic.jpg';
 
 const slides = Array.from({ length: 9 }).map((_, index) => (
-    <div className="quests-card-quests">
+    <div className="quests-card-quests" key={index}>
         <a href="https://qredo.com" rel="noopener noreferrer">
             <img src={image1} alt={'altText'} />
             <div className="quests-card-quests-text">
@@ -57,13 +56,12 @@ class Profile extends React.Component {
         this.state = {
             userAccount: null,
         };
-        this.navigate = this.props.navigate;
     }
 
     async componentDidMount() {
         const accessToken = Cookies.get('access_token');
         if (!accessToken) {
-            this.navigate('/');
+            window.location.href = '/';
         } else {
             const userAccount = await userAPI.getUser(accessToken);
             this.setState({ userAccount });
@@ -208,14 +206,7 @@ class Profile extends React.Component {
                 </div>
             );
         }
-
-        return null;
     }
 }
 
-function ProfileWithNavigate(props) {
-    const navigate = useNavigate();
-    return <Profile {...props} navigate={navigate} />;
-}
-
-export default ProfileWithNavigate;
+export default Profile;
