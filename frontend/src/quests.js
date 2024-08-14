@@ -9,6 +9,7 @@ import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
 import './css/quests/quests-main-part-quests-cards.css';
+import renderContent from '../../frontend/src/scripts/quests/quest-content'
 //Services pics
 import searchIcon from './assets/quests/services-pics/search-icon.png';
 import arrow from './assets/quests/services-pics/arrow.png';
@@ -456,290 +457,26 @@ class Quests extends Component {
         }
     }
 
-    renderContent() {
-        const slidesDataNewQuests = [
-            {
-                mainLink: '/quest-tasks-page',
-                image: questCard1QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company1CardPic,
-                companyName: 'Aave',
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: BNBChain,
-            },
-            {
-                mainLink: 'https://qredo.com',
-                image: questCard2QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company2CardPic,
-                companyName: 'XSwap',
-                chainLink: 'https://optimism.io',
-                chainLogo: OPChain,
-            },
-            {
-                mainLink: 'https://qredo.com',
-                image: questCard3QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company3CardPic,
-                companyName: 'Rubic',
-                chainLink: 'https://zebrachain.org',
-                chainLogo: ZebraChain,
-            },
-            {
-                mainLink: 'https://qredo.com',
-                image: questCard4QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company4CardPic,
-                companyName: 'Celo',
-                chainLink: 'https://qredo.com',
-                chainLogo: QredoChain,
-            },
-            {
-                mainLink: 'https://qredo.com',
-                image: questCard5QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company5CardPic,
-                companyName: 'Layer3',
-                chainLink: 'https://avax.network',
-                chainLogo: AvalancheChain,
-            },
-            {
-                mainLink: 'https://qredo.com',
-                image: questCard6QuestPic,
-                title: 'Stablecoin Yields on Optimism',
-                tasks: '7 tasks',
-                exp: '500 exp',
-                companyLink: 'https://optimism.io',
-                companyLogo: company6CardPic,
-                companyName: 'Across',
-                chainLink: 'https://scroll.io',
-                chainLogo: ScroolChain,
-            },
-            //Add new clides
-        ];
-        
-        const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
-            <SwiperSlide key={index}>
-                <div className="quests-card-quests">
-                    <Link to={`/quest-tasks-page/${slidesNewQuests.id}`} rel="noopener noreferrer">
-                        <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
-                        <div className="quests-card-quests-text">
-                            <p>{slidesNewQuests.title}</p>
-                        </div>
-                        <div className="quests-card-quests-points-tasks">
-                            <div className="quests-card-quests-points-tasks-inner">
-                                <div className="quests-card-quests-tasks">
-                                    <p>{slidesNewQuests.tasks}</p>
-                                </div>
-                                <div className="quests-card-quests-points"> 
-                                    <p>{slidesNewQuests.exp}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='quests-card-quests-img-info'>
-                            <a href={slidesNewQuests.companyLink} rel="noopener noreferrer">
-                                <div className='quests-card-quests-img-info-company'>
-                                    <img src={slidesNewQuests.companyLogo} alt={`${slidesNewQuests.companyName} Logo`} />
-                                    <p>{slidesNewQuests.companyName}</p>
-                                </div>
-                            </a>
-                            <a href={slidesNewQuests.chainLink} rel="noopener noreferrer">
-                                <div className='quests-card-quests-img-info-chain'>
-                                    <img src={slidesNewQuests.chainLogo} alt="Chain Logo Card" />
-                                </div>
-                            </a>
-                        </div>
-                    </Link>
-                </div>
-            </SwiperSlide>
-        ));
-
-        const slidesDataEcosystems = [
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: BNBChain,
-                chainName: 'BNB',
-                countQuests: '52 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: ArbitrumChain,
-                chainName: 'Arbitrum',
-                countQuests: '20 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: AvalancheChain,
-                chainName: 'Avax',
-                countQuests: '34 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: OPChain,
-                chainName: 'Optimism',
-                countQuests: '5 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: Polygonchain,
-                chainName: 'Polygon',
-                countQuests: '26 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: QredoChain,
-                chainName: 'Qredo',
-                countQuests: '10 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: ScroolChain,
-                chainName: 'Scroll',
-                countQuests: '60 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: SolanaChain,
-                chainName: 'Solana',
-                countQuests: '78 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: VillagerChain,
-                chainName: 'Villager',
-                countQuests: '29 quests',
-            },
-            {
-                chainLink: 'https://www.bnbchain.org',
-                chainLogo: ZebraChain,
-                chainName: 'Zebra',
-                countQuests: '6 quests',
-            },
-        ];
-
-        const slides_ecosystems = slidesDataEcosystems.map((slidesDataEcosystems, index) => (
-            <SwiperSlide key={index}>
-                <div className="quests-card-quests-ecosystems">
-                    <a href={slidesDataEcosystems.chainLink} rel="noopener noreferrer">
-                            <img className="image-66" src={slidesDataEcosystems.chainLogo} alt="BNB Chain" />
-                            <p className='quests-card-quests-ecosystems-name-chain'>{slidesDataEcosystems.chainName}</p>
-                            <p className='quests-card-quests-ecosystems-count-quests'>{slidesDataEcosystems.countQuests}</p>
-                    </a>
-                </div>
-            </SwiperSlide>
-        ));
-        return (
-            <div className='quests-content'>
-                <div className="content-section-text">
-                    <p>New</p>
-                </div>
-                <div className='content-section-slider-new'>
-                    <div className={`custom-button-prev ${this.state.isPrevButtonDisabled ? 'disabled' : ''}`}
-                                    onClick={this.handlePrev}>
-                        <img src={arrow} alt="Back" />
-                    </div>
-                    <div className="swiper-container">
-                        <Swiper
-                            ref={this.swiperRef}
-                            slidesPerView= {1}
-                            spaceBetween= {0}
-                            breakpoints={{
-                                1700 : {
-                                    slidesPerView: 3,
-                                    spaceBetween: 95,
-                                },
-                                1400 : {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
-                                },
-                                1200: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                },
-                                768: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 0,
-                                }
-                                
-                            }}
-                            onSlideChange={this.handleSwiperSlideChange}
-                        >
-                            {slidesNewQuests}
-                        </Swiper>
-                    </div>
-                    <div className={`custom-button-next ${this.state.isNextButtonDisabled ? 'disabled' : ''}`}
-                                    onClick={this.handleNext}>
-                        <img src={arrow} alt="Next" />
-                    </div>
-                </div>
-                <div className="content-section-text-ecosystems">
-                    <p>Ecosystems</p>
-                </div>
-                <div className='content-section-slider-ecosystems'>
-                    <div className={`custom-button-prev-ecosystems ${this.state.isPrevButtonEcosystemsDisabled ? 'disabled' : ''}`}
-                                    onClick={this.handlePrevEcosystems}>
-                        <img src={arrow} alt="Back" />
-                    </div>
-                    <div className="swiper-container-ecosystems">
-                        <Swiper
-                            ref={this.swiperRefEcosystems}
-                            spaceBetween={15}
-                            slidesPerView={2}
-                            breakpoints={{
-                                1700 : {
-                                    slidesPerView: 5,
-                                    spaceBetween: 15,
-                                },
-                                1400: {
-                                    slidesPerView: 5,
-                                    spaceBetween: 15,
-                                },
-                                1200: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
-                                },
-                                768: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 5,
-                                }
-                            }}
-                            onSlideChange={this.handleSwiperSlideChangeEcosystems}
-                        >
-                            {slides_ecosystems}
-                        </Swiper>
-                    </div>
-                    <div className={`custom-button-next-ecosystems ${this.state.isNextButtonEcosystemsDisabled ? 'disabled' : ''}`}
-                                    onClick={this.handleNextEcosystems}>
-                        <img src={arrow} alt="Next" />
-                    </div>
-                </div>
-                
-            </div>
-        );
-    }
-
     render() {
         return (
             <div className='quests-page'>
                 {this.renderSearchBar()}
                 {this.renderWelcomeBanner()}
                 <div className="main-part-of-quest-page">
-                    {this.renderContent()}
+                    {renderContent({
+                        handlePrev: this.handlePrev,
+                        handleNext: this.handleNext,
+                        handlePrevEcosystems: this.handlePrevEcosystems,
+                        handleNextEcosystems: this.handleNextEcosystems,
+                        swiperRef: this.swiperRef,
+                        swiperRefEcosystems: this.swiperRefEcosystems,
+                        isPrevButtonDisabled: this.state.isPrevButtonDisabled,
+                        isNextButtonDisabled: this.state.isNextButtonDisabled,
+                        isPrevButtonEcosystemsDisabled: this.state.isPrevButtonEcosystemsDisabled,
+                        isNextButtonEcosystemsDisabled: this.state.isNextButtonEcosystemsDisabled,
+                        handleSwiperSlideChange: this.handleSwiperSlideChange,
+                        handleSwiperSlideChangeEcosystems: this.handleSwiperSlideChangeEcosystems,
+                    })}
                     <div className='quest-filter-container'>
                         {this.renderSidebarFilters()}
                         {this.state.userAccount ? (<p className='MyProgressLabel'>My Progress</p>) : null}
