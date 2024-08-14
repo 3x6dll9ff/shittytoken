@@ -7,10 +7,10 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js';
-import CoinView from './scripts/crypto/coin_view';
+import CoinView from './scripts/crypto/coin-view';
 import LoadingScreen from "./scripts/loading-screen";
 import {CoinStatsAPI} from './scripts/crypto/crypto-api';
-import CurrencyFormat from './scripts/crypto/currency_format';
+import CurrencyFormat from './scripts/crypto/currency-format';
 import {dataLoaded} from './scripts/utils';
 import {positivePercentage, widgetColor, arrowDirection} from './scripts/crypto/utils';
 import './css/crypto/crypto.css';

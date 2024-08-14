@@ -66,11 +66,31 @@ class UserAPI {
     }
 
     uploadUserAvatar = async (token, file) => {
-        return await this.getJsonResponse('PATCH', 'formdata', token, ['files', 'user', 'upload-avatar'], {file: file});
+        return await this.getJsonResponse('PATCH', 'formdata', token, ['files', 'upload', 'avatar'], {file: file});
     }
 
-    getUserAvatar = async (token) => {
-        return await this.getJsonResponse('GET', 'json', token, ['files', 'user', 'avatar']);
+    getQuests = async () => {
+        return await this.getJsonResponse('GET', 'json', null, ['quests']);
+    }
+
+    getQuest = async (questId) => {
+        return await this.getJsonResponse('GET', 'json', null, ['quest', questId]);
+    }
+
+    getChains = async () => {
+        return await this.getJsonResponse('GET', 'json', null, ['chains']);
+    }
+
+    getChain = async (chainId) => {
+        return await this.getJsonResponse('GET', 'json', null, ['chain', chainId]);
+    }
+
+    getProjects = async () => {
+        return await this.getJsonResponse('GET', 'json', null, ['projects']);
+    }
+
+    getProject = async (projectId) => {
+        return await this.getJsonResponse('GET', 'json', null, ['project', projectId]);
     }
 }
 
