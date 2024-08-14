@@ -45,12 +45,15 @@ class Quests extends Component {
         super(props);
         this.swiperRef = React.createRef();
         this.swiperRefEcosystems = React.createRef();
+        this.swiperRefAnti = React.createRef();
         this.state = {
             query: '',
             selectedStatus: null,
             selectedChains: [],
             isPrevButtonDisabled: true,
             isNextButtonDisabled: false,
+            isPrevButtonDisabledAnti: true,
+            isNextButtonDisabledAnti: false,
             isPrevButtonEcosystemsDisabled: true,
             isNextButtonEcosystemsDisabled: false,
             userAccount: null
@@ -59,6 +62,8 @@ class Quests extends Component {
         this.handleNext = this.handleNext.bind(this);
         this.handlePrevEcosystems = this.handlePrevEcosystems.bind(this);
         this.handleNextEcosystems = this.handleNextEcosystems.bind(this);
+        this.handlePrevAnti = this.handlePrevAnti.bind(this);
+        this.handleNextAnti = this.handleNextAnti.bind(this);
     }
 
     async componentDidMount() {
@@ -95,6 +100,19 @@ class Quests extends Component {
         }
     }
 
+    updateButtonStatesAnti(swiper) {
+        if (swiper.isBeginning) {
+            this.setState({ isPrevButtonDisabledAnti: true });
+        } else {
+            this.setState({ isPrevButtonDisabledAnti: false });
+        }
+        if (swiper.isEnd) {
+            this.setState({ isNextButtonDisabledAnti: true });
+        } else {
+            this.setState({ isNextButtonDisabledAnti: false });
+        }
+    }
+
     handlePrev() {
         if (this.swiperRef.current && this.swiperRef.current.swiper) {
             this.swiperRef.current.swiper.slidePrev();
@@ -106,6 +124,20 @@ class Quests extends Component {
         if (this.swiperRef.current && this.swiperRef.current.swiper) {
             this.swiperRef.current.swiper.slideNext();
             this.updateButtonStates(this.swiperRef.current.swiper);
+        }
+    }
+
+    handlePrevAnti() {
+        if (this.swiperRefAnti.current && this.swiperRefAnti.current.swiper) {
+            this.swiperRefAnti.current.swiper.slidePrev();
+            this.updateButtonStatesAnti(this.swiperRefAnti.current.swiper);
+        }
+    }
+    
+    handleNextAnti() {
+        if (this.swiperRefAnti.current && this.swiperRefAnti.current.swiper) {
+            this.swiperRefAnti.current.swiper.slideNext();
+            this.updateButtonStatesAnti(this.swiperRefAnti.current.swiper);
         }
     }
     
@@ -129,7 +161,11 @@ class Quests extends Component {
     
     handleSwiperSlideChangeEcosystems = (swiper) => {
         this.updateButtonStatesEcosystems(swiper);
-    }   
+    }
+    
+    handleSwiperSlideChangeAnti = (swiper) => {
+        this.updateButtonStatesAnti(swiper);
+    }  
     
     handleInputChange = (event) => {
         this.setState({ query: event.target.value });
@@ -468,14 +504,20 @@ class Quests extends Component {
                         handleNext: this.handleNext,
                         handlePrevEcosystems: this.handlePrevEcosystems,
                         handleNextEcosystems: this.handleNextEcosystems,
+                        handlePrevAnti: this.handlePrevAnti,
+                        handleNextAnti: this.handleNextAnti,
                         swiperRef: this.swiperRef,
                         swiperRefEcosystems: this.swiperRefEcosystems,
+                        swiperRefAnti: this.swiperRefAnti,
                         isPrevButtonDisabled: this.state.isPrevButtonDisabled,
                         isNextButtonDisabled: this.state.isNextButtonDisabled,
                         isPrevButtonEcosystemsDisabled: this.state.isPrevButtonEcosystemsDisabled,
                         isNextButtonEcosystemsDisabled: this.state.isNextButtonEcosystemsDisabled,
+                        isPrevButtonDisabledAnti: this.state.isPrevButtonDisabledAnti,
+                        isNextButtonDisabledAnti: this.state.isNextButtonDisabledAnti,
                         handleSwiperSlideChange: this.handleSwiperSlideChange,
                         handleSwiperSlideChangeEcosystems: this.handleSwiperSlideChangeEcosystems,
+                        handleSwiperSlideChangeAnti: this.handleSwiperSlideChangeAnti,
                     })}
                     <div className='quest-filter-container'>
                         {this.renderSidebarFilters()}
