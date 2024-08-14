@@ -247,14 +247,12 @@ const ProfileData = () => {
     });
 
     useEffect(() => {
-        const fetchUserAccount = async () => {
-            const accessToken = Cookies.get('access_token');
-            if (accessToken) {
-                setUserAccount(await userAPI.getUser(accessToken));
-            }
-        };
-
-        fetchUserAccount();
+        const accessToken = Cookies.get('access_token');
+        if (accessToken) {
+            userAPI.getUser(accessToken).then(
+                user => setUserAccount(user)
+            )
+        }
     }, []);
 
     if (!userAccount.hasOwnProperty('id') && !userAccount['id']) {
