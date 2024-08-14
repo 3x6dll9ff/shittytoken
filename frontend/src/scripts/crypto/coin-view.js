@@ -9,7 +9,7 @@ import {
 } from 'chart.js';
 import PopupMenu from "../popup-menu";
 import {CoinStatsAPI} from "./crypto-api";
-import CurrencyFormat from "./currency_format";
+import CurrencyFormat from "./currency-format";
 import {arrowDirection, positivePercentage, widgetColor} from './utils';
 import {unixTimesptampToTime} from '../utils';
 import '../../css/crypto/coin_view.css';
