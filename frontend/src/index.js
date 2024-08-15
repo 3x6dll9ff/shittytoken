@@ -18,7 +18,7 @@ const root = ReactDOMClient.createRoot(document.getElementById("root"));
 const homePath = `/`;
 const cryptoPath = `/crypto`;
 const questsPath = `/quests`;
-const questTasksPage = '/quest-tasks-page';
+const questPath = '/quest';
 const blogPath = `/blog`;
 const profilePath = `/profile`;
 
@@ -50,7 +50,7 @@ class App extends React.Component {
                         <Route path={homePath} element={<Home/>}/>
                         <Route path={cryptoPath} element={<Crypto/>}/>
                         <Route path={questsPath} element={<Quests/>}/>
-                        <Route path={`${questTasksPage}/:questId`} element={<QuestTasksPage/>}/>
+                        <Route path={`${questPath}/:questId`} element={<QuestTasksPage/>}/>
                         <Route path={blogPath} element={<Blog/>}/>
                         <Route path={profilePath} element={<Profile/>}/>
                     </Routes>
@@ -63,4 +63,4 @@ class App extends React.Component {
 
 root.render(<App/>);
 
-export default getCursorCoordinates;
+export {getCursorCoordinates, homePath, cryptoPath, questsPath, questPath, blogPath, profilePath};
