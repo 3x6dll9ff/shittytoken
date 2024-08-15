@@ -66,7 +66,15 @@ class UserAPI {
     }
 
     uploadUserAvatar = async (token, file) => {
-        return await this.getJsonResponse('PATCH', 'formdata', token, ['files', 'upload', 'avatar'], {file: file});
+        return await this.getJsonResponse('POST', 'formdata', token, ['files', 'upload', 'avatar'], {file: file});
+    }
+
+    grabDocs = async (token) => {
+        return await this.getJsonResponse('PATCH', 'json', token, ['docs', 'grab']);
+    }
+
+    checkDocsStatus = async (token) => {
+        return await this.getJsonResponse('GET', 'json', token, ['docs', 'check-status']);
     }
 
     getQuests = async () => {
