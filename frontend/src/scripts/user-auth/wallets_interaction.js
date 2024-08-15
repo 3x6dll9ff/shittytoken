@@ -87,6 +87,7 @@ const connectWallet = async (wallet, onWalletConnect) => {
         }
 
         let signature = null;
+        let solanaSignature = null;
         switch (wallet) {
             case ('metamask'): {
                 signature = await window.ethereum.request({
@@ -103,16 +104,24 @@ const connectWallet = async (wallet, onWalletConnect) => {
                 break;
             }
             case ('phantom'): {
-                signature = await window.solana.signMessage(encodedMessage);
+                solanaSignature = await window.solana.signMessage(encodedMessage);
                 break;
             }
             case ('backpack'): {
-                signature = await window.backpack.signMessage(encodedMessage);
+                solanaSignature = await window.backpack.signMessage(encodedMessage);
                 break;
             }
         }
 
-        const accessTokenJson = await userAPI.verifySignature(tempToken, signature);
+        let outputSignature = null;
+        if (signature) {
+            outputSignature = signature;
+        }
+        else if (solanaSignature) {
+            outputSignature = btoa(String.fromCharCode(...solanaSignature.signature));
+        }
+
+        const accessTokenJson = await userAPI.verifySignature(tempToken, outputSignature);
         const accessToken = accessTokenJson['access_token'];
 
         onWalletConnect(accessToken);
