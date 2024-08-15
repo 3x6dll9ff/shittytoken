@@ -203,14 +203,16 @@ const ProfileData = () => {
     };
 
     const handleWalletConnect = async (accessToken) => {
-        Cookies.set(
-            'access_token',
-            accessToken,
-            { expires: 7 }
-        );
-        setUserAccount(await userAPI.getUser(accessToken));
-        setWalletsPopupVisible(false);
-        window.location.reload();
+        if (accessToken) {
+            Cookies.set(
+                'access_token',
+                accessToken,
+                { expires: 7 }
+            );
+            setUserAccount(await userAPI.getUser(accessToken));
+            setWalletsPopupVisible(false);
+            window.location.reload();
+        }
     };
 
     const handleLogoutButton = async () => {
