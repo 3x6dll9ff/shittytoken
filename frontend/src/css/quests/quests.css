@@ -127,6 +127,7 @@
   width: 45px;
   height: 45px;
   margin: 30px 10px;
+  cursor: var(--pointer);
 }
 
 
@@ -303,7 +304,6 @@ select {
   width: 100%;
   max-width: 300px;
   text-decoration: none;
-  background-color: black;
 }
 
 .quest-pentagon-container {
