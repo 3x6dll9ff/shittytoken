@@ -8,7 +8,7 @@
 }
 
 .footer-content {
-    width: 30%;
+    width: 50%;
     height: 100%;
     text-align: center;
 }
@@ -26,7 +26,7 @@
 }
 
 .disclaimer-description {
-    font-size: 0.75vw;
+    font-size: 12pt;
     font-family: 'Pixel Operator', sans-serif;
     margin-left: 5%;
     margin-right: 5%;

@@ -15,8 +15,8 @@ const Footer = () => {
         <div className='footer-container'>
             <div className='footer-content'>
                 <p className='disclaimer-header'>DISCLAIMER</p>
-                <p className='disclaimer-description'>Investing in 'XXX' is risky and may lead to loss of capital. Nothing here is financial advice. This is a meme coin.</p>
-                <p className='disclaimer-rights'>© 2024 XXX. All rights reserved.</p>
+                <p className='disclaimer-description'>Investing in 'ANTI-SOCIAL' is risky and may lead to loss of capital. Nothing here is financial advice.</p>
+                <p className='disclaimer-rights'>© 2024 ANTI-SOCIAL. All rights reserved.</p>
             </div>
         </div>
     );
