@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { questPath } from "../../index";
 

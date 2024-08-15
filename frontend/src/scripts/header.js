@@ -31,7 +31,7 @@ import backpack_icon from "../assets/wallets_integration/images/backpack-logo.pn
 import okx_icon from "../assets/wallets_integration/images/okx-logo.png";
 
 import profile_icon from "../assets/header/images/profile-menu-icons/profile.png";
-import achievement_icon from "../assets/header/images/profile-menu-icons/achievements.png";
+// import achievement_icon from "../assets/header/images/profile-menu-icons/achievements.png";
 import logout_icon from "../assets/header/images/profile-menu-icons/logout.png";
 
 const Header = () => {
