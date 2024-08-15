@@ -1,0 +1,1 @@
+web: CI=true npm run build && npx serve -s build
