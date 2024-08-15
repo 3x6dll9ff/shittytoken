@@ -293,6 +293,7 @@
     background-color: #000000;
     width: 72px;
     height: 62.5px;
+    display: flex;
     flex-direction: column;
     overflow: clip;
     z-index: 1;
@@ -300,7 +301,7 @@
 
 .header-profile-info-container.expanded {
     width: 300px;
-    height: 240px;
+    height: fit-content;
     border-left: solid 2px #FFFFFF;
     border-bottom: solid 2px #FFFFFF;
     .header-profile-info {
@@ -392,6 +393,7 @@
 
 .header-profile-info-menu-button.alt {
     justify-content: center;
+    margin-bottom: 9px;
     padding-left: 0;
 }
 
