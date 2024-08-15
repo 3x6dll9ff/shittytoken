@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
+import { questPath } from "../../index";
 
 //Services pics
 import arrow from '../../assets/quests/services-pics/arrow.png';
@@ -40,7 +41,7 @@ const renderContent = (props) => {
 
     const slidesDataNewQuests = [
         {
-            mainLink: '/quest-tasks-page',
+            mainLink: questPath,
             image: questCard1QuestPic,
             title: 'Stablecoin Yields on Optimism',
             tasks: '7 tasks',
@@ -117,7 +118,7 @@ const renderContent = (props) => {
     const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
         <SwiperSlide key={index}>
             <div className="quests-card-quests">
-                <Link to={`/quest-tasks-page/${slidesNewQuests.id}`} rel="noopener noreferrer">
+                <Link to={`${questPath}/${slidesNewQuests.id}`} rel="noopener noreferrer">
                     <img src={slidesNewQuests.image} alt={`Slide ${index} Image`} className='quests-card-quests-main-pic' />
                     <div className="quests-card-quests-text">
                         <p>{slidesNewQuests.title}</p>
@@ -263,8 +264,10 @@ const renderContent = (props) => {
                         {slidesNewQuests}
                     </Swiper>
                 </div>
-                <div className={`custom-button-next ${isNextButtonDisabled ? 'disabled' : ''}`}
-                                onClick={handleNext}>
+                <div
+                    className={`custom-button-next ${isNextButtonDisabled ? 'disabled' : ''}`}
+                    onClick={handleNext}
+                >
                     <img src={arrow} alt="Next" />
                 </div>
             </div>
@@ -272,8 +275,10 @@ const renderContent = (props) => {
                 <p>Ecosystems</p>
             </div>
             <div className='content-section-slider-ecosystems'>
-                <div className={`custom-button-prev-ecosystems ${isPrevButtonEcosystemsDisabled ? 'disabled' : ''}`}
-                                onClick={handlePrevEcosystems}>
+                <div
+                    className={`custom-button-prev-ecosystems ${isPrevButtonEcosystemsDisabled ? 'disabled' : ''}`}
+                    onClick={handlePrevEcosystems}
+                >
                     <img src={arrow} alt="Back" />
                 </div>
                 <div className="swiper-container-ecosystems">
@@ -304,8 +309,10 @@ const renderContent = (props) => {
                         {slides_ecosystems}
                     </Swiper>
                 </div>
-                <div className={`custom-button-next-ecosystems ${isNextButtonEcosystemsDisabled ? 'disabled' : ''}`}
-                                onClick={handleNextEcosystems}>
+                <div
+                    className={`custom-button-next-ecosystems ${isNextButtonEcosystemsDisabled ? 'disabled' : ''}`}
+                    onClick={handleNextEcosystems}
+                >
                     <img src={arrow} alt="Next" />
                 </div>
             </div>
@@ -313,8 +320,10 @@ const renderContent = (props) => {
                 <p>ANTI-TOKEN</p>
             </div>
             <div className='content-section-slider-new'>
-                <div className={`custom-button-prev ${isPrevButtonDisabledAnti ? 'disabled' : ''}`}
-                                onClick={handlePrevAnti}>
+                <div
+                    className={`custom-button-prev ${isPrevButtonDisabledAnti ? 'disabled' : ''}`}
+                    onClick={handlePrevAnti}
+                >
                     <img src={arrow} alt="Back" />
                 </div>
                 <div className="swiper-container">
@@ -346,8 +355,10 @@ const renderContent = (props) => {
                         {slidesNewQuests}
                     </Swiper>
                 </div>
-                <div className={`custom-button-next ${isNextButtonDisabledAnti ? 'disabled' : ''}`}
-                                onClick={handleNextAnti}>
+                <div
+                    className={`custom-button-next ${isNextButtonDisabledAnti ? 'disabled' : ''}`}
+                    onClick={handleNextAnti}
+                >
                     <img src={arrow} alt="Next" />
                 </div>
             </div>

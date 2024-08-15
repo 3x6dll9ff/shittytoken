@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from "js-cookie";
+import { homePath } from "./index";
 import userAPI from "./scripts/user-auth/user-api";
 import LoadingScreen from "./scripts/loading-screen";
 import ProgressBar from "./scripts/profile/progress_bar";
@@ -60,7 +61,7 @@ class Profile extends React.Component {
     async componentDidMount() {
         const accessToken = Cookies.get('access_token');
         if (!accessToken) {
-            window.location.href = '/';
+            window.location.href = homePath;
         } else {
             const userAccount = await userAPI.getUser(accessToken);
             this.setState({ userAccount });

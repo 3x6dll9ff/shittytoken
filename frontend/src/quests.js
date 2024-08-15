@@ -4,6 +4,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { Link } from 'react-router-dom';
 import Cookies from "js-cookie";
+import { profilePath } from "./index";
 import userAPI from "./scripts/user-auth/user-api";
 import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
@@ -471,7 +472,10 @@ class Quests extends Component {
         if (userAccount) {
             const expPoints = userAccount['experience'];
             return (
-                <Link to="/profile" className="sidebarProgressXP">
+                <Link
+                    to={profilePath}
+                    className="sidebarProgressXP"
+                >
                     <div className="quest-pentagon-container">
                         <div className="quest-pentagon-white">
                             <div className="quest-pentagon-black">
