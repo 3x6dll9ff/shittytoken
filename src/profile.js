@@ -30,10 +30,12 @@ const slides = Array.from({ length: 9 }).map((_, index) => (
                     </div>
                 </div>
             </div>
-            <div className='quests-card-quests-img-info' style={{
-                marginLeft: -15,
-                marginTop: 10,
-            }}>
+            <div
+                className='quests-card-quests-img-info'
+                style={{
+                    marginTop: -10,
+                }}
+            >
                 <a href="https://optimism.io" rel="noopener noreferrer">
                     <div className='quests-card-quests-img-info-company'>
                         <img src={questsCardCompanyImg} alt="Company Logo" />
@@ -56,15 +58,73 @@ class Profile extends React.Component {
         this.state = {
             userAccount: null,
         };
+        this.handleFileChange = this.handleFileChange.bind(this);
+        this.updateUserAvatar = this.updateUserAvatar.bind(this);
     }
 
     async componentDidMount() {
         const accessToken = Cookies.get('access_token');
         if (!accessToken) {
             window.location.href = homePath;
-        } else {
+        }
+        else {
             const userAccount = await userAPI.getUser(accessToken);
             this.setState({ userAccount });
+        }
+    }
+
+    async updateUserAvatar(file) {
+        try {
+            const accessToken = Cookies.get('access_token');
+
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const base64Image = reader.result.split(',')[1];
+                // await userAPI.uploadUserAvatar(accessToken, base64String);
+                await fetch(
+                    `https://web-production-23fa.up.railway.app/files/upload/avatar`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                            accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            base64_image: base64Image
+                        })
+                    }
+                )
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error uploading avatar:', error);
+                });
+
+
+            };
+            reader.readAsDataURL(file);
+        }
+        catch (error) {
+            console.error("Error uploading avatar:", error);
+        }
+    }
+
+    handleFileChange(event) {
+        const file = event.target.files[0];
+        if (file && (file.type === 'image/png' || file.type === 'image/jpeg')) {
+            this.updateUserAvatar(file);
+        }
+        else {
+            alert("Please upload a PNG or JPG image.");
         }
     }
 
@@ -72,7 +132,7 @@ class Profile extends React.Component {
         const { userAccount } = this.state;
 
         if (!userAccount) {
-            return (<LoadingScreen/>);
+            return <LoadingScreen/>;
         }
         else {
             const userAvatar = userAccount['avatar'];
@@ -88,10 +148,24 @@ class Profile extends React.Component {
                     <div className="id-container">
                         <div className="header-id">ID CARD</div>
                         <div className="id-block">
-                            <img
-                                className={`avatar-profile`}
-                                src={userAvatar}
-                                alt="Avatar"
+                            <div className={`avatar-profile`}>
+                                <img
+                                    src={userAvatar}
+                                    alt="Avatar"
+                                />
+                                <div
+                                    className="avatar-profile-fill"
+                                    onClick={() => this.fileInput.click()}
+                                >
+                                    Edit
+                                </div>
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/png, image/jpeg"
+                                style={{display: 'none'}}
+                                ref={input => this.fileInput = input}
+                                onChange={this.handleFileChange}
                             />
                             <div className="profile-details">
                                 <div className="name-profile">{formatWalletAddress(username)}</div>

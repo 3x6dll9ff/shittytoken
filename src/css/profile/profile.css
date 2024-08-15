@@ -1,491 +1,519 @@
 :root {
-  --bg-color: #000;
-  --second-color: #404040;
-  --text-primary-color: #fff;
-  --text-second-color: #404040;
-  --level-fee: #333232;
-  --text-third-color: #7e7e80;
-  --Pixel-HB: "Pixel Operator HB";
-  --Pixel-SC: "Pixel Operator SC";
-  --Pixel: "Pixel Operator";
-  --border-color: #fff;
-  --border-width: 2px;
+    --bg-color: #000;
+    --second-color: #404040;
+    --text-primary-color: #fff;
+    --text-second-color: #404040;
+    --level-fee: #333232;
+    --text-third-color: #7e7e80;
+    --Pixel-HB: "Pixel Operator HB";
+    --Pixel-SC: "Pixel Operator SC";
+    --Pixel: "Pixel Operator";
+    --border-color: #fff;
+    --border-width: 2px;
 }
 
 .profile-container {
-  display: grid;
-  grid-template-columns: 320px 950px;
-  grid-template-rows: auto auto;
-  gap: 26px 38px;
-  justify-content: center;
-  align-content: start;
-  height: 100%;
-  width: 100%;
-  margin-top: 100px;
-  padding: 20px;
-  box-sizing: border-box;
-  font-family: var(--Pixel-HB), sans-serif;
-  font-size: 40px;
+    display: grid;
+    grid-template-columns: 320px 950px;
+    grid-template-rows: auto auto;
+    gap: 26px 38px;
+    justify-content: center;
+    align-content: start;
+    height: 100%;
+    width: 100%;
+    margin-top: 100px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: var(--Pixel-HB), sans-serif;
+    font-size: 40px;
 }
 
 .id-container,
 .drops-container,
 .achievements-container,
 .quests-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header-id,
 .header-drops {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .id-block,
 .drops-block,
 .achievements-block,
 .quests-block {
-  background-color: var(--bg-color);
-  border: var(--border-width) solid var(--border-color);
-  color: var(--text-primary-color);
-  box-sizing: border-box;
-  padding: 20px;
-  width: 100%;
+    background-color: var(--bg-color);
+    border: var(--border-width) solid var(--border-color);
+    color: var(--text-primary-color);
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
 }
 
 .id-block {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  height: 223px;
-  position: relative;
-  padding-right: 100px; 
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 223px;
+    position: relative;
+    padding-right: 100px;
 }
 
 .avatar-profile {
-  height: 90px;
-  width: 90px;
-  border: var(--border-width) solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
+}
+
+.avatar-profile,
+.avatar-profile img {
+    height: 90px;
+    width: 90px;
+    position: relative;
+}
+
+.avatar-profile:hover,
+.avatar-profile img:hover {
+    .avatar-profile-fill {
+        opacity: 100%;
+        z-index: 0;
+    }
+}
+
+.avatar-profile-fill {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -10;
+    cursor: var(--pointer);
 }
 
 .profile-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  flex: 1;
-  margin-left: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    flex: 1;
+    margin-left: -10px;
 }
 
 .name-profile {
-  font-size: 20pt;
-  margin-top: -90px;
+    font-size: 20pt;
+    margin-top: -90px;
 }
 
 .wallet-profile {
-  font-size: 12pt;
-  color: var(--text-second-color);
-  margin-top: -8px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+    font-size: 12pt;
+    color: var(--text-second-color);
+    margin-top: -8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .user-stats {
-  display: flex;
-  gap: 10px;
-  padding-top: 5px;
+    display: flex;
+    gap: 10px;
+    padding-top: 5px;
 }
 
 .user-stat {
-  background-color: var(--bg-color);
-  color: var(--text-primary-color);
-  width: 87px;
-  height: 47px;
-  border: 2px solid var(--border-color);
-  font-size: 14pt;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-primary-color);
+    width: 87px;
+    height: 47px;
+    border: 2px solid var(--border-color);
+    font-size: 14pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .stat-title {
-  margin-bottom: 0;
-  font-size: 12pt;
-  font-family: var(--Pixel), sans-serif;
+    margin-bottom: 0;
+    font-size: 12pt;
+    font-family: var(--Pixel), sans-serif;
 }
 
 .stat-content {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* Level bar styles */
 .progress-bar-container {
-  width: calc(
-    100% - 80px
-  ); 
-  height: 8px;
-  background-color: var(--level-fee);
-  position: absolute;
-  top: 50%;
-  left: 67px;
-  z-index: 1;
+    width: calc(
+            100% - 80px
+    );
+    height: 8px;
+    background-color: var(--level-fee);
+    position: absolute;
+    top: 50%;
+    left: 67px;
+    z-index: 1;
 }
 
 .progress-bar {
-  height: 100%;
-  background-color: white;
+    height: 100%;
+    background-color: white;
 }
 
 /* Pentagon styles */
 .level-grade {
-  position: absolute;
-  top: 53%;
-  left: 0;
-  width: 100%;
-  height: 65px;
-  display: flex;
+    position: absolute;
+    top: 53%;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    display: flex;
 }
 
 .pentagon-container {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  top: 10px;
-  left: 20px;
-  z-index: 2;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 20px;
+    z-index: 2;
 }
 
 .pentagon-white {
-  position: absolute;
-  background-color: white;
-  width: 50px;
-  height: 50px;
-  clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
-  display: flex;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  z-index: 1; 
+    position: absolute;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .pentagon-black {
-  position: absolute; 
-  background-color: rgb(0, 0, 0);
-  width: 45px;
-  height: 45px;
-  clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
-  display: flex;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  z-index: 2; 
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    width: 45px;
+    height: 45px;
+    clip-path: polygon(50% 100%, 100% 62%, 82% 0%, 18% 0%, 0% 62%);
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
 }
 
 .grade-number {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: -5px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -5px;
 }
 
 .wen-joined {
-  bottom: 10px;
-  left: 0; 
-  position: absolute;
-  font-size: 20pt;
-  color: var(--text-third-color);
-  text-align: center;
-  width: 100%; 
+    bottom: 10px;
+    left: 0;
+    position: absolute;
+    font-size: 20pt;
+    color: var(--text-third-color);
+    text-align: center;
+    width: 100%;
 }
 
 .drops-block,
 .achievements-block,
 .quests-block {
-  width: 100%;
+    width: 100%;
 }
 
 .drops-block {
-  height: 223px;
-  display: flex;
-  padding: 5px;
+    height: 223px;
+    display: flex;
+    padding: 5px;
 }
 
 .profile-claim-block {
-  width: 20%;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
+    width: 20%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
 }
 
 .profile-claim-text {
-  font-family: var(--Pixel-SC), sans-serif;
-  color: white;
-  font-size: 24pt;
-  text-align: center;
-  margin-top: 10px;
+    font-family: var(--Pixel-SC), sans-serif;
+    color: white;
+    font-size: 24pt;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .profile-button-claim {
-  background-color: white; 
-  color: black; 
-  margin-top: -40px;
-  width: 80%; 
-  height: 40px; 
-  text-align: center; 
-  align-items: center; 
-  justify-content: center; 
+    background-color: white;
+    color: black;
+    margin-top: -40px;
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-button-claim-text {
-  font-family: var(--Pixel-SC), sans-serif;
-  font-size: 18pt; 
-  margin-top: 8px;
+    font-family: var(--Pixel-SC), sans-serif;
+    font-size: 18pt;
+    margin-top: 8px;
 }
 
 .profile-button-claim:hover {
-  background-color: #777777;
-  cursor: var(--pointer);
+    background-color: #777777;
+    cursor: var(--pointer);
 }
 
 .achievements-block {
-  height: 650px;
+    height: 650px;
 }
 
 .header-achievements {
-  font-size: 28pt ;
-  font-family:  var(--Pixel-HB), sans-serif;
+    font-size: 28pt ;
+    font-family:  var(--Pixel-HB), sans-serif;
 }
 
 .last-achievements {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .scroll-achievements {
-  height: 92%;
-  width: 100%;
-  overflow-y: auto;
-  margin-top: 10px;
-  scrollbar-width: none;
+    height: 92%;
+    width: 100%;
+    overflow-y: auto;
+    margin-top: 10px;
+    scrollbar-width: none;
 
 }
 
 .last-achievements-header {
-  font-size: 16pt;
-  font-family: var(--Pixel) , sans-serif;
-  margin-top: 10px;
-  color: #BFBFBF;
+    font-size: 16pt;
+    font-family: var(--Pixel) , sans-serif;
+    margin-top: 10px;
+    color: #BFBFBF;
 }
 
 .achievements-content {
-  height: 45px;
-  width: 100%;
-  margin-top: 10px;
-  display: flex;
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
 }
 
 .achievements-content.locked {
-  filter: saturate(0) brightness(75%);
+    filter: saturate(0) brightness(75%);
 }
 
 .achievements-image {
-  height: 100%;
-  width: 16%;
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
+    height: 100%;
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .achievements-header-desc {
-  height: 100%;
-  width: 68%;
-  margin-left: 5px;
+    height: 100%;
+    width: 68%;
+    margin-left: 5px;
 }
 
 .achievements-header {
-  font-size: 16pt;
-  font-family: var(--Pixel), sans-serif;
+    font-size: 16pt;
+    font-family: var(--Pixel), sans-serif;
 }
 
 .achievements-desc {
-  font-size: 12pt;
-  font-family: var(--Pixel), sans-serif;
-  margin-top: 2px;
-  color: var(--text-second-color);
+    font-size: 12pt;
+    font-family: var(--Pixel), sans-serif;
+    margin-top: 2px;
+    color: var(--text-second-color);
 }
 
 .achievements-exp {
-  height: 100%;
-  width: 16%;
-  font-size: 14pt;
-  font-family: var(--Pixel-SC), sans-serif;
-  text-align: center;
-  color: var(--text-second-color);
-  margin-top: 2px;
+    height: 100%;
+    width: 16%;
+    font-size: 14pt;
+    font-family: var(--Pixel-SC), sans-serif;
+    text-align: center;
+    color: var(--text-second-color);
+    margin-top: 2px;
 }
 
 .unlocked-achievements-header{
-  font-size: 16pt;
-  font-family: var(--Pixel), sans-serif;
-  margin-top: 10px;
-  color: #BFBFBF;
+    font-size: 16pt;
+    font-family: var(--Pixel), sans-serif;
+    margin-top: 10px;
+    color: #BFBFBF;
 }
 
 .available-achievements {
-  font-size: 16pt;
-  font-family: var(--Pixel), sans-serif;
-  margin-top: 10px;
-  color: #BFBFBF;
+    font-size: 16pt;
+    font-family: var(--Pixel), sans-serif;
+    margin-top: 10px;
+    color: #BFBFBF;
 }
 
 .quests-block {
-  height: 650px;
+    height: 650px;
 }
 
 .profile-done-cards {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
 }
 
 .cards-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 15px;
-  max-width: 100%;
-  height: 550px;
-  overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 15px;
+    max-width: 100%;
+    height: 550px;
+    overflow-y: auto;
 }
 
 .profile-done-cards .quests-card-quests {
-  flex: 0 0 calc(33.333% - 20px);
-  box-sizing: border-box;
-  padding: 10px;
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 /* Completed quests header styling */
 .header-completed-quests {
-  font-size: 28pt;
-  font-family: var(--Pixel-HB), sans-serif;
-  text-align: center;
+    font-size: 28pt;
+    font-family: var(--Pixel-HB), sans-serif;
+    text-align: center;
 }
 /* Grid positioning */
 .id-container {
-  grid-column: 1;
-  grid-row: 1;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .drops-container {
-  grid-column: 2;
-  grid-row: 1;
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .achievements-container {
-  grid-column: 1;
-  grid-row: 2;
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .quests-container {
-  grid-column: 2;
-  grid-row: 2;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 1200px) {
-  .profile-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
-  }
+    .profile-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
 
-  .id-container,
-  .drops-container,
-  .achievements-container,
-  .quests-container {
-    align-items: stretch;
-  }
+    .id-container,
+    .drops-container,
+    .achievements-container,
+    .quests-container {
+        align-items: stretch;
+    }
 
-  .id-block,
-  .drops-block,
-  .achievements-block,
-  .quests-block {
-    width: 100%;
-  }
+    .id-block,
+    .drops-block,
+    .achievements-block,
+    .quests-block {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
-  .profile-container {
-    font-size: 20px;
-    padding: 10px;
-  }
+    .profile-container {
+        font-size: 20px;
+        padding: 10px;
+    }
 
-  .id-block {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
+    .id-block {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
 
-  .user-stat {
-    width: 100%;
-    height: auto;
-    font-size: 12pt;
-    margin-left: 0;
-  }
+    .user-stat {
+        width: 100%;
+        height: auto;
+        font-size: 12pt;
+        margin-left: 0;
+    }
 
-  .avatar-profile {
-    margin-bottom: 10px;
-  }
+    .avatar-profile {
+        margin-bottom: 10px;
+    }
 
-  .name-profile {
-    font-size: 16pt;
-  }
+    .name-profile {
+        font-size: 16pt;
+    }
 
-  .wallet-profile {
-    font-size: 10pt;
-  }
+    .wallet-profile {
+        font-size: 10pt;
+    }
 
-  .user-stats {
-    flex-direction: column;
-    align-items: center;
-  }
+    .user-stats {
+        flex-direction: column;
+        align-items: center;
+    }
 
-  .stat-title {
-    font-size: 10pt;
-  }
+    .stat-title {
+        font-size: 10pt;
+    }
 
-  .stat-content {
-    font-size: 12pt;
-  }
+    .stat-content {
+        font-size: 12pt;
+    }
 
-  .wen-joined {
-    font-size: 16pt;
-    left: 0;
-    text-align: center;
-    width: 100%;
-  }
+    .wen-joined {
+        font-size: 16pt;
+        left: 0;
+        text-align: center;
+        width: 100%;
+    }
 
-  .level-grade {
-    position: static;
-    margin-top: 20px;
-  }
+    .level-grade {
+        position: static;
+        margin-top: 20px;
+    }
 
-  .progress-bar-container {
-    position: static;
-    margin-top: 10px;
-  }
+    .progress-bar-container {
+        position: static;
+        margin-top: 10px;
+    }
 }

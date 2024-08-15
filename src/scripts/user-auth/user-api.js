@@ -65,8 +65,8 @@ class UserAPI {
         return await this.getJsonResponse('GET', 'json', token, ['user']);
     }
 
-    uploadUserAvatar = async (token, file) => {
-        return await this.getJsonResponse('POST', 'formdata', token, ['files', 'upload', 'avatar'], {file: file});
+    uploadUserAvatar = async (token, base64_image) => {
+        return await this.getJsonResponse('POST', 'json', token, ['files', 'upload', 'avatar'], {base64_image: base64_image});
     }
 
     grabDocs = async (token) => {
