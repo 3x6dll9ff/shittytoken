@@ -18,21 +18,21 @@ const tasksData = [
         title: 'Mint NFT',
         description: 'Mint the inaugural limited-edition NFT for the launch of the Celosphere, an NFT marketplace powered by RaribleX.',
         buttonText: 'Open Uniswap',
-        buttonLink: 'https://rt.pornhub.com/',
+        buttonLink: 'https://uniswap.org/',
     },
     {
         imageSrc: rightSectionLogoCompanyTasks, // Можете заменить на другие изображения
         title: 'Subscribe to X account',
         description: 'Subscribe to the official X account to stay updated with the latest news and announcements.',
         buttonText: 'Open X',
-        buttonLink: 'https://rt.pornhub.com/',
+        buttonLink: 'https://x.com',
     },
     {
         imageSrc: rightSectionLogoCompanyTasks,
         title: 'Swap on Base',
         description: 'Swap tokens on the Base network to complete the task and earn rewards.',
         buttonText: 'Open Base Swap',
-        buttonLink: 'https://rt.pornhub.com/',
+        buttonLink: 'https://uniswap.org/',
     },
     // Добавьте больше задач по необходимости
 ];

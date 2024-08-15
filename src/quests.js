@@ -10,7 +10,7 @@ import '../node_modules/swiper/swiper-bundle.min.css';
 import '../node_modules/swiper/swiper.min.css';
 import './css/quests/quests.css';
 import './css/quests/quests-main-part-quests-cards.css';
-import renderContent from '../../frontend/src/scripts/quests/quest-content'
+import renderContent from './scripts/quests/quest-content'
 //Services pics
 import searchIcon from './assets/quests/services-pics/search-icon.png';
 import arrow from './assets/quests/services-pics/arrow.png';
