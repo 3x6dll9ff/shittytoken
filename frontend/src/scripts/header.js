@@ -4,7 +4,14 @@ import Cookies from "js-cookie";
 import PopupMenu from "./popup-menu";
 import userAPI from "./user-auth/user-api";
 import { walletInstalled, okxReplaces, connectWallet } from "./user-auth/wallets_interaction";
-import getCursorCoordinates from "../index";
+import {
+    getCursorCoordinates,
+    homePath,
+    cryptoPath,
+    questsPath,
+    blogPath,
+    profilePath
+} from "../index";
 import { formatWalletAddress } from "./utils"
 import "../css/header.css";
 
@@ -60,19 +67,19 @@ const Header = () => {
                 <div className={`header-menu-items-container`}>
                     <LinkItem
                         title={`HOME`}
-                        url={`/`}
+                        url={homePath}
                     />
                     <LinkItem
                         title={`CRYPTO`}
-                        url={`/crypto`}
+                        url={cryptoPath}
                     />
                     <LinkItem
                         title={`QUESTS`}
-                        url={`/quests`}
+                        url={questsPath}
                     />
                     <LinkItem
                         title={`BLOG`}
-                        url={`/blog`}
+                        url={blogPath}
                     />
                 </div>
                 <ProfileData />
@@ -315,7 +322,7 @@ const ProfileData = () => {
                         </div>
                         <Link
                             className={`header-profile-info-button`}
-                            to={`/profile`}
+                            to={profilePath}
                             onPointerEnter={() => setProfileExpanded(true)}
                         >
                             <div className={`header-profile-info-picture-bg`}>
@@ -331,12 +338,13 @@ const ProfileData = () => {
                         <ProfileButton
                             title={`My profile`}
                             img_src={profile_icon}
-                            onClick={`/profile`}
+                            onClick={profilePath}
                         />
-                        <ProfileButton
-                            title={`Achievements`}
-                            img_src={achievement_icon}
-                        />
+                        {/* TODO VVV uncomment if needed VVV */}
+                        {/*<ProfileButton*/}
+                        {/*    title={`Achievements`}*/}
+                        {/*    img_src={achievement_icon}*/}
+                        {/*/>*/}
                         <div className={`header-profile-info-menu-separator`}></div>
                         <ProfileButton
                             title={`Logout`}
