@@ -1,7 +1,16 @@
 import React from 'react';
+import { useLocation } from "react-router-dom";
+import { questPath } from "../index";
 import '../css/footer.css';
 
 const Footer = () => {
+    const location = useLocation().pathname;
+    const links_blacklist = [questPath]
+
+    for (const link in links_blacklist) {
+        if (location.includes(`${links_blacklist[link]}/`)) { return null; }
+    }
+
     return (
         <div className='footer-container'>
             <div className='footer-content'>
