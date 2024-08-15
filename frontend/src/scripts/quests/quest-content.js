@@ -36,7 +36,7 @@ SwiperCore.use([Navigation, Pagination]);
 
 
 const renderContent = (props) => {
-    const { handlePrev, handleNext, handlePrevEcosystems, handleNextEcosystems, swiperRef, swiperRefEcosystems, isPrevButtonDisabled, isNextButtonDisabled, isPrevButtonEcosystemsDisabled, isNextButtonEcosystemsDisabled, handleSwiperSlideChange, handleSwiperSlideChangeEcosystems  } = props;
+    const { handlePrev, handleNext, handlePrevEcosystems, handleNextEcosystems, swiperRef, swiperRefEcosystems, isPrevButtonDisabled, isNextButtonDisabled, isPrevButtonEcosystemsDisabled, isNextButtonEcosystemsDisabled, handleSwiperSlideChange, handleSwiperSlideChangeEcosystems, handlePrevAnti , handleNextAnti, swiperRefAnti, isPrevButtonDisabledAnti, isNextButtonDisabledAnti, handleSwiperSlideChangeAnti } = props;
 
     const slidesDataNewQuests = [
         {
@@ -309,17 +309,17 @@ const renderContent = (props) => {
                     <img src={arrow} alt="Next" />
                 </div>
             </div>
-            <div className="content-section-text">
+            <div className="content-section-text-anti">
                 <p>ANTI-TOKEN</p>
             </div>
             <div className='content-section-slider-new'>
-                <div className={`custom-button-prev ${isPrevButtonDisabled ? 'disabled' : ''}`}
-                                onClick={handlePrev}>
+                <div className={`custom-button-prev ${isPrevButtonDisabledAnti ? 'disabled' : ''}`}
+                                onClick={handlePrevAnti}>
                     <img src={arrow} alt="Back" />
                 </div>
                 <div className="swiper-container">
                     <Swiper
-                        ref={swiperRef}
+                        ref={swiperRefAnti}
                         slidesPerView= {1}
                         spaceBetween= {0}
                         breakpoints={{
@@ -341,13 +341,13 @@ const renderContent = (props) => {
                             }
                             
                         }}
-                        onSlideChange={handleSwiperSlideChange}
+                        onSlideChange={handleSwiperSlideChangeAnti}
                     >
                         {slidesNewQuests}
                     </Swiper>
                 </div>
-                <div className={`custom-button-next ${isNextButtonDisabled ? 'disabled' : ''}`}
-                                onClick={handleNext}>
+                <div className={`custom-button-next ${isNextButtonDisabledAnti ? 'disabled' : ''}`}
+                                onClick={handleNextAnti}>
                     <img src={arrow} alt="Next" />
                 </div>
             </div>

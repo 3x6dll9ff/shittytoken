@@ -1,4 +1,4 @@
-import React from 'react'; // useEffect и useState можно временно удалить, если они больше не используются
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import '../../css/quests/quest-tasks-page.css';
@@ -6,40 +6,55 @@ import SwiperCore from 'swiper';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-//Данные-заглушки
 import leftSectionLogoCompanyTasks from '../../assets/quests/company-pics/company-1-card-pic.png'
 import rightSectionLogoCompanyTasks from '../../assets/quests/company-pics/company-2-card-pic.png'
 import linkTask from '../../assets/quests/services-pics/linkTask.png'
 
 SwiperCore.use([Navigation, Pagination]);
 
-const buttonData = [
-    { text: 'Subscribe to X account' },
-    { text: 'Swap on Base' },
-    { text: 'Subscribe to X account' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
-    { text: 'Claim Reward (500xp)' },
+const tasksData = [
+    {
+        imageSrc: rightSectionLogoCompanyTasks,
+        title: 'Mint NFT',
+        description: 'Mint the inaugural limited-edition NFT for the launch of the Celosphere, an NFT marketplace powered by RaribleX.',
+        buttonText: 'Open Uniswap',
+        buttonLink: 'https://rt.pornhub.com/',
+    },
+    {
+        imageSrc: rightSectionLogoCompanyTasks, // Можете заменить на другие изображения
+        title: 'Subscribe to X account',
+        description: 'Subscribe to the official X account to stay updated with the latest news and announcements.',
+        buttonText: 'Open X',
+        buttonLink: 'https://rt.pornhub.com/',
+    },
+    {
+        imageSrc: rightSectionLogoCompanyTasks,
+        title: 'Swap on Base',
+        description: 'Swap tokens on the Base network to complete the task and earn rewards.',
+        buttonText: 'Open Base Swap',
+        buttonLink: 'https://rt.pornhub.com/',
+    },
+    // Добавьте больше задач по необходимости
 ];
 
-// Компонент для генерации кнопок
-const QuestTasksButtons = () => {
+const QuestTasksButtons = ({ selectedTaskIndex, onTaskSelect }) => {
     return (
         <div className='quest-tasks-page-left-section-buttons-container'>
-            {buttonData.map((button, index) => (
-                <div key={index} className='quest-tasks-page-left-section-buttons-container-button'>
+            {tasksData.map((task, index) => (
+                <div 
+                    key={index} 
+                    className='quest-tasks-page-left-section-buttons-container-button'
+                    onClick={() => onTaskSelect(index)}
+                    style={{
+                        backgroundColor: selectedTaskIndex === index ? '#656668' : 'transparent',
+                        cursor: 'pointer',
+                    }}
+                >
                     <div className='quest-tasks-page-left-section-buttons-container-button-number'>
                         <p>{index + 1}</p>
                     </div>
                     <div className='quest-tasks-page-left-section-buttons-container-button-text'>
-                        <p>{button.text}</p>
+                        <p>{task.title}</p>
                     </div>
                 </div>
             ))}
@@ -49,38 +64,21 @@ const QuestTasksButtons = () => {
 
 const QuestTasksPage = () => {
     const { questId } = useParams();
+    const [selectedTaskIndex, setSelectedTaskIndex] = useState(0);
+    const [taskCompleted, setTaskCompleted] = useState(false); // Состояние для отслеживания нажатия на кнопку с Link
 
-    // Закомментированный код для загрузки данных
-    // const [questData, setQuestData] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
+    const selectedTask = tasksData[selectedTaskIndex];
 
-    // useEffect(() => {
-    //     const fetchQuestData = async (questId) => {
-    //         try {
-    //             const response = await fetch(`https://yourapi.com/quests/${questId}`);
-    //             const data = await response.json();
-    //             setQuestData(data);
-    //         } catch (error) {
-    //             setError(error);
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
+    const handleVerifyClick = () => {
+        if (taskCompleted && selectedTaskIndex < tasksData.length - 1) {
+            setSelectedTaskIndex(selectedTaskIndex + 1); // Переключение на следующую задачу
+            setTaskCompleted(false); // Сброс состояния taskCompleted
+        }
+    };
 
-    //     fetchQuestData(questId);
-    // }, [questId]);
-
-    // Закомментированный условный рендеринг
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-
-    // if (error) {
-    //     return <div>Error loading data</div>;
-    // }
-
-    //все элементы должны подгружаться из базы через questData.
+    const handleLinkClick = () => {
+        setTaskCompleted(true); // Установка состояния taskCompleted в true при нажатии на кнопку с Link
+    };
 
     return (
         <div className='quest-tasks-page'>
@@ -120,7 +118,10 @@ const QuestTasksPage = () => {
                         </div>
                     </div>
                     <div className='quest-tasks-page-left-section-buttons'>
-                        <QuestTasksButtons />
+                        <QuestTasksButtons 
+                            selectedTaskIndex={selectedTaskIndex} 
+                            onTaskSelect={setSelectedTaskIndex} 
+                        />
                     </div>
                 </div>
             </section>
@@ -128,28 +129,30 @@ const QuestTasksPage = () => {
                 <div className='quest-tasks-page-right-section-all'>
                     <div className='quest-tasks-page-right-section-task'>
                         <div className='quest-tasks-page-right-section-task-pic'>
-                            <img className="task-pic" src={rightSectionLogoCompanyTasks} alt='taskPic'/>
+                            <img className="task-pic" src={selectedTask.imageSrc} alt='taskPic'/>
                         </div>
                         <div className='quest-tasks-page-right-section-task-text'>
                             <div className='quest-tasks-page-right-section-task-text-title'>
-                                <h2>
-                                    Mint NFT
-                                </h2>
+                                <h2>{selectedTask.title}</h2>
                             </div>
                             <div className='quest-tasks-page-right-section-task-text-descript'>
-                                <p>
-                                    Mint the inaugural limited-edition NFT for the launch of the Celosphere, an NFT marketplace powered by RaribleX.
-                                </p>
+                                <p>{selectedTask.description}</p>
                             </div>
                         </div>
                         <div className='quest-tasks-page-right-section-task-button'>
-                            <Link className='quest-tasks-page-right-section-task-button-link' to={''}>
-                                <p>Open Uniswap</p>
+                            <Link 
+                                className='quest-tasks-page-right-section-task-button-link' 
+                                to={selectedTask.buttonLink}
+                                onClick={handleLinkClick} // Обработчик клика
+                                target="_blank" // Открытие в новой вкладке
+                                rel="noopener noreferrer" // Защита от уязвимостей
+                            >
+                                <p>{selectedTask.buttonText}</p>
                                 <img className="pic-task-button" src={linkTask} alt='picTaskButton'/>
                             </Link>
                         </div>
                         <div className='quest-tasks-page-right-section-task-button-verify'>
-                            <button>
+                            <button onClick={handleVerifyClick}>
                                 <p>Verify</p>
                             </button>
                         </div>

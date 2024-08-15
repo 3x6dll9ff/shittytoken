@@ -402,3 +402,15 @@
     opacity: 0.2;
     pointer-events: none;
 }
+
+/* Another quests */
+
+.content-section-text-anti {
+    margin-top: 100px;
+    font-size: 36px;
+    padding: 0 30px;
+    font-family: 'Pixel Operator HB 8', sans-serif;
+    margin-bottom: 20px; /* Отступ между текстом и слайдером */
+    margin: auto;
+    margin-top: 70px;
+}
