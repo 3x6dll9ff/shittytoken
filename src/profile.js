@@ -80,36 +80,7 @@ class Profile extends React.Component {
             const reader = new FileReader();
             reader.onloadend = async () => {
                 const base64Image = reader.result.split(',')[1];
-                // await userAPI.uploadUserAvatar(accessToken, base64String);
-                await fetch(
-                    `https://web-production-23fa.up.railway.app/files/upload/avatar`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                            accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            base64_image: base64Image
-                        })
-                    }
-                )
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Success:', data);
-                    window.location.reload();
-                })
-                .catch(error => {
-                    console.error('Error uploading avatar:', error);
-                });
-
-
+                await userAPI.uploadUserAvatar(accessToken, base64Image);
             };
             reader.readAsDataURL(file);
         }

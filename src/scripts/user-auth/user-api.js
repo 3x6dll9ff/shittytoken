@@ -1,18 +1,19 @@
 class UserAPI {
     base_url = 'https://web-production-23fa.up.railway.app/';
 
-    generatedOptions = (method, acceptOption, token) => {
+    generatedOptions = (method, acceptOption, body, token) => {
         const acceptOptions = {
             json: 'application/json',
-            formdata: 'multipart/form-data'
         }
         const options = {
             method: method,
             headers: {
-                accept: acceptOptions[acceptOption]
+                'Content-Type': 'application/json',
+                accept: acceptOptions[acceptOption],
             }
         }
         if (token) { options.headers['Authorization'] = `Bearer ${token}`; }
+        if (body) { options.body = JSON.stringify(body); }
         return options;
     }
 
@@ -24,11 +25,18 @@ class UserAPI {
         return url;
     };
 
-    getJsonResponse = async (method = 'GET', acceptOption = 'json', token = null, args, params = null) => {
+    getJsonResponse = async (
+        method = 'GET',
+        acceptOption = 'json',
+        token = null,
+        args,
+        params = null,
+        body = null
+    ) => {
         try {
             const response = await fetch(
-                this.buildRequest(args, params),
-                this.generatedOptions(method, acceptOption, token)
+                this.buildRequest(args, params, body),
+                this.generatedOptions(method, acceptOption, body, token)
             ).then(response => response.json());
             if (
                 response.status === 400
@@ -66,7 +74,7 @@ class UserAPI {
     }
 
     uploadUserAvatar = async (token, base64_image) => {
-        return await this.getJsonResponse('POST', 'json', token, ['files', 'upload', 'avatar'], {base64_image: base64_image});
+        return await this.getJsonResponse('POST', 'json', token, ['files', 'upload', 'avatar'], null, {base64_image: base64_image});
     }
 
     grabDocs = async (token) => {
