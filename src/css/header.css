@@ -102,12 +102,6 @@
     transition: transform 0.1s ease-out;
 }
 
-.header-menu-items-container {
-    width: 400px;
-    display: flex;
-    margin-left: 20px;
-}
-
 .header-menu-item {
     font-family: "Pixel Operator HB", sans-serif;
     font-size: 24pt;
@@ -116,7 +110,7 @@
             1px -1px 0 black,
             -1px 1px 0 black,
             1px 1px 0 black;
-    margin: auto;
+    margin-left: 20px;
 }
 
 .header-menu-item:hover {

@@ -64,24 +64,22 @@ const Header = () => {
                     />
                 </div>
                 <Logo/>
-                <div className={`header-menu-items-container`}>
-                    <LinkItem
-                        title={`HOME`}
-                        url={homePath}
-                    />
-                    <LinkItem
-                        title={`CRYPTO`}
-                        url={cryptoPath}
-                    />
-                    <LinkItem
-                        title={`QUESTS`}
-                        url={questsPath}
-                    />
-                    <LinkItem
-                        title={`BLOG`}
-                        url={blogPath}
-                    />
-                </div>
+                <LinkItem
+                    title={`HOME`}
+                    url={homePath}
+                />
+                <LinkItem
+                    title={`CRYPTO`}
+                    url={cryptoPath}
+                />
+                <LinkItem
+                    title={`QUESTS`}
+                    url={questsPath}
+                />
+                <LinkItem
+                    title={`BLOG`}
+                    url={blogPath}
+                />
                 <ProfileData />
             </div>
         </div>
