@@ -1,33 +1,85 @@
+:root {
+    --text-primary-color: #fff;
+    --text-second-color: #7E7E80;
+    --Pixel-HB: "Pixel Operator HB";
+    --Pixel: "Pixel Operator";
+    --Pixel-HB-8: 'Pixel Operator Mono HB 8';
+}
+
 .footer-container {
-    height: 15vh;
+    height: 250px;
     width: 100%;
     background-color: black;
     display: flex;
-    justify-content: center;
     margin-top: 50px;
 }
 
 .footer-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.footer-left, .footer-right {
     width: 50%;
     height: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.disclaimer-header {
-    font-family: 'Hacked', sans-serif;
-    font-size: 1.5vw;
-    margin-bottom: 0;
-    margin-top: 2%;
+.footer-text {
+    text-align: left;
+    margin-left: 30px;
+    max-width: 75%;
 }
 
-.disclaimer-rights {
-    font-family: 'Pixel Operator Mono HB 8', sans-serif;
-    font-size: 0.6vw;
+.footer-description, .footer-disclaimer {
+    font-size: 18pt;
+    font-family: var(--Pixel), sans-serif;
+    color: var(--text-second-color);
 }
 
-.disclaimer-description {
-    font-size: 12pt;
-    font-family: 'Pixel Operator', sans-serif;
-    margin-left: 5%;
-    margin-right: 5%;
+.footer-description span {
+    color: var(--text-primary-color);
+    font-size: 20pt;
+    font-family: var(--Pixel-HB), sans-serif;
 }
+
+.footer-disclaimer-header {
+    margin-top: 20px;
+    font-size: 20pt;
+    font-family: var(--Pixel-HB), sans-serif;
+}
+
+.footer-links {
+    gap: 40px;
+    display: flex;
+}
+.footer-products-links, .footer-contact-links, .footer-social-links {
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--Pixel-HB), sans-serif;
+    font-size: 18pt;
+    color: var(--text-second-color);
+}
+.footer-products-container p, .footer-social-container p, .footer-contact-container p {
+    font-size: 20pt;
+    font-family: var(--Pixel-HB), sans-serif;
+    margin: 0 0 15px;
+}
+
+.footer-products-container, .footer-social-container, .footer-contact-container {
+    width: 150px;
+}
+
+.footer-rights {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    align-self: flex-end;
+    margin-top: auto;
+    font-size: 8pt;
+    font-family: var(--Pixel-HB-8), sans-serif;
+}
+
