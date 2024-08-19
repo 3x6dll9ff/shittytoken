@@ -1,14 +1,40 @@
+import {useState, useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {questPath} from "../../index.jsx";
-
+import userAPI from "../../global/scripts/user-api.js"
 import '../css/footer.css';
+import {cryptoPath, questsPath, blogPath} from '../../index.jsx'
+import {TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg, UserSvg} from '../assets/images/svg/svg_items.jsx'
 
-import {cryptoPath, questsPath, blogPath}from '../../index.jsx'
+const TodayUsers = () => {
+    const [todayUsers, setTodayUsers] = useState(0);
 
+    const updateOnline = () => {
+        userAPI.getOnline()
+            .then(response => {
+                setTodayUsers(response['count'])
+            })
+    }
 
+    useEffect(() => {
+        const interval = setInterval(updateOnline, 5000);
+        return () => clearInterval(interval);
+    })
 
-import { TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg } from '../assets/images/svg/svg_items.jsx'
+    useEffect(() => {
+        updateOnline()
+    },[])
 
+    return (
+        <div className={'footer-today-users-container'}>
+            <p>ONLINE</p>
+            <div className={'footer-social-link'}>
+                <UserSvg/>
+                {todayUsers}
+            </div>
+        </div>
+    );
+}
 
 const Footer = () => {
     const location = useLocation().pathname;
@@ -38,8 +64,7 @@ const Footer = () => {
                             DISCLAIMER
                         </div>
                         <div className={'footer-disclaimer'}>
-                            Investing in 'XXX' is risky and may lead to loss of capital. Nothing here is financial
-                            advice.
+                             Nothing here is financial advice.
                         </div>
                     </div>
                 </div>
@@ -85,6 +110,7 @@ const Footer = () => {
                             </div>
 
                         </div>
+                        <TodayUsers/>
                     </div>
                     <div className={'footer-rights'}>©2024 AntiSocial. All rights reserved.</div>
                 </div>
