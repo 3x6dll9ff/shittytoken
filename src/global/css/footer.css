@@ -83,3 +83,18 @@
     font-family: var(--Pixel-HB-8), sans-serif;
 }
 
+.footer-today-users-container p{
+    font-size: 20pt;
+    font-family: var(--Pixel-HB), sans-serif;
+    margin: 0 0 15px;
+    color: var(--text-primary-color);
+}
+
+.footer-today-users-container{
+    display: flex;
+    flex-direction: column;
+    font-family: var(--Pixel-HB), sans-serif;
+    font-size: 18pt;
+    color: var(--text-primary-color);
+    align-items: center;
+}
