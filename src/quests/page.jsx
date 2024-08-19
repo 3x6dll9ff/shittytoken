@@ -332,11 +332,11 @@ class Quests extends Component {
             <div className='welcome-banner-slider'>
                 <Swiper
                     modules={[Autoplay, Pagination]}
-                    spaceBetween={30}
-                    centeredSlides={true}
+                    spaceBetween={90}
+                    centeredSlides={false}
                     autoplay={{
                         delay: 3000,
-                        disableOnInteraction: false,
+                        disableOnInteraction: true,
                     }}
                     loop={true}
                     grabCursor={true}
