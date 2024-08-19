@@ -56,6 +56,14 @@ class UserAPI {
         }
     };
 
+    ping = async () => {
+        return await this.getJsonResponse('GET', 'json', null, ['ping']);
+    }
+
+    getOnline = async () => {
+        return await this.getJsonResponse('GET', 'json', null, ['users', 'get-online']);
+    }
+
     generateNonce = async (address) => {
         return await this.getJsonResponse('POST', 'json', null, ['auth', 'web3', 'generate-nonce'], {address: address});
     }
