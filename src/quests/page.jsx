@@ -326,51 +326,59 @@ class Quests extends Component {
                 companyName: "Polkadot",
                 companyLogo: company3CardPic,
                 link: "https://polkadot.network"
-            }
+            },
         ];
         return (
             <div className='welcome-banner-slider'>
-                <Swiper
-                    modules={[Autoplay, Pagination]}
-                    spaceBetween={30}
-                    centeredSlides={true}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
-                    loop={true}
-                    grabCursor={true}
-                    className='mySwiper'
-                >
-                    {slideDataWelcomeBanner.map((slide, index) => (
-                        <SwiperSlide key={index}>
-                            {this.renderSlide(
-                                slide.imageSrc,
-                                slide.altText,
-                                slide.title,
-                                slide.companyName,
-                                slide.companyLogo,
-                                slide.link
-                            )}
-                        </SwiperSlide>
+                <div className='slide-indicators'>
+                    {slideDataWelcomeBanner.map((_, index) => (
+                        <div key={index} className={`indicator ${this.state.activeSlide === index ? 'active' : ''}`}></div>
                     ))}
-                </Swiper>
+                </div>
+                <div className='welcome-banner-slider-swiper'>
+                    <Swiper
+                        modules={[Autoplay, Pagination]}
+                        spaceBetween={30}
+                        centeredSlides={false}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: true,
+                        }}
+                        loop={true}
+                        grabCursor={true}
+                        onSlideChange={(swiper) => this.setState({ activeSlide: swiper.realIndex })}
+                        className='mySwiper'
+                    >
+                        {slideDataWelcomeBanner.map((slide, index) => (
+                            <SwiperSlide key={index}>
+                                {this.renderSlide(
+                                    slide.imageSrc,
+                                    slide.altText,
+                                    slide.title,
+                                    slide.companyName,
+                                    slide.companyLogo,
+                                    slide.link
+                                )}
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         );
     }
 
     renderSlide(imageSrc, altText, title, companyName, companyLogo, link) {
         return (
-            <div className='slide'>
-                <a href={link} rel="noopener noreferrer" className='slide-img'>
+            <a href={link} rel="noopener noreferrer" target="_blank" className='slide'>
+                <div className='slide-img'>
                     <img src={imageSrc} alt={altText}/>
-                </a>
+                </div>
                 <div className='quests-pic-name-company'>
                     <img src={companyLogo} alt='pic-project'/>
                     <p>{companyName}</p>
                 </div>
                 <p className='quests-slide-text-name-quest'>{title}</p>
-            </div>
+            </a>
         );
     }
 
