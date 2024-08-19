@@ -7,7 +7,7 @@ import {cryptoPath, questsPath, blogPath}from '../../index.jsx'
 
 
 
-import { TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg } from '../../global/assets/images/svg/svg_items.jsx'
+import { TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg } from '../assets/images/svg/svg_items.jsx'
 
 
 const Footer = () => {
