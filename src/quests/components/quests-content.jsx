@@ -139,7 +139,7 @@ const renderContent = (props) => {
             <div className="quests-card-quests">
                 <Link to={`${questPath}/${slidesNewQuests.id}`} rel="noopener noreferrer">
                     <img src={slidesNewQuests.image} alt={`Slide ${index} Image`}
-                         className='quests-card-quests-main-pic'/>
+                        className='quests-card-quests-main-pic'/>
                     <div className="quests-card-quests-text">
                         <p>{slidesNewQuests.title}</p>
                     </div>
@@ -252,7 +252,7 @@ const renderContent = (props) => {
             </div>
             <div className='content-section-slider-new'>
                 <div className={`custom-button-prev ${isPrevButtonDisabled ? 'disabled' : ''}`}
-                     onClick={handlePrev}>
+                    onClick={handlePrev}>
                     <img src={arrow} alt="Back"/>
                 </div>
                 <div className="swiper-container">
