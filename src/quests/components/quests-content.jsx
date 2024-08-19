@@ -234,6 +234,37 @@ const renderContent = (props) => {
         },
     ];
 
+    const antiTokenData = [
+        {
+            title: 'ANTI-TOKEN',
+            isPrevButtonDisabled: isPrevButtonDisabledAnti,
+            isNextButtonDisabled: isNextButtonDisabledAnti,
+            handlePrev: handlePrevAnti,
+            handleNext: handleNextAnti,
+            handleSwiperSlideChange: handleSwiperSlideChangeAnti,
+            slides: slidesNewQuests,
+        },
+        {
+            title: 'anti-token',
+            isPrevButtonDisabled: isPrevButtonDisabledAnti,
+            isNextButtonDisabled: isNextButtonDisabledAnti,
+            handlePrev: handlePrevAnti,
+            handleNext: handleNextAnti,
+            handleSwiperSlideChange: handleSwiperSlideChangeAnti,
+            slides: slidesNewQuests,
+        },
+        {
+            title: 'ANTI-TOKEN',
+            isPrevButtonDisabled: isPrevButtonDisabledAnti,
+            isNextButtonDisabled: isNextButtonDisabledAnti,
+            handlePrev: handlePrevAnti,
+            handleNext: handleNextAnti,
+            handleSwiperSlideChange: handleSwiperSlideChangeAnti,
+            slides: slidesNewQuests,
+        },
+        // Add more objects here if needed
+    ];
+
     const slides_ecosystems = slidesDataEcosystems.map((slidesDataEcosystems, index) => (
         <SwiperSlide key={index}>
             <div className="quests-card-quests-ecosystems">
@@ -277,7 +308,6 @@ const renderContent = (props) => {
                                 slidesPerView: 1,
                                 spaceBetween: 0,
                             }
-
                         }}
                         onSlideChange={handleSwiperSlideChange}
                     >
@@ -336,52 +366,55 @@ const renderContent = (props) => {
                     <img src={arrow} alt="Next"/>
                 </div>
             </div>
-            <div className="content-section-text-anti">
-                <p>ANTI-TOKEN</p>
-            </div>
-            <div className='content-section-slider-new'>
-                <div
-                    className={`custom-button-prev ${isPrevButtonDisabledAnti ? 'disabled' : ''}`}
-                    onClick={handlePrevAnti}
-                >
-                    <img src={arrow} alt="Back"/>
+            {antiTokenData.map((data, index) => (
+                <div key={index}>
+                    <div className="content-section-text-anti">
+                        <p>{data.title}</p>
+                    </div>
+                    <div className='content-section-slider-new'>
+                        <div
+                            className={`custom-button-prev ${data.isPrevButtonDisabled ? 'disabled' : ''}`}
+                            onClick={() => handlePrev(data.id)}
+                        >
+                            <img src={arrow} alt="Back"/>
+                        </div>
+                        <div className="swiper-container">
+                            <Swiper
+                                ref={swiperRefAnti}
+                                slidesPerView={1}
+                                spaceBetween={0}
+                                breakpoints={{
+                                    1700: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 95,
+                                    },
+                                    1400: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 20,
+                                    },
+                                    1200: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                    },
+                                    768: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 0,
+                                    }
+                                }}
+                                onSlideChange={() => handleSwiperSlideChangeAnti(data.id)}
+                            >
+                                {slidesNewQuests}
+                            </Swiper>
+                        </div>
+                        <div
+                            className={`custom-button-next ${data.isNextButtonDisabled ? 'disabled' : ''}`}
+                            onClick={() => handleNext(data.id)}
+                        >
+                            <img src={arrow} alt="Next"/>
+                        </div>
+                    </div>
                 </div>
-                <div className="swiper-container">
-                    <Swiper
-                        ref={swiperRefAnti}
-                        slidesPerView={1}
-                        spaceBetween={0}
-                        breakpoints={{
-                            1700: {
-                                slidesPerView: 3,
-                                spaceBetween: 95,
-                            },
-                            1400: {
-                                slidesPerView: 3,
-                                spaceBetween: 20,
-                            },
-                            1200: {
-                                slidesPerView: 2,
-                                spaceBetween: 20,
-                            },
-                            768: {
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                            }
-
-                        }}
-                        onSlideChange={handleSwiperSlideChangeAnti}
-                    >
-                        {slidesNewQuests}
-                    </Swiper>
-                </div>
-                <div
-                    className={`custom-button-next ${isNextButtonDisabledAnti ? 'disabled' : ''}`}
-                    onClick={handleNextAnti}
-                >
-                    <img src={arrow} alt="Next"/>
-                </div>
-            </div>
+            ))}
         </div>
     );
 };

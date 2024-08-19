@@ -395,10 +395,17 @@ select {
   margin-top: -5px;
 }
 
+.sidebarProgressXP-score-points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .sidebarProgressXP-score-points-text {
   color: white;
   height: auto;
-  margin-left: 10px;
+  text-align: center;
 }
 
 .sidebarProgressXP-score-points-text p {
@@ -421,7 +428,7 @@ select {
 .sidebarProgressXP-score-points-arrowNext {
   width: 25px;
   height: 25px;
-  margin-left: 18px;
+  margin-left: auto;
 }
 
 .sidebarProgressXP-score-points-arrowNext img {
