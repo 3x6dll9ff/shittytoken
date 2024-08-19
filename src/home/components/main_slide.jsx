@@ -76,7 +76,7 @@ const MainSlide = ({alt = true}) => {
                             ANTI-SOCIAL
                         </p>
                         <p className='token-description'>
-                            C0in that n3v3r sl33ps
+                            Y0ur f1r5t 5t3p 1nt0 @n0nym1ty
                         </p>
                     </div>
                 </div>
