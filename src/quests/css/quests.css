@@ -214,13 +214,14 @@
 .quests-pic-name-company img {
   max-width: 30px;
   max-height: 30px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .quests-pic-name-company p {
   font-size: 24px;
   transition: font-size 0.3s ease;
   font-family: "Pixel Operator HB", sans-serif;
   margin: 0;
+  color: #A6A6A6;
 }
 
 .quests-slide-text-name-quest {
