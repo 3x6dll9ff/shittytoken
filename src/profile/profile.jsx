@@ -1,7 +1,8 @@
-import {Component} from "react";
+import {Component, useState} from "react";
 import Cookies from "js-cookie";
 import {homePath} from "../index.jsx";
 import userAPI from "../global/scripts/user-api.js";
+import PopupMenu from "../global/components/popup-menu.jsx";
 import LoadingScreen from "../global/components/loading-screen.jsx";
 import ProgressBar from "./components/progress_bar.jsx";
 import SeasonProgressBar from "./components/season_pass_bar.jsx";
@@ -21,9 +22,20 @@ class Profile extends Component {
         super(props);
         this.state = {
             userAccount: null,
+            isPopupVisible: false,
         };
         this.handleFileChange = this.handleFileChange.bind(this);
         this.updateUserAvatar = this.updateUserAvatar.bind(this);
+        this.handleClaimClick = this.handleClaimClick.bind(this);
+        this.handleClosePopup = this.handleClosePopup.bind(this);
+    }
+
+    handleClaimClick() {
+        this.setState({ isPopupVisible: true });
+    }
+
+    handleClosePopup() {
+        this.setState({ isPopupVisible: false });
     }
 
     async componentDidMount() {
@@ -112,10 +124,10 @@ class Profile extends Component {
                                         </div>
                                     </div>
                                     <div className="user-stat">
-                                        <div className="stat-title">Points</div>
+                                        <div className="stat-title">Quests</div>
                                         <div className="stat-content">
                                             <img src={docImage} width="11" height="15" alt="Icon"/>
-                                            <span>50</span>
+                                            <span>0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -167,8 +179,21 @@ class Profile extends Component {
                             <div className="profile-claim-block">
                                 <div className="profile-claim-text">Collect your reward!</div>
                                 <div className="profile-button-claim">
-                                    <div className="profile-button-claim-text">Claim</div>
+                                    <div
+                                        className="profile-button-claim-text"
+                                        onClick={this.handleClaimClick}>
+                                        Claim
+                                    </div>
                                 </div>
+                                {/* Вызов PopupMenu */}
+                                <PopupMenu
+                                    visible={this.state.isPopupVisible}
+                                    onClose={this.handleClosePopup}
+                                    title="Edit profile.exe"
+                                    style={{ /* кастомные стили, если нужно */ }}
+                                >
+                                    <div>Your popup content goes here...</div>
+                                </PopupMenu>
                             </div>
                         </div>
                     </div>

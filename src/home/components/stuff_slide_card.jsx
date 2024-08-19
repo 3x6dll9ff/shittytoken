@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/stuff.css';
 
 const Stuff_slide_card = ({signature, image, description_data}) => {
-    const {name, aka, age, location, role, nationality, balance, crimes} = description_data;
+    const {name, aka, age, location, nationality, balance, crimes} = description_data;
 
     return (
         <div className="card-container">
@@ -33,20 +33,17 @@ const Stuff_slide_card = ({signature, image, description_data}) => {
                     <p className='card-aka'>
                         Aka: <span className='card-green-text'>{aka}</span>
                     </p>
-                    <p className='card-age'>
-                        Age: <span className='card-green-text'>{age}</span>
-                    </p>
-                    <p className='card-location'>
-                        Location: <span className='card-green-text'>{location}</span>
-                    </p>
-                    <p className='card-role'>
-                        Role: <span className='card-green-text'>{role}</span>
-                    </p>
                     <p className='card-nationality'>
                         Nationality: <span className='card-green-text'>{nationality}</span>
                     </p>
+                    <p className='card-location'>
+                        Last Location: <span className='card-green-text'>{location}</span>
+                    </p>
                     <p className='card-balance'>
                         Estimated balance: <span className='card-green-text'>{balance}</span>
+                    </p>
+                    <p className='card-age'>
+                        Age: <span className='card-green-text'>{age}</span>
                     </p>
                     <div className='card-crimes'>
                         <p>CYBER VIOLATIONS</p>

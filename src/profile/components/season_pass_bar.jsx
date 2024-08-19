@@ -9,7 +9,7 @@ const SeasonProgressBar = ({initialSeasonProgress}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setPrevProgress(currentProgress);
-            setCurrentProgress((prev) => Math.min(prev + 1, 100)); // Увеличиваем прогресс на 1% каждую секунду
+            setCurrentProgress((prev) => Math.min(prev + 0, 100)); // Увеличиваем прогресс на 1% каждую секунду
         }, 1000);
 
         return () => clearInterval(interval);
