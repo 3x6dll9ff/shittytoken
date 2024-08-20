@@ -286,7 +286,7 @@ const ProfileData = () => {
 
         return (
             <div className={`header-data-container`}>
-                <DocsCounter userAccountExt={userAccount}/>
+                <DocsCounter userAccount={userAccount}/>
                 <PingWidget/>
                 <div
                     className={`header-data-profile-info-container ${profileExpanded ? 'expanded' : ''}`}
@@ -393,15 +393,16 @@ const Timer = ({grabTime, onFinish}) => {
     return formatTime();
 };
 
-const DocsCounter = ({userAccountExt}) => {
+const DocsCounter = ({userAccount}) => {
     const grabDocsButtonStates = {
         default: 'Grab docs',
         disabled: '...',
     }
 
+    const [currDocsCounter, setCurrDocsCounter] = useState(0);
+    const [maxDocsCounter, setMaxDocsCounter] = useState(0);
     const [docsCounterHovered, setDocsCounterHovered] = useState(false);
     const [docsDropdownVisible, setDocsDropdownVisible] = useState(false);
-    const [userAccount, setUserAccount] = useState(userAccountExt);
     const [docsStatus, setDocsStatus] = useState(null);
     const [grabDocsButtonDisabled, setGrabDocsButtonDisabled] = useState(true);
     const [grabDocsButtonHasTimer, setGrabDocsButtonHasTimer] = useState(false);
@@ -439,20 +440,32 @@ const DocsCounter = ({userAccountExt}) => {
         setGrabDocsButtonDisabled(true);
         const accessToken = Cookies.get('access_token');
         if (accessToken) {
-            userAPI.grabDocs(accessToken).then(() => {
-                userAPI.getUser(accessToken).then(account => setUserAccount(account))
-                updateDocsStatus(accessToken);
+            userAPI.grabDocs(accessToken).then(response => {
+                setDocsStatus(response);
+                setGrabDocsButtonHasTimer(true);
             })
         }
     }
 
     const handleTimerFinish = () => {
+        setGrabDocsButtonHasTimer(false);
         setGrabDocsButtonDisabled(false);
     }
 
     useEffect(() => {
         updateDocsStatus();
     }, []);
+
+    useEffect(() => {
+        let counterSource;
+        if (docsStatus && docsStatus['curr_docs_streak']) {
+            counterSource = docsStatus;
+        } else {
+            counterSource = userAccount;
+        }
+        setCurrDocsCounter(counterSource['curr_docs_streak']);
+        setMaxDocsCounter(counterSource['max_docs_streak']);
+    });
 
     return (
         <div
@@ -464,7 +477,7 @@ const DocsCounter = ({userAccountExt}) => {
                 src={docs_icon}
                 alt={`docs counter icon`}
             />
-            <span>{userAccount['curr_docs_streak']}</span>
+            <span>{currDocsCounter}</span>
 
             {docsCounterHovered || docsDropdownVisible ? (
                 <div
@@ -477,7 +490,7 @@ const DocsCounter = ({userAccountExt}) => {
                             src={docs_icon}
                             alt={`docs icon`}
                         />
-                        <div>{userAccount['max_docs_streak']}</div>
+                        <div>{maxDocsCounter}</div>
                     </div>
                     <button
                         className={grabDocsButtonDisabled ? 'disabled' : ''}
