@@ -98,3 +98,14 @@
     color: var(--text-primary-color);
     align-items: center;
 }
+
+
+.footer-user-link {
+    flex-direction: row;
+    color: var(--text-primary-color);
+}
+
+.footer-user-link .today-users-text {
+    margin-top: -5px;
+    margin-left: -10px;
+}
