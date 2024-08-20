@@ -7,7 +7,7 @@ import {
     LinearScale,
     PointElement
 } from "chart.js";
-import LoadingScreen from "../global/components/loading-screen.jsx";
+import LoadingScreen from "../global/components/loading-screen/component.jsx";
 import {dataLoaded} from "../global/scripts/utils.js";
 import CoinView from "./components/coin-view.jsx";
 import coinStatsAPI from "./scripts/crypto-api.js";
@@ -15,7 +15,7 @@ import CurrencyFormat from "./scripts/currency-format.js";
 import {positivePercentage, widgetColor, arrowDirection} from "./scripts/utils.js";
 
 import "./css/crypto.css";
-import "./css/loading.css";
+import "../global/components/loading-screen/css/loading-screen.css";
 
 
 class Crypto extends Component {

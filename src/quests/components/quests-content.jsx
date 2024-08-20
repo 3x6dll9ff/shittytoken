@@ -3,7 +3,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import {Link} from 'react-router-dom';
 import {Pagination, Navigation} from 'swiper/modules';
 import SwiperCore from 'swiper';
-import {questPath} from "../../index.jsx";
+import {questsPath} from "../../index.jsx";
 
 //Services pics
 import arrow from '../assets/images/services-pics/arrow.png';
@@ -60,7 +60,7 @@ const renderContent = (props) => {
 
     const slidesDataNewQuests = [
         {
-            mainLink: questPath,
+            mainLink: questsPath,
             image: questCard1QuestPic,
             title: 'Stablecoin Yields on Optimism',
             tasks: '7 tasks',
@@ -137,7 +137,7 @@ const renderContent = (props) => {
     const slidesNewQuests = slidesDataNewQuests.map((slidesNewQuests, index) => (
         <SwiperSlide key={index}>
             <div className="quests-card-quests">
-                <Link to={`${questPath}/${slidesNewQuests.id}`} rel="noopener noreferrer">
+                <Link to={`${questsPath}/${slidesNewQuests.id}`} rel="noopener noreferrer">
                     <img src={slidesNewQuests.image} alt={`Slide ${index} Image`}
                          className='quests-card-quests-main-pic'/>
                     <div className="quests-card-quests-text">

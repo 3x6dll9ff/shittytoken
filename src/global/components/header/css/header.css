@@ -119,6 +119,7 @@
     user-select: none;
 }
 
+.header-menu-item:active,
 .header-menu-item.active {
     color: #333333;
     transform: translateY(1px);
@@ -128,61 +129,132 @@
     cursor: var(--not-allowed);
 }
 
-.header-profile-data-container {
+.header-data-container {
     width: auto;
     height: 75px;
     flex: 1;
+    gap: 20px;
     display: flex;
     margin-right: 20px;
     align-items: start;
     justify-content: right;
 }
 
-.header-profile-docs-counter {
-    width: 85px;
-    height: 100%;
+.header-data-profile-docs-counter,
+.header-data-ping-widget,
+.header-data-profile-docs-counter-dropdown div {
+    height: 24px;
     display: flex;
+    align-self: center;
     align-items: center;
-    text-align: center;
     justify-content: center;
+    gap: 5px;
 }
 
-.header-profile-docs-counter-icon {
-    width: 18px;
-    aspect-ratio: 3/4;
+.header-data-profile-docs-counter img,
+.header-data-ping-widget img {
+    width: 24px;
+    aspect-ratio: 1;
+    object-fit: contain;
 }
 
-.header-profile-docs-counter-text {
+.header-data-profile-docs-counter span,
+.header-data-profile-docs-counter-dropdown-max-docs div,
+.header-data-ping-widget div {
     font-family: "Pixel Operator 8", sans-serif;
     font-size: 14pt;
-    margin-left: 5px;
+    transform: translateY(2px);
+}
+
+.header-data-profile-docs-counter {
+    padding-bottom: calc((75px - 24px) / 2);
+    position: relative;
+    transform: translateY(calc((75px - 24px) / 4));
+}
+
+.header-data-profile-docs-counter,
+.header-data-profile-docs-counter img,
+.header-data-profile-docs-counter span {
+    cursor: var(--pointer);
+}
+
+.header-data-profile-docs-counter-dropdown {
+    background-color: #000000;
+    border-left: solid 2px #FFFFFF;
+    border-bottom: solid 2px #FFFFFF;
+    border-right: solid 2px #FFFFFF;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: calc(75px - (75px - 24px) / 2);
+    gap: 10px;
+}
+
+.header-data-profile-docs-counter-dropdown p {
+    font-family: "Pixel Operator HB", sans-serif;
+    font-size: 16pt;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.header-data-profile-docs-counter-dropdown button {
+    background-color: #FFFFFF;
+    border: none;
+    font-family: "Pixel Operator SC", sans-serif;
+    font-size: 16pt;
+    color: #000000;
+    width: 75%;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.header-data-profile-docs-counter-dropdown button:hover {
+    background-color: #777777;
+    cursor: var(--pointer);
+}
+
+.header-data-profile-docs-counter-dropdown button:active,
+.header-data-profile-docs-counter-dropdown button.disabled {
+    background-color: #333333;
     transform: translateY(1px);
 }
 
-.header-profile-wallet-button {
+.header-data-ping-widget {
+    gap: 10px;
+}
+
+.header-data-ping-widget div span {
+    font-size: 12pt;
+}
+
+.header-data-connect-wallet-button {
     background-color: #FFFFFF;
     color: #000000;
     font-family: "Pixel Operator HB SC", sans-serif;
     font-size: 22pt;
     width: 230px;
     height: 50px;
-    margin: 12.5px 20px;
+    margin: 12.5px 20px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.header-profile-wallet-button:hover {
+.header-data-connect-wallet-button:hover {
     background-color: #777777;
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-button:active {
+.header-data-connect-wallet-button:active {
     background-color: #333333;
     transform: translateY(1px);
 }
 
-.header-profile-wallet-popup-button {
+.header-data-popup-connect-wallet-button {
     border: solid 2px #FFFFFF;
     flex: 1;
     height: 70px;
@@ -193,21 +265,21 @@
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-popup-button:hover {
+.header-data-popup-connect-wallet-button:hover {
     opacity: 50%;
 }
 
-.header-profile-wallet-popup-button:active {
+.header-data-popup-connect-wallet-button:active {
     opacity: 25%;
     transform: translateY(1px);
 }
 
-.header-profile-wallet-popup-button.disabled {
+.header-data-popup-connect-wallet-button.disabled {
     cursor: var(--default);
     opacity: 25%;
 }
 
-.header-profile-wallet-popup-button-icon-container {
+.header-data-popup-connect-wallet-button-icon-container {
     width: 70px;
     aspect-ratio: 1;
     position: relative;
@@ -216,7 +288,7 @@
     justify-content: center;
 }
 
-.header-profile-wallet-popup-button-icon {
+.header-data-popup-connect-wallet-button-icon {
     width: 46px;
     aspect-ratio: 1;
     position: absolute;
@@ -224,23 +296,23 @@
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-popup-button-icon.left {
+.header-data-popup-connect-wallet-button-icon.left {
     width: 40px;
     top: 10%;
     left: 2.5%;
 }
 
-.header-profile-wallet-popup-button-icon.right {
+.header-data-popup-connect-wallet-button-icon.right {
     width: 36px;
     top: 25%;
     left: 22.5%;
 }
 
-.header-profile-wallet-popup-button-icon.disabled {
+.header-data-popup-connect-wallet-button-icon.disabled {
     cursor: var(--default);
 }
 
-.header-profile-wallet-popup-button-wallet-name-text-container {
+.header-data-popup-connect-wallet-button-wallet-name-container {
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -249,22 +321,22 @@
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-popup-button-wallet-name-text-container.disabled {
+.header-data-popup-connect-wallet-button-wallet-name-container.disabled {
     cursor: var(--default);
 }
 
-.header-profile-wallet-popup-button-wallet-name-text {
+.header-data-popup-connect-wallet-button-wallet-name {
     font-family: "Pixel Operator SC", sans-serif;
     font-size: 26pt;
     justify-content: flex-start;
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-popup-button-wallet-name-text.disabled {
+.header-data-popup-connect-wallet-button-wallet-name.disabled {
     cursor: var(--default);
 }
 
-.header-profile-wallet-popup-button-wallet-status-text {
+.header-data-popup-connect-wallet-button-wallet-status {
     font-family: "Pixel Operator SC", sans-serif;
     font-size: 16pt;
     padding: 0 5px;
@@ -272,18 +344,18 @@
     cursor: var(--pointer);
 }
 
-.header-profile-wallet-popup-button-wallet-status-text.green {
+.header-data-popup-connect-wallet-button-wallet-status.green {
     background-color: rgba(0, 255, 0, 0.25);
     color: #00FF00;
 }
 
-.header-profile-wallet-popup-button-wallet-status-text.red {
+.header-data-popup-connect-wallet-button-wallet-status.red {
     background-color: rgba(255, 0, 0, 0.25);
     color: #FF0000;
     cursor: var(--default);
 }
 
-.header-profile-info-container {
+.header-data-profile-info-container {
     background-color: #000000;
     width: 72px;
     height: 62.5px;
@@ -293,17 +365,17 @@
     z-index: 1;
 }
 
-.header-profile-info-container.expanded {
+.header-data-profile-info-container.expanded {
     width: 300px;
     height: fit-content;
     border-left: solid 2px #FFFFFF;
     border-bottom: solid 2px #FFFFFF;
-    .header-profile-info {
+    .header-data-profile-info {
         margin: 12.5px 20px;
     }
 }
 
-.header-profile-info {
+.header-data-profile-info {
     display: flex;
     align-items: start;
     justify-content: right;
@@ -311,71 +383,65 @@
     overflow: clip;
 }
 
-.header-profile-info-text-container {
+.header-data-profile-info-text-container {
     height: 50px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.header-profile-info-username {
+.header-data-profile-info-username {
     font-size: 16pt;
 }
 
-.header-profile-info-wallet-address {
+.header-data-profile-info-wallet-address {
     color: #777777;
     font-size: 13pt;
 }
 
-.header-profile-info-button {
-    min-width: 52px;
+.header-data-profile-info-button {
+    width: 50px;
     height: 50px;
     display: flex;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
     background-color: white;
     z-index: 2;
     box-sizing: border-box;
     padding: 2px;
 }
 
-.header-profile-info-button:hover,
-.header-profile-info-picture:hover {
-    background-color: #777777;
+.header-data-profile-info-button:hover,
+.header-data-profile-info-picture:hover {
     cursor: var(--pointer);
-    .header-profile-info-picture {
+    .header-data-profile-info-picture {
         opacity: 50%;
     }
 }
 
-.header-profile-info-button:active {
+.header-data-profile-info-button:active {
     background-color: #333333;
     transform: translateY(1px);
 }
 
-.header-profile-info-picture-bg {
+.header-data-profile-info-picture-bg {
     background-color: #000000;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
     top: 0;
     left: 0;
     z-index: 3;
     box-sizing: border-box;
-    transform: translate(1px, 1px);
 }
 
-.header-profile-info-picture {
+.header-data-profile-info-picture {
     width: 100%;
     height: 100%;
 }
 
-.header-profile-info-menu-buttons-container {
+.header-data-profile-info-menu-buttons-container {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.header-profile-info-menu-button {
+.header-data-profile-info-menu-button {
     width: 100%;
     height: 45px;
     display: flex;
@@ -385,35 +451,35 @@
     justify-content: left;
 }
 
-.header-profile-info-menu-button.alt {
+.header-data-profile-info-menu-button.alt {
     justify-content: center;
     margin-bottom: 9px;
     padding-left: 0;
 }
 
-.header-profile-info-menu-button:hover,
-.header-profile-info-menu-button-icon:hover,
-.header-profile-info-menu-button-text:hover {
-    .header-profile-info-menu-button-text {
+.header-data-profile-info-menu-button:hover,
+.header-data-profile-info-menu-button-icon:hover,
+.header-data-profile-info-menu-button-text:hover {
+    .header-data-profile-info-menu-button-text {
         color: #777777;
     }
-    .header-profile-info-menu-button-icon {
+    .header-data-profile-info-menu-button-icon {
         opacity: 50%;
     }
     cursor: var(--pointer);
 }
 
-.header-profile-info-menu-button-icon {
+.header-data-profile-info-menu-button-icon {
     width: 24px;
     height: max-content;
 }
 
-.header-profile-info-menu-button-text {
+.header-data-profile-info-menu-button-text {
     font-size: 14pt;
     margin-left: 20px;
 }
 
-.header-profile-info-menu-separator {
+.header-data-profile-info-menu-separator {
     background-color: #FFFFFF;
     width: 100%;
     height: 2px;

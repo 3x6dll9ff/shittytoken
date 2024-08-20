@@ -7,7 +7,7 @@ import {
     LinearScale,
     PointElement
 } from 'chart.js';
-import PopupMenu from "../../global/components/popup-menu.jsx";
+import PopupMenu from "../../global/components/popup-menu/component.jsx";
 import coinStatsAPI from "../scripts/crypto-api.js";
 import CurrencyFormat from "../scripts/currency-format.js";
 import {arrowDirection, positivePercentage, widgetColor} from '../scripts/utils.js';

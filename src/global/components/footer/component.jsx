@@ -1,17 +1,16 @@
 import {useLocation} from "react-router-dom";
-import {questPath} from "../../index.jsx";
+import {questsPath} from "../../../index.jsx";
 
-import '../css/footer.css';
+import './css/footer.css';
 
 
 const Footer = () => {
     const location = useLocation().pathname;
-    const links_blacklist = [questPath]
+    const links_blacklist = [questsPath]
 
     for (const link in links_blacklist) {
         if (
             location.includes(`${links_blacklist[link]}/`)
-            || location.endsWith(`${links_blacklist[link]}`)
         ) {
             return null;
         }

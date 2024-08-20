@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
-import "../css/popup-menu.css";
-import close_icon from "../../global/assets/images/close-icon.png";
+import "./css/popup-menu.css";
+import close_icon from "./assets/images/close-icon.png";
 
 const PopupMenu = ({visible, onClose, title, style = {}, children}) => {
     const popupRef = useRef(null);

@@ -2,8 +2,8 @@ import {Component, useState} from "react";
 import Cookies from "js-cookie";
 import {homePath} from "../index.jsx";
 import userAPI from "../global/scripts/user-api.js";
-import PopupMenu from "../global/components/popup-menu.jsx";
-import LoadingScreen from "../global/components/loading-screen.jsx";
+import PopupMenu from "../global/components/popup-menu/component.jsx";
+import LoadingScreen from "../global/components/loading-screen/component.jsx";
 import ProgressBar from "./components/progress_bar.jsx";
 import SeasonProgressBar from "./components/season_pass_bar.jsx";
 import Achievements from "./components/achievements_view.jsx";
@@ -52,14 +52,15 @@ class Profile extends Component {
     async updateUserAvatar(file) {
         try {
             const accessToken = Cookies.get('access_token');
-
-            const reader = new FileReader();
-            reader.onloadend = async () => {
-                const base64Image = reader.result.split(',')[1];
-                await userAPI.uploadUserAvatar(accessToken, base64Image);
-                window.location.reload();
-            };
-            reader.readAsDataURL(file);
+            if (accessToken) {
+                const reader = new FileReader();
+                reader.onloadend = async () => {
+                    const base64Image = reader.result.split(',')[1];
+                    await userAPI.uploadUserAvatar(accessToken, base64Image);
+                    window.location.reload();
+                };
+                reader.readAsDataURL(file);
+            }
         } catch (error) {
             console.error("Error uploading avatar:", error);
         }
