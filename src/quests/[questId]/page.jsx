@@ -87,9 +87,9 @@ const Quest = () => {
                     <div className='quest-tasks-page-left-section-description'>
                         <div className='quest-tasks-page-left-section-description-pic'>
                             <Link className='quest-tasks-page-left-section-description-pic-link' to={''}
-                                  rel="noopener noreferrer">
+                                rel="noopener noreferrer">
                                 <img className="leftSectionLogoCompanyTasks" src={leftSectionLogoCompanyTasks}
-                                     alt='leftSectionLogoCompanyTasks'/>
+                                    alt='leftSectionLogoCompanyTasks'/>
                             </Link>
                         </div>
                         <div className='quest-tasks-page-left-section-description-text'>
@@ -107,7 +107,7 @@ const Quest = () => {
                         </div>
                         <div className='quest-tasks-page-left-section-description-chain-level'>
                             <Link className='quest-tasks-page-left-section-description-chain-link' to={''}
-                                  rel="noopener noreferrer">
+                                rel="noopener noreferrer">
                                 <img className="pic-chain" src={leftSectionLogoCompanyTasks} alt='picChain'/>
                                 <p className="text-chain">
                                     Avalanche
