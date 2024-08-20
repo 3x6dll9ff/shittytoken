@@ -26,13 +26,13 @@ const TodayUsers = () => {
 
     return (
         <div className={'footer-today-users-container'}>
-            <p>ONLINE</p>
-            <div className={'footer-social-link'}>
+            <p>DAILY ONLINE</p>
+            <div className={'footer-social-links footer-user-link'}>
                 <UserSvg/>
-                {todayUsers}
+                <span className="today-users-text">{todayUsers}</span>
             </div>
         </div>
-    );
+);
 }
 
 const Footer = () => {
