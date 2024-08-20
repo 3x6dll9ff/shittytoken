@@ -56,10 +56,6 @@ class UserAPI {
         }
     };
 
-    ping = async () => {
-        return await this.getJsonResponse('GET', 'json', null, ['ping']);
-    }
-
     getOnline = async () => {
         return await this.getJsonResponse('GET', 'json', null, ['users', 'get-online']);
     }
