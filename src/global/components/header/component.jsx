@@ -439,13 +439,9 @@ const DocsCounter = ({userAccountExt}) => {
         setGrabDocsButtonDisabled(true);
         const accessToken = Cookies.get('access_token');
         if (accessToken) {
-            userAPI.grabDocs(accessToken).then(response => {
+            userAPI.grabDocs(accessToken).then(() => {
                 userAPI.getUser(accessToken).then(account => setUserAccount(account))
-                if (response['success']) {
-                    setGrabDocsButtonDisabled(false);
-                } else {
-                    updateDocsStatus(accessToken);
-                }
+                updateDocsStatus(accessToken);
             })
         }
     }
@@ -506,24 +502,22 @@ const DocsCounter = ({userAccountExt}) => {
 }
 
 const PingWidget = () => {
-    const pingSite = () => {
-        const startTime = performance.now();
-        fetch(window.location.origin, {method: 'HEAD', mode: 'no-cors'}).then();
-        return performance.now() - startTime; // ping
-    }
-
     const updatePing = () => {
-        setPing(pingSite().toFixed(0));
+        const startTime = performance.now();
+        fetch(window.location.origin, {method: 'HEAD', mode: 'no-cors'})
+            .then(() => {
+                setPing((performance.now() - startTime).toFixed(0));
 
-        if (ping < 150) {
-            setPingIcon(network_icon_1);
-        } else if (ping < 300) {
-            setPingIcon(network_icon_2);
-        } else if (ping < 1000) {
-            setPingIcon(network_icon_3);
-        } else {
-            setPingIcon(network_icon_0);
-        }
+                if (ping < 150) {
+                    setPingIcon(network_icon_1);
+                } else if (ping < 300) {
+                    setPingIcon(network_icon_2);
+                } else if (ping < 1000) {
+                    setPingIcon(network_icon_3);
+                } else {
+                    setPingIcon(network_icon_0);
+                }
+            });
     }
 
     const [ping, setPing] = useState(null);
