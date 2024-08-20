@@ -3,7 +3,7 @@ import {Link, useLocation} from "react-router-dom";
 import userAPI from "../../../global/scripts/user-api.js"
 import './css/footer.css';
 import {cryptoPath, questsPath, blogPath} from '../../../index.jsx'
-import {TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg, UserSvg} from '../../assets/images/svg/svg_items.jsx'
+import {TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg, UserSvg} from './assets/images/svg/svg_items.jsx'
 
 const TodayUsers = () => {
     const [todayUsers, setTodayUsers] = useState(0);
