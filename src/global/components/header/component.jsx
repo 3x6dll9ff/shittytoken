@@ -506,13 +506,14 @@ const PingWidget = () => {
         const startTime = performance.now();
         fetch(window.location.origin, {method: 'HEAD', mode: 'no-cors'})
             .then(() => {
-                setPing((performance.now() - startTime).toFixed(0));
+                const ping = (performance.now() - startTime).toFixed(0)
+                setPing(ping);
 
-                if (ping < 150) {
+                if (ping < 1000) {
                     setPingIcon(network_icon_1);
-                } else if (ping < 300) {
+                } else if (ping < 1500) {
                     setPingIcon(network_icon_2);
-                } else if (ping < 1000) {
+                } else if (ping < 2000) {
                     setPingIcon(network_icon_3);
                 } else {
                     setPingIcon(network_icon_0);
