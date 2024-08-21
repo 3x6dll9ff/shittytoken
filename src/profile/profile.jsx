@@ -1,4 +1,4 @@
-import {Component, useState} from "react";
+import {Component} from "react";
 import Cookies from "js-cookie";
 import {homePath} from "../index.jsx";
 import userAPI from "../global/scripts/user-api.js";
