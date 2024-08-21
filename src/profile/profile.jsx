@@ -23,7 +23,7 @@ class Profile extends Component {
         this.state = {
             userAccount: null,
             isPopupVisible: false,
-        };
+        };  
         this.handleFileChange = this.handleFileChange.bind(this);
         this.updateUserAvatar = this.updateUserAvatar.bind(this);
         this.handleClaimClick = this.handleClaimClick.bind(this);
@@ -94,18 +94,11 @@ class Profile extends Component {
                     <div className="id-container">
                         <div className="header-id">ID CARD</div>
                         <div className="id-block">
-                            <div className={`avatar-profile`}>
                                 <img
+                                    className={`avatar-profile`}
                                     src={userAvatar}
                                     alt="Avatar"
                                 />
-                                <div
-                                    className="avatar-profile-fill"
-                                    onClick={() => this.fileInput.click()}
-                                >
-                                    Edit
-                                </div>
-                            </div>
                             <input
                                 type="file"
                                 accept="image/png, image/jpeg"
@@ -193,7 +186,35 @@ class Profile extends Component {
                                     title="Edit profile.exe"
                                     style={{ /* кастомные стили, если нужно */ }}
                                 >
-                                    <div>Your popup content goes here...</div>
+                                    <div className={'profile-edit-profile-popup-content'}>
+                                        <div className={'edit-profile'}>
+                                            <div className={`avatar-profile-edit `}>
+                                                <img
+                                                    src={userAvatar}
+                                                    alt="Avatar"
+                                                />
+                                                <div
+                                                    className="avatar-profile-fill"
+                                                    onClick={() => this.fileInput.click()}
+                                                >
+                                                    Edit
+                                                </div>
+
+                                            </div>
+                                            <div className={'profile-edit-info'}>
+                                                <div className={'profile-edit-name_info'}>
+                                                    <p>NAME: wbtc</p>
+                                                </div>
+                                                <div className="profile-edit-name_info profile-edit-wallet"> WALLET: {formatWalletAddress(userAddress)}</div>
+                                            </div>
+                                        </div>
+                                        <div className={'profile-connected-wallets'}>
+                                            wallet connect view
+                                        </div>
+                                        <div className={'profile-edit-buttons'}>
+                                        save cancle
+                                        </div>
+                                    </div>
                                 </PopupMenu>
                             </div>
                         </div>
@@ -212,7 +233,7 @@ class Profile extends Component {
                                 </div>
 
                                 <div className="unlocked-achievements-header">
-                                    Unlocked achievements:
+                                Unlocked achievements:
                                 </div>
                                 <Achievements/>
                                 <Achievements/>
@@ -226,6 +247,37 @@ class Profile extends Component {
                                 <Achievements locked={true}/>
                                 <Achievements locked={true}/>
                                 <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+                                <Achievements locked={true}/>
+
+
                             </div>
                         </div>
                     </div>
