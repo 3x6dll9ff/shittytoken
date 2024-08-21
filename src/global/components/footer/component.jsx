@@ -71,23 +71,23 @@ const Footer = () => {
                         <div className={'footer-products-container'}>
                             <p>PRODUCTS</p>
                             <div className={'footer-products-links'}>
-                                <Link to={cryptoPath} className={'footer-products-link'}>Crypto</Link>
-                                <Link to={questsPath} className={"footer-products-link"}>Quests</Link>
-                                <Link to={blogPath} className={"footer-products-link"}>Blog</Link>
+                                <Link to={cryptoPath} className={'footer-products-link-crypto'}>Crypto</Link>
+                                <Link to={questsPath} className={"footer-products-link-quests"}>Quests</Link>
+                                <Link to={blogPath} className={"footer-products-link-blog"}>Blog</Link>
                             </div>
                         </div>
                         <div className={'footer-social-container'}>
                             <p>FOLLOW US</p>
                             <div className={'footer-social-links'}>
-                                <a href={'https://t.me/anti_social_community'} className={'footer-social-link'}>
+                                <a href={'https://t.me/anti_social_community'} className={'footer-social-link-telegram'}>
                                     <TelegramSvg/>
                                     Telegram
                                 </a>
-                                <a href={'https://discord.gg/WCnEHUBu5P'} className={"footer-social-link"}>
+                                <a href={'https://discord.gg/6FGf4vMdHy'} className={"footer-social-link-discord"}>
                                     <DiscordSvg/>
                                     Discord
                                 </a>
-                                <a href={'https://x.com/AntiSocial_cmty'} className={"footer-social-link"}>
+                                <a href={'https://x.com/AntiSocial_cmty'} className={"footer-social-link-twitter"}>
                                     <XSvg/>
                                     Twitter
                                 </a>
@@ -97,11 +97,11 @@ const Footer = () => {
                         <div className={'footer-contact-container'}>
                             <p>CONTACT US</p>
                             <div className={'footer-contact-links'}>
-                                <a href={'mailto:xetokky@gmail.com'} className={'footer-social-link'}>
+                                <a href={'mailto:xetokky@gmail.com'} className={'footer-social-link-email'}>
                                     <MailSvg/>
                                     Email
                                 </a>
-                                <a href={'https://discord.gg/WCnEHUBu5P'} className={"footer-social-link"}>
+                                <a href={'https://discord.gg/WCnEHUBu5P'} className={"footer-social-link-support"}>
                                     <SupportSvg/>
                                     Support
                                 </a>
