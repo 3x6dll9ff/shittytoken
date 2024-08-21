@@ -99,13 +99,6 @@ class Profile extends Component {
                                     src={userAvatar}
                                     alt="Avatar"
                                 />
-                            <input
-                                type="file"
-                                accept="image/png, image/jpeg"
-                                style={{display: 'none'}}
-                                ref={input => this.fileInput = input}
-                                onChange={this.handleFileChange}
-                            />
                             <div className="profile-details">
                                 <div className="name-profile">{formatWalletAddress(username)}</div>
                                 <div className="wallet-profile"> {formatWalletAddress(userAddress)}</div>
@@ -117,7 +110,7 @@ class Profile extends Component {
                                             <span>{userMaxDocs}</span>
                                         </div>
                                     </div>
-                                    <div className="user-stat">
+                                    <div className="user-stat"> {/*TODO: заменить картинку для квестов*/}
                                         <div className="stat-title">Quests</div>
                                         <div className="stat-content">
                                             <img src={docImage} width="11" height="15" alt="Icon"/>
@@ -130,7 +123,7 @@ class Profile extends Component {
                                 <div className="pentagon-container">
                                     <div className="pentagon-white">
                                         <div className="pentagon-black">
-                                            <div className="grade-number">1</div>
+                                            <div className="grade-number">1</div> {/*todo: подвязать к беку*/}
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +145,7 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className="season-progress-bar-container">
-                                    <SeasonProgressBar initialSeasonProgress={50}/>
+                                    <SeasonProgressBar initialSeasonProgress={50}/> {/*todo: get data from be*/}
                                 </div>
                                 <div className="season-pentagon-container pentagon-middle">
                                     <div className="pentagon-middle-white">
@@ -184,7 +177,6 @@ class Profile extends Component {
                                     visible={this.state.isPopupVisible}
                                     onClose={this.handleClosePopup}
                                     title="Edit profile.exe"
-                                    style={{ /* кастомные стили, если нужно */ }}
                                 >
                                     <div className={'profile-edit-profile-popup-content'}>
                                         <div className={'edit-profile'}>
@@ -199,7 +191,13 @@ class Profile extends Component {
                                                 >
                                                     Edit
                                                 </div>
-
+                                                <input
+                                                    type="file"
+                                                    accept="image/png, image/jpeg"
+                                                    style={{display: 'none'}}
+                                                    ref={input => this.fileInput = input}
+                                                    onChange={this.handleFileChange}
+                                                />
                                             </div>
                                             <div className={'profile-edit-info'}>
                                                 <div className={'profile-edit-name_info'}>
@@ -276,8 +274,6 @@ class Profile extends Component {
                                 <Achievements locked={true}/>
                                 <Achievements locked={true}/>
                                 <Achievements locked={true}/>
-
-
                             </div>
                         </div>
                     </div>
