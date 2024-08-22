@@ -1,7 +1,5 @@
-import {Component, useState, useEffect} from "react";
+import {Component} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Cookies from "js-cookie";
-import userAPI from "./global/scripts/user-api.js";
 import SmallScreenAlert from "./global/components/small-screen-alert/component.jsx";
 import Header from "./global/components/header/component.jsx";
 import Footer from "./global/components/footer/component.jsx";
@@ -9,7 +7,7 @@ import Home from "./home/page.jsx";
 import Crypto from "./crypto/page.jsx";
 import Quests from "./quests/page.jsx";
 import Blog from "./blog/page.jsx";
-import Profile from "./profile/profile.jsx";
+import Profile from "./profile/page.jsx";
 import Quest from "./quests/[questId]/page.jsx";
 
 import "./index.css";
@@ -32,17 +30,6 @@ const getCursorPosition = () => {
 };
 
 export default class App extends Component {
-    async componentDidMount() {
-        const accessToken = Cookies.get('access_token');
-        if (accessToken) {
-            const tokenIdValidJson = await userAPI.authIsValid(accessToken);
-            const tokenIdValid = tokenIdValidJson['is_valid'];
-            if (!tokenIdValid) {
-                Cookies.remove('access_token');
-            }
-        }
-    }
-
     render() {
         return (
             <>
