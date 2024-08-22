@@ -8,7 +8,6 @@ class UserAPI {
         const options = {
             method: method,
             headers: {
-                'Content-Type': 'application/json',
                 accept: acceptOptions[acceptOption],
             }
         }
@@ -16,6 +15,7 @@ class UserAPI {
             options.headers['Authorization'] = `Bearer ${token}`;
         }
         if (body) {
+            options.headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(body);
         }
         return options;
@@ -30,9 +30,9 @@ class UserAPI {
     };
 
     getJsonResponse = async (
-        method = 'GET',
-        acceptOption = 'json',
-        token = null,
+        method,
+        acceptOption,
+        token,
         args,
         params = null,
         body = null
@@ -57,66 +57,145 @@ class UserAPI {
     };
 
     getOnline = async () => {
-        return await this.getJsonResponse('GET', 'json', null, ['users', 'get-online']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['users', 'get-online']
+        );
     }
 
     generateNonce = async (address) => {
-        return await this.getJsonResponse('POST', 'json', null, ['auth', 'web3', 'generate-nonce'], {address: address});
+        return await this.getJsonResponse(
+            'POST',
+            'json',
+            null,
+            ['auth', 'web3', 'generate-nonce'],
+            {address: address}
+        );
     }
 
-    verifySignature = async (tempToken, signature) => {
-        return await this.getJsonResponse('POST', 'json', null, ['auth', 'web3', 'verify-signature'], {
-            temp_token: tempToken,
-            signature: signature
-        });
+    verifySignature = async (tempToken, signature, type) => {
+        return await this.getJsonResponse(
+            'POST',
+            'json',
+            null,
+            ['auth', 'web3', 'verify-signature'],
+            {type: type},
+            {
+                temp_token: tempToken,
+                signature: signature
+            }
+        );
     }
 
     authIsValid = async (token) => {
-        return await this.getJsonResponse('GET', 'json', token, ['auth', 'web3', 'is-valid']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            token,
+            ['auth', 'web3', 'is-valid']
+        );
     }
 
     deactivateToken = async (token) => {
-        return await this.getJsonResponse('DELETE', 'json', token, ['auth', 'web3', 'deactivate']);
+        return await this.getJsonResponse(
+            'DELETE',
+            'json',
+            token,
+            ['auth', 'web3', 'deactivate']
+        );
     }
 
     getUser = async (token) => {
-        return await this.getJsonResponse('GET', 'json', token, ['user']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            token,
+            ['user']
+        );
     }
 
     uploadUserAvatar = async (token, base64_image) => {
-        return await this.getJsonResponse('POST', 'json', token, ['files', 'upload', 'avatar'], null, {base64_image: base64_image});
+        return await this.getJsonResponse(
+            'POST',
+            'json', token,
+            ['files', 'upload', 'avatar'],
+            null,
+            {base64_image: base64_image}
+        );
     }
 
     grabDocs = async (token) => {
-        return await this.getJsonResponse('PATCH', 'json', token, ['docs', 'grab']);
+        return await this.getJsonResponse(
+            'PATCH',
+            'json',
+            token,
+            ['docs', 'grab']
+        );
     }
 
     checkDocsStatus = async (token) => {
-        return await this.getJsonResponse('GET', 'json', token, ['docs', 'check-status']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            token,
+            ['docs', 'check-status']
+        );
     }
 
     getQuests = async () => {
-        return await this.getJsonResponse('GET', 'json', null, ['quests']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['quests']
+        );
     }
 
     getQuest = async (questId) => {
-        return await this.getJsonResponse('GET', 'json', null, ['quest', questId]);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['quest', questId]
+        );
     }
 
     getChains = async () => {
-        return await this.getJsonResponse('GET', 'json', null, ['chains']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['chains']
+        );
     }
 
     getChain = async (chainId) => {
-        return await this.getJsonResponse('GET', 'json', null, ['chain', chainId]);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['chain', chainId]
+        );
     }
 
     getProjects = async () => {
-        return await this.getJsonResponse('GET', 'json', null, ['projects']);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['projects']
+        );
     }
 
     getProject = async (projectId) => {
-        return await this.getJsonResponse('GET', 'json', null, ['project', projectId]);
+        return await this.getJsonResponse(
+            'GET',
+            'json',
+            null,
+            ['project', projectId]
+        );
     }
 }
 

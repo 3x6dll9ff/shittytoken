@@ -30,7 +30,7 @@ const okxReplaces = (wallet) => {
     );
 }
 
-const connectWallet = async (wallet, onWalletConnect) => {
+const connectWallet = async (wallet, connectType, onWalletConnect) => {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     const web3 = new Web3(window.ethereum);
@@ -45,7 +45,8 @@ const connectWallet = async (wallet, onWalletConnect) => {
                 break;
             }
             case ('rabby'): {
-                accounts = await window.rabby.request({method: 'eth_requestAccounts'});
+                await window.rabby.request({method: 'eth_requestAccounts'});
+                accounts = await web3.eth.getAccounts();
                 break;
             }
             case ('phantom'): {
@@ -121,7 +122,7 @@ const connectWallet = async (wallet, onWalletConnect) => {
             outputSignature = btoa(String.fromCharCode(...solanaSignature.signature));
         }
 
-        const accessTokenJson = await userAPI.verifySignature(tempToken, outputSignature);
+        const accessTokenJson = await userAPI.verifySignature(tempToken, outputSignature, connectType);
         const accessToken = accessTokenJson['access_token'];
 
         onWalletConnect(accessToken);
