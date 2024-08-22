@@ -23,30 +23,29 @@ class Profile extends Component {
         this.state = {
             userAccount: null,
             isPopupVisible: false,
-        };  
-        this.handleFileChange = this.handleFileChange.bind(this);
-        this.updateUserAvatar = this.updateUserAvatar.bind(this);
+        };
         this.handleClaimClick = this.handleClaimClick.bind(this);
         this.handleClosePopup = this.handleClosePopup.bind(this);
-    }
-
-    handleClaimClick() {
-        this.setState({ isPopupVisible: true });
-    }
-
-    handleClosePopup() {
-        this.setState({ isPopupVisible: false });
+        this.updateUserAvatar = this.updateUserAvatar.bind(this);
+        this.handleFileChange = this.handleFileChange.bind(this);
     }
 
     async componentDidMount() {
         const accessToken = Cookies.get('access_token');
         if (!accessToken) {
             window.location.href = homePath;
-        }
-        else {
+        } else {
             const userAccount = await userAPI.getUser(accessToken);
             this.setState({userAccount});
         }
+    }
+
+    handleClaimClick() {
+        this.setState({isPopupVisible: true});
+    }
+
+    handleClosePopup() {
+        this.setState({isPopupVisible: false});
     }
 
     async updateUserAvatar(file) {
@@ -94,11 +93,11 @@ class Profile extends Component {
                     <div className="id-container">
                         <div className="header-id">ID CARD</div>
                         <div className="id-block">
-                                <img
-                                    className={`avatar-profile`}
-                                    src={userAvatar}
-                                    alt="Avatar"
-                                />
+                            <img
+                                className={`avatar-profile`}
+                                src={userAvatar}
+                                alt="Avatar"
+                            />
                             <div className="profile-details">
                                 <div className="name-profile">{formatWalletAddress(username)}</div>
                                 <div className="wallet-profile"> {formatWalletAddress(userAddress)}</div>
@@ -123,7 +122,8 @@ class Profile extends Component {
                                 <div className="pentagon-container">
                                     <div className="pentagon-white">
                                         <div className="pentagon-black">
-                                            <div className="grade-number">1</div> {/*todo: подвязать к беку*/}
+                                            <div className="grade-number">1</div>
+                                            {/*todo: подвязать к беку*/}
                                         </div>
                                     </div>
                                 </div>
@@ -203,14 +203,15 @@ class Profile extends Component {
                                                 <div className={'profile-edit-name_info'}>
                                                     <p>NAME: wbtc</p>
                                                 </div>
-                                                <div className="profile-edit-name_info profile-edit-wallet"> WALLET: {formatWalletAddress(userAddress)}</div>
+                                                <div
+                                                    className="profile-edit-name_info profile-edit-wallet"> WALLET: {formatWalletAddress(userAddress)}</div>
                                             </div>
                                         </div>
                                         <div className={'profile-connected-wallets'}>
                                             wallet connect view
                                         </div>
                                         <div className={'profile-edit-buttons'}>
-                                        save cancle
+                                            save cancel
                                         </div>
                                     </div>
                                 </PopupMenu>
@@ -231,7 +232,7 @@ class Profile extends Component {
                                 </div>
 
                                 <div className="unlocked-achievements-header">
-                                Unlocked achievements:
+                                    Unlocked achievements:
                                 </div>
                                 <Achievements/>
                                 <Achievements/>
