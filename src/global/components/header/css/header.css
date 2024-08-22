@@ -9,9 +9,10 @@
     user-select: none;
 }
 
-.ticker-text {
+.ticker-container pre {
+    font-size: 12pt;
     text-overflow: clip;
-    white-space: pre;
+    margin: 0;
 }
 
 .header {
@@ -31,7 +32,7 @@
 }
 
 .header-pixel-mask-container,
-.header-pixel-mask-image,
+.header-pixel-mask-container img,
 .header-pixel-mask {
     width: 100%;
     height: 100%;
@@ -46,7 +47,7 @@
     z-index: -3;
 }
 
-.header-pixel-mask-image {
+.header-pixel-mask-container img {
     opacity: 35%;
     object-fit: cover;
     object-position: top;
@@ -158,11 +159,13 @@
     object-fit: contain;
 }
 
-.header-data-profile-docs-counter span,
-.header-data-profile-docs-counter-dropdown-max-docs div,
-.header-data-ping-widget div {
+.header-data-profile-docs-counter h1,
+.header-data-profile-docs-counter-dropdown-max-docs h2,
+.header-data-ping-widget h1 {
     font-family: "Pixel Operator 8", sans-serif;
+    font-weight: normal;
     font-size: 14pt;
+    margin: 0;
     transform: translateY(2px);
 }
 
@@ -174,8 +177,12 @@
 
 .header-data-profile-docs-counter,
 .header-data-profile-docs-counter img,
-.header-data-profile-docs-counter span {
+.header-data-profile-docs-counter h1 {
     cursor: var(--pointer);
+}
+
+.header-data-profile-docs-counter-dropdown-max-docs img {
+    cursor: var(--default);
 }
 
 .header-data-profile-docs-counter-dropdown {
@@ -223,16 +230,22 @@
     transform: translateY(1px);
 }
 
+.header-data-profile-docs-counter-dropdown button.disabled {
+    cursor: var(--default);
+}
+
 .header-data-ping-widget {
     gap: 10px;
 }
 
-.header-data-ping-widget div span {
+.header-data-ping-widget span {
     font-size: 12pt;
+    padding: 0;
 }
 
 .header-data-connect-wallet-button {
     background-color: #FFFFFF;
+    border: none;
     color: #000000;
     font-family: "Pixel Operator HB SC", sans-serif;
     font-size: 22pt;
@@ -386,17 +399,17 @@
 .header-data-profile-info-text-container {
     height: 50px;
     flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
-.header-data-profile-info-username {
+.header-data-profile-info-text-container h1 {
     font-size: 16pt;
+    margin: 0;
 }
 
-.header-data-profile-info-wallet-address {
+.header-data-profile-info-text-container h2 {
     color: #777777;
     font-size: 13pt;
+    margin: 0;
 }
 
 .header-data-profile-info-button {
@@ -443,39 +456,39 @@
 
 .header-data-profile-info-menu-button {
     width: 100%;
-    height: 45px;
+    height: 60px;
     display: flex;
     flex-direction: row;
-    padding-left: 25px;
+    padding: 0 25px 0 25px;
     align-items: center;
     justify-content: left;
 }
 
 .header-data-profile-info-menu-button.alt {
     justify-content: center;
-    margin-bottom: 9px;
     padding-left: 0;
 }
 
 .header-data-profile-info-menu-button:hover,
-.header-data-profile-info-menu-button-icon:hover,
-.header-data-profile-info-menu-button-text:hover {
+.header-data-profile-info-menu-button img:hover,
+.header-data-profile-info-menu-button h1:hover {
     .header-data-profile-info-menu-button-text {
         color: #777777;
     }
-    .header-data-profile-info-menu-button-icon {
+    .header-data-profile-info-menu-button img {
         opacity: 50%;
     }
     cursor: var(--pointer);
 }
 
-.header-data-profile-info-menu-button-icon {
+.header-data-profile-info-menu-button img {
     width: 24px;
     height: max-content;
 }
 
-.header-data-profile-info-menu-button-text {
+.header-data-profile-info-menu-button h1 {
     font-size: 14pt;
+    font-weight: normal;
     margin-left: 20px;
 }
 
@@ -483,5 +496,4 @@
     background-color: #FFFFFF;
     width: 100%;
     height: 2px;
-    margin: 9px 0;
 }
