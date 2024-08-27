@@ -1,0 +1,100 @@
+.connect-wallet-button {
+    border: solid 2px #FFFFFF;
+    flex: 1;
+    height: 70px;
+    margin: 20px;
+    padding: 0 20px 0 0;
+    display: flex;
+    align-items: center;
+    cursor: var(--pointer);
+}
+
+.connect-wallet-button:hover {
+    opacity: 50%;
+}
+
+.connect-wallet-button:active {
+    opacity: 25%;
+    transform: translateY(1px);
+}
+
+.connect-wallet-button.disabled {
+    cursor: var(--default);
+    opacity: 25%;
+}
+
+.connect-wallet-button-icon-container {
+    width: 70px;
+    aspect-ratio: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connect-wallet-button-icon {
+    width: 46px;
+    aspect-ratio: 1;
+    position: absolute;
+    margin-left: 15px;
+    cursor: var(--pointer);
+}
+
+.connect-wallet-button-icon.left {
+    width: 40px;
+    top: 10%;
+    left: 2.5%;
+}
+
+.connect-wallet-button-icon.right {
+    width: 36px;
+    top: 25%;
+    left: 22.5%;
+}
+
+.connect-wallet-button-icon.disabled {
+    cursor: var(--default);
+}
+
+.connect-wallet-button-wallet-name-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
+    cursor: var(--pointer);
+}
+
+.connect-wallet-button-wallet-name-container.disabled {
+    cursor: var(--default);
+}
+
+.connect-wallet-button-wallet-name {
+    font-family: "Pixel Operator SC", sans-serif;
+    font-size: 26pt;
+    justify-content: flex-start;
+    cursor: var(--pointer);
+}
+
+.connect-wallet-button-wallet-name.disabled {
+    cursor: var(--default);
+}
+
+.connect-wallet-button-wallet-status {
+    font-family: "Pixel Operator SC", sans-serif;
+    font-size: 16pt;
+    padding: 0 5px;
+    justify-content: flex-end;
+    cursor: var(--pointer);
+}
+
+.connect-wallet-button-wallet-status.green {
+    background-color: rgba(0, 255, 0, 0.25);
+    color: #00FF00;
+}
+
+.connect-wallet-button-wallet-status.red {
+    background-color: rgba(255, 0, 0, 0.25);
+    color: #FF0000;
+    cursor: var(--default);
+}
