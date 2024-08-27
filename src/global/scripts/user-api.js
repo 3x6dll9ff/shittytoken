@@ -116,13 +116,13 @@ class UserAPI {
         );
     }
 
-    uploadUserAvatar = async (token, base64_image) => {
+    updateUser = async (token, userData) => {
         return await this.getJsonResponse(
-            'POST',
-            'json', token,
-            ['files', 'upload', 'avatar'],
-            null,
-            {base64_image: base64_image}
+            'PATCH',
+            'json',
+            token,
+            ['user'],
+            userData
         );
     }
 
