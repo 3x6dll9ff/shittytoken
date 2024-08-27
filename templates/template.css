@@ -107,6 +107,7 @@
     overflow: auto;
     z-index: 0;
     filter: none;
+    user-select: none;
 }
 
 /* TODO прописать шаблон */
