@@ -29,14 +29,14 @@ const unixTimesptampToTime = (timestamp) => {
     return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
 };
 
-const datetimeToDDMMYYYY = (datetime) => {
-    const date = new Date(datetime);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}.${month}.${year}`;
-};
+const formatUsername = (username) => {
+    if (username.length > 11) {
+        return `${username.slice(0, 11)}...`;
+    }
+    else {
+        return username;
+    }
+}
 
 const formatWalletAddress = (address) => {
     if (!address) {
@@ -47,4 +47,40 @@ const formatWalletAddress = (address) => {
     }
 }
 
-export {dataLoaded, unixTimesptampToTime, insertCharIn, datetimeToDDMMYYYY, formatWalletAddress};
+const formatDatetime = (datetime) => {
+    const date = new Date(datetime);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}.${month}.${year}`;
+};
+
+const splitValueProperty = (inputStr) => {
+    const match = inputStr.match(/^(\d+(\.\d+)?)(\D*)$/);
+
+    if (match) {
+        return [parseFloat(match[1]), match[3] || ''];
+    } else {
+        return null;
+    }
+}
+
+const assembleValueProperty = (arr) => {
+    if (arr && arr.length > 0) {
+        return arr[0].toString() + (arr[1] || '');
+    } else {
+        return null;
+    }
+}
+
+export {
+    dataLoaded,
+    unixTimesptampToTime,
+    insertCharIn,
+    formatUsername,
+    formatWalletAddress,
+    formatDatetime,
+    splitValueProperty,
+    assembleValueProperty
+};
