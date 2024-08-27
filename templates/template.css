@@ -36,7 +36,11 @@
     opacity: 100%;
 
     /* основное */
-    background-color: #000000; /* задний фон */
+    /* задний фон - выбрать одно из трёх ниже */
+    background: none; /* для сложных наложений */
+    background-color: #000000; /* для сплошного цвета */
+    background-image: url(#); /* для фотографии */
+    /**/
     border: 2px solid #FFFFFF; /* обводка */
     color: #FFFFFF; /* цвет текста */
 
@@ -102,12 +106,15 @@
     gap: 0; /* работает при display: flex */
 
     /* редкие свойства */
+    transform: translate(0);
     box-sizing: border-box;
     clip-path: none;
     overflow: auto;
     z-index: 0;
     filter: none;
+    cursor: pointer;
     user-select: none;
+    animation: none;
 }
 
 /* TODO прописать шаблон */
