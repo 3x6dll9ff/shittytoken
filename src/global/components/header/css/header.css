@@ -85,7 +85,7 @@
 
 .header-logo-container {
     width: 50px;
-    height: 36.7px;
+    aspect-ratio: 256 / 188;
     position: relative;
     overflow: hidden;
 }
@@ -102,12 +102,7 @@
 .header-logo img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.header-logo:hover {
-    cursor: var(--pointer);
+    cursor: var(--pointer)
 }
 
 .header-menu-item {
@@ -122,14 +117,14 @@
 }
 
 .header-menu-item:hover {
-    color: #777777;
+    color: var(--50-white);
     cursor: var(--pointer);
     user-select: none;
 }
 
 .header-menu-item:active,
 .header-menu-item.active {
-    color: #333333;
+    color: var(--33-white);
     transform: translateY(1px);
 }
 
@@ -163,7 +158,6 @@
 .header-data-ping-widget img {
     width: 24px;
     aspect-ratio: 1;
-    object-fit: contain;
 }
 
 .header-data-profile-docs-counter h1,
@@ -187,15 +181,16 @@
     cursor: var(--pointer);
 }
 
-.header-data-profile-docs-counter-dropdown-max-docs img {
+.header-data-profile-docs-counter-dropdown,
+.header-data-profile-docs-counter-dropdown * {
     cursor: var(--default);
 }
 
 .header-data-profile-docs-counter-dropdown {
-    background-color: #000000;
-    border-left: solid 2px #FFFFFF;
-    border-bottom: solid 2px #FFFFFF;
-    border-right: solid 2px #FFFFFF;
+    background-color: var(--black);
+    border-left: var(--border);
+    border-bottom: var(--border);
+    border-right: var(--border);
     width: 200px;
     height: 150px;
     display: flex;
@@ -208,37 +203,17 @@
 }
 
 .header-data-profile-docs-counter-dropdown p {
+    color: var(--white);
     font-family: "Pixel Operator HB", sans-serif;
     font-size: 16pt;
-    color: #FFFFFF;
-    margin: 0;
 }
 
-/* TODO убрать клонирование значений, присвоить объекту класс white-button */
 .header-data-profile-docs-counter-dropdown button {
-    background-color: #FFFFFF;
-    border: none;
-    color: #000000;
     font-family: "Pixel Operator SC", sans-serif;
     font-size: 16pt;
     width: 75%;
     height: 35px;
     margin-top: 10px;
-}
-
-.header-data-profile-docs-counter-dropdown button:hover {
-    background-color: #777777;
-    cursor: var(--pointer);
-}
-
-.header-data-profile-docs-counter-dropdown button:active,
-.header-data-profile-docs-counter-dropdown button.disabled {
-    background-color: #333333;
-    transform: translateY(1px);
-}
-
-.header-data-profile-docs-counter-dropdown button.disabled {
-    cursor: var(--default);
 }
 
 .header-data-ping-widget {
@@ -247,35 +222,21 @@
 
 .header-data-ping-widget span {
     font-size: 12pt;
-    padding: 0;
 }
 
 .header-data-connect-wallet-button {
-    background-color: #FFFFFF;
-    border: none;
-    color: #000000;
     font-family: "Pixel Operator HB SC", sans-serif;
     font-size: 22pt;
-    width: 230px;
-    height: 50px;
+    min-width: 230px;
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 12.5px 20px 0 0;
 }
 
-.header-data-connect-wallet-button:hover {
-    background-color: #777777;
-    cursor: var(--pointer);
-}
-
-.header-data-connect-wallet-button:active {
-    background-color: #333333;
-    transform: translateY(1px);
-}
-
 .header-data-profile-info-container {
-    background-color: #000000;
+    background-color: var(--black);
     width: 72px;
     height: 62.5px;
     display: flex;
@@ -285,8 +246,8 @@
 }
 
 .header-data-profile-info-container.expanded {
-    border-left: solid 2px #FFFFFF;
-    border-bottom: solid 2px #FFFFFF;
+    border-left: var(--border);
+    border-bottom: var(--border);
     width: 300px;
     height: fit-content;
     .header-data-profile-info {
@@ -376,13 +337,12 @@
 }
 
 .header-data-profile-info-menu-button:hover,
-.header-data-profile-info-menu-button img:hover,
-.header-data-profile-info-menu-button h1:hover {
-    .header-data-profile-info-menu-button img {
+.header-data-profile-info-menu-button *:hover {
+    img {
         opacity: 50%;
     }
-    .header-data-profile-info-menu-button h1 {
-        color: #777777;
+    h1 {
+        color: var(--50-white);
     }
     cursor: var(--pointer);
 }

@@ -7,11 +7,11 @@
 
     /* colors */
     --white: #FFFFFF;
+    --7E-white: #7E7E80;
     --50-white: #777777;
-    --text-alt-color: #7E7E80;
     --40-white: #404040;
-    --33-white: #161616;
-    --25-white: #333333;
+    --33-white: #333333;
+    --16-white: #161616;
     --black: #000000;
 
     --border-size: 2px;
@@ -50,7 +50,8 @@ body {
     cursor: var(--default);
 }
 
-a {
+a,
+a * {
     display: inline-block;
     text-decoration: none;
     color: inherit;
@@ -71,14 +72,18 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+p {
+    margin: 0;
+}
+
 img {
     object-fit: contain;
 }
 
 
 .white-button {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: var(--white);
+    color: var(--black);
     border: none;
     width: fit-content;
     height: fit-content;
@@ -86,10 +91,15 @@ img {
 }
 
 .white-button:hover {
-    background-color: #777777;
+    background-color: var(--50-white);
 }
 
-.white-button:active {
-    background-color: #333333;
+.white-button:active,
+.white-button.disabled {
+    background-color: var(--33-white);
     transform: translateY(1px);
+}
+
+.white-button.disabled {
+    cursor: var(--default);
 }

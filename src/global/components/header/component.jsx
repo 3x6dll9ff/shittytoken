@@ -18,7 +18,6 @@ import header_logo_hover from "./assets/images/header-logo-icons/header-logo-hov
 
 import docs_icon from "../../assets/images/docs-icon.png";
 
-import network_icon_0 from "./assets/images/network-icons/network-icon-0.png";
 import network_icon_1 from "./assets/images/network-icons/network-icon-1.png";
 import network_icon_2 from "./assets/images/network-icons/network-icon-2.png";
 import network_icon_3 from "./assets/images/network-icons/network-icon-3.png";
@@ -282,7 +281,7 @@ const ProfileData = () => {
                     </PopupMenu>
                     <PingWidget/>
                     <button
-                        className={`header-data-connect-wallet-button`}
+                        className={`white-button header-data-connect-wallet-button`}
                         onClick={() => setWalletsPopupVisible(true)}
                     >
                         Connect Wallet
@@ -547,7 +546,7 @@ const DocsCounter = ({userAccount}) => {
                         <h2>{maxDocsCounter}</h2>
                     </div>
                     <button
-                        className={grabDocsButtonDisabled ? 'disabled' : ''}
+                        className={`white-button ${grabDocsButtonDisabled ? 'disabled' : ''}`}
                         onClick={grabDocsButtonDisabled ? null : handleGrabDocsButton}
                     >
                         {grabDocsButtonHasTimer ? (
