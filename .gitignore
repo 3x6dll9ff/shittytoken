@@ -25,3 +25,8 @@ dist-ssr
 
 # Assets sources
 /src/assets/raw/*
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
