@@ -4,7 +4,20 @@
     --pointer: url('./global/assets/images/cursors/link.png'), pointer;
     --text: url('./global/assets/images/cursors/text.png'), text;
     --not-allowed: url('./global/assets/images/cursors/unavailable.png'), not-allowed;
+
+    /* colors */
+    --white: #FFFFFF;
+    --7E-white: #7E7E80;
+    --50-white: #777777;
+    --40-white: #404040;
+    --33-white: #333333;
+    --16-white: #161616;
+    --black: #000000;
+
+    --border-size: 2px;
+    --border: var(--border-size) solid var(--white);
 }
+
 
 body {
     font-family: "Consolas", sans-serif;
@@ -13,6 +26,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -31,11 +45,13 @@ body {
     color: black;
 }
 
+
 * {
     cursor: var(--default);
 }
 
-a {
+a,
+a * {
     display: inline-block;
     text-decoration: none;
     color: inherit;
@@ -48,4 +64,42 @@ a {
 
 textarea, input, select, option {
     cursor: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 0.75;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+img {
+    object-fit: contain;
+}
+
+
+.white-button {
+    background-color: var(--white);
+    color: var(--black);
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    cursor: var(--pointer);
+}
+
+.white-button:hover {
+    background-color: var(--50-white);
+}
+
+.white-button:active,
+.white-button.disabled {
+    background-color: var(--33-white);
+    transform: translateY(1px);
+}
+
+.white-button.disabled {
+    cursor: var(--default);
 }

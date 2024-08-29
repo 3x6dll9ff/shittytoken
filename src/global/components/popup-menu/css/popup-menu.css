@@ -56,14 +56,14 @@
     cursor: var(--pointer);
 }
 
+.popup-top-bar-close-button:hover {
+    opacity: 75%;
+}
+
 .popup-top-bar-close-button-icon {
     width: 16px;
     height: 16px;
     cursor: var(--pointer);
-}
-
-.popup-top-bar-close-button-icon:hover {
-    opacity: 75%;
 }
 
 .popup-content-container {

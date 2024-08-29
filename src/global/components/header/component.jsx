@@ -2,10 +2,11 @@ import {useEffect, useRef, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import Cookies from "js-cookie";
 import PopupMenu from "../popup-menu/component.jsx";
+import ConnectWalletButton from "../connect-wallet-button/component.jsx";
 import userAPI from "../../scripts/user-api.js";
-import {connectWallet, okxReplaces, walletInstalled} from "../../scripts/wallets_connector.js";
-import {blogPath, cryptoPath, getCursorPosition, homePath, profilePath, questsPath} from "../../../index.jsx";
+import {getCursorPosition, blogPath, cryptoPath, homePath, profilePath, questsPath} from "../../../index.jsx";
 import {formatWalletAddress} from "../../scripts/utils.js"
+
 import "./css/header.css";
 
 import pixel_mask from "./assets/images/pixel-mask.png";
@@ -17,16 +18,9 @@ import header_logo_hover from "./assets/images/header-logo-icons/header-logo-hov
 
 import docs_icon from "../../assets/images/docs-icon.png";
 
-import network_icon_0 from "./assets/images/network-icons/network-icon-0.png";
 import network_icon_1 from "./assets/images/network-icons/network-icon-1.png";
 import network_icon_2 from "./assets/images/network-icons/network-icon-2.png";
 import network_icon_3 from "./assets/images/network-icons/network-icon-3.png";
-
-import metamask_icon from "../../assets/images/metamask-logo.png";
-import rabby_icon from "../../assets/images/rabby-logo.png";
-import phantom_icon from "../../assets/images/phantom-logo.png";
-import backpack_icon from "../../assets/images/backpack-logo.png"
-import okx_icon from "../../assets/images/okx-logo.png";
 
 import profile_icon from "./assets/images/profile-menu-icons/profile.png";
 import logout_icon from "./assets/images/profile-menu-icons/logout.png";
@@ -35,6 +29,7 @@ import logout_icon from "./assets/images/profile-menu-icons/logout.png";
 const Header = () => {
     return (
         <div>
+            <div className={`ticker-header-behind-container`}/>
             <Ticker/>
             <div className={`header`}>
                 <PixelMask/>
@@ -62,7 +57,7 @@ const Header = () => {
 };
 
 const Ticker = () => {
-    const text = '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * sh4d0ws alway5 w4tching * big br0th3r watch1ng * th3 cyb3r c0nflict 1s 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * bitc0in will fall s0m3day * wh3r3 th3 s3cur1ty g0e5, w3 f0ll0w * g0v3rnm3nt n3v3r sl33ps '
+    const text = '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * big br0th3r watch1ng * th3 cyb3r c0nflict 1s 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * sh4d0ws alway5 w4tching * bitc0in will fall s0m3day * wh3r3 th3 s3cur1ty g0e5, w3 f0ll0w * g0v3rnm3nt n3v3r sl33ps '
     const speed = 400;
     const [displayedText, setDisplayedText] = useState(text.repeat(3));
 
@@ -76,21 +71,17 @@ const Ticker = () => {
 
     return (
         <div className={`ticker-container`}>
-            <div className={`ticker-text`}>
-                {displayedText}
-            </div>
+            <pre>{displayedText}</pre>
         </div>
     );
 };
 
 const PixelMask = () => {
     const pixelMaskRef = useRef(null);
-    const [cursorPosition, setCursorPosition] = useState(getCursorPosition())
 
     useEffect(() => {
         const tick = () => {
-            setCursorPosition(getCursorPosition());
-            const {x, y} = cursorPosition;
+            const {x, y} = getCursorPosition();
             if (pixelMaskRef.current) {
                 pixelMaskRef.current.style.background = `radial-gradient(circle at ${x}px ${y}px, transparent 0%, rgba(0, 0, 0, 1) 150px)`
             }
@@ -103,7 +94,6 @@ const PixelMask = () => {
     return (
         <div className={`header-pixel-mask-container`}>
             <img
-                className={`header-pixel-mask-image`}
                 src={pixel_mask}
                 alt={`pixel mask`}
             />
@@ -114,7 +104,7 @@ const PixelMask = () => {
         </div>
     );
 
-}
+};
 
 const Logo = () => {
     const [isHovered, setHovered] = useState(false);
@@ -125,7 +115,7 @@ const Logo = () => {
     return (
         <Link
             className="header-logo-container"
-            href={homePath}
+            to={homePath}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -178,7 +168,8 @@ const ProfileData = () => {
     const [walletsPopupVisible, setWalletsPopupVisible] = useState(false);
     const [profileExpanded, setProfileExpanded] = useState(false);
     const containerRef = useRef(null);
-    const [userAccount, setUserAccount] = useState(0);
+    const [userAccount, setUserAccount] = useState(null);
+    const [userAccountLoading, setUserAccountLoading] = useState(true);
 
     const preventEvents = (event) => {
         event.preventDefault();
@@ -202,7 +193,7 @@ const ProfileData = () => {
         if (accessToken) {
             await userAPI.deactivateToken(accessToken)
             Cookies.remove('access_token');
-            setUserAccount(0);
+            setUserAccount(null);
             setProfileExpanded(false);
             window.location.reload();
         }
@@ -233,118 +224,180 @@ const ProfileData = () => {
     });
 
     useEffect(() => {
+        setUserAccountLoading(true);
         const accessToken = Cookies.get('access_token');
         if (accessToken) {
-            setUserAccount(0)
-            userAPI.getUser(accessToken).then(
-                user => setUserAccount(user)
-            )
+            userAPI.getUser(accessToken)
+                .then(
+                    (user) => {
+                        if (user['id']) {
+                            setUserAccount(user);
+                        } else {
+                            setUserAccount(null);
+                        }
+                        setUserAccountLoading(false);
+                    }
+                )
+                .catch(() => {
+                    setUserAccount(null);
+                    setUserAccountLoading(false);
+                })
         } else {
             setUserAccount(null);
+            setUserAccountLoading(false);
         }
     }, []);
 
-    if (userAccount === null) {
-        return (
-            <div className={`header-data-container`}>
-                <PopupMenu
-                    visible={walletsPopupVisible}
-                    onClose={() => setWalletsPopupVisible(false)}
-                    title={`CONNECT_WALLET.exe`}
-                    style={{width: '35%'}}
-                >
-                    <ConnectWalletButton
-                        wallet={`metamask`}
-                        onWalletConnect={handleWalletConnect}
-                    />
-                    <ConnectWalletButton
-                        wallet={`rabby`}
-                        onWalletConnect={handleWalletConnect}
-                    />
-                    <ConnectWalletButton
-                        wallet={`phantom`}
-                        onWalletConnect={handleWalletConnect}
-                    />
-                    <ConnectWalletButton
-                        wallet={`backpack`}
-                        onWalletConnect={handleWalletConnect}
-                    />
-                </PopupMenu>
-                <PingWidget/>
-                <div
-                    className={`header-data-connect-wallet-button`}
-                    onClick={() => setWalletsPopupVisible(true)}
-                >
-                    Connect Wallet
+    if (!userAccountLoading) {
+        if (!userAccount) {
+            return (
+                <div className={`header-data-container`}>
+                    <PopupMenu
+                        visible={walletsPopupVisible}
+                        onClose={() => setWalletsPopupVisible(false)}
+                        title={`CONNECT_WALLET.exe`}
+                        style={{width: '35%'}}
+                    >
+                        <ConnectWalletButton
+                            wallet={`metamask`}
+                            connectType={'sign_in'}
+                            onWalletConnect={handleWalletConnect}
+                        />
+                        <ConnectWalletButton
+                            wallet={`rabby`}
+                            connectType={'sign_in'}
+                            onWalletConnect={handleWalletConnect}
+                        />
+                        <ConnectWalletButton
+                            wallet={`phantom`}
+                            connectType={'sign_in'}
+                            onWalletConnect={handleWalletConnect}
+                        />
+                        <ConnectWalletButton
+                            wallet={`backpack`}
+                            connectType={'sign_in'}
+                            onWalletConnect={handleWalletConnect}
+                        />
+                    </PopupMenu>
+                    <PingWidget/>
+                    <button
+                        className={`white-button header-data-connect-wallet-button`}
+                        onClick={() => setWalletsPopupVisible(true)}
+                    >
+                        Connect Wallet
+                    </button>
                 </div>
-            </div>
-        );
-    } else if (userAccount && userAccount.hasOwnProperty('id')) {
-        const userAvatar = userAccount['avatar'];
-        const username = userAccount['username'];
-        const userAddress = userAccount['web3_address'];
+            );
+        } else if (userAccount && userAccount.hasOwnProperty('id')) {
+            const userAvatar = userAccount['avatar'];
+            const username = userAccount['username'];
+            const userAddress = userAccount['wallets'][0]['web3_address'];
 
-        return (
-            <div className={`header-data-container`}>
-                <DocsCounter userAccountExt={userAccount}/>
-                <PingWidget/>
-                <div
-                    className={`header-data-profile-info-container ${profileExpanded ? 'expanded' : ''}`}
-                    onPointerEnter={handlePointerEnter}
-                    onPointerLeave={handlePointerLeave}
-                    ref={containerRef}
-                >
-                    <div className={`header-data-profile-info`}>
+            return (
+                <div className={`header-data-container`}>
+                    <PingWidget/>
+                    <DocsCounter userAccount={userAccount}/>
+                    <div
+                        className={`header-data-profile-info-container ${profileExpanded ? 'expanded' : ''}`}
+                        onPointerEnter={handlePointerEnter}
+                        onPointerLeave={handlePointerLeave}
+                        ref={containerRef}
+                    >
+                        <div className={`header-data-profile-info`}>
+                            {profileExpanded ? (
+                                <div className={`header-data-profile-info-text-container`}>
+                                    <h1>{formatWalletAddress(username)}</h1>
+                                    <h2>{formatWalletAddress(userAddress)}</h2>
+                                </div>
+                            ) : null}
+                            <Link
+                                className={`header-data-profile-info-button`}
+                                to={profilePath}
+                                onPointerEnter={() => setProfileExpanded(true)}
+                            >
+                                <div className={`header-data-profile-info-picture-bg`}>
+                                    <img
+                                        className={`header-data-profile-info-picture`}
+                                        src={userAvatar}
+                                        alt={`profile-picture`}
+                                    />
+                                </div>
+                            </Link>
+                        </div>
                         {profileExpanded ? (
-                            <div className={`header-data-profile-info-text-container`}>
-                                <div className={`header-data-profile-info-username`}>
-                                    {formatWalletAddress(username)}
-                                </div>
-                                <div className={`header-data-profile-info-wallet-address`}>
-                                    {formatWalletAddress(userAddress)}
-                                </div>
-                            </div>
-                        ) : null}
-                        <Link
-                            className={`header-data-profile-info-button`}
-                            to={profilePath}
-                            onPointerEnter={() => setProfileExpanded(true)}
-                        >
-                            <div className={`header-data-profile-info-picture-bg`}>
-                                <img
-                                    className={`header-data-profile-info-picture`}
-                                    src={userAvatar}
-                                    alt={`profile-picture`}
+                            <div className={`header-data-profile-info-menu-buttons-container`}>
+                                <ProfileButton
+                                    title={`My profile`}
+                                    img_src={profile_icon}
+                                    onClick={profilePath}
+                                />
+                                {/* TODO VVV uncomment if needed VVV */}
+                                {/*<ProfileButton*/}
+                                {/*    title={`Achievements`}*/}
+                                {/*    img_src={achievement_icon}*/}
+                                {/*/>*/}
+                                <div className={`header-data-profile-info-menu-separator`}/>
+                                <ProfileButton
+                                    title={`Logout`}
+                                    img_src={logout_icon}
+                                    onClick={handleLogoutButton}
+                                    alt={true}
                                 />
                             </div>
-                        </Link>
+                        ) : null}
                     </div>
-                    {profileExpanded ? (
-                        <div className={`header-data-profile-info-menu-buttons-container`}>
-                            <ProfileButton
-                                title={`My profile`}
-                                img_src={profile_icon}
-                                onClick={profilePath}
-                            />
-                            {/* TODO VVV uncomment if needed VVV */}
-                            {/*<ProfileButton*/}
-                            {/*    title={`Achievements`}*/}
-                            {/*    img_src={achievement_icon}*/}
-                            {/*/>*/}
-                            <div className={`header-data-profile-info-menu-separator`}></div>
-                            <ProfileButton
-                                title={`Logout`}
-                                img_src={logout_icon}
-                                onClick={handleLogoutButton}
-                                alt={true}
-                            />
-                        </div>
-                    ) : null}
                 </div>
+            );
+        }
+    }
+};
+
+const PingWidget = () => {
+    const updatePing = () => {
+        const startTime = performance.now();
+        fetch(window.location.origin, {method: 'HEAD', mode: 'no-cors'})
+            .then(() => {
+                const ping = (performance.now() - startTime).toFixed(0)
+                setPing(ping);
+
+                if (ping <= 1000) {
+                    setPingIcon(network_icon_1);
+                } else if (ping <= 1500) {
+                    setPingIcon(network_icon_2);
+                } else {
+                    setPingIcon(network_icon_3);
+                }
+
+                setPingLoading(false);
+            })
+        ;
+    }
+
+    const [pingLoading, setPingLoading] = useState(true);
+    const [ping, setPing] = useState(null);
+    const [pingIcon, setPingIcon] = useState(null);
+
+    useEffect(() => {
+        updatePing();
+    }, [])
+
+    useEffect(() => {
+        const interval = setInterval(updatePing, 5000);
+        return () => clearInterval(interval);
+    });
+
+    if (!pingLoading) {
+        return (
+            <div className={`header-data-ping-widget`}>
+                <img
+                    src={pingIcon}
+                    alt={`ping-icon`}
+                />
+                <h1>
+                    {ping}<span>ms</span>
+                </h1>
             </div>
         );
-    } else {
-        return null;
     }
 };
 
@@ -393,15 +446,16 @@ const Timer = ({grabTime, onFinish}) => {
     return formatTime();
 };
 
-const DocsCounter = ({userAccountExt}) => {
+const DocsCounter = ({userAccount}) => {
     const grabDocsButtonStates = {
         default: 'Grab docs',
         disabled: '...',
     }
 
+    const [currDocsCounter, setCurrDocsCounter] = useState(0);
+    const [maxDocsCounter, setMaxDocsCounter] = useState(0);
     const [docsCounterHovered, setDocsCounterHovered] = useState(false);
     const [docsDropdownVisible, setDocsDropdownVisible] = useState(false);
-    const [userAccount, setUserAccount] = useState(userAccountExt);
     const [docsStatus, setDocsStatus] = useState(null);
     const [grabDocsButtonDisabled, setGrabDocsButtonDisabled] = useState(true);
     const [grabDocsButtonHasTimer, setGrabDocsButtonHasTimer] = useState(false);
@@ -426,9 +480,9 @@ const DocsCounter = ({userAccountExt}) => {
             userAPI.checkDocsStatus(accessToken)
                 .then(docs => {
                     setDocsStatus(docs);
-                    if (docs && docs['can_grab']) {
+                    if (docs['can_grab']) {
                         setGrabDocsButtonDisabled(false);
-                    } else if (docs && !docs['can_grab']) {
+                    } else if (!docs['can_grab']) {
                         setGrabDocsButtonHasTimer(true);
                     }
                 })
@@ -440,23 +494,31 @@ const DocsCounter = ({userAccountExt}) => {
         const accessToken = Cookies.get('access_token');
         if (accessToken) {
             userAPI.grabDocs(accessToken).then(response => {
-                userAPI.getUser(accessToken).then(account => setUserAccount(account))
-                if (response['success']) {
-                    setGrabDocsButtonDisabled(false);
-                } else {
-                    updateDocsStatus(accessToken);
-                }
+                setDocsStatus(response);
+                setGrabDocsButtonHasTimer(true);
             })
         }
     }
 
     const handleTimerFinish = () => {
+        setGrabDocsButtonHasTimer(false);
         setGrabDocsButtonDisabled(false);
     }
 
     useEffect(() => {
         updateDocsStatus();
     }, []);
+
+    useEffect(() => {
+        let counterSource;
+        if (docsStatus && docsStatus['curr_docs_streak']) {
+            counterSource = docsStatus;
+        } else {
+            counterSource = userAccount;
+        }
+        setCurrDocsCounter(counterSource['curr_docs_streak']);
+        setMaxDocsCounter(counterSource['max_docs_streak']);
+    });
 
     return (
         <div
@@ -468,7 +530,7 @@ const DocsCounter = ({userAccountExt}) => {
                 src={docs_icon}
                 alt={`docs counter icon`}
             />
-            <span>{userAccount['curr_docs_streak']}</span>
+            <h1>{currDocsCounter}</h1>
 
             {docsCounterHovered || docsDropdownVisible ? (
                 <div
@@ -481,10 +543,10 @@ const DocsCounter = ({userAccountExt}) => {
                             src={docs_icon}
                             alt={`docs icon`}
                         />
-                        <div>{userAccount['max_docs_streak']}</div>
+                        <h2>{maxDocsCounter}</h2>
                     </div>
                     <button
-                        className={grabDocsButtonDisabled ? 'disabled' : ''}
+                        className={`white-button ${grabDocsButtonDisabled ? 'disabled' : ''}`}
                         onClick={grabDocsButtonDisabled ? null : handleGrabDocsButton}
                     >
                         {grabDocsButtonHasTimer ? (
@@ -503,103 +565,7 @@ const DocsCounter = ({userAccountExt}) => {
             ) : null}
         </div>
     );
-}
-
-const PingWidget = () => {
-    const pingSite = () => {
-        const startTime = performance.now();
-        fetch(window.location.origin, {method: 'HEAD', mode: 'no-cors'}).then();
-        return performance.now() - startTime; // ping
-    }
-
-    const updatePing = () => {
-        setPing(pingSite().toFixed(0));
-
-        if (ping < 150) {
-            setPingIcon(network_icon_1);
-        } else if (ping < 300) {
-            setPingIcon(network_icon_2);
-        } else if (ping < 1000) {
-            setPingIcon(network_icon_3);
-        } else {
-            setPingIcon(network_icon_0);
-        }
-    }
-
-    const [ping, setPing] = useState(null);
-    const [pingIcon, setPingIcon] = useState(null);
-
-    useEffect(() => {
-        updatePing();
-    }, [])
-
-    useEffect(() => {
-        const interval = setInterval(updatePing, 5000);
-        return () => clearInterval(interval);
-    });
-
-    return (
-        <div className={`header-data-ping-widget`}>
-            <img
-                src={pingIcon}
-                alt={`ping-icon`}
-            />
-            <div>
-                {ping}<span>ms</span>
-            </div>
-        </div>
-    );
-}
-
-const ConnectWalletButton = ({wallet, onWalletConnect}) => {
-    const walletNames = {
-        metamask: 'Metamask',
-        rabby: 'Rabby',
-        phantom: 'Phantom',
-        backpack: 'Backpack',
-    };
-
-    const walletIcons = {
-        metamask: metamask_icon,
-        rabby: rabby_icon,
-        phantom: phantom_icon,
-        backpack: backpack_icon,
-        default: ''
-    };
-
-    return (
-        <div
-            className={`header-data-popup-connect-wallet-button ${walletInstalled(wallet) ? '' : 'disabled'}`}
-            onClick={walletInstalled(wallet) ? () => connectWallet(wallet, onWalletConnect) : null}
-        >
-            <div className={`header-data-popup-connect-wallet-button-icon-container`}>
-                {okxReplaces(wallet) ? (
-                    <img
-                        className={`header-data-popup-connect-wallet-button-icon right ${walletInstalled(wallet) ? '' : 'disabled'}`}
-                        src={okx_icon}
-                        alt={`header-profile-wallet-popup-button-icon`}
-                    />
-                ) : null}
-                <img
-                    className={`header-data-popup-connect-wallet-button-icon ${okxReplaces(wallet) ? 'left' : ''} ${walletInstalled(wallet) ? '' : 'disabled'}`}
-                    src={walletIcons[wallet]}
-                    alt={`header-profile-wallet-popup-button-icon`}
-                />
-            </div>
-            <div
-                className={`header-data-popup-connect-wallet-button-wallet-name-container ${walletInstalled(wallet) ? '' : 'disabled'}`}>
-                <div
-                    className={`header-data-popup-connect-wallet-button-wallet-name ${walletInstalled(wallet) ? '' : 'disabled'}`}>
-                    {walletNames[wallet] || wallet}{okxReplaces(wallet) ? ' / OKX Wallet' : ''}
-                </div>
-                <div
-                    className={`header-data-popup-connect-wallet-button-wallet-status ${walletInstalled(wallet) ? 'green' : 'red'}`}>
-                    {walletInstalled(wallet) ? 'Installed' : 'Not installed'}
-                </div>
-            </div>
-        </div>
-    );
-}
+};
 
 const ProfileButton = ({title, img_src, onClick, alt}) => {
     const link = useLocation().pathname
@@ -619,13 +585,10 @@ const ProfileButton = ({title, img_src, onClick, alt}) => {
             to={linkTo}
         >
             <img
-                className={`header-data-profile-info-menu-button-icon`}
                 src={img_src}
-                alt={`header-profile-menu-button-icon`}
+                alt={`profile-menu-button`}
             />
-            <div className={`header-data-profile-info-menu-button-text`}>
-                {title}
-            </div>
+            <h1>{title}</h1>
         </Link>
     );
 };
