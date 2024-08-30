@@ -8,7 +8,7 @@ const pentagonAspectRatio = 1 / 0.94;
 
 const Pentagon = ({
     className,
-    text = '',
+    text = null,
     fontSize = 0,
     color = 'black',
     width,
