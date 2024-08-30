@@ -1,12 +1,14 @@
 :root {
     --ticker-height: 20px;
     --header-height: 75px;
+
+    --header-total-height: calc(var(--ticker-height) + var(--header-height));
 }
 
 
 .ticker-header-behind-container {
     width: 100%;
-    height: calc(var(--ticker-height) + var(--header-height));
+    height: var(--header-total-height);
 }
 
 .ticker-container {
@@ -225,7 +227,6 @@
 }
 
 .header-data-connect-wallet-button {
-    font-family: "Pixel Operator HB SC", sans-serif;
     font-size: 22pt;
     min-width: 230px;
     min-height: 50px;
@@ -266,16 +267,20 @@
 .header-data-profile-info-text-container {
     flex: 1;
     height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
 }
 
 .header-data-profile-info-text-container h1 {
-    font-size: 16pt;
+    font-size: 18pt;
     margin: 0;
 }
 
 .header-data-profile-info-text-container h2 {
     color: #777777;
-    font-size: 13pt;
+    font-size: 16pt;
     margin: 0;
 }
 
