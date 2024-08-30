@@ -20,6 +20,8 @@ const questsPath = `/quests`;
 const blogPath = `/blog`;
 const profilePath = `/profile`;
 
+const questsParams = 'questId';
+
 let cursorPosition = {x: 0, y: 0};
 document.addEventListener('mousemove', (event) => {
     cursorPosition.x = event.clientX;
@@ -40,7 +42,7 @@ export default class App extends Component {
                         <Route path={homePath} element={<Home/>}/>
                         <Route path={cryptoPath} element={<Crypto/>}/>
                         <Route path={questsPath} element={<Quests/>}/>
-                        <Route path={`${questsPath}/:questId`} element={<Quest/>}/>
+                        <Route path={`${questsPath}/:${questsParams}`} element={<Quest/>}/>
                         <Route path={blogPath} element={<Blog/>}/>
                         <Route path={profilePath} element={<Profile/>}/>
                     </Routes>
@@ -51,4 +53,8 @@ export default class App extends Component {
     }
 }
 
-export {getCursorPosition, homePath, cryptoPath, questsPath, blogPath, profilePath};
+export {
+    getCursorPosition,
+    homePath, cryptoPath, questsPath, blogPath, profilePath,
+    questsParams
+};
