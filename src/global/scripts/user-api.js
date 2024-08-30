@@ -1,5 +1,5 @@
 class UserAPI {
-    base_url = 'https://web-production-23fa.up.railway.app/';
+    base_url = 'https://anti-social-production-b971.up.railway.app/';
 
     generatedOptions = (method, acceptOption, body, token) => {
         const acceptOptions = {
