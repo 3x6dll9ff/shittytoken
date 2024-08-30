@@ -18,7 +18,6 @@ import header_logo_hover from "./assets/images/header-logo-icons/header-logo-hov
 
 import docs_icon from "../../assets/images/docs-icon.png";
 
-import network_icon_0 from "./assets/images/network-icons/network-icon-0.png";
 import network_icon_1 from "./assets/images/network-icons/network-icon-1.png";
 import network_icon_2 from "./assets/images/network-icons/network-icon-2.png";
 import network_icon_3 from "./assets/images/network-icons/network-icon-3.png";
@@ -30,6 +29,7 @@ import logout_icon from "./assets/images/profile-menu-icons/logout.png";
 const Header = () => {
     return (
         <div>
+            <div className={`ticker-header-behind-container`}/>
             <Ticker/>
             <div className={`header`}>
                 <PixelMask/>
@@ -57,7 +57,7 @@ const Header = () => {
 };
 
 const Ticker = () => {
-    const text = '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * sh4d0ws alway5 w4tching * big br0th3r watch1ng * th3 cyb3r c0nflict 1s 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * bitc0in will fall s0m3day * wh3r3 th3 s3cur1ty g0e5, w3 f0ll0w * g0v3rnm3nt n3v3r sl33ps '
+    const text = '* tru3 hack3rs h3r3 * d3finit3ly n0t scam * l3av3 all y0ur data f0r us <3 * big br0th3r watch1ng * th3 cyb3r c0nflict 1s 3t3rnal * l3ave all y0ur m0n3y h3r3 * thi5 is th3 w0rk 0f art * w3 ar3 4lway5 a5king f0r pa55w0rds * sh4d0ws alway5 w4tching * bitc0in will fall s0m3day * wh3r3 th3 s3cur1ty g0e5, w3 f0ll0w * g0v3rnm3nt n3v3r sl33ps '
     const speed = 400;
     const [displayedText, setDisplayedText] = useState(text.repeat(3));
 
@@ -115,7 +115,7 @@ const Logo = () => {
     return (
         <Link
             className="header-logo-container"
-            href={homePath}
+            to={homePath}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -281,7 +281,7 @@ const ProfileData = () => {
                     </PopupMenu>
                     <PingWidget/>
                     <button
-                        className={`header-data-connect-wallet-button`}
+                        className={`white-button header-data-connect-wallet-button`}
                         onClick={() => setWalletsPopupVisible(true)}
                     >
                         Connect Wallet
@@ -291,7 +291,7 @@ const ProfileData = () => {
         } else if (userAccount && userAccount.hasOwnProperty('id')) {
             const userAvatar = userAccount['avatar'];
             const username = userAccount['username'];
-            const userAddress = userAccount['web3_address'];
+            const userAddress = userAccount['wallets'][0]['web3_address'];
 
             return (
                 <div className={`header-data-container`}>
@@ -326,7 +326,6 @@ const ProfileData = () => {
                         </div>
                         {profileExpanded ? (
                             <div className={`header-data-profile-info-menu-buttons-container`}>
-                                <div className={`header-data-profile-info-menu-separator`}/>
                                 <ProfileButton
                                     title={`My profile`}
                                     img_src={profile_icon}
@@ -547,7 +546,7 @@ const DocsCounter = ({userAccount}) => {
                         <h2>{maxDocsCounter}</h2>
                     </div>
                     <button
-                        className={grabDocsButtonDisabled ? 'disabled' : ''}
+                        className={`white-button ${grabDocsButtonDisabled ? 'disabled' : ''}`}
                         onClick={grabDocsButtonDisabled ? null : handleGrabDocsButton}
                     >
                         {grabDocsButtonHasTimer ? (
@@ -587,7 +586,7 @@ const ProfileButton = ({title, img_src, onClick, alt}) => {
         >
             <img
                 src={img_src}
-                alt={`header-profile-menu-button-icon`}
+                alt={`profile-menu-button`}
             />
             <h1>{title}</h1>
         </Link>

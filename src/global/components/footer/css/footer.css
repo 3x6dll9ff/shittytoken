@@ -1,11 +1,3 @@
-:root {
-    --text-primary-color: #fff;
-    --text-second-color: #7E7E80;
-    --Pixel-HB: "Pixel Operator HB";
-    --Pixel: "Pixel Operator";
-    --Pixel-HB-8: 'Pixel Operator Mono HB 8';
-}
-
 .footer-container {
     height: 250px;
     width: 100%;
@@ -35,20 +27,20 @@
 
 .footer-description, .footer-disclaimer {
     font-size: 18pt;
-    font-family: var(--Pixel), sans-serif;
+    font-family: "Pixel Operator", sans-serif;
     color: #777777;
 }
 
 .footer-description span {
-    color: var(--text-primary-color);
+    color: var(--white);
     font-size: 20pt;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
 }
 
 .footer-disclaimer-header {
     margin-top: 20px;
     font-size: 20pt;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
 }
 
 .footer-links {
@@ -63,7 +55,7 @@
     gap: 10px;
     display: flex;
     flex-direction: column;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
     font-size: 18pt;
     color: #777777 ;
 }
@@ -81,7 +73,7 @@
 
 .footer-products-container p, .footer-social-container p, .footer-contact-container p {
     font-size: 20pt;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
     margin: 0 0 15px;
 }
 
@@ -95,28 +87,28 @@
     align-self: flex-end;
     margin-top: auto;
     font-size: 8pt;
-    font-family: var(--Pixel-HB-8), sans-serif;
+    font-family: "Pixel Operator HB 8", sans-serif;
 }
 
 .footer-today-users-container p{
     font-size: 20pt;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
     margin: 0 0 15px;
-    color: var(--text-primary-color);
+    color: var(--white);
 }
 
 .footer-today-users-container{
     display: flex;
     flex-direction: column;
-    font-family: var(--Pixel-HB), sans-serif;
+    font-family: "Pixel Operator HB", sans-serif;
     font-size: 18pt;
-    color: var(--text-primary-color);
+    color: var(--white);
     align-items: center;
 }
 
 .footer-user-link {
     flex-direction: row;
-    color: var(--text-primary-color);
+    color: var(--white);
 }
 
 .footer-user-link .today-users-text {
