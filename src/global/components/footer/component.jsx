@@ -1,48 +1,33 @@
 import {useState, useEffect} from 'react';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import userAPI from "../../../global/scripts/user-api.js"
 import './css/footer.css';
-import {cryptoPath, questsPath, blogPath} from '../../../index.jsx'
+import {
+    cryptoPath, questsPath, blogPath, profilePath,
+    questsParams
+} from '../../../index.jsx'
 import {TelegramSvg, XSvg, DiscordSvg, MailSvg, SupportSvg, UserSvg} from './assets/images/svg/svg_items.jsx'
-
-const TodayUsers = () => {
-    const [todayUsers, setTodayUsers] = useState(0);
-
-    const updateOnline = () => {
-        userAPI.getOnline()
-            .then(response => {
-                setTodayUsers(response['count'])
-            })
-    }
-
-    useEffect(() => {
-        const interval = setInterval(updateOnline, 5000);
-        return () => clearInterval(interval);
-    })
-
-    useEffect(() => {
-        updateOnline()
-    },[])
-
-    return (
-        <div className={'footer-today-users-container'}>
-            <p>DAILY ONLINE</p>
-            <div className={'footer-social-links footer-user-link'}>
-                <UserSvg/>
-                <span className="today-users-text">{todayUsers}</span>
-            </div>
-        </div>
-);
-}
 
 const Footer = () => {
     const location = useLocation().pathname;
-    const links_blacklist = [questsPath]
+    const params = useParams();
+    const links_blacklist = [
+        {
+            path: questsPath,
+            params: params[questsParams]
+        },
+        {
+            path: profilePath,
+            params: undefined
+        }
+    ];
 
-    for (const link of links_blacklist) {
-        if (
-            location.includes(`${links_blacklist[link]}/`)
-        ) {
+    for (const item of links_blacklist) {
+        const link = {
+            path: item.path,
+            params: (item.params === undefined ? '' : (`/${params.questId}`))
+        };
+        if (location.includes(link.path + link.params)) {
             return null;
         }
     }
@@ -62,7 +47,7 @@ const Footer = () => {
                             DISCLAIMER
                         </div>
                         <div className={'footer-disclaimer'}>
-                             Nothing here is financial advice.
+                            Nothing here is financial advice.
                         </div>
                     </div>
                 </div>
@@ -112,6 +97,36 @@ const Footer = () => {
                     </div>
                     <div className={'footer-rights'}>©2024 AntiSocial. All rights reserved.</div>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+const TodayUsers = () => {
+    const [todayUsers, setTodayUsers] = useState(0);
+
+    const updateOnline = () => {
+        userAPI.getOnline()
+            .then(response => {
+                setTodayUsers(response['count'])
+            })
+    }
+
+    useEffect(() => {
+        const interval = setInterval(updateOnline, 5000);
+        return () => clearInterval(interval);
+    })
+
+    useEffect(() => {
+        updateOnline()
+    },[])
+
+    return (
+        <div className={'footer-today-users-container'}>
+            <p>DAILY ONLINE</p>
+            <div className={'footer-social-links footer-user-link'}>
+                <UserSvg/>
+                <span className="today-users-text">{todayUsers}</span>
             </div>
         </div>
     );
