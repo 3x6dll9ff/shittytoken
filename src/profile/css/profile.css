@@ -1,90 +1,96 @@
 :root {
-    --first-line-height: 280px;
-    --second-line-height: 650px;
+    --profile-main-margin: 20px;
+    --profile-top: calc(var(--header-total-height) + var(--profile-main-margin));
+    --profile-bottom: var(--profile-main-margin);
+    --profile-left: var(--profile-main-margin);
+    --profile-right: var(--profile-main-margin);
+
+    --profile-block-height: calc(100% - var(--profile-top) - var(--profile-bottom));
 
     --avatar-size: 100px;
 }
 
 
-.profile-progress-bar {
-    width: 100%;
-    position: absolute;
-    left: 0;
-}
-
-.profile-progress-bar.id-card {
-    height: 12px;
-}
-
-.profile-progress-bar.season-pass {
-    height: 20px;
-}
-
-.profile-main-container {
-    font-family: "Pixel Operator HB", sans-serif;
-    font-size: 40px;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: 320px 950px;
-    align-content: start;
-    justify-content: center;
-    margin-bottom: 150px;
-    padding: 20px;
-    gap: 26px 38px;
-    box-sizing: border-box;
-}
-
-.profile-id-card-container,
-.profile-season-pass-container,
-.profile-achievements-container,
-.profile-completed-quests-container {
+.profile-block {
     background-color: var(--black);
     border: var(--border);
     color: var(--white);
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 20px;
     gap: 10px;
     box-sizing: border-box;
 }
 
-.profile-achievements-container,
-.profile-completed-quests-container {
-    height: var(--second-line-height);
-    padding: 20px 10px;
+.profile-block.season-pass {
+    align-items: center;
+    gap: 20px;
 }
 
-.profile-inblock-header {
+.profile-block.achievements {
+    font-family: "Pixel Operator", sans-serif;
+    overflow-y: scroll;
+}
+
+.profile-subtitle-container {
+    width: 100%;
+    min-height: 40px;
+}
+
+.profile-subtitle {
+    font-family: "Pixel Operator HB", sans-serif;
     justify-self: flex-start;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 
-.profile-inblock-header.big h1 {
+.profile-subtitle.big h1 {
     font-size: 30pt;
 }
 
-.profile-inblock-header.small h1 {
+.profile-subtitle.small h1 {
     font-size: 16pt;
 }
 
-.profile-inblock-header button {
-    justify-self: flex-end;
-    font-family: "Pixel Operator HB", sans-serif;
-    font-size: 18pt;
-    height: 100%;
-    padding: 0 10px;
+.profile-side-container {
+    width: 320px;
+    height: var(--profile-block-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: var(--profile-top);
+}
+
+.profile-side-container.left {
+    left: var(--profile-left);
+}
+
+.profile-side-container.right {
+    right: var(--profile-right);
+}
+
+.profile-id-card-container,
+.profile-season-pass-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-id-card-container button {
+    font-size: 22pt;
+    min-width: 100%;
+    min-height: 40px;
 }
 
 .profile-id-card-user-info {
+    font-family: "Pixel Operator HB", sans-serif;
     display: flex;
     gap: 10px;
 }
@@ -92,7 +98,8 @@
 .profile-id-card-user-avatar {
     border: var(--border);
     width: var(--avatar-size);
-    height: var(--avatar-size);
+    aspect-ratio: 1;
+    object-fit: cover;
 }
 
 .profile-id-card-user-texts-counters {
@@ -170,8 +177,16 @@
     height: 50px;
 }
 
+.profile-id-card-user-level-progress-bar {
+    width: 100%;
+    height: 12px;
+    position: absolute;
+    left: 0;
+}
+
 .profile-id-card-user-level-experience {
     color: var(--50-white);
+    font-family: "Pixel Operator HB", sans-serif;
     font-size: 12pt;
     line-height: 1;
     position: absolute;
@@ -180,6 +195,7 @@
 }
 
 .profile-id-card-user-joined-date {
+    font-family: "Pixel Operator HB", sans-serif;
     width: 100%;
     display: flex;
     align-items: center;
@@ -191,62 +207,77 @@
     font-size: 18pt;
 }
 
-.profile-season-pass-block {
-    flex: 1;
+.profile-season-pass-info {
+    font-family: "Pixel Operator HB", sans-serif;
     width: 100%;
-    display: flex;
-    gap: 20px;
-}
-
-.profile-season-pass-block-left {
-    width: 75%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 
-.profile-season-pass-block-left-pentagon.left {
-    justify-self: flex-start;
+.profile-season-pass-time-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.profile-season-pass-block-left-pentagon.center {
-    justify-self: center;
-    height: 100px;
+.profile-season-pass-time-left img {
+    width: 16px;
+    aspect-ratio: 26 / 34;
+    object-fit: contain;
 }
 
-.profile-season-pass-block-left-pentagon.right {
-    justify-self: flex-end;
+.profile-season-pass-progress {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.profile-season-pass-block-right {
+.profile-season-pass-progress-text {
+    font-family: "Pixel Operator", sans-serif;
+    font-size: 22pt;
+    text-align: center;
     width: 25%;
+}
+
+.profile-season-pass-progress-text span {
+    font-family: "Pixel Operator HB", sans-serif;
+    font-size: 42pt;
+}
+
+.profile-season-pass-progress-bar {
+    width: 75%;
+    height: 40px;
+}
+
+.profile-season-pass-button {
+    font-size: 22pt;
+    min-width: 50%;
+    min-height: 40px;
+}
+
+.profile-completed-quests-block {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px 0 10px;
+    gap: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.profile-achievements-container {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px;
-}
-
-.profile-season-pass-block-right h1 {
-    font-family: "Pixel Operator SC", sans-serif;
-    font-size: 30pt;
-    text-align: center;
-}
-
-.profile-season-pass-block-right button {
-    font-family: "Pixel Operator SC", sans-serif;
-    font-weight: bold;
-    font-size: 24pt;
-    width: 50%;
-    height: 40px;
-}
-
-.profile-container-title {
-    width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
+    gap: 10px;
 }
 
 .profile-achievements-block {
@@ -315,16 +346,4 @@
     color: var(--50-white);
     font-size: 14pt;
     text-align: center;
-}
-
-.profile-completed-quests-block {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 20px 0 10px;
-    gap: 20px;
-    box-sizing: border-box;
-    overflow-y: scroll;
 }
