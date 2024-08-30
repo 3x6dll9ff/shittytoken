@@ -83,8 +83,9 @@ img {
 
 .white-button {
     background-color: var(--white);
-    color: var(--black);
     border: none;
+    color: var(--black);
+    font-family: "Pixel Operator HB SC", sans-serif;
     width: fit-content;
     height: fit-content;
     cursor: var(--pointer);
