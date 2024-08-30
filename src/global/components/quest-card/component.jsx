@@ -6,7 +6,7 @@ import "./css/quest-card.css";
 import error from "../../assets/images/error.png";
 
 
-const QuestCard = ({questInfo}) => {
+const QuestCard = ({questInfo, key}) => {
     const {
         id: questId = null,
         image: questImage = error,
@@ -25,7 +25,8 @@ const QuestCard = ({questInfo}) => {
     return (
         <Link
             className={`quest-card-container`}
-            to={`${questsPath}/${questId}`}
+            to={questId !== null ? (`${questsPath}/${questId}`) : null}
+            key={key}
         >
             <img
                 className={`quest-card-image`}
