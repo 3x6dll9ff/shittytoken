@@ -6,9 +6,10 @@ import Footer from "./global/components/footer/component.jsx";
 import Home from "./home/page.jsx";
 import Crypto from "./crypto/page.jsx";
 import Quests from "./quests/page.jsx";
+import Quest from "./quests/[questId]/page.jsx";
 import Blog from "./blog/page.jsx";
 import Profile from "./profile/page.jsx";
-import Quest from "./quests/[questId]/page.jsx";
+import SeasonPass from "./season-pass/page.jsx";
 
 import "./index.css";
 import "./global/css/fonts.css";
@@ -19,6 +20,7 @@ const cryptoPath = `/crypto`;
 const questsPath = `/quests`;
 const blogPath = `/blog`;
 const profilePath = `/profile`;
+const seasonPassPath = `/season-pass`;
 
 const questsParams = 'questId';
 
@@ -45,6 +47,7 @@ export default class App extends Component {
                         <Route path={`${questsPath}/:${questsParams}`} element={<Quest/>}/>
                         <Route path={blogPath} element={<Blog/>}/>
                         <Route path={profilePath} element={<Profile/>}/>
+                        <Route path={seasonPassPath} element={<SeasonPass/>}/>
                     </Routes>
                     <Footer/>
                 </Router>
@@ -55,6 +58,6 @@ export default class App extends Component {
 
 export {
     getCursorPosition,
-    homePath, cryptoPath, questsPath, blogPath, profilePath,
-    questsParams
+    homePath, cryptoPath, questsPath, blogPath, profilePath, seasonPassPath,
+    questsParams,
 };
